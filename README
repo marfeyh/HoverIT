@@ -1,0 +1,6 @@
+You can set the issue status by adding keywords in your git comment.
+
+fixes #<issue number>, closes #<issue number> or resolves #<issue number>  will set percentage done to 100%
+refs #<issue number>, references #<issue number> or IssueID #<issue number> adds a reference to that issue
+
+See issue #520 for an example.
