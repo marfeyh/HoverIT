@@ -1,0 +1,32 @@
+
+int incomingByte = 0;
+
+void setup() {
+  pinMode(15, INPUT);  
+  Serial.begin(9600);
+  Serial1.begin(9600);  
+}
+
+void loop() {
+  delay(1000);
+  Serial.println(Serial1.read(),HEX);
+  
+  Serial1.print("con 8C:77:12:8B:77:B7\r");
+  while(Serial1.available() < 4)
+  {
+    ;
+  }
+  int i;
+  for(i=0;i < 3; i++)
+    Serial.println(Serial1.read(),HEX);
+  while(digitalRead(15) == 0) {
+    Serial.println("Waiting for connection");
+    delay(1000);
+  } 
+  pinMode(13,OUTPUT);
+  digitalWrite(13,HIGH);
+  while(true) {
+    ;
+  }
+}
+
