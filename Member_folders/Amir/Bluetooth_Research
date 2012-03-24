@@ -1,0 +1,20 @@
+Report about the bluetooth research:
+
+There are three bluetooth modules available, which all three were tested. Two of them are not working and only one module is responding to the commands which are sent to the device.
+The version of the working module is 1.0. There is one manual for version 1.0 available. But in many cases the manual is not match with the module. For example, when the connection request is sent to the device, the device is responding with following error message: 
+Err 6
+In the manual there are only 4 error available!! 
+here is the errors documentation in manual: 
+Error Code Description 
+1 General connection failure. 
+2 Connection attempt failed. This error occurs when attempting to connect with an invalid Bluetooth address or a device that is not available. 
+3 Command not valid while active. This error occurs when there is an active connection and a command is issued that is not valid while connected with a remote device.
+4 Command only valid while active. This error occurs when there is not an active connection and a command is issued that is only valid while connected with a remote device.
+
+Basically, the manual is not match with the bluetooth module. There was some research on finding the corresponding manual as well. As a result, the manual version 2 of the module and also another manual for the similar module (A7-UM-eb500-SER) was found which you will find them with this file. 
+
+But still we are missing the exact manual of the available device!
+
+Also, I have noticed that, while connecting PC to Bluetooth module, the bluetooth makes a noise which I have no idea if it's either good react or bad react!
+
+Also, some samples code on getting the version of the device and some othere commands will be uploaded. Make sure to put the code in Arduino IDE and compile it there.
