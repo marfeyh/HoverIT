@@ -1,0 +1,36 @@
+  void setup() {
+    pinMode(13,OUTPUT);
+    pinMode(8,INPUT);
+    pinMode(9,OUTPUT);
+              
+    Serial.begin(9600);
+    Serial1.begin(9600);   
+    digitalWrite(9, LOW);
+   
+  }
+  
+  void loop() {
+     delay(1000);
+    Serial1.print("set dis on\r");
+    delay(100);
+    Serial1.print("set con on\r");
+   delay(100);
+    Serial1.print("hlp\r");
+    while (true){
+      if (Serial1.available() >0){
+//    Serial.println("========================");
+    unsigned char test = Serial1.read();
+    
+//    Serial.println(test, HEX);
+    Serial.print(test);
+    
+      }
+    delay(10);
+    while (digitalRead(8)!=0){
+      Serial.print("1");
+    }
+   // while (digitalRead(9)!=0){
+   //   Serial.print("1");
+   // }
+    }
+  } 
