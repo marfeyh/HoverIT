@@ -27,8 +27,7 @@
 char address[18] = {0};
 
 int main() {
-  //init();
-  //hc_connect();
+  hc_connect(address);
   control_loop();
   return 0;
 }
@@ -79,11 +78,10 @@ int main() {
 
 
 int control_loop() {
-  unsigned char input;
-  printf("Enter message to send: ");
-  scanf("%d", &input);
-  set_rudder(input);
-  //send_byte(input);
-  control_loop();
+  unsigned char val;
+  get_speed(&val);
+  printf("Speed:"BYTETOBINARYPATTERN, BYTETOBINARY(val));
+  get_pressure(&val);
+  printf("Pressure:"BYTETOBINARYPATTERN, BYTETOBINARY(val));
   return 0;
 }

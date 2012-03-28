@@ -23,7 +23,7 @@ int get_devices_in_range(int max_rsp, int len, int *num_discovered, char **addre
   int i;
   int num_rsp;
   char name[248] = { 0 };
-  char addr[19] = { 0 };
+  char addr[18] = { 0 };
   num_rsp = 1;
 
   // Assign id of the bt adapter.
@@ -44,7 +44,7 @@ int get_devices_in_range(int max_rsp, int len, int *num_discovered, char **addre
   num_rsp = hci_inquiry(dev_id, len, max_rsp, NULL, &ii, flags);
 
   // If number of found devices is less than 0, crash with error.
-  if( num_rsp < 0 ) perror("hci_inquiry");
+  if( num_rsp < 0 ) perror ("hci_inquiry");
 
   // Loop through found devices.
   for (i = 0; i < num_rsp; i++) {
@@ -56,14 +56,38 @@ int get_devices_in_range(int max_rsp, int len, int *num_discovered, char **addre
     // Get the user friendly name of the device.
     if (hci_read_remote_name(sock, &(ii+i)->bdaddr, 248, names[i], 0) < 0)      // If name is empty, set to [unknown]
       strcpy(names[i], "[unknown]");
-    
   }
  
   *num_discovered = num_rsp;
 
   return 0;
 }
+int start_server(){
+  struct sockaddr_rc loc_addr = { 0 }, rem_addr = { 0 };
+  char *buf;
+  int sock, bytes_read;
+  socklen_t opt = sizeof(rem_addr);
 
+  // allocate socket
+  sock = socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
+
+  // bind socket to port 1 of the first available 
+  // local bluetooth adapter
+  loc_addr.rc_family = AF_BLUETOOTH;
+  loc_addr.rc_bdaddr = *BDADDR_ANY;
+  loc_addr.rc_channel = (uint8_t) 1;
+  bind(sock, (struct sockaddr *)&loc_addr, sizeof(loc_addr));
+
+  // put socket into listening mode
+  listen(sock, 1);
+
+  // accept one connection
+  connection = accept(sock, (struct sockaddr *)&rem_addr, &opt);
+
+  ba2str( &rem_addr.rc_bdaddr, buf );
+  fprintf(stderr, "accepted connection from %s\n", buf);
+  memset(buf, 0, sizeof(buf));
+}
 
 int connect_to_device(char dest[18]){
   struct sockaddr_rc addr = { 0 };
@@ -87,8 +111,12 @@ int connect_to_device(char dest[18]){
   return status;
 }
 
+int stop_server(){
+  return disconnect_from_device();
+}
+
 int disconnect_from_device(){
-  close(connection);
+  return close(connection);
 }
 
 int send_byte(char byte){
