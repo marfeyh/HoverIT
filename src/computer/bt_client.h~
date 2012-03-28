@@ -1,6 +1,0 @@
-#if !defined(BT_CLIENT_H)
-#define BT_CLIENT_H
-
-#endif
-
-char addr[19];
