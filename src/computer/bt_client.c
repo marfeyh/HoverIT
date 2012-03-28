@@ -62,6 +62,7 @@ int get_devices_in_range(int max_rsp, int len, int *num_discovered, char **addre
 
   return 0;
 }
+
 int start_server(){
   struct sockaddr_rc loc_addr = { 0 }, rem_addr = { 0 };
   char *buf;
