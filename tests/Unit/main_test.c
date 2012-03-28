@@ -1,9 +1,9 @@
-#include "main_test.h"
-#include "stdlib.h"
+#include <main_test.h>
+#include <stdlib.h>
 
 int main (void){
-	int number_failed;	
-	SRunner* srunner = srunner_create(info_test());
+	int number_failed;
+	SRunner* suite_runner = srunner_create(info_test());
 	srunner_run_all(suite_runner, CK_NORMAL);
 	number_failed = srunner_ntests_failed(suite_runner);
 	srunner_free(suite_runner);

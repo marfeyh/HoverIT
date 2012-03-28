@@ -1,4 +1,5 @@
 #include <check.h>
+#include <info.h>
 
 START_TEST (test_function) {
 	fail_unless(member_number()== 9);
