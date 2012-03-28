@@ -23,7 +23,7 @@
 **/
 
 
-static struct List *taskList;
+/* static struct List *taskList; */
 
 
 START_TEST (fangzhou_test){
@@ -55,26 +55,26 @@ START_TEST (fangzhou_test){
 END_TEST
 
 
-Suite * test_suite(void){
-	Suite *s=suite_create("Suite");
-	TCase *tc=tcase_create("Case1");
-	tcase_add_test(tc, fangzhou_test);
-	suite_add_tcase(s, tc);
+/* Suite * test_suite(void){ */
+/* 	Suite *s=suite_create("Suite"); */
+/* 	TCase *tc=tcase_create("Case1"); */
+/* 	tcase_add_test(tc, fangzhou_test); */
+/* 	suite_add_tcase(s, tc); */
 
-	return s;
-}
+/* 	return s; */
+/* } */
 
-int main(void){
+/* int main(void){ */
 
-	int number_failed;
-	Suite *s=test_suite();
-	SRunner *sr= srunner_create(s);
-	srunner_run_all(sr,CK_NORMAL);
-	number_failed=srunner_ntests_failed(sr);
-	srunner_free(sr);
-	return(number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+/* 	int number_failed; */
+/* 	Suite *s=test_suite(); */
+/* 	SRunner *sr= srunner_create(s); */
+/* 	srunner_run_all(sr,CK_NORMAL); */
+/* 	number_failed=srunner_ntests_failed(sr); */
+/* 	srunner_free(sr); */
+/* 	return(number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE; */
 
 
-}
+/* } */
 
 

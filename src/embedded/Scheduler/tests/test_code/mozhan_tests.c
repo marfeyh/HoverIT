@@ -10,7 +10,7 @@
 #include "list.h"
 
 /* void addJob(struct Job, struct List * list); */
-struct Job pop(struct List * list);
+/* struct Job pop(struct List * list); */
 /*
  * Purpose: To check if the Node list is emptied when the last job is poped out. 
  * Preparation: 
