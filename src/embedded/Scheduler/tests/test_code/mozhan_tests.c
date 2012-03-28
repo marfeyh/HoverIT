@@ -9,7 +9,7 @@
 #include "jobtype.h"
 #include "list.h"
 
-void addJob(struct Job, struct List * list);
+/* void addJob(struct Job, struct List * list); */
 struct Job pop(struct List * list);
 /*
  * Purpose: To check if the Node list is emptied when the last job is poped out. 
@@ -40,7 +40,7 @@ START_TEST(emptyList_test) {
 }END_TEST
 
 
- /*Commneted to include thses test cases in test suite -Gokul*/
+ /*Commneted to include thses test cases in test suite*/
 
 /* SUITE * SUITE1(VOID) { */
 /*   SUITE *S = SUITE_CREATE("SUITE1"); */
@@ -109,7 +109,7 @@ START_TEST(orderedList_test) {
   free(list);
 }END_TEST
 
-/*Commneted to include thses test cases in test suite -Gokul*/
+/*Commneted to include thses test cases in test suite*/
 /* Suite * suite2(void) { */
 /*   Suite *sp2 = suite_create("Suite2"); */
 /*   TCase *tcp2 = tcase_create("Test Case of an ordered list"); */
@@ -118,7 +118,7 @@ START_TEST(orderedList_test) {
 /*   return sp2; */
 /* } */
 
-/*Commneted to include thses test cases in test suite -Gokul*/
+/*Commneted to include thses test cases in test suite*/
 
 /* int main(void) { */
 /*   int failed_num , failed_num2; */
@@ -137,4 +137,3 @@ START_TEST(orderedList_test) {
 /*   srunner_free(srp2); */
 /*   return (failed_num == 0 && failed_num2 == 0 ) ? EXIT_SUCCESS : EXIT_FAILURE; */
 /* }  */
-  
