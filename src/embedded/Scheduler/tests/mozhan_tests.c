@@ -39,13 +39,16 @@ START_TEST(emptyList_test) {
   free(list);
 }END_TEST
 
-Suite * suite1(void) {
-  Suite *s = suite_create("Suite1");
-  TCase *tc = tcase_create("Test Case of an emptied list");
-  tcase_add_test(tc, emptyList_test);
-  suite_add_tcase(s,tc);
-  return s;
-}
+
+ /*Commneted to include thses test cases in test suite -Gokul*/
+
+/* SUITE * SUITE1(VOID) { */
+/*   SUITE *S = SUITE_CREATE("SUITE1"); */
+/*   TCASE *TC = TCASE_CREATE("TEST CASE OF AN EMPTIED LIST"); */
+/*   TCASE_ADD_TEST(TC, EMPTYLIST_TEST); */
+/*   SUITE_ADD_TCASE(S,TC); */
+/*   RETURN S; */
+/* } */
 
 /*
  * Purpose: To check if the Node list is in order when 4 jobs with different priorities are added. 
@@ -106,29 +109,32 @@ START_TEST(orderedList_test) {
   free(list);
 }END_TEST
 
-Suite * suite2(void) {
-  Suite *sp2 = suite_create("Suite2");
-  TCase *tcp2 = tcase_create("Test Case of an ordered list");
-  tcase_add_test(tcp2, emptyList_test);
-  suite_add_tcase(sp2,tcp2);
-  return sp2;
-}
+/*Commneted to include thses test cases in test suite -Gokul*/
+/* Suite * suite2(void) { */
+/*   Suite *sp2 = suite_create("Suite2"); */
+/*   TCase *tcp2 = tcase_create("Test Case of an ordered list"); */
+/*   tcase_add_test(tcp2, emptyList_test); */
+/*   suite_add_tcase(sp2,tcp2); */
+/*   return sp2; */
+/* } */
 
-int main(void) {
-  int failed_num , failed_num2;
-  Suite *sp = suite1();
-  SRunner *srp = srunner_create(sp);
-  srunner_run_all(srp,CK_NORMAL);
+/*Commneted to include thses test cases in test suite -Gokul*/
+
+/* int main(void) { */
+/*   int failed_num , failed_num2; */
+/*   Suite *sp = suite1(); */
+/*   SRunner *srp = srunner_create(sp); */
+/*   srunner_run_all(srp,CK_NORMAL); */
   
-  Suite *sp2 = suite2();
-  SRunner *srp2 = srunner_create(sp2);
-  srunner_run_all(srp2,CK_NORMAL);
+/*   Suite *sp2 = suite2(); */
+/*   SRunner *srp2 = srunner_create(sp2); */
+/*   srunner_run_all(srp2,CK_NORMAL); */
   
-  failed_num = srunner_ntests_failed(srp);
-  failed_num2 = srunner_ntests_failed(srp2);
+/*   failed_num = srunner_ntests_failed(srp); */
+/*   failed_num2 = srunner_ntests_failed(srp2); */
   
-  srunner_free(srp);
-  srunner_free(srp2);
-  return (failed_num == 0 && failed_num2 == 0 ) ? EXIT_SUCCESS : EXIT_FAILURE;
-} 
+/*   srunner_free(srp); */
+/*   srunner_free(srp2); */
+/*   return (failed_num == 0 && failed_num2 == 0 ) ? EXIT_SUCCESS : EXIT_FAILURE; */
+/* }  */
   
