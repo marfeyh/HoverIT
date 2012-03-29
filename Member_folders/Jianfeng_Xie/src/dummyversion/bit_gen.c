@@ -9,6 +9,27 @@ int rando(){
 	return a;
 }
 
+int hspeed, hspeed, rdirect, x; //x is random number
+
+void set_FS(int fspeed){
+	int result,left;
+	left=x&120;
+	result=left|fspeed;	/*Fspeed 0-7*/
+}
+
+void set_HS(int hspeed){
+	int result,left;
+	left=((x>>5)&3)|(x&7);
+	result=left|(hspeed<<3);	/*Hspeed 0-3*/
+}
+
+void set_RD(int rdirect){
+	int result,left;
+	left=x&31;
+	result=left|(rdirect<<5);	/*Rdirect 0-3*/
+}
+
+
 int extract(){
 	int b,bs,c,cs,d,ds,e,es;
 	int x = rando();
@@ -18,40 +39,52 @@ int extract(){
 			b=x&7;
 			scanf("%d",&bs);
 			b=bs;
-			printf("%d\n",b);
 
 			c=(x>>3)&3;
 			scanf("%d",&cs);
 			c=cs;
-			printf("%d\n",c);
 
 			d=(x>>5)&3;
 			scanf("%d",&ds);
 			d=ds;
-			printf("%d\n",d);
 
 			e=(x>>7)&0;
 			scanf("%d",&es);
 			e=es;
-			printf("%d\n",e);
 
 		y = (b|(c<<3)|(d<<5)|(e<<7));
 
 		printf("%d\n",y);
 
-	return 0;
+	return y;
+}
+
+int board_info(){
+	int a,b,c,y;
+	
+	srand((unsigned)time(NULL));
+	
+	a=rand()%15;
+	b=rand()%3;
+	c=rand()%3;
+
+	y = (a|(b<<4)|(c<<6));
+	
+	printf("%d\n",y);
+	return y;
 }
 
 void loop(){
 	while (1) {
-		printf("number: %d \n",rando());
+		rando();	
+		//printf("%d\n",rando());
 		sleep(1);
-		
 	}
 }
 
-/*void main(){
+//void main(){
+	//int x;
+  	//x=extract()|(board_info()<<8);
+	//printf("%d\n",x);
 
-	//printf("%d\n",rando());
-	extract();
-}*/	
+//}	
