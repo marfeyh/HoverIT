@@ -1,8 +1,0 @@
-pro: pro_api.c propelsion.c propelsion.h
-	gcc -o pro propelsion.c pro_api.c -I.$(EXTRAGCCFLAGS)
-
-test: propelsion.c propelsion.h
-	gcc -o pro.o -c propelsion.c -I.$(EXTRAGCCFLAGS)
-
-clean:
-	rm -f *.o pro pro.exe
