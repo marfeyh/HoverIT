@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <propelsion.h>
+
+#define LEVEL 41
+#define MAXSPEED 122
+
+//void level(int num){ //*num = 1,2,3  38, 1,2,3,4,5  22*//
+//  if(num == 1){
+//    change_pro_speed(LEVEL);
+//  }
+//  if(num == 2){
+//    change_pro_speed(LEVEL*2)
+//  }
+//  if(num == 3){
+//    change_pro_speed(LEVEL*3-1)
+//  }
+//}
+
+int increase_speed(){
+  int speedLevel = getSpeedLevel();
+  //  printf("okkdfdk %d\n", speedLevel);
+  if(speedLevel >= MAXSPEED - 3){
+    change_pro_speed(MAXSPEED);
+  }
+  if( speedLevel < 119){
+    change_pro_speed(speedLevel + LEVEL);
+  }
+
+}
+
+void decrease_speed(){
+  int speedLevel = getSpeedLevel();
+  if(speedLevel <= 3){
+    stop_pro_fan();
+  }
+  else{
+    change_pro_speed(speedLevel - LEVEL);
+  }
+}
+
+int stop_speed(){
+  stop_pro_fan();
+}
+
+int get_fan_level(){
+  int speed;
+  speed = getSpeedLevel();
+  
+  return speed;
+}
+
+int get_hav_speed(){
+
+}
+
+
+int main(void){
+  increase_speed();
+  sleep(1);
+  increase_speed();
+  sleep(1);
+  increase_speed();
+  sleep(1);
+  increase_speed();
+  sleep(1);
+  decrease_speed();
+  sleep(1);
+  decrease_speed();
+  sleep(1);
+  decrease_speed();
+  sleep(1);
+  decrease_speed();
+  sleep(1);
+  stop_pro_fan();
+  sleep(1);
+  increase_speed();
+  sleep(1);
+  stop_pro_fan();
+  printf("Finish\n");
+  
+}
