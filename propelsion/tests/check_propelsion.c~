@@ -1,0 +1,64 @@
+#include <check.h>
+#include "../../src/propelsion.h"
+
+//CalcStatePtr calc = NULL;
+
+void setup (void) {
+  
+}
+
+void teardown (void) {
+  freeCalcState(calc);
+  calc = NULL;
+}
+
+START_TEST(test_addition) {
+
+  fail_unless(!strcmp(getBuffer(calc),""),
+	      "Expected buffer content: ");
+  pressDigit(calc,'1');
+  fail_unless(!strcmp(getBuffer(calc),"1"),
+	      "Expected buffer content: 1");
+  pressDigit(calc,'7');
+  fail_unless(!strcmp(getBuffer(calc),"17"),
+	      "Expected buffer content: 17"); 
+  pressPlus(calc);
+  fail_unless(!strcmp(getBuffer(calc),"17"),
+	      "Expected buffer content after pressing plus: 17");
+  pressDigit(calc,'3');
+  fail_unless(!strcmp(getBuffer(calc),"3"),
+	      "Expected buffer content: 3");
+  pressExec(calc);
+  fail_unless(!strcmp(getBuffer(calc),"20"),
+	      "Expected total: 20");
+}END_TEST
+
+START_TEST(test_division) {
+  fail_unless(!strcmp(getBuffer(calc),""),
+	      "Expected buffer content: ");
+
+  pressDigit(calc,'9');
+  fail_unless(!strcmp(getBuffer(calc),"9"),
+	      "Expected buffer content: 9");
+
+}END_TEST
+
+Suite * calc_suite(void) {
+  Suite *s = suite_create("Calculator");
+  
+  TCase *tc = tcase_create("Core");
+  tcase_add_checked_fixture(tc,setup,teardown);
+  tcase_add_test(tc,test_addition);
+  tcase_add_test(tc,test_division);
+  suite_add_tcase(s,tc);
+  return s;
+}
+main(void) {
+  int number_failed;
+  Suite *s = calc_suite();
+  SRunner *sr = srunner_create(s);
+  srunner_run_all(sr, CK_NORMAL);
+  number_failed = srunner_ntests_failed(sr);
+  srunner_free(sr);
+  return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+}
