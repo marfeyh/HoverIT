@@ -1,8 +1,9 @@
 #All the code should be structured as following
 # | Makefile
 # | src
-# 	| example.c
-#	| example1.c
+#	|computer
+# 		| example.c
+#		| example1.c
 # | tests
 # 	| check_example.c
 

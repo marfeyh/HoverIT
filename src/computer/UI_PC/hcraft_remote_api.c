@@ -60,11 +60,11 @@ int set_rudder(unsigned char value) {
   return set(RUDDER, value);
 }
 
-int set_hover_speed(unsigned char value){
+int set_hover_speed(unsigned char value) {
   return set(FAN_HOVER, value);
 }
 
-int set_move_speed(unsigned char value){
+int set_move_speed(unsigned char value) {
   return set(FAN_MOVE, value);
 }
 
