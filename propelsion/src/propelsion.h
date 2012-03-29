@@ -7,7 +7,7 @@
 #define RATE 1
 
 void manage_motor();
-void initialise_propelsion();
+int initialise_propelsion();
 int getSpeedLevel();
 void change_pro_speed(int level);
 //void decrease_pro_fan(int level);
