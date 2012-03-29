@@ -1,0 +1,8 @@
+// hcraft_remote_api.c -
+//
+// Created By: 	Yavor Paunov
+// Time:	Monday, March 26 2012
+//
+
+#include "hcraft_remote_api.h"
+#define RUDDER 0b00000000;
