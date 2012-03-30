@@ -1,0 +1,2 @@
+info.o: info.c info.h
+gcc -c $< -I . -I ./include -o $@
