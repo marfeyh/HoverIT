@@ -82,6 +82,7 @@ START_TEST(new_test) {
 
 }END_TEST
 
+
 /* /\* Test suite *\/ */
 /* Suite * new_suite(void) { */
 /*   Suite *s = suite_create("New Suite"); */
@@ -101,4 +102,4 @@ START_TEST(new_test) {
 /*   srunner_free(sr); */
 /*   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE; */
 /* }  */
-  
+

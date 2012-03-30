@@ -4,8 +4,9 @@ Author: Dmitry Igoshin
 
 #include <check.h>
 #include <stdlib.h>
+
 #include "../../src/loc_struct.h"
-#include "../../src/job_queue.h"
+#include "../../src/job_queue.h"\
 
 void addJob(struct Job job, struct List * list);
 struct Job pop(struct List * list);
@@ -20,6 +21,7 @@ START_TEST(jobs_test) {
   fail_unless( result.prio == HIGH);
 
 }END_TEST
+
 
 
 /* Suite * new_suite(void) { */
@@ -41,3 +43,4 @@ START_TEST(jobs_test) {
 /*   srunner_free(suiter); */
 /*   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE; */
 /* }  */
+
