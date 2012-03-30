@@ -1,13 +1,13 @@
 #include <check.h>
 #include <stdlib.h>
-#include "job.h"
-#include "jobpriority.h"
-#include "list.h"
+#include "../../src/job.h"
+#include "../../src/jobpriority.h"
+#include "../../src/list.h"
 
 /* void addJob(struct Job job, struct List * list); */
 /* struct Job pop(struct List * list); */
 
-START_TEST(jobs_test) {
+START_TEST(jobs_test1) {
   
 	struct Job job_1;
 	struct Job job_2;

@@ -7,8 +7,8 @@
 
 #include <check.h>
 #include<stdlib.h>
-#include "job.h"
-#include "list.h"
+#include "../../src/loc_struct.h"
+#include "../../src/job_queue.h"
 
 /**
  Purpose: to test the addJob function and printList functio.
@@ -23,7 +23,7 @@
 **/
 
 
-/* static struct List *taskList; */
+static struct List *taskList;
 
 
 START_TEST (fangzhou_test){
