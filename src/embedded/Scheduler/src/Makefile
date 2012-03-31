@@ -1,11 +1,13 @@
-## Makefile to compile and link the basic scheduler and its demo
-## Author: Kirill Blazhko
-##
-all: list.h list.c job.h jobpriority.h jobtype.h demotasks.h main.c
-	gcc -o ../bin/main main.c -L. list.c $(EXTRAGCCFLAGS)
 
-gdb: EXTRAGCCFLAGS+= -g
-gdb: main
 
-clean:
-	rm -rf ../bin/main
+default: 
+	@echo To get object files type in terminal \"make jqObj\" \(short for Job_queue object\)
+	@echo To clean \(i.e del all *.o and *.gcov files\) type in terminal \"make clean\"
+
+jqObj:
+	gcc -c -Wall -fprofile-arcs -ftest-coverage job_queue.c
+
+gcov:
+	gcc -c -Wall -fprofile-arcs -ftest-coverage job_queue.c -lgcov
+clean: 
+	rm -rf *.o *.gc* 
