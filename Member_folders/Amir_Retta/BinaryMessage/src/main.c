@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include "messageHandler.h"
+#include "API_messageHandler.h"
 int main (int argc, char** argv){
 	printf("the main is working...\n");
 	parseBinary(16);

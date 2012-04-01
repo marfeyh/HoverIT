@@ -2,7 +2,6 @@
  * messageHandler.h
  *
  *  Created on: Mar 28, 2012
- *      Author: amir
  */
 
 #ifndef MESSAGEHANDLER_H_
