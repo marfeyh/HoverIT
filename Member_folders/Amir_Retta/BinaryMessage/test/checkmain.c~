@@ -57,7 +57,7 @@ START_TEST (parseBinaryTest) {
 
 
 
-START_TEST(fan_forward_speed) {
+START_TEST(fan_forward_speed_test) {
    // Testing the Fan_Forward_Speed message, message range is 00000000 to 00001111
    static  unsigned char forward[5]={0, 13, 7, 15, 7};
    static unsigned char forward2[5]={19, 18, 21, 27, -12};
@@ -68,7 +68,7 @@ START_TEST(fan_forward_speed) {
   
 } END_TEST
 
-START_TEST(fan_hovering_speed){
+START_TEST(fan_hovering_speed_test){
    // Testing Fan_Hovering_Speed message, message range is 00010000 to 00011111
    static unsigned char hovering_speed[6]={16, 17, 21, 29, 25, 30};
    static unsigned char hovering_speed2[6]={-2,12, 14, 45, 32, 35};
@@ -78,7 +78,7 @@ START_TEST(fan_hovering_speed){
   
 }END_TEST
 
- START_TEST(ruder_direction){
+ START_TEST(ruder_direction_test){
      // Testing Ruder_Direction message, message range is 00100000 to 00101111
    static unsigned char ruder_direction[6]={32, 35, 41, 45, 46, 33};
    static unsigned char ruder_direction2[6]={16, 49, 21, 29, 25, 55};
@@ -90,7 +90,7 @@ START_TEST(fan_hovering_speed){
 
 }END_TEST
 
-START_TEST(hovecraft_speed){
+START_TEST(hovecraft_speed_test){
   // Testing Hovercraft Speed message, message range is 00110000 to 00111111
    static unsigned char hove_speed[6]={48, 51, 53, 57, 60, 63};
    static unsigned char hove_speed2[6]={16, 31, 47, 29, 72, 65};
@@ -100,7 +100,7 @@ START_TEST(hovecraft_speed){
   
 }END_TEST
 
-START_TEST(hovecraft_pressure){
+START_TEST(hovecraft_pressure_test){
   
   // Testing Hovercraft Speed message, message range is 00110000 to 00111111
    static unsigned char hove_pressure[7]={64, 66, 69, 70, 73, 77, 79};
@@ -111,7 +111,7 @@ START_TEST(hovecraft_pressure){
  
 }END_TEST
 
-START_TEST(battery_level){
+START_TEST(battery_level_test){
  // Testing Battery Level message, message range is 01010000 to 01011111
    static unsigned char battery_level[7]={80, 85, 89.99, 91, 93, 94.555, 95};
    static unsigned char battery_level2[7]={1, -31, 79, 63, -80, 100,200};
@@ -191,18 +191,71 @@ START_TEST (check_number_limit_Test) {
   }
  } END_TEST
 
+/**
+ * The follwoing test codes are for the all API functions 
+ * to be availbale in weki to the other group so as they can call and 
+ * use them when ever they want     
+**/
+
+START_TEST (API_fan_forward_speed_Test) {
+  unsigned char i =  0b00000000;
+  for (; i < 0b00010000 ; i++)
+	  fail_unless(fan_forward_speed(i)== i); 
+ 
+  for (i = 0b00010000 ; i < 0b11111111 ; i++)
+	  fail_if(fan_forward_speed(i)== i); 
+
+ } END_TEST
+
+START_TEST (API_fan_hovering_speed_Test) {
+  unsigned char i =  0b00000000;
+  for (; i < 0b00010000 ; i++)
+	  fail_unless(fan_hovering_speed(i)== (i | (1<<4))); 
+ 
+  for (i = 0b00010000 ; i < 0b11111111 ; i++)
+	  fail_if(fan_hovering_speed(i)==(i | (1<<4))); 
+
+ } END_TEST
+
+START_TEST (API_ruder_direction_Test) {
+  unsigned char i =  0b00000000;
+  for (; i < 0b00010000 ; i++)
+	  fail_unless(ruder_direction(i)== (i | (1<<5)));  
+
+ } END_TEST
+
+START_TEST (API_hovercraft_speed_Test) {
+  unsigned char i =  0b00000000;
+  for (; i < 0b00010000 ; i++)
+	  fail_unless(hovercraft_speed(i)== (i | (3<<4))); 
+ 
+  for (i = 0b00010000 ; i < 0b11111111 ; i++)
+	  fail_if(hovercraft_speed(i)==( i | (3<<4))); 
+
+ } END_TEST
+
+START_TEST (API_battery_level_Test) {
+  unsigned char i =  0b00000000;
+  for (; i < 0b00010000 ; i++)
+	  fail_unless(battery_level(i)== (i | (5<<4))); 
+ 
+  for (i = 0b00010000 ; i < 0b11111111 ; i++)
+	  fail_if(battery_level(i)==(i | (5<<4))); 
+
+ } END_TEST
+
 
 
 Suite* test_hello(void) {
   Suite* s = suite_create("Amir_Retta");
   TCase* tc = tcase_create("Main Test");
   tcase_add_test(tc,parseBinaryTest);
-  tcase_add_loop_test(tc, fan_forward_speed, 0, 5);
-  tcase_add_loop_test(tc, fan_hovering_speed, 0, 6);
-  tcase_add_loop_test(tc, ruder_direction, 0, 6);
-  tcase_add_loop_test(tc, hovecraft_speed, 0, 6);
-  tcase_add_loop_test(tc, hovecraft_pressure, 0, 7);
-  tcase_add_loop_test(tc, battery_level, 0, 7);
+  tcase_add_loop_test(tc, fan_forward_speed_test, 0, 5);
+  tcase_add_loop_test(tc, fan_hovering_speed_test, 0, 6);
+  tcase_add_loop_test(tc, ruder_direction_test, 0, 6);
+  tcase_add_loop_test(tc, hovecraft_speed_test, 0, 6);
+  tcase_add_loop_test(tc, hovecraft_pressure_test, 0, 7);
+  tcase_add_loop_test(tc, battery_level_test, 0, 7);
 
  // tcase_add_test(tc,findMessageTest);
   tcase_add_test(tc,create_fan_forward_speed_Test);
@@ -211,7 +264,13 @@ Suite* test_hello(void) {
   tcase_add_test(tc,create_hovercraft_speed_Test);
   tcase_add_test(tc,create_hovercraft_pressure_Test);
   tcase_add_test(tc,create_battery_level_Test);
-  tcase_add_test(tc,check_number_limit_Test);
+  tcase_add_test(tc, check_number_limit_Test);
+  tcase_add_test(tc, API_fan_forward_speed_Test);
+  tcase_add_test(tc, API_fan_hovering_speed_Test);
+  tcase_add_test(tc, API_ruder_direction_Test);
+  tcase_add_test(tc, API_hovercraft_speed_Test);
+  tcase_add_test(tc, API_battery_level_Test);
+ 
   suite_add_tcase(s, tc);
   return s;
 }
