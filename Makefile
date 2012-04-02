@@ -1,4 +1,10 @@
 all: 
 	cd src && $(MAKE) 
 
-.PHONY: all
+check: 
+	cd src && $(MAKE) check
+
+clean:
+	cd src && $(MAKE) clean 
+
+.PHONY: all check clean
