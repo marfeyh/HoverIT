@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <check.h>
 
-#include "../../src/computer/UI_PC/hcraft_remote_api.h"
+#include "../hcraft_remote_api.h"
 
 START_TEST(connection)
 {
