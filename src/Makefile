@@ -1,14 +1,14 @@
 #All the code should be structured as following
-# | Makefile   <--- You are here
 # / src
+# 	| Makefile   <--- You are here
 #	/computer
-#	| Makefile
+#		| Makefile 
 #		/feature
-#       	| Makefile 
-# 		| example.c
-#		| example1.c
-# 		/tests
-#	 		| check_main.c
+#       		| Makefile 
+# 			| example.c
+#			| example1.c
+# 			/tests
+#	 			| check_main.c
 
 computer:
 	cd computer && $(MAKE) 

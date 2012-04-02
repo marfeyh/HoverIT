@@ -1,12 +1,14 @@
 #All the code should be structured as following
-# | Makefile
-# | src
-#	|computer
-# 		| example.c
-#		| example1.c
-# | tests
-# 	| check_example.c
-
+# / src
+# 	| Makefile   
+#	/computer
+#		| Makefile <-- You are here
+#		/feature
+#       		| Makefile 
+# 			| example.c
+#			| example1.c
+# 			/tests
+#	 			| check_main.c
 
 
 all: *.c *.h

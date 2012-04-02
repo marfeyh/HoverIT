@@ -1,14 +1,14 @@
 #All the code should be structured as following
-# | Makefile
 # / src
+# 	| Makefile   
 #	/computer
-#	| Makefile
+#		| Makefile 
 #		/feature
-#       	| Makefile <--- You are here
-# 		| example.c
-#		| example1.c
-# 		/tests
-#	 		| check_example.c
+#       		| Makefile <-- You are here
+# 			| example.c
+#			| example1.c
+# 			/tests
+#	 			| check_main.c
 
 OBJ = $(TESTSRCS:.c=.o)
 TESTSRCS = $(filter-out main.c, $(wildcard *.c))
