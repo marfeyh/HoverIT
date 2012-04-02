@@ -1,7 +1,0 @@
-SEARDUINO_PATH=/opt/searduino
-PROG=blinker
-SRC_C=hovering.c
-SHLIB=hover.so
-ARDUINO=stub
-USER_C_FLAGS=-DSTUB_TEST
-include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk

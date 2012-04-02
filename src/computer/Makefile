@@ -11,21 +11,17 @@
 #	 			| check_main.c
 
 
-all: *.c *.h
-	gcc -o computer *.c -lbluetooth
+all: bluetooth
 
-clean:
-	rm -f computer computer.exe *.o
+check: bluetooth-check
 
+clean: 
+	cd bluetooth && $(MAKE) clean
 
-# change checkmain.c on both lines to whatever your file is called in "tests" folder
-testsuite.o: ../../tests/check_hc_remote.c
-	gcc -c ../../tests/check_hc_remote.c -o ../../tests/testsuite.o
+bluetooth:
+	cd bluetooth && $(MAKE) 
 
-# change main.o and test.o o both lines to whatever your .c files are called in the "src" folder
-testsuite: UI_PC/main.o UI_PC/test.o testsuite.o
-	gcc UI_PC/bt_client.o UI_PC/hcraft_remote_api.o ../../tests/testsuite.o -o ../../tests/testsuite -lcheck
+bluetooth-check:
+	cd bluetooth && $(MAKE) check
 
-check:	testsuite
-	@echo Running tests...
-	tests/./testsuite
+.PHONY: all check clean bluetooth bluetooth-check
