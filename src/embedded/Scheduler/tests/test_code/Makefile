@@ -9,7 +9,7 @@ check: testsuite
 gcovcheck: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
 gcovcheck: check
 	gcov testsuite
-	cd $(SRCPATH) && gcov main.c
+	cd $(SRCPATH) && gcov main.c 
 
 gcovcheckb: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
 gcovcheckb: check
@@ -22,10 +22,10 @@ memcheck: testsuite
 	valgrind --leak-check=full ./testsuite 
 
 testsuite.o: $(TESTSRCS)
-	gcc -c checkmain.c -o testsuite.o $(EXTRAGCCFLAGS)
+	gcc -c checkmain.c -o testsuite.o $(EXTRAGCCFLAGS) -lgcov
 
 testsuite: $(SRCOBJS) testsuite.o
-	gcc $(SRCOBJS) testsuite.o -o testsuite $(EXTRAGCCFLAGS) -lcheck
+	gcc $(SRCOBJS) testsuite.o -o testsuite $(EXTRAGCCFLAGS) -lcheck -lgcov
 
 clean:
 	rm -f testsuite testsuite.exe testsuite.o *.gcov *.gcda *.gcno
