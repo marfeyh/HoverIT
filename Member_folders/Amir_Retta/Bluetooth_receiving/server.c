@@ -1,8 +1,5 @@
-// bt_server.c -
-//
-// Created By: 	Yavor Paunov
-// Time:	Thursday, March 22 2012
-//
+// source: http://people.csail.mit.edu/albert/bluez-intro/
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/socket.h>

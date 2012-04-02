@@ -1,5 +1,0 @@
-#if !defined(HCRAFT_REMOTE_API_H)
-#define HCRAFT_REMOTE_API_H
-int command_left();
-int command_right();
-#endif

@@ -1,0 +1,39 @@
+  void setup() {
+    pinMode(13,OUTPUT);
+    
+    // for the pins of the bluetooth
+    pinMode(5,INPUT);
+        pinMode(6,INPUT);
+    pinMode(9,INPUT);
+    pinMode(8,INPUT);
+              
+    Serial.begin(9600);
+    Serial1.begin(9600);  
+    
+      
+    
+    
+     //   Serial1.print("set dis on\r");
+  }
+  
+  void loop() {
+    delay(2000);
+    //Serial1.print("con 8C:77:12:8B:77:B7\r");
+  //  digitalWrite(6, LOW);
+  Serial1.print("set dis on\r");
+       delay(2000);
+//   Serial1.print("set con on\r");
+//        delay(2000);
+ //   Serial1.print("con 8C:77:12:8B:77:B7 100\r");
+    
+    while (true){
+        if (Serial1.available() >0){
+//    Serial.println("========================");
+        unsigned char test = Serial1.read();
+    
+//    Serial.println(test, HEX);
+        Serial.print(test);
+      }
+    delay(10);
+    }
+  } 
