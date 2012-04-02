@@ -1,14 +1,16 @@
 /**
   Author: Mozhan Soltani 
-  Date: 25-03-2012     Version:0.1
+  Date: 25-03-2012     Version:0.1     
+  Sections added: The test cases, test suites and the main funtion. 
+  
+  Date: 02-04-2012	   Version:0.2 
+  Sections added: Unneeded includes were removed and Gokul's comments were tagged with his name.  
 **/
 #include <check.h>
 #include <stdlib.h>
 #include "../../src/loc_struct.h"
 #include "../../src/job_queue.h"
 
-/* void addJob(struct Job, struct List * list); */
-/* struct Job pop(struct List * list); */
 /*
  * Purpose: To check if the Node list is emptied when the last job is poped out. 
  * Preparation: 
@@ -38,7 +40,7 @@ START_TEST(emptyList_test) {
 }END_TEST
 
 
- /*Commneted to include thses test cases in test suite*/
+ /*Commneted to include these test cases in test suite-Gokul*/
 
 /* SUITE * SUITE1(VOID) { */
 /*   SUITE *S = SUITE_CREATE("SUITE1"); */
@@ -107,7 +109,7 @@ START_TEST(orderedList_test) {
   free(list);
 }END_TEST
 
-/*Commneted to include thses test cases in test suite*/
+/*Commneted to include these test cases in test suite-Gokul*/
 /* Suite * suite2(void) { */
 /*   Suite *sp2 = suite_create("Suite2"); */
 /*   TCase *tcp2 = tcase_create("Test Case of an ordered list"); */
@@ -116,7 +118,7 @@ START_TEST(orderedList_test) {
 /*   return sp2; */
 /* } */
 
-/*Commneted to include thses test cases in test suite*/
+/*Commneted to include these test cases in test suite-Gokul*/
 
 /* int main(void) { */
 /*   int failed_num , failed_num2; */
