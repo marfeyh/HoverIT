@@ -20,5 +20,5 @@ void init(void) {
 void run(void) {
   printf("the main is working...\n");
   parseBinary(16);
-  return 0;
+//  return 0;
 }

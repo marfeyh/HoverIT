@@ -18,13 +18,17 @@
  *  bluetooth_working, fan_forward_speed, fan_hovering_speed, ruder_direction, hovercraft_speed,
  *  hovercraft_pressure, battery_level
  *
+ *  Apr 3, 2012 :
+ *  bluetooth_working() will be located in another module because, in this function, the serial.availale
+ *  is in used which should be compiled by c++ library. The function will be in serial_input.c
+ *
+ *
  *  Todo: Because of the continuously changes in value in the protocol, the value, when the binary
  *  is received, is missed which should be the first task.
  *
  */
-#include<stdio.h>
+#include <stdio.h>
 #include "messageHandler.h"
-#include "API_messageHandler.h"
 
 #define Fan_Forward_Speed 0;
 #define Fan_Hovering_Speed 1;
@@ -34,68 +38,7 @@
 #define Battery_Level 5;
 #define Connection 6;
 
-/**
- * API function which is called by scheduler
- * Basically when this function is called the bluetooth gets the resources of CPU and
- * it should check if there is anything sent to the bluetooth
- */
-unsigned char bluetooth_working() {
-	// check serial input if there is anything available
-	//	if (serial.available()){
-	//		unsigned char data= serial.read()
-	//		putjobInque(findMessage(data));
-	//	}
 
-	return 1;
-}
-
-/**
- * API function to create fan forward speed message
- * message argument is followed by hovercraft protocol available on wiki
- */
-unsigned char fan_forward_speed(unsigned char message) {
-	return create_fan_forward_speed(&message);
-}
-
-/**
- * API function to create fan hovering speed message
- * message argument is followed by hovercraft protocol available on wiki
- */
-unsigned char fan_hovering_speed(unsigned char message) {
-	return create_fan_hovering_speed(&message);
-}
-
-/**
- * API function to create ruder direction message
- * message argument is followed by hovercraft protocol available on wiki
- */
-unsigned char ruder_direction(unsigned char message) {
-	return create_ruder_direction(&message);
-}
-
-/**
- * API function to create hovercraft speed (measured by sensor) message
- * message argument is followed by hovercraft protocol available on wiki
- */
-unsigned char hovercraft_speed(unsigned char message) {
-	return create_hovercraft_speed(&message);
-}
-
-/**
- * API function to create hovercraft pressure (measured by sensor) message
- * message argument is followed by hovercraft protocol available on wiki
- */
-unsigned char hovercraft_pressure(unsigned char message) {
-	return create_hovercraft_pressure(&message);
-}
-
-/**
- * API function to create hovercraft battery level (measured by sensor) message
- * message argument is followed by hovercraft protocol available on wiki
- */
-unsigned char battery_level(unsigned char message) {
-	return create_battery_level(&message);
-}
 
 /**
  * A function which is called when there is binary received on serial.

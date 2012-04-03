@@ -1,3 +1,10 @@
+/*
+ * initTimerInterrupt.c
+ *
+ *  Created on: Apr 03, 2012
+ *      Author: Peter Myllykoski
+ */
+
 #include <Arduino.h>
 #include <searduino.h>
 #include <messageHandler.h>
