@@ -2,7 +2,7 @@
 #include <searduino.h>
 #include <messageHandler.h>
 
-void enableTimeInterrupts() {
+void initTimeInterrupts() {
   /* Deactivate interrupts during inititation */
   noInterrupts();
   
@@ -11,7 +11,7 @@ void enableTimeInterrupts() {
   
   TCNT1=0;
   
-  /* Set the compare register value to 3000 */
+  /* Set the compare register value to 3000, how often should the uintrrupt go off? */
   CR1A=3000;
   TCCR1B |= (1<<WGM12);
 
