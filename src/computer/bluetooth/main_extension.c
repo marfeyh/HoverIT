@@ -28,24 +28,26 @@ void printInfo(char c[]) {
 //different cases that can happen
 int processInformation(int c) {
 	switch (c) {
-	case 's':
+	case 'w':
 		//send a start message
-		printInfo("start");
+		printInfo("fan forward speed increase");
+		set_move_speed(0b00001000);
 		break;
-	case 'a':
+	case 's':
 		//send a stop message
-		printInfo("stop");
+		printInfo("fan forward speed decrease");
+		set_move_speed(0b00001001);
 		break;
 	case LEFT_ARROW:
 		//go left message
 		//printf("left");
 		printInfo("left");
-		set_rudder(0b00001101);
+		set_rudder(0b00000001);
 		break;
 	case RIGHT_ARROW:
 		//go right message
 		printInfo("right");
-		set_rudder(0b00001110);
+		set_rudder(0b00000101);
 		break;
 	default:
 		//printf("keystroke: %d\n", c);
