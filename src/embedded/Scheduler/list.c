@@ -1,18 +1,16 @@
 /**
 Author: Dmitry Igoshin
 Linked sorted list implementation
-
-Provided understandable document and refactored by: Gokul Sai Evuri
-
 **/
-
-/* Defining a function to key word NULL, in memory location 0x00000000 which is a invalid memory adress, thus no function is located at this pointer(mem location) */
+#pragma once
 #define NULL ((void *)0); //to be able to work with null pointers
-
+#include "list.h"
+#include "job.h"
+#include "jobtype.h"
+#include "jobpriority.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "loc_struct.h"
 
 
 //Add a job to the specific list
