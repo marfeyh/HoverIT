@@ -3,6 +3,8 @@
  * Accelerometer BMA180
  *
  * Copyright (c) Whatever, no warranty.
+ *
+ * Author: Viktor Green
  ******************************************/
 
 void initialize(void);
