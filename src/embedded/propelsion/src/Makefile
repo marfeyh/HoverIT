@@ -1,0 +1,13 @@
+TEST_DIR=../tests/
+SEARDUINO_PATH = /opt/searduino
+PROG = propelsion
+ARDUINO = stub
+SHLIB = propelsion.so
+include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+all:SRC_C = propelsion.c main.c
+all: propelsion.o main.o
+
+check: SRC_C = propelsion.c ../tests/check_propelsion.c
+check: USER_LD_FLAGS = -lcheck
+check: propelsion.o $(TEST_DIR)check_propelsion.o
