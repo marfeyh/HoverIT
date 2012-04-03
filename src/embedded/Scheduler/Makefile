@@ -1,20 +1,11 @@
-SRCPATH = ../dit168/src
-TESTPATH = ../dit168/tests
-SRCOBJS = $(wildcard $(SRCPATH)/*.o)
-TESTSRCS = $(wildcard *.c)
+## Makefile to compile and link the basic scheduler and its demo
+## Author: Kirill Blazhko
+##
+all: list.h list.c job.h jobpriority.h jobtype.h demotasks.h main.c
+	gcc -o ../bin/main main.c -L. list.c $(EXTRAGCCFLAGS)
 
-default:
-	@echo make clean - deletes all the files generated from this make file
-
-cjob:
-	cd $(SRCPATH) 
-	gcc -c job_queue.c
-
-testprog:
-	cd $(TESTPATH) && gcc -c set_main.c && gcc set_main.o ../src/job_queue.o -o $@ && ./$@
+gdb: EXTRAGCCFLAGS+= -g
+gdb: main
 
 clean:
-	cd $(SRCABPATH) 
-	rm -f job_queue.o *.gcov *.gcda *gcno 
-	 cd $(TESTPATH) 
-	 rm -f set_main.o testprog
+	rm -rf ../bin/main
