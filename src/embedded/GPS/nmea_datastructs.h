@@ -1,0 +1,1 @@
+/*Here goes Data structures based on NMEA*/
