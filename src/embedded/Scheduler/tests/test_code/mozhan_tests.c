@@ -1,10 +1,10 @@
 /**
   Author: Mozhan Soltani 
   Date: 25-03-2012     Version:0.1     
-  Sections added: The test cases, test suites and the main funtion. 
+  Sections added/modified: The test cases, test suites and the main funtion were added. 
   
   Date: 02-04-2012	   Version:0.2 
-  Sections added: Unneeded includes were removed and Gokul's comments were tagged with his name.  
+  Sections added/modified: Unneeded includes were removed and Gokul's comments were tagged with his name.  
 **/
 #include <check.h>
 #include <stdlib.h>
