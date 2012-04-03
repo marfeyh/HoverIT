@@ -48,7 +48,7 @@ void initialize(void) {
   Wire.endTransmission();
 }
 
-float getXAccel(void) {
+float getXAccel(float bias) {
 
   int data;
 
@@ -66,6 +66,18 @@ float getXAccel(void) {
    */
   data = (signed short)( Wire.read() | (Wire.read() << 8)) >> 2;
 
-  return data * 0.00245;
+  return data * 0.00245 + bias;
 
+}
+
+float calcBias(void) {
+  int samples;
+  float sum = 0.0;
+
+  for(samples = 0; samples < 400; samples++) {
+    sum += getXAccel(0.0);
+    delayMicroseconds(1600);
+  }
+
+  return sum/(-400);
 }

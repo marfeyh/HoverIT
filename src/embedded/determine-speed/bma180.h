@@ -6,5 +6,6 @@
  ******************************************/
 
 void initialize(void);
-float getXAccel(void);
+float getXAccel(float);
+float calcBias(void);
 
