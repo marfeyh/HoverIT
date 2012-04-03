@@ -69,10 +69,3 @@ float getXAccel(void) {
   return data * 0.00245;
 
 }
-
-
-
-
-
-
-
