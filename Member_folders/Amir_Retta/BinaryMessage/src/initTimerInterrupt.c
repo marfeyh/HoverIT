@@ -30,5 +30,5 @@ void initTimeInterrupts() {
 }
 
 ISR(TIMER1_COMP_vect) {
-  findMessage();
+	check_serial_input();
 }
