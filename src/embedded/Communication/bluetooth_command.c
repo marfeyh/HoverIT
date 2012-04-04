@@ -7,7 +7,7 @@
 
 
 //#include <util/delay.h>
-#include "serial_interface.cpp"
+#include <serial_interface.h>
 #include <stdio.h>
 
 #define CONCATINATION(dist, source) strcat(dist, source)
@@ -15,78 +15,93 @@
 
 
 unsigned char* set_discoverable_mode(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 
 unsigned char* set_escape_character(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
+
 }
 
 
 
 unsigned char* set_flow_control(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 
 
 unsigned char* set_link_timeout(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 
 
 
 unsigned char* switch_command_mode(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 
 
 unsigned char* set_baud_rate(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 
 unsigned char* return_data_mode(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 
 unsigned char* get_address(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
+
 unsigned char* get_connectable_mode(){
-	return &(255);
-}
-unsigned char* get_connectable_mode(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 unsigned char* get_discoverable_mode(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 unsigned char* get_scape_character(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 unsigned char* get_flow_control(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 unsigned char* get_link_timeout(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 
 unsigned char* help(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 unsigned char* list(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 unsigned char* version(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }
 
 void connect(char* mac_adress, unsigned char* time_out){
@@ -106,5 +121,6 @@ void connect(char* mac_adress, unsigned char* time_out){
 }
 
 unsigned char* disconnect(){
-	return &(255);
+  unsigned char temp = 255;
+	return &temp;
 }

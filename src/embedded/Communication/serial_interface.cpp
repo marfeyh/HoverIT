@@ -43,7 +43,7 @@ unsigned char* serial_binary_write(unsigned char* binary) {
  */
 unsigned char* serial_string_write(char* string) {
 	printf("Module serial_interface.cpp: function serial_string_write is working...\n");
-	for ( ;string != '\o'; string++ ){
+	for ( ;string != '\0'; string++ ){
 		Serial.print(*string);
 	}
 	unsigned char temp= 255;

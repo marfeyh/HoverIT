@@ -5,9 +5,9 @@
  *  Created on: Apr 03, 2012
  */
 
-#include "serial_interface.cpp"
+#include "serial_interface.h"
 #include "API_bluetooth_controler.h"
-#include "conventions.h"
+//#include "conventions.h"
 
 /*
  * ===========================================================
@@ -22,7 +22,7 @@ void check_serial_input() {
 		printf(
 				"Module bluetooth_controler.c, function check_serial_input: serial input is checked...\n");
 		result = serial_read();
-		switch (*parseBinary(&result)) {
+		switch ( 0 ) {
 			case 0:
 				printf("put Fan Forward Speed in queue\n");
 				break;
