@@ -32,9 +32,9 @@ int ard_init(int using_pin){
 	return 0;
 }
 
-int hover_func(int (*func)(void)){
+int hover_func(int (*func)(int),int using_pin){
 	/* Start or stop the motor */
-	func();
+	func(using_pin);
 	/* Test code */
 	#ifdef STUB_TEST
 		printf("		Test function OK\n");
@@ -43,13 +43,13 @@ int hover_func(int (*func)(void)){
 }
 
 /* Change the speed of motor */
-int hover_change(int (*climb_decesnd)(int),int level){
-	climb_decesnd(level);	
+int hover_change(int (*climb_decesnd)(int,int), int using_pin, int level){
+	climb_decesnd(using_pin, level);
 	return 0;
 }
 
 /* Loop for motor */
-int hover_loop(FUNCS funcs_in){
+int hover_loop(FUNCS funcs_in, int using_pin ,int throttle_stick_level){
 	while(loop_need){
 		funcs_in.func1(funcs_in.level);
 		funcs_in.func2(funcs_in.delay_time);
@@ -64,7 +64,7 @@ int hover_loop(FUNCS funcs_in){
 }
 
 /* Set the Arduino active pin for using */
-int pin_program(int level) {
+int pin_program(int using_pin,int level) {
 	analogWrite(using_pin,level);
 	/* Test code */
 		#ifdef STUB_TEST
@@ -73,22 +73,12 @@ int pin_program(int level) {
 	return 0;
 }
 
-/* Check if necessary to stop the loop */
-int check_loop_need(void){
-	loop_need=true;
-	/* Test code */
-	#ifdef STUB_TEST
-		printf("		Test loop stop  L: %d \n",
-		throttle_stick_level);
-	#endif	
-	return 0;
-}
 
 /* This function never lets the motor to stop */
-int check_and_fix_level(){
+int check_and_fix_level(int using_pin,int throttle_stick_level){
 	if (throttle_stick_level<133){
 		//int stop_loop(void);		
-		normal();		
+		normal(using_pin);		
 		/* Test code */
 		#ifdef STUB_TEST
 			printf("		Test Too low \n");
@@ -96,11 +86,15 @@ int check_and_fix_level(){
 	}
 	if (throttle_stick_level>254){
 		//int stop_loop(void);
-		turbo();
+		turbo(using_pin);
 		/* Test code */
 		#ifdef STUB_TEST
 			printf("		Test Too high \n");
 		#endif
 	}
 	return 0;
+}
+
+int check_loop_need(void){
+	loop_need=false;
 }

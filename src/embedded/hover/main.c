@@ -12,31 +12,34 @@
 #include <hovering_motor.h>
 #include <hovering_control.h>
 
+// should'nt have prototype
+int initialize(int using_pin);
+
 /* Main method */
 int main(void){
-
-	initialize();
+	initialize(11);
 	return 0;
 }
 
-int initialize(void){
+int initialize(int using_pin){
 	//throttle_stick_level=100;
 	loop_need=true;
-	using_pin=11;
 	ard_init(using_pin);
-	//hover_func(throttle_stick_bottom);
-	hover_func(start);
-	hover_func(normal);
+	hover_func(start,using_pin);
+	delay(1000);	
+	delay(1000);
+	hover_func(turbo,using_pin);
+	delay(1000);
+	hover_func(stop,using_pin);
 	/* Test code */
 	#ifdef STUB_TEST
-		printf("		Test Main Level: %d \n",
-		throttle_stick_level);
+		printf("		Test Main \n");
 	#endif
-	FUNCS funcs;
+	/*FUNCS funcs;
 	funcs.func1=set_level;
 	funcs.func2=delay;
-	funcs.level=200;
+	funcs.level=254;
 	funcs.delay_time=1000;	
-	hover_loop(funcs);	
+	hover_loop(funcs);*/	
 	return 0;
 }

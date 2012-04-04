@@ -13,12 +13,18 @@
 #include <hovering_control.h>
 #include <hovering_motor.h>
 
+/* Definition */
+#define throttle_stick_bottom_level 100
+
+/* Variable */
+int throttle_stick_level=0;
+
 /* Start the motor */
-int start(void){
+int start(int using_pin){
 	/* Set the throttle stick is in the buttom position if the motor
 	   has not been started */
 	if (start_check||(throttle_stick_level<100)){
-		throttle_stick_bottom();
+		throttle_stick_bottom(using_pin);
 	}
 	else {
 	/* Test code */
@@ -30,21 +36,21 @@ int start(void){
 }
 
 /* Set the output signal to minimum acceptable for ESC */
-int throttle_stick_bottom(void){
-	pin_program(throttle_stick_bottom_level);
+int throttle_stick_bottom(int using_pin){
+	pin_program(using_pin, throttle_stick_bottom_level);
 	delay(1000);
 	start_check=false;
 	/* Test code */
 	#ifdef STUB_TEST
-		printf("		Test T S is bottom %d \n" ,throttle_stick_bottom_level);
+		printf("		Test T S is bottom \n");
 	#endif
 	return 0;
 }
 
 /* Set the motor to lowest rotating speed */
-int normal(void){
+int normal(int using_pin){
 	throttle_stick_level=133;
-	pin_program(throttle_stick_level);
+	pin_program(using_pin,throttle_stick_level);
 	/* Test code */
 	#ifdef STUB_TEST
 		printf("		Test level is normal \n");
@@ -53,9 +59,9 @@ int normal(void){
 }
 
 /* Set the motor to highest rotating speed */
-int turbo(void){
+int turbo(int using_pin){
 	throttle_stick_level=254;
-	pin_program(throttle_stick_level);
+	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
 	#ifdef STUB_TEST
 		printf("		Test level is turbo \n");
@@ -64,9 +70,9 @@ int turbo(void){
 }
 
 /* stop the motor */
-int stop(void){
+int stop(int using_pin){
 	throttle_stick_level=120;
-	pin_program(throttle_stick_level);
+	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
 	#ifdef STUB_TEST
 		printf("		Test motor stopped \n");
@@ -75,10 +81,10 @@ int stop(void){
 }
 
 /* Increase the motor rotating speed level times */
-int increase(int level){
+int increase(int using_pin, int level){
 	throttle_stick_level=throttle_stick_level+level;
-	check_and_fix_level();
-	pin_program(throttle_stick_level);
+	check_and_fix_level(using_pin, throttle_stick_level);
+	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
 	#ifdef STUB_TEST
 		printf("		Test INC New    L: %d \n",
@@ -88,10 +94,10 @@ int increase(int level){
 }
 
 /* decrease the motor rotating speed level times */
-int decrease(int level){
+int decrease(int using_pin, int level){
 	throttle_stick_level=throttle_stick_level-level;
-	check_and_fix_level();
-	pin_program(throttle_stick_level);
+	check_and_fix_level(using_pin, throttle_stick_level);
+	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
 	#ifdef STUB_TEST
 		printf("		Test DEC New    L: %d \n",
@@ -101,10 +107,10 @@ int decrease(int level){
 }
 
 /* set the motor rotating speed to specified level */
-int set_level(int level){
+int set_level(int using_pin, int level){
 	throttle_stick_level=level;
-	check_and_fix_level();
-	pin_program(throttle_stick_level);
+	check_and_fix_level(using_pin, throttle_stick_level);
+	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
 	#ifdef STUB_TEST
 		printf("		Test set New    L: %d \n",

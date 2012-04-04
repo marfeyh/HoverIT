@@ -13,14 +13,14 @@
 #ifndef HOVERING_MOTOR_H
 #define HOVERING_MOTOR_H
 */
-int initialize(void);
-int start(void);
-int throttle_stick_bottom(void);
-int normal(void);
-int turbo(void);
-int stop(void);
-int set_level(int level);
-int increase(int level);
-int decrease(int level);
+int initialize(int using_pin);
+int start(int using_pin);
+int throttle_stick_bottom(int using_pin);
+int normal(int using_pin);
+int turbo(int using_pin);
+int stop(int using_pin);
+int set_level(int using_pin, int level);
+int increase(int using_pin, int level);
+int decrease(int using_pin, int level);
 
 //#endif
