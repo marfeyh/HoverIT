@@ -11,7 +11,7 @@ struct motor{
   int state;
 };
   
-void manage_motor();
+int manage_motor();
 int initialise_propulsion();
 int getSpeedLevel();
 void change_pro_speed(int level);
