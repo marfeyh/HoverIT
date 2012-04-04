@@ -1,20 +1,11 @@
-TEST_DIR=tests/
+TEST_DIR=test/
 SEARDUINO_PATH = /opt/searduino
-PROG = propulsion
+PROG = Bluetooth
 
 # Add your source files here
-SRC_C = propulsion.c main.c
+SRC_C = main.c messageHandler.c initTimerInterrupt.c bluetooth_command.c bluetooth_controler.c
+SRC_CXX = serial_interface.cpp
 ARDUINO = stub
-SHLIB = propulsion.so
+SHLIB = Bluetooth.so
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
-# Needs to be modified as well
-check: SRC_C = propulsion.c ../check_propulsion.c
-check: USER_LD_FLAGS = -lcheck
-check: propulsion.o $(TEST_DIR)check_propulsion.o 
-	$(MAKE) check -C tests
-
-clean-tests:
-	$(MAKE) clean -C tests
-
-.PHONY: check
