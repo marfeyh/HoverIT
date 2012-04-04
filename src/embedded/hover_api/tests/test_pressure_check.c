@@ -5,8 +5,8 @@ Description: test code written in check for pressure_loop.c
 */
 
 #include <check.h>
-#include "../src/pressure_loop.h"
-#include "../src/pressure_sensor.h"
+#include "../pressure_check.h"
+#include "../pressure_sensor.h"
 #include <stdlib.h>
 
 /* id/title: ej1/test random air pressure
@@ -17,8 +17,9 @@ Description: test code written in check for pressure_loop.c
                        Failures: 0, Errors: 0/any other results
 */
 
-START_TEST(test_random){   
-  int value = handle_pressure(get_pressure());
+START_TEST(test_random){
+  float gap = get_pressure();
+  int value = handle_pressure(gap);
   if(gap < 40 && value != -1){
     fail("the value must be -1!");
   }

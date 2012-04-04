@@ -7,8 +7,8 @@ Description: Loop to continuously read air pressure inside the hovercraft
 
 #include <stdio.h>
 #include <pressure_sensor.h>   /* file from pressure sensor group */
-#include <hovering_motor.h>    /* file from our own group */
-#include <pressure_loop.h>
+//#include <hovering_motor.h>    /* file from our own group */
+#include <pressure_check.h>
 #define PROPER_GAP 50
 #define MAX_GAP_RANGE 60
 #define MIN_GAP_RANGE 40
@@ -21,12 +21,12 @@ int start_sensor_reading(){
 int handle_pressure(float gap){
   
   if(gap > MAX_GAP_RANGE){
-    increase(10);   /* function from hovering_motor.c to increase fan speed */
+    // increase(10);   /* function from hovering_motor.c to increase fan speed */
     return 1;
   }
  
   if(gap < MIN_GAP_RANGE){
-    decrease(10);   /* function from hovering_motor.c to decrease fan speed */
+    // decrease(10);   /* function from hovering_motor.c to decrease fan speed */
     return -1;
   }
   return 0;

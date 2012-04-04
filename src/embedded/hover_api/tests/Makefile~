@@ -7,7 +7,7 @@ check: testsuite
 	./testsuite
 
 testsuite.o: $(TESTSRCS)
-	gcc -c test_pressure_loop.c -o testsuite.o $(EXTRAGCCFLAGS)
+	gcc -c test_main.c -o testsuite.o $(EXTRAGCCFLAGS)
 
 testsuite: $(SRCOBJS) testsuite.o
 	gcc $(SRCOBJS) testsuite.o -o testsuite $(EXTRAGCCFLAGS) -lcheck

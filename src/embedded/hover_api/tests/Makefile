@@ -1,4 +1,4 @@
-SRCPATH = ../src
+SRCPATH = ../
 SRCOBJS = $(wildcard $(SRCPATH)/*.o)
 TESTSRCS = $(wildcard *.c)
 
