@@ -1,8 +1,8 @@
 
-SRC_DIR=../src
+SRC_DIR=../
 
 CFLAGS = -I $(SRC_DIR) -I/opt/searduino/include/searduino/arduino-sources/core -I/opt/searduino/include/searduino/  -I/opt/searduino/include/searduino/arduino  -I/opt/searduino/include/searduino/arduino-extras -lcheck -L/opt/searduino/lib -lsearduinostub 
-TESTOBJS=check_propelsion.o ../src/propelsion.o
+TESTOBJS=check_propelsion.o ../propelsion.o
 CHECK_PROGRAM=check1
 
 
