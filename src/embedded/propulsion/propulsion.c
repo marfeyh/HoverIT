@@ -16,7 +16,7 @@ int initialise_propulsion()
 
 /*manages the moter speed. The motor will rotate with PWM duty cycle
   from 132(MIN_DUTY_CYCLE) till 254(MAX_DUTY_CYCLE)it has 122 speed levels.*/
-void manage_motor()
+int manage_motor()
 {
   switch (motor_status)
     {
@@ -24,8 +24,7 @@ void manage_motor()
       analogWrite(PIN,100);
       break;
     case 1:
-      speedLevel = 0;
-      analogWrite(PIN,speedLevel);
+      analogWrite(PIN,0);
       //change_pro_speed(1);
       break;
     case 2:
@@ -39,6 +38,7 @@ void manage_motor()
 	};
       break;
     }
+  return motor_status;
 }
 /* returns the current propelsion speed level*/
 int getSpeedLevel()
@@ -58,7 +58,7 @@ void change_pro_speed(int level)
     }
   else if(level <= 0)
     {
-      speedLevel = 0;
+      //speedLevel = 0;
       motor_status = 1;
     }
   else
