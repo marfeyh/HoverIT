@@ -11,8 +11,13 @@
 #include "mozhan_tests.c"
 #include "pop_test.c"
 #include "testPop.c"
-//#include "Yu Zhao_test.c"
+#include "YuZhao_test.c"
 #include "priority_test_johan.c"
+
+/* #include "../../job.h" */
+/* #include "../../jobpriority.h" */
+/* #include "../../jobtype.h" */
+/* #include "../../list.h" */
 
 void addJob(struct Job job, struct List * list);
 struct Job pop(struct List * list);
