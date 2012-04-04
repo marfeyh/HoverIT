@@ -14,7 +14,7 @@
  * it should check if there is anything available on serial input
  *
  */
-unsigned char check_serial_input();
+void check_serial_input();
 
 /**
  * API function to create fan forward speed message

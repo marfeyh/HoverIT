@@ -5,16 +5,17 @@
  */
 
 #include <stdio.h>
-#include <initTimerInterrupt.h>
+//#include <initTimerInterrupt.h>
 #include <messageHandler.h>
 #include <API_bluetooth_controler.h>
 int main (int argc, char** argv){
   init();
   run();
+  return 0;
 }
 
 void init(void) {
-  initTimerInterrupt();
+  //  initTimerInterrupt();
 }
 
 void run(void) {
