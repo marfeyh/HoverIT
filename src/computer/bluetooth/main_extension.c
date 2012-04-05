@@ -6,6 +6,7 @@
 #include "main_extension.h"
 #define LEFT_ARROW 67
 #define RIGHT_ARROW 68
+#define UP_ARROW 65
 
 #define ADDRESS "00:0C:84:00:0F:63"
 
@@ -49,6 +50,10 @@ int processInformation(int c) {
 		printInfo("right");
 		set_rudder(0b00000101);
 		break;
+	case UP_ARROW:
+		//go forward
+		printInfo("forward");
+		break;
 	default:
 		//printf("keystroke: %d\n", c);
 		break;
@@ -59,22 +64,30 @@ int processInformation(int c) {
 
 //getting input from keyboard
 void readCharacter(void) {
-	int c;
-	int quit = 0;
+
+    int c;
+
+   int previousValue=0;
 	hc_connect(NULL);
-	while (!quit) {
-		unsigned char val;			
-		c = getchar();
-		processInformation(c);
-		get_speed(&val);
-		printf("Speed:"BYTETOBINARYPATTERN, BYTETOBINARY(val));
-		get_pressure(&val);
-		printf("Pressure:"BYTETOBINARYPATTERN, BYTETOBINARY(val));
-		if (c == 'q') {
-			hc_disconnect();
-			quit = 1;
-		}
-	}
+   while(1) {
+
+       c = getchar();
+
+       if (previousValue != c && (c != 27 && c != 91))
+
+       {
+            previousValue = c;
+             // printf("previous %d", previousValue);
+              processInformation(c);
+
+       }
+
+
+       if (c == 'q') {
+           break;
+
+   }
+}
 }
 
 //settings for the terminal
