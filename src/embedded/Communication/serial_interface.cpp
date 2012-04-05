@@ -8,6 +8,7 @@
 #include <Arduino.h>
 #include <searduino.h>
 #include <HardwareSerial.h>
+#include <serial_interface.h>
 
 
 
@@ -17,11 +18,13 @@
  * it should check if there is anything sent to the bluetooth
  */
 unsigned char serial_read() {
-	printf("Module serial_interface.cpp: function serial_read is working...\n");
+//	printf("Module serial_interface.cpp: function serial_read is working...\n");
 
-	// check serial input if there is anything available
-	if (Serial.available()){
-		return Serial1.read();
+	// Check serial input if there is anything available
+	if (Serial1.available()>0){
+		unsigned char input = Serial1.read();
+		debug_print(&input);
+		return input;
 		//		putjobInque(findMessage(data));
 	}
 	return 255;
@@ -48,4 +51,27 @@ unsigned char* serial_string_write(char* string) {
 	}
 	unsigned char temp= 255;
 	return &temp;
+}
+
+void serial_setup (void){
+	Serial.begin(9600);
+	Serial1.begin(9600);
+}
+
+
+void debug_print (unsigned char* character){
+		Serial.print(*character, HEX);
+}
+
+void debug_println (unsigned char* character){
+	Serial.write(*character);
+	Serial.println();
+}
+
+
+void debug_print_string (char* character){
+	for (; *character != '\0'; character++){
+			Serial.print(*character);
+		}
+	Serial.print("\n");
 }

@@ -39,9 +39,28 @@
  * return of the function is 255
  *
  */
-unsigned char* parseBinary(unsigned char* message) {
+unsigned char parseBinary(unsigned char* message) {
 	//	printf("The message is: %x\n", message);
 	return findMessage(&message);
+}
+
+/**
+ * returns 1 if is_increase message
+ * return 2 if normal setting speed message
+ * return 255 if something is wrong
+ */
+unsigned char is_increase(unsigned char* value) {
+	return (((*value) & 0b00001000) >> 3);
+
+}
+
+
+unsigned char get_direction(unsigned char* direction) {
+	return ((*direction) & 0b00000111);
+}
+
+unsigned char getValue_fan_speed(unsigned char* value) {
+	return (0b00000111 & (*value));
 }
 
 /**
@@ -49,7 +68,7 @@ unsigned char* parseBinary(unsigned char* message) {
  * The function returns 0 - 5 if the binary message is based on the protocol
  * The function returns 255 when the binary message is not based on the protocol.
  */
-unsigned char* findMessage(unsigned char* message) {
+unsigned char findMessage(unsigned char* message) {
 	switch ((*message & (15 << 4)) >> 4) {
 	case 0:
 		return 0//Fan_Forward_Speed
@@ -76,8 +95,7 @@ unsigned char* findMessage(unsigned char* message) {
 				;
 		break;
 	}
-	unsigned char temp =255;
-	return &temp;
+	return 255;
 }
 
 /**
