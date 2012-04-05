@@ -40,7 +40,7 @@ START_TEST(test_maximum_speed) {
   init_motor(); 
   change_pro_speed(level);
   fail_unless((manage_motor() == 2),NULL);
-  fail_unless((getSpeedLevel() == MAX_SPEED_LEVEL),NULL);  
+  fail_unless((getSpeedLevel() == MAX_PEED_LEVEL),NULL);  
 }END_TEST
 
 Suite * propulsion_suite(void) {
