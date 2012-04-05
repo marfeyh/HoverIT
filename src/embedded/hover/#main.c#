@@ -21,9 +21,8 @@ int main(void){
 	return 0;
 }
 
-int initialize(){
+int initialize(int using_pin){
 	//throttle_stick_level=100;
-        int using_pin = 11;
         loop_need=true;
 	ard_init(using_pin);
 	hover_func(start,using_pin);
