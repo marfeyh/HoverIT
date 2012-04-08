@@ -6,10 +6,10 @@ extern "C" {
 #endif
 
 unsigned char serial_read(void);
-unsigned char* serial_binary_write(unsigned char*);
-unsigned char* serfial_string_write(char*);
+void serial_binary_write(unsigned char*);
+void serial_string_write(char*);
 void debug_print (unsigned char*);
-void debug_println (unsigned char*);
+void debug_write (unsigned char*);
 void debug_print_string (char*);
 void serial_setup (void);
 

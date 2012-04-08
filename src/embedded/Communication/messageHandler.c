@@ -29,7 +29,7 @@
  */
 #include <stdio.h>
 #include <messageHandler.h>
-//#include <conventions.h>
+#include <conventions.h>
 
 
 /**
@@ -70,29 +70,23 @@ unsigned char getValue_fan_speed(unsigned char* value) {
  */
 unsigned char findMessage(unsigned char* message) {
 	switch ((*message & (15 << 4)) >> 4) {
-	case 0:
-		return 0//Fan_Forward_Speed
-				;
+	case FAN_FORWARD_SPEED:
+		return FAN_FORWARD_SPEED;
 		break;
-	case 1:
-		return 1//Fan_Hovering_Speed
-				;
+	case FAN_HOVERING_SPEED:
+		return FAN_HOVERING_SPEED;
 		break;
-	case 2:
-		return 2//Ruder_Direction
-				;
+	case RUDER_DIRECTION:
+		return RUDER_DIRECTION;
 		break;
-	case 3:
-		return 3//Hovercraft_Speed
-				;
+	case HOVERCRAFT_SPEED:
+		return HOVERCRAFT_SPEED;
 		break;
-	case 4:
-		return 4//Hovercraft_Pressure
-				;
+	case HOVERCRAFT_PRESSURE:
+		return HOVERCRAFT_PRESSURE;
 		break;
-	case 5:
-		return 5//Battery_Level
-				;
+	case BATTERY_LEVEL:
+		return BATTERY_LEVEL;
 		break;
 	}
 	return 255;

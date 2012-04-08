@@ -10,18 +10,16 @@
 #include <HardwareSerial.h>
 #include <serial_interface.h>
 
-
-
 /**
  * API function which is called by scheduler
  * Basically when this function is called the bluetooth gets the resources of CPU and
  * it should check if there is anything sent to the bluetooth
  */
 unsigned char serial_read() {
-//	printf("Module serial_interface.cpp: function serial_read is working...\n");
+	//	printf("Module serial_interface.cpp: function serial_read is working...\n");
 
 	// Check serial input if there is anything available
-	if (Serial1.available()>0){
+	if (Serial1.available() > 0) {
 		unsigned char input = Serial1.read();
 		debug_print(&input);
 		return input;
@@ -33,45 +31,37 @@ unsigned char serial_read() {
 /**
  *
  */
-unsigned char* serial_binary_write(unsigned char* binary) {
-	printf("Module serial_interface.cpp: function serial_binary_write is working...\n");
-	Serial.write(*binary);
-	unsigned char temp= 255;
-	return &temp;
+void serial_binary_write(unsigned char* binary) {
+	//	printf("Module serial_interface.cpp: function serial_binary_write is working...\n");
+	Serial1.write(*binary);
 }
-
 
 /**
  *
  */
-unsigned char* serial_string_write(char* string) {
-	printf("Module serial_interface.cpp: function serial_string_write is working...\n");
-	for ( ;string != '\0'; string++ ){
-		Serial.print(*string);
+void serial_string_write(char* string) {
+	//	printf("Module serial_interface.cpp: function serial_string_write is working...\n");
+	for (; string != '\0'; string++) {
+		Serial1.print(*string);
 	}
-	unsigned char temp= 255;
-	return &temp;
 }
 
-void serial_setup (void){
+void serial_setup(void) {
 	Serial.begin(9600);
 	Serial1.begin(9600);
 }
 
-
-void debug_print (unsigned char* character){
-		Serial.print(*character, HEX);
+void debug_print(unsigned char* character) {
+	Serial.print(*character, HEX);
 }
 
-void debug_println (unsigned char* character){
+void debug_write(unsigned char* character) {
 	Serial.write(*character);
-	Serial.println();
 }
 
-
-void debug_print_string (char* character){
-	for (; *character != '\0'; character++){
-			Serial.print(*character);
-		}
+void debug_print_string(char* character) {
+	for (; *character != '\0'; character++) {
+		Serial.print(*character);
+	}
 	Serial.print("\n");
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #All the code should be structured as following
 # / src
 # 	| Makefile   
@@ -29,3 +30,19 @@ testsuite: UI_PC/main.o UI_PC/test.o testsuite.o
 check:	testsuite
 	@echo Running tests...
 	tests/./testsuite
+=======
+## Makefile to run all other make files
+## Reference: Taken from Henrik's example
+##
+
+
+default:
+	@echo "--- Normal compilation ----------------------------------"
+	@echo "make all     produces binary in bin/"
+	@echo " "
+	
+all:
+	cd src && $(MAKE) all
+
+
+>>>>>>> 723411e1aab2aca803cd8445a1ac8d1f933f63a1
