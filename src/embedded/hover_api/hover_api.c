@@ -1,12 +1,10 @@
 /* 
- * @ Author: Eva-Lisa Kedborn, Jing Liu
- * @ Date: 2012-03-28
- * @ Description: API for controling hovering fan
+Author: Eva-Lisa Kedborn, Jing Liu
+Date: 2012-03-28
+Description: API for controling hovering fan
 */
 
 #include <hovering_motor.h>
-#include <hovering_control.h>
-#include <hovering_init_fix.h>
 #include <pressure_check.h>
 #include <stdlib.h>
 #define USING_PIN 11
