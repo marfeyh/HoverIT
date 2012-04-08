@@ -1,6 +1,0 @@
-//struct Job {
-//unsigned char job_num ;
-//	void (*task)();
-//enum PRIORITY prio;
-//enum JOB_TYPE type;
-//};
