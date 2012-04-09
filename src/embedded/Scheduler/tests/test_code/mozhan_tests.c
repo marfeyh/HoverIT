@@ -8,8 +8,7 @@
 **/
 #include <check.h>
 #include <stdlib.h>
-#include "../../src/loc_struct.h"
-#include "../../src/job_queue.h"
+
 
 /*
  * Purpose: To check if the Node list is emptied when the last job is poped out. 
