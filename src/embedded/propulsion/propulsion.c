@@ -5,7 +5,7 @@
 static int speedLevel = 0;
 /* 0 is stopped state, 1 is init state and 2 is the active
    or rotating state*/
-unsigned char motor_status = 2;
+unsigned char motor_status = 0;
 
 /* initialize the microcontroller */
 int initialise_propulsion()
@@ -24,7 +24,7 @@ int manage_motor()
       analogWrite(PIN,100);
       break;
     case 1:
-      analogWrite(PIN,0);
+      analogWrite(PIN,100);
       //change_pro_speed(1);
       break;
     case 2:
@@ -32,7 +32,7 @@ int manage_motor()
 	{
 	  analogWrite(PIN,speedLevel + MIN_DUTY_CYCLE);
 	  // analogWrite(PIN,speedLevel);
-	  delay(TIME_ELAPSE);
+	  //delay(TIME_ELAPSE);
 	  //speedLevel += Rate;
 	  //change_pro_speed(speedLevel + 1);
 	};
@@ -58,7 +58,7 @@ void change_pro_speed(int level)
     }
   else if(level <= 0)
     {
-      //speedLevel = 0;
+      speedLevel = 0;
       motor_status = 1;
     }
   else
@@ -66,17 +66,20 @@ void change_pro_speed(int level)
       speedLevel = level;
       motor_status = 2;
     }
+  manage_motor();
 }
 
 /*stops the propelsion fan*/
 void stop_pro_fan()
 {
   motor_status = 1;
+  manage_motor();
 }
 /*initialises the motor*/
 void init_motor()
 {
   motor_status = 0;
+  manage_motor();
 }
 int get_motor_status()
 {
