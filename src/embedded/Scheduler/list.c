@@ -12,7 +12,6 @@ Linked sorted list implementation
 #include <stdlib.h>
 
 
-
 //Add a job to the specific list
 void addJob(struct Job job, struct List * list) {
 	struct Node * node = (struct Node *)  calloc( 1, sizeof(struct Node) );
@@ -88,3 +87,5 @@ void printList(struct List * list) {
 	}
 	printf("-------------\n");
 }
+
+
