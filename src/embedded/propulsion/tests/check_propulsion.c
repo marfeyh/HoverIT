@@ -1,15 +1,64 @@
+/*
+AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
+DATA :2012-04-05
+DESCRIPTION: This file is the unit tests for the propulsion and propulsion API
+functions. 
+*/
 #include <check.h>
-#include <stdlib.h>
 #include <propulsion.h>
+#include <propulsion_api.h>
 
-//CalcStatePtr calc = NULL;
 
 void setup (void) {
-  //initialise_propulsion();
+  //nothing for the moment
 }
 
 void teardown (void) {
+  //nothing for the moment
 }
+
+/* PROPULSION API UNIT TESTS */
+START_TEST(Test_Pro){
+	fail_if(increase_propulsion() != PERSPEED , "Expected 41");
+	fail_if(increase_propulsion() != PERSPEED*2 , "Expected 82");
+	fail_if(increase_propulsion() != PERSPEED*3 , "Expected 123");
+	fail_if(increase_propulsion() != PERSPEED*3 , "Expected 123");
+	 
+}END_TEST
+
+
+START_TEST(test_dec){
+	increase_propulsion();
+	fail_if(decrease_propulsion(), "Expected 0");
+	increase_propulsion();
+	increase_propulsion();
+	fail_if(decrease_propulsion() != PERSPEED , "Expected 41");
+	
+}END_TEST
+
+
+START_TEST(test_fanlevel){
+	increase_propulsion();
+    fail_if(get_propulsion_level() != 1 ,"Expected 1");
+	increase_propulsion();
+	increase_propulsion();
+	fail_if(get_propulsion_level() != 3 ,"Expected 1");
+	decrease_propulsion();
+	fail_if(get_propulsion_level() != 2 ,"Expected 2");
+}END_TEST
+
+
+START_TEST(test_stop){
+    increase_propulsion();
+    fail_if(stop_propulsion_fan() != 0, "Expected 0");
+    increase_propulsion();
+    increase_propulsion();
+    fail_if(stop_propulsion_fan() != 0, "Expected 0");
+}END_TEST
+ /* END OF PROPULSION API UNIT TESTS */
+
+
+ /* PROPULSION UNIT TESTS */
 
 START_TEST(test_init) {
   fail_unless((initialise_propulsion() == 0),NULL);
@@ -52,15 +101,11 @@ Suite * propulsion_suite(void) {
   tcase_add_test(tc,test_stop_motor);
   tcase_add_test(tc,test_minimum_speed);
   tcase_add_test(tc,test_maximum_speed);
+  tcase_add_test(tc, Test_Pro);
+  tcase_add_test(tc, test_dec);
+  tcase_add_test(tc, test_fanlevel);
+  tcase_add_test(tc, test_stop);
   suite_add_tcase(s,tc);
   return s;
 }
-main(void) {
-  int number_failed;
-  Suite *s = propulsion_suite();
-  SRunner *sr = srunner_create(s);
-  srunner_run_all(sr, CK_NORMAL);
-  number_failed = srunner_ntests_failed(sr);
-  srunner_free(sr);
-  return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-}
+

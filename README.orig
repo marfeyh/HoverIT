@@ -3,6 +3,10 @@ You can set the issue status by adding keywords in your git comment.
 fixes #<issue number>, closes #<issue number> or resolves #<issue number>  will set percentage done to 100%
 refs #<issue number>, references #<issue number> or IssueID #<issue number> adds a reference to that issue
 
+See issue #520 for an example.
+
+
+
 
 The team members of group alpha are:
 
@@ -11,8 +15,6 @@ The team members of group beta are:
 
 
 The team members of group delta are:
-
-Eva-Lisa
 navid
 shang
 ehsan
@@ -20,8 +22,6 @@ khatereh
 Yohanes
 jing
 Ashley..
-Ezeh Prince Anthony
-
 
 The team members of group epsilon are:
 batbilig bavuudorj
@@ -42,21 +42,20 @@ Nena Stojova
 Linkai Zhu
 
 The team members of group kappa are:
-Markus Feyh
+
 
 The team members of group theta are:
+<<<<<<< HEAD
 Sebastian
 VINCENT
-Sebastian Hansson
-Johan Wikström Schützer
-Mozhan Soltani
-
 
 The team members of group zeta are: 
 Evelina Vorobyeva
 Alireza Pazirandeh
 Yavor Paunov
 Makiko Taira
+=======
 
 
 The team members of group zeta are:
+>>>>>>> d0b651e6ce494b03e95eb7a8be94c7359bdf386e

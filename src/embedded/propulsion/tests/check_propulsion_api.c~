@@ -5,8 +5,8 @@ Description: check unit test
 */
 #include <stdlib.h>
 #include <check.h>
-#include "../src/propulsion.h"
-#include "../src/propulsion_api.h"
+#include "../propulsion.h"
+#include "../propulsion_api.h"
 #define MAXSPEED 122
 #define PERSPEED 41
 
@@ -21,10 +21,14 @@ START_TEST(Test_Pro){
 
 START_TEST(test_dec){
 	increase_speed();
-    fail_if(decrease_speed() != 0 , "Expected 0");
-	increase_speed();
-	increase_speed();
-fail_if(decrease_speed() != PERSPEED , "Expected 41");
+	int temp = decrease_speed();
+	printf("temp = %d\n", temp);
+	fail_if(temp != 0 , "Expected 0");
+	temp = increase_speed();
+	printf("temp = %d\n", temp);
+	temp = increase_speed();
+	printf("temp = %d\n", temp);
+	fail_if(decrease_speed() != PERSPEED , "Expected 41");
 	
 }END_TEST
 
@@ -42,10 +46,10 @@ START_TEST(test_fanlevel){
 
 START_TEST(test_stop){
     increase_speed();
-    fail_if(stop_pro_fan() != 0, "Expected 0");
+    fail_if(stop_speed() != 0, "Expected 0");
     increase_speed();
     increase_speed();
-    fail_if(stop_pro_fan() != 0, "Expected 0");
+    fail_if(stop_speed() != 0, "Expected 0");
 }END_TEST
 
 
