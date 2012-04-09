@@ -5,15 +5,15 @@
 **/
 
 #include "list.h"
-static struct List * taskList; 
+static struct List *g_taskList; 
 
 /*
   Initializes the task list.
   - Borrowed from the first version of scheduler.
  */
 void init_list(){
-	taskList = (struct List *)  calloc( 1, sizeof(struct List) );
-	taskList->size = 0;
+	g_taskList = (struct List *)  calloc( 1, sizeof(struct List) );
+	g_taskList->size = 0;
 }
 
 
@@ -23,8 +23,8 @@ void init_list(){
 */
 void execute_jobs (){
 
-  while(taskList->size > 0) {
-    struct Job currentJob = pop(taskList);
+  while(g_taskList->size > 0) {
+    struct Job currentJob = pop(g_taskList);
 	
     if(currentJob.job_num == 0){
      void (*task)();            
