@@ -8,7 +8,11 @@
 **/
 #include <check.h>
 #include <stdlib.h>
+#include "../../src/loc_struct.h"
+#include "../../src/job_queue.h"
 
+/* void addJob(struct Job, struct List * list); */
+/* struct Job pop(struct List * list); */
 
 /*
  * Purpose: To check if the Node list is emptied when the last job is poped out. 
@@ -39,7 +43,8 @@ START_TEST(emptyList_test) {
 }END_TEST
 
 
- /*Commneted to include these test cases in test suite-Gokul*/
+/*Commneted to include these test cases in test suite-Gokul*/
+/*Commneted to include thses test cases in test suite*/
 
 /* SUITE * SUITE1(VOID) { */
 /*   SUITE *S = SUITE_CREATE("SUITE1"); */
@@ -109,6 +114,7 @@ START_TEST(orderedList_test) {
 }END_TEST
 
 /*Commneted to include these test cases in test suite-Gokul*/
+/*Commneted to include thses test cases in test suite*/
 /* Suite * suite2(void) { */
 /*   Suite *sp2 = suite_create("Suite2"); */
 /*   TCase *tcp2 = tcase_create("Test Case of an ordered list"); */
@@ -118,6 +124,7 @@ START_TEST(orderedList_test) {
 /* } */
 
 /*Commneted to include these test cases in test suite-Gokul*/
+/*Commneted to include thses test cases in test suite*/
 
 /* int main(void) { */
 /*   int failed_num , failed_num2; */

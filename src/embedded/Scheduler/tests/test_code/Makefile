@@ -26,6 +26,7 @@ testsuite.o: $(TESTSRCS)
 
 testsuite: $(SRCOBJS) testsuite.o
 	gcc $(SRCOBJS) testsuite.o -o testsuite $(EXTRAGCCFLAGS) -lcheck
+	gcc -c checkmain.c -o testsuite.o $(EXTRAGCCFLAGS) -lgcov
 
 clean:
 	rm -f testsuite testsuite.exe testsuite.o *.gcov *.gcda *.gcno

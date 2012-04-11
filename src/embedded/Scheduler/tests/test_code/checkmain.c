@@ -11,7 +11,7 @@
 #include "mozhan_tests.c"
 #include "pop_test.c"
 #include "testPop.c"
-//#include "Yu Zhao_test.c"
+#include "YuZhao_test.c"
 #include "priority_test_johan.c"
 
 void addJob(struct Job job, struct List * list);
@@ -26,7 +26,7 @@ Suite * test_suite(void){
 	tcase_add_test(tc, emptyList_test);
 	tcase_add_test(tc, pop_test);
 	tcase_add_test(tc, jobs_test);	
-	//	tcase_add_test(tc, jobs_test1);
+      	tcase_add_test(tc, jobs_test1);
 	tcase_add_test(tc, new_test);
 	suite_add_tcase(s,tc);
 	return s;

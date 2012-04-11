@@ -6,17 +6,17 @@ Author: Dmitry Igoshin
 #include <stdlib.h>
 
 #include "../../src/loc_struct.h"
-#include "../../src/job_queue.h"\
+#include "../../src/job_queue.h"
 
 void addJob(struct Job job, struct List * list);
 struct Job pop(struct List * list);
 
 START_TEST(jobs_test) {
         struct Job testJob;
-        testJob.prio = HIGH;		
+        testJob.prio = HIGH;
         struct List * list1 = (struct List *)  calloc( 1, sizeof(struct List) );
         addJob(testJob,list1);
-        struct Job result = pop(list1);        
+        struct Job result = pop(list1);
 
   fail_unless( result.prio == HIGH);
 
