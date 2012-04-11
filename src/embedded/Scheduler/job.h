@@ -16,7 +16,7 @@
  * \version       0.3
  * \author        Mozhan Soltani
  * \attention	  Sections added/modified are as follow:
- *				  - The field "*arg1" was added to the struct Job.
+ *				  - The field "arg1" was added to the struct Job.
  *				  - Comments were modified considering the provided coding standards.
  */
 #pragma once
@@ -27,10 +27,10 @@
 
 struct Job {
     unsigned char job_num; /* indicates which task pointer is used */
-	int *arg1;			   /* is passed to the task pointers that take integer arguments */
+	unsigned char arg1;			   /* is passed to the task pointers that take integer arguments */
 //	void (*task_p1)();
 	int (*task_p2)();
-	void (*task_p3)(int);
+	void (*task_p3)(unsigned char);
 //	int (*task_p4)(int);
 	enum PRIORITY prio;
 	enum JOB_TYPE type;

@@ -67,9 +67,9 @@ void execute_jobs() {
 		} /* If job_num == 1 */
 
       else if (currentJob.job_num == 2){
-       void (*task)(int);
-       task = currentJob.task_p3;
-      (*task)(*currentJob.agr1); //execute the job
+         void (*task)(unsigned char);
+         task = currentJob.task_p3;
+        (*task)(currentJob.agr1); //execute the job
       } /* If job_num == 2 */
 	  
 //	else if(currentJob.job_num == 3){
