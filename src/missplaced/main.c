@@ -1,3 +1,9 @@
+#include <pressure_loop.h>
+
+int main(void) {
+  loop();
+}
+
 /**
 Author: Dmitry Igoshin
 Main control loop & entry point
@@ -8,7 +14,7 @@ Main control loop & entry point
 #include "stdlib.h"
 #include "demotasks.h"
 #include "jobpriority.h"
-#include "job.h" //removed ; to make it work on linux - Kirill
+#include "job.h"
 #include "jobtype.h"
 #include "list.h"
 
@@ -44,4 +50,3 @@ int main(void) {
         }
         return 0;
 }
-
