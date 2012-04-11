@@ -5,6 +5,7 @@
  * Copyright (c) Whatever, no warranty.     
  *
  * Author: Viktor Green
+ * Collaborator: Sorush Arefipour
  ******************************************/
 
 #include <Wire.h>
@@ -51,7 +52,7 @@ void initialize(void) {
 }
 
 float getXAccel(float bias) {
-
+ 
   int data;
 
   Wire.beginTransmission(BMA180_ADDRESS);
