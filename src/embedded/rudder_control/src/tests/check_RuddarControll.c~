@@ -1,0 +1,16 @@
+#include <check.h>
+#include "../src/RuddarControll.h"
+
+START_TEST (test_main)
+{
+  /* unit test code */
+}
+END_TEST
+
+Suite * calc_suite(void) {
+  Suite *s = suite_create("Ruddar");
+  TCase *tc = tcase_create("First_case");
+  tcase_add_test(tc,test_main);
+  suite_add_tcase(s,tc);
+  return s;
+}
