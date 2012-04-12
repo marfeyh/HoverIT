@@ -10,7 +10,10 @@
 struct Position {
   float longitude;
   float latitude;
+  char nsew;
 };
+
+int check_command(char[],char[]);
 
 /* returns 0 if the given data starts with "$GPRMC", 1 if not */
 int is_GPRMC(char[]);
@@ -24,10 +27,10 @@ int is_GPGSV(char[]);
 /* returns 0 if the given data starts with "$GPGSA", 1 if not */
 int is_GPGSA(char[]);
 
-char * read_data();
+char* read_data();
 
-char * get_time(char * data);
+char* get_time(char[]);
 
-struct Position *get_position(char * ch);
+struct Position *get_position(char[]);
 
-char * retrive_data(char * linema, int k);
+char* retrive_data(char[],int);
