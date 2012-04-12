@@ -1,7 +1,7 @@
 pro: propulsion_api.c propulsion.c propulsion.h main.c
 	gcc -o pro propulsion.c propulsion_api.c main.c -I.$(EXTRAGCCFLAGS)
 
-test: propulsion.o propulsion_api.o
+check: propulsion.o propulsion_api.o
 
 propulsion.o: propulsion.c propulsion.h
 	gcc -o pro.o -c propulsion.c -I. $(EXTRAGCCFLAGS)

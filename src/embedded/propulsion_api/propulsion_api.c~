@@ -1,14 +1,12 @@
 /*
 Author: Xinran He, Khatereh Khosravianarab
 Date: 2012-03-25
+Update: 2012-04-10
 Description: control fan speed api
 */
 
-#include <stdio.h>
-#include "../propulsion.h"
-
-#define PERSPEED 41
-#define MAXSPEED 122
+#include <propulsion.h>
+#include <propulsion_api.h>
 
 /* increase propulsion fan speed */
 int increase_speed(){
@@ -21,6 +19,7 @@ int increase_speed(){
     change_pro_speed(speed + PERSPEED);
      return speed+PERSPEED;
   }
+  return -1;
 }
 
 /* decrease propulsion fan speed */
@@ -28,16 +27,19 @@ int decrease_speed(){
   int speed = getSpeedLevel();
   if(speed <= 0){
     stop_pro_fan();
+    return 0;
   }
   if(speed > 4){
     change_pro_speed(speed - PERSPEED);
+    return speed - PERSPEED;
   }
-  return speed - PERSPEED;
+  return -1;
 }
 
 /* stop propulsion fan speed*/
 int stop_speed(){
-  return stop_pro_fan();
+  stop_pro_fan();
+  return 0;
 }
 
 /* specify the propulsion fan level*/
@@ -59,6 +61,7 @@ int get_fan_level(){
     printf("get_fan_level() ========= 3\n");
     return 3;
   }  
+  return -1;
 }
 
 

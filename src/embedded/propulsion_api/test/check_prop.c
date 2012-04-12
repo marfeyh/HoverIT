@@ -8,27 +8,29 @@ Description: check unit test
 #include "../propulsion.h"
 #include "../propulsion_api.h"
 #define MAXSPEED 122
-#define PERSPEED 41
+#define PERSPEED 40
 
+/* This test case is for testing increase_speed function that is for increasing speed and it is passed */
 START_TEST(Test_Pro){
-	fail_if(increase_speed() != PERSPEED , "Expected 41");
-	fail_if(increase_speed() != PERSPEED*2 , "Expected 82");
-	fail_if(increase_speed() != PERSPEED*3 , "Expected 123");
-	fail_if(increase_speed() != PERSPEED*3 , "Expected 123");
+	fail_if(increase_speed() != PERSPEED , "Expected 40");
+	fail_if(increase_speed() != PERSPEED*2 , "Expected 80");
+	fail_if(increase_speed() != PERSPEED*3 , "Expected 120");
+	fail_if(increase_speed() != PERSPEED*3 , "Expected 120");
 	 
 }END_TEST
 
-
+// This test case is for testing decrease_speed function that is for decreasing speed and it is passed */
 START_TEST(test_dec){
 	increase_speed();
     fail_if(decrease_speed() != 0 , "Expected 0");
 	increase_speed();
 	increase_speed();
-fail_if(decrease_speed() != PERSPEED , "Expected 41");
+fail_if(decrease_speed() != PERSPEED , "Expected 40");
 	
 }END_TEST
 
-
+// This test case is for testing test_fanLevel function which test the current propulsion fan speed
+//level and it is passed.
 START_TEST(test_fanlevel){
 	increase_speed();
     fail_if(get_fan_level() != 1 ,"Expected 1");
@@ -39,7 +41,7 @@ START_TEST(test_fanlevel){
 	fail_if(get_fan_level() != 2 ,"Expected 2");
 }END_TEST
 
-
+//This test case is for stop the propulsion fan speed and it is passed
 START_TEST(test_stop){
     increase_speed();
     fail_if(stop_pro_fan() != 0, "Expected 0");

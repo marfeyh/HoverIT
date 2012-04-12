@@ -5,8 +5,8 @@ Description: check unit test
 */
 #include <stdlib.h>
 #include <check.h>
-#include "../src/propulsion.h"
-#include "../src/propulsion_api.h"
+#include "../propulsion.h"
+#include "../propulsion_api.h"
 #define MAXSPEED 122
 #define PERSPEED 41
 
