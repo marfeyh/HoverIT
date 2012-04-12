@@ -122,14 +122,14 @@ char* read_data(){
   // if lines for everything ifdef mega serial pot 1 like wise
   int boolean = -1;
   int i = 0;
-  int boolRMC = -1;
+  //  int boolRMC = -1;
   while(boolean==-1){
     buffer = Serial.read();
    if (buffer != -1){
      if(buffer == 13){
        int i;
        for (i=1;i<7;i++){   
-	  if (linema[i]==gprmc[i-1]){
+	  if (*linema[i]==gprmc[i-1]){
 	    // boolRMC = 1;
          }       /*end if linema[i]*/
 	 else {
@@ -154,14 +154,14 @@ char* get_time(char* data){
 
 /* ADD COMMENT: GOKUL */
 struct Position* get_position(char* data){
-  struct Position *pos = (struct Position)calloc(1,sizeof(struct Position));
+  struct Position *pos = calloc(1,sizeof(struct Position));
   char * temp1 = retrive_data (data,2);
   pos->latitude = atof(temp1);
   free(temp1);
-  temp1* = retrive_data(data,2);
+  *temp1 = retrive_data(data,2);
   pos->longitude = atof(temp1);
   free(temp1);
-  temp1* = retrive_data(data,5);
+  *temp1 = retrive_data(data,5);
   pos->nsew = *temp1;
   free(temp1);
     return pos;
