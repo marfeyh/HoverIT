@@ -15,6 +15,7 @@ Linked sorted list implementation
 //Add a job to the specific list
 void addJob(struct Job job, struct List * list) {
 	struct Node * node = (struct Node *)  calloc( 1, sizeof(struct Node) );
+	if (node != NULL) {	
 	node->value = job;
 	if (list->size > 1) {
 		struct Node * current;
@@ -62,6 +63,7 @@ void addJob(struct Job job, struct List * list) {
 		node->prev = NULL;
 	}
 	list->size++;
+	}
 }
 
 //Take out the first job
