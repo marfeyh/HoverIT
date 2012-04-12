@@ -29,11 +29,9 @@ MAIN_SRC=test.c
 MAIN_SRC=
 ARDUINO=stub
 #ARDUINO = uno
-CFLAGS=-lm
 
 # define PROG to make a stad alone program
-
-PROG=gps
+# PROG=henrik
 
 # defnie SHLIB to create a lib for simulator
 SHLIB=gpstest.so
@@ -43,7 +41,7 @@ SEARDUINO_PATH=/opt/searduino
 check: $(SHLIB)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-###include $(SEARDUINO_PATH)/mk/searduino_lib.mk
+#include $(SEARDUINO_PATH)/mk/searduino_lib.mk
 
 check-upload:
 	BOARD=due
