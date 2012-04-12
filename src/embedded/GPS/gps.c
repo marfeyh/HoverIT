@@ -154,14 +154,14 @@ char* get_time(char* data){
 
 /* ADD COMMENT: GOKUL */
 struct Position* get_position(char* data){
-  struct Position *pos = calloc(1,sizeof(struct Position));
+  struct Position *pos = (struct Position)calloc(1,sizeof(struct Position));
   char * temp1 = retrive_data (data,2);
   pos->latitude = atof(temp1);
   free(temp1);
-  temp1 = retrive_data(data,2);
+  temp1* = retrive_data(data,2);
   pos->longitude = atof(temp1);
   free(temp1);
-  temp1 = retrive_data(data,5);
+  temp1* = retrive_data(data,5);
   pos->nsew = *temp1;
   free(temp1);
     return pos;
