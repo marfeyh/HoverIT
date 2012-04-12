@@ -1,8 +1,9 @@
 /**
  * Author:  Johan Wikström Schützer & Gokul Reddy
- * Date:    2012-04-10
+ * Date:    2012-04-12
  * Version: 1.0 - 2012-04-03 - Johans code
  * Version: 1.1 - 2012-04-10 - Integrated Gokuls code
+ * Version: 1.2 - 2012-04-12 - Fixed some compilation errors (pointers-related) - Dmitry
  **/
 //#include <Serial.h>
 #include "gps.h" 
@@ -120,7 +121,7 @@ double d2r(double d) {
 char* read_data(){  
   char* linema = malloc(300*sizeof(char));
   // if lines for everything ifdef mega 
- pot 1 like wise
+  //pot 1 like wise
   int boolean = -1;
   int i = 0;
   int boolRMC = -1;
@@ -173,7 +174,7 @@ struct Position* get_position(char* data){
 char* retrive_data(char* linema, int k){
   int cont = 0;
   int indices[20];
-  char* value = calloc(1,20*sizeof(char));
+   char* value = calloc(1,20*sizeof(char));
   int i;
   for (i=0;i<300;i++){
     if (linema[i]==','){    // check for the position of the  "," separator

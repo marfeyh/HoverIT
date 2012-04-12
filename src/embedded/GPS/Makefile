@@ -29,6 +29,7 @@ MAIN_SRC=test.c
 MAIN_SRC=
 ARDUINO=stub
 #ARDUINO = uno
+CFLAGS=-lm
 
 # define PROG to make a stad alone program
 
