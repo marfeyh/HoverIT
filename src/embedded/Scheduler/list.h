@@ -3,7 +3,6 @@ Author: Dmitry Igoshin
 Linked sorted list header file
 **/
 #pragma once
-#include "jobtype.h"
 #include "job.h"
 #include "stdlib.h"
 #include "stdio.h"

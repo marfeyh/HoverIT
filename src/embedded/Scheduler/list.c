@@ -6,8 +6,6 @@ Linked sorted list implementation
 #define NULL ((void *)0); //to be able to work with null pointers
 #include "list.h"
 #include "job.h"
-#include "jobtype.h"
-#include "jobpriority.h"
 #include <stdio.h>
 #include <stdlib.h>
 

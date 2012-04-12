@@ -12,9 +12,6 @@
 #include <stdio.h> // because of using NULL
 //Scheduler
 #include "../Scheduler/job.h"
-#include "../Scheduler/jobpriority.h"
-#include "../Scheduler/jobtype.h"
-
 // Motor
 #include "../hover_api/hover_api.h"
 
@@ -23,6 +20,10 @@
  * API functions
  * ===========================================================
  */
+void bluetooth_serial_setup(void) {
+  serial_setup();
+}
+
 
 /**
  * A function to check the serial pins.

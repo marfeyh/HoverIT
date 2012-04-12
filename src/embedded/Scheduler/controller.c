@@ -38,17 +38,17 @@ void execute_jobs (){
      (*task)(); //execute the job
     }
 	
-	else if(currentJob.job_num == 2){
-     void (*task)(int);            
-     task = currentJob.task_p3;
-     (*task)(); //execute the job
-    }
+    /* 	else if(currentJob.job_num == 2){ */
+    /*  void (*task)(int);             */
+    /*  task = currentJob.task_p3; */
+    /*  (*task)(); //execute the job */
+    /* } */
 	
-	else if(currentJob.job_num == 3){
-     int (*task)(int);            
-     task = currentJob.task_p4;
-     (*task)(); //execute the job
-    }
+    /* 	else if(currentJob.job_num == 3){ */
+    /*  int (*task)(int);             */
+    /*  task = currentJob.task_p4; */
+    /*  (*task)(); //execute the job */
+    /* } */
                 
   }
 
