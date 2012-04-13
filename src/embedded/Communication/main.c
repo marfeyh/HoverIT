@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <Arduino.h>
 #include <searduino.h>
-#include <initTimerInterrupt.h>
 #include <messageHandler.h>
 #include <API_bluetooth_controler.h>
 #include <serial_interface.h>

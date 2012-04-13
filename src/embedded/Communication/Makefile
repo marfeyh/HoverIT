@@ -21,6 +21,15 @@ include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 check:
 	$(MAKE) check -C $(TEST_DIR)
 
+gcovcheck:
+	$(MAKE) gcovcheck -C $(TEST_DIR)
+
+gcovbcheck:
+	$(MAKE) gcovbcheck -C $(TEST_DIR)
+
+memcheck:
+	$(MAKE) memcheck -C $(TEST_DIR)
+
 clean-tests:
 	$(MAKE) clean-tests -C $(TEST_DIR)
 

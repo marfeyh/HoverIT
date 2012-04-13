@@ -50,6 +50,15 @@ SRC_CXX:=$(patsubst $(SRC_DIR)%.cpp, %.check.cpp, $(SRC_CXX) $(addprefix $(SRC_D
 check: $(PROG)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
+gcovcheck: $(PPROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+gcovbcheck:
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+memcheck: $(PROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
 %.check.c: $(SRC_DIR)/%.c
 	cp -f $< $@
 
