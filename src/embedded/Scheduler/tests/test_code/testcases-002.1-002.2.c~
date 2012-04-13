@@ -19,11 +19,17 @@
  
 #include <check.h>
 #include <stdlib.h>
+<<<<<<< HEAD
+#include "../../job.h"
+#include "../../jobpriority.h"
+#include "../../jobtype.h"
+#include "../../list.h"
 
 /*
 =======
 
 /**
+>>>>>>> 4d514d711e324ebd19935c304871acdb4c48974e
  * Purpose: To check if the Node list is emptied when the last job is poped out. 
  * Preparation: 
  *   A sample job is set and added to a task list.
