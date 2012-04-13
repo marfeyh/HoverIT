@@ -16,7 +16,7 @@ int main (int argc, char** argv){
   //  begin();
   
   for(;;){
-    //control();
+    control();
     
   }
   

@@ -5,6 +5,7 @@
 **/
 
 #include "list.h"
+#include <API_bluetooth_controler.h>
 static struct List *g_taskList; 
 
 /*
@@ -61,7 +62,7 @@ void execute_jobs (){
 void control(){
   init_list(); // A task list is initialized.
   while(1){
- 
+	  check_serial_input();
     // Get gps data
     // Get hovercraft speed
     // Get Battery level
