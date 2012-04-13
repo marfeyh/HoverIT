@@ -22,8 +22,8 @@
 #pragma once
 #include <jobpriority.h>
 #include <jobtype.h>
-#ifndef __job_h_
-#define __job_h_
+#if !defined job_h
+#define job_h
 
 struct Job {
     unsigned char job_num; /* indicates which task pointer is used */

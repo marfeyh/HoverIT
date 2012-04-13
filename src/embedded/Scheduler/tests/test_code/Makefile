@@ -1,32 +1,31 @@
-SRCPATH = ../../src
+SRCPATH = ../../
 SRCOBJS = $(wildcard $(SRCPATH)/*.o)
 TESTSRCS = $(wildcard *.c)
 
 check: testsuite
 	@echo Running tests...
-	./testsuite
+	./checkmain
 
-gcovcheck: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
-gcovcheck: check
-	gcov testsuite
-	cd $(SRCPATH) && gcov main.c
+# gcovcheck: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
+# gcovcheck: check
+# 	gcov testsuite
+# 	cd $(SRCPATH) && gcov main.c
 
-gcovcheckb: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
-gcovcheckb: check
-	gcov -b -c testsuite
-	cd $(SRCPATH) && gcov -b -c main.c
+# gcovcheckb: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
+# gcovcheckb: check
+# 	gcov -b -c testsuite
+# 	cd $(SRCPATH) && gcov -b -c main.c
 
 memcheck: EXTRAGCCFLAGS+= -g
 memcheck: testsuite
 	@echo Running tests under valgrind...
-	valgrind --leak-check=full ./testsuite 
+	valgrind --leak-check=full ./checkmain
 
-testsuite.o: $(TESTSRCS)
-	gcc -c checkmain.c -o testsuite.o $(EXTRAGCCFLAGS)
+testsuite.o:
+	gcc -c checkmain.c -fprofile-arcs -ftest-coverage -lgcov -lcheck
 
-testsuite: $(SRCOBJS) testsuite.o
-	gcc $(SRCOBJS) testsuite.o -o testsuite $(EXTRAGCCFLAGS) -lcheck
+testsuite: testsuite.o
+	gcc $(SRCOBJS) checkmain.o -o checkmain -fprofile-arcs -ftest-coverage -lcheck
 
 clean:
-	rm -f testsuite testsuite.exe testsuite.o *.gcov *.gcda *.gcno
-
+	rm -f checkmain checkmain.o *.gcov *.gcda *.gcno

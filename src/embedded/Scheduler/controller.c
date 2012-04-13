@@ -31,6 +31,7 @@
 #include <jobtype.h>
 #include <job.h>
 #include <Theta-API.h>
+#include <stdlib.h>
 
 static struct List *g_taskList;
 
@@ -64,12 +65,14 @@ void execute_jobs() {
 			int (*task)();
 			task = currentJob.task_p2;
 			(*task)(); //execute the job
+			free(currentJob);
 		} /* If job_num == 1 */
 
       else if (currentJob.job_num == 2){
          void (*task)(unsigned char);
          task = currentJob.task_p3;
-        (*task)(currentJob.agr1); //execute the job
+         (*task)(currentJob.agr1); //execute the job
+		 free(currentJob);
       } /* If job_num == 2 */
 	  
 //	else if(currentJob.job_num == 3){
