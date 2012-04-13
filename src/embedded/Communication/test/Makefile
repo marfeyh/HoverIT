@@ -41,9 +41,11 @@ PROG=Testsuite
 USER_C_FLAGS += -I$(SRC_DIR)
 USER_CXX_FLAGS += -I$(SRC_DIR)
 USER_LD_FLAGS += -lcheck
+USER_OBJ_PATH = ./objs/
 
-SRC_C:=$(patsubst $(SRC_DIR)%.c, %.check.c,  $(SRC_C) $(addprefix $(SRC_DIR), $(SRC_FILES)))
-SRC_CXX:=$(patsubst $(SRC_DIR)%.cpp, %.check.cpp, $(SRC_CXX) $(addprefix $(SRC_DIR), $(SRC_FILES)))
+
+SRC_C+= $(addprefix $(SRC_DIR), $(SRC_FILES))
+SRC_CXX+= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 .PHONY: check clean-tests
 
@@ -59,16 +61,9 @@ gcovbcheck:
 memcheck: $(PROG)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-%.check.c: $(SRC_DIR)/%.c
-	cp -f $< $@
 
-%.check.cpp: $(SRC_DIR)%.cpp
-	cp -f $< $@
-
+clean-tests: clean
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
-clean-tests: clean
-	-rm $(filter %.check.c, $(SRC_C))
-	-rm $(filter %.check.cpp, $(SRC_CXX))
 

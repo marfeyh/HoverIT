@@ -6,7 +6,7 @@ PROG = Communication
 SRC_C=bluetooth_command.c bluetooth_controler.c messageHandler.c 
 SRC_CXX= serial_interface.cpp
 MAIN_SRC = main.c
-ARDUINO = uno
+ARDUINO = mega2560
 SHLIB = communication.so
 
 LIB = libcommunication.a
