@@ -27,8 +27,7 @@
 	} FUNCS;
 
 	/* Function prototypes */
-	/* Initialize the hovering motor */
-	int initialize(int using_pin);
+
 	/* Initialize Arduino */	
 	int ard_init(int using_pin);
 	/* Set the Arduino active pin for using */	

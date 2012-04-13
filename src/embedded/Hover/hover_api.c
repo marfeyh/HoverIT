@@ -8,7 +8,6 @@ Description: API for controling hovering fan
 #include <hover_api.h>
 #include <hovering_motor.h>
 #include <hovering_control.h>
-#include <hovering_init_fix.h>
 #include <pressure_check.h>
 
 #define USING_PIN 11
@@ -43,7 +42,6 @@ int increase_hover(){       /* increase the speed */
   hover_change(increase,USING_PIN,LEVEL);
   return 0;
 }
-
 
 //int autocontrol(){          /* let the fan speed be cotrolled by pressure sensor
 //			       automatically */

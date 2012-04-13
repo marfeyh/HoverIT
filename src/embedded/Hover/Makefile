@@ -19,7 +19,8 @@ TEST_DIR=Tests/
 PROG=hovering
 
 # Source files #
-SRC_C=hovering_motor.c hovering_control.c hover_api.c pressure_check.c pressure_sensor.c
+SRC_C=hovering_motor.c hovering_control.c hovering_init_fix.c 
+SRC_C +=hover_api.c pressure_check.c pressure_sensor.c
 SHLIB=hovering.so
 
 # For use in global main #
@@ -30,16 +31,13 @@ endif
 # Arduino mode #
 ARDUINO = uno
 
-# User C flags used in program for test #
-USER_C_FLAGS=-DSTUB_TEST
-
 # Includes #
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
 # When use make check #
-check: SRC_C = hovering_motor.c hovering_control.c  hover_api.c pressure_check.c pressure_sensor.c ../hovering_check.c
+check: SRC_C = hovering_motor.c hovering_control.c  hovering_init_fix.c hover_api.c pressure_check.c pressure_sensor.c ../hovering_check.c
 check: USER_LD_FLAGS = -lcheck
-check: hovering_motor.o hovering_control.o hover_api.o pressure_check.o pressure_sensor.o $(TEST_DIR)hovering_check.o 
+check: hovering_motor.o hovering_control.o hovering_init_fix.o hover_api.o pressure_check.o pressure_sensor.o $(TEST_DIR)hovering_check.o 
 	$(MAKE) check -C Tests
 
 # When use make clean_tests #

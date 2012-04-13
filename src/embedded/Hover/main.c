@@ -6,10 +6,16 @@ Description: the main to execute pressure_loop
 
 /* Includes */
 #include <hover_api.h>
+#include "Arduino.h"
 #include <hovering_motor.h>
 #include <hovering_control.h>
 
 int main(void) {
+        int i=1;
+        //init();
+	//for (;;) {	
 	start_hover();
+//BLINKER(500);
+//}
 	return 0;
 }
