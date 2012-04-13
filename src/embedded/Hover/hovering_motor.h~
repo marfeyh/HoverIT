@@ -12,7 +12,7 @@
  */
 
 #define BLINK_PIN 11
-#define BLINKER(delay_time) { int i; pinMode(BLINK_PIN,OUTPUT); digitalWrite(BLINK_PIN,HIGH);delay(delay_time);digitalWrite(BLINK_PIN,LOW);delay(delay_time);}
+#define BLINKER(delay_time) { int i; pinMode(BLINK_PIN,OUTPUT); digitalWrite(BLINK_PIN,HIGH);delay(delay_time);}
 
 /* Make sure this header file is included one time */
 #ifndef HOVERING_MOTOR_H

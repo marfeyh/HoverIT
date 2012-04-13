@@ -5,7 +5,7 @@
  * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 20 March 2012
  * @ Version      : 1.0
- * @ Refrences    : Arduino.cc, www.sandklef
+ * @ Refrences    : Arduino.cc, sandklef.com
  * dreamincode.net/forums/topic/34861-functions-stored-in-structure
  * Turnigy_Plush_and_Sentry_ESC user manual
  */

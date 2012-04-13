@@ -69,7 +69,6 @@ int hover_loop(FUNCS funcs_in, int using_pin ,int throttle_stick_level){
 /* Set the Arduino active pin for using */
 int pin_program(int using_pin,int level) {
 	BLINKER(1000);
-	BLINKER(50);
 	//analogWrite(using_pin,level);
 	/* Test code */
 		#ifdef STUB_TEST

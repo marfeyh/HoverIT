@@ -44,6 +44,7 @@ int start(int using_pin){
 
 /* Set the output signal to minimum acceptable for ESC */
 int throttle_stick_bottom(int using_pin){
+BLINKER(300);
 	pin_program(using_pin, throttle_stick_bottom_level);
 	delay(1000);
 	/* Test code */
