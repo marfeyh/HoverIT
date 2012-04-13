@@ -1,6 +1,5 @@
 #include "stack.h"
 
-
 #define MAXSTACK 100
 #define EMPTYSTACK -1
 int top = EMPTYSTACK;
