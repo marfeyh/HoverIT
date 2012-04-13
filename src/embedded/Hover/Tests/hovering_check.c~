@@ -1,5 +1,5 @@
 /*
- * @ Module name:  check_hovering.c
+ * @ Module name:  hovering_check.c
  * @ Description:  Contains the functions that check the hovering control files.
  *
  * @ Author names : Eva-Lisa Kedborn, Jing Liu 
@@ -10,7 +10,7 @@
  */
 
 /* Includes */
-#include <check.h>
+#include "check.h"
 #include "../pressure_check.h"
 #include "../pressure_sensor.h"
 #include <stdlib.h>

@@ -8,7 +8,6 @@ Description: the main to execute pressure_loop
 #include <hover_api.h>
 #include <hovering_motor.h>
 #include <hovering_control.h>
-#include <hovering_init_fix.h>
 
 int main(void) {
 	start_hover();

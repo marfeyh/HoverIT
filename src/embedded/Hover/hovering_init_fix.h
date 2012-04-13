@@ -15,7 +15,6 @@
 	#define HOVERING_INIT_FIX_H
 
 	/* Function prototype */
-	/* Initialize the hovering motor */
-	int initialize(int using_pin);
+	
 
 	#endif

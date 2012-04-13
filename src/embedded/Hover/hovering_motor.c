@@ -18,6 +18,26 @@
 
 /* Functions */
 
+/* Initiations */
+int initialize(using_pin){
+	ard_init(using_pin);
+	hover_func(start,using_pin);
+//	delay(2000);
+//	hover_func(turbo,using_pin);
+//	BLINKER(300);    
+ /* Test code */
+	#ifdef STUB_TEST
+		printf("		Test Main \n");
+	#endif
+	/*FUNCS funcs;
+	funcs.func1=set_level;
+	funcs.func2=delay;
+	funcs.level=254;
+	funcs.delay_time=1000;	
+	hover_loop(funcs);*/	
+	return 0;
+}
+
 /* Ardunio initiation */
 int ard_init(int using_pin){
 	/* Initialize the Arduino */
@@ -28,6 +48,17 @@ int ard_init(int using_pin){
 	#ifdef STUB_TEST
 		printf("		Test output pin: %d OK \n",
 		using_pin);
+	#endif
+	return 0;
+}
+
+/* Set the Arduino active pin for using */
+int pin_program(int using_pin,int level) {
+	//BLINKER(1000);
+	//analogWrite(using_pin,level);
+	/* Test code */
+		#ifdef STUB_TEST
+		printf("		Test analog write \n");
 	#endif
 	return 0;
 }
@@ -63,17 +94,5 @@ int hover_loop(FUNCS funcs_in, int using_pin ,int throttle_stick_level){
 			throttle_stick_level);
 		#endif
 	}
-	return 0;
-}
-
-/* Set the Arduino active pin for using */
-int pin_program(int using_pin,int level) {
-	BLINKER(1000);
-	BLINKER(50);
-	//analogWrite(using_pin,level);
-	/* Test code */
-		#ifdef STUB_TEST
-		printf("		Test analog write \n");
-	#endif
 	return 0;
 }

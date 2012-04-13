@@ -14,7 +14,6 @@
 #include "Arduino.h"
 #include <hovering_motor.h>
 #include <hovering_control.h>
-#include <hovering_init_fix.h>
 
 /* Definition */
 #define throttle_stick_bottom_level 100
@@ -26,7 +25,6 @@ int throttle_stick_level=0;
 
 /* Start the motor */
 int start(int using_pin){
-	  
 	/* Set the throttle stick is in the buttom position if the motor
 	   has not been started */
 	if (throttle_stick_level<throttle_stick_bottom_level){
