@@ -1,19 +1,35 @@
 /**
-  Author: Mozhan Soltani 
-  Date: 25-03-2012     Version:0.1     
-  Sections added/modified: The test cases, test suites and the main funtion were added. 
-  
-  Date: 02-04-2012	   Version:0.2 
-  Sections added/modified: Unneeded includes were removed and Gokul's comments were tagged with his name.  
-**/
+ * \file 		testcases-002.1-002.2.c
+ * \date 		25-03-2012
+ * \version 	0.1 
+ * \author 		Mozhan Soltani          
+ * \attention 	Sections added/modified are as follow:
+ * 				- The test cases, test suites and the main funtion were added. 
+ * 
+ * \date 		02-04-2012	   
+ * \version		0.2 
+ * \attention 	Sections added/modified are as follow:
+ *              - Unneeded includes were removed and Gokul's comments were tagged with his name.  
+ *
+ * \date 		11-04-2012	   
+ * \version		0.3 
+ * \attention 	Sections added/modified are as follow:
+ *              - Comments were revised and modified considering the provided coding standards.
+ */
+ 
 #include <check.h>
 #include <stdlib.h>
+<<<<<<< HEAD
 #include "../../job.h"
 #include "../../jobpriority.h"
 #include "../../jobtype.h"
 #include "../../list.h"
 
 /*
+=======
+
+/**
+>>>>>>> 4d514d711e324ebd19935c304871acdb4c48974e
  * Purpose: To check if the Node list is emptied when the last job is poped out. 
  * Preparation: 
  *   A sample job is set and added to a task list.
@@ -22,7 +38,7 @@
  */
 START_TEST(emptyList_test) {
 
-/* Job is set*/
+/* job is set */
   struct Job job;
   job.prio = LOW;
   job.type = DEMO;
@@ -39,7 +55,7 @@ START_TEST(emptyList_test) {
   int node_num = list->size;
   fail_if( node_num != 0 || list->head != NULL );
   free(list);
-}END_TEST
+}END_TEST /* test case emptyList */
 
 
  /*Commneted to include these test cases in test suite-Gokul*/
@@ -52,13 +68,12 @@ START_TEST(emptyList_test) {
 /*   RETURN S; */
 /* } */
 
-/*
+/**
  * Purpose: To check if the Node list is in order when 4 jobs with different priorities are added. 
  * Preparation: 
  *   Four sample jobs are set and added to a task list.
  * Expected outcome: The list should contain the jobs with the order from Right_NOW to LOW.
  */
-
 START_TEST(orderedList_test) {
 
 /* Jobs are set */
@@ -109,7 +124,7 @@ START_TEST(orderedList_test) {
   }
   fail_if( flag == 0);
   free(list);
-}END_TEST
+}END_TEST /* test case orderedList */
 
 /*Commneted to include these test cases in test suite-Gokul*/
 /* Suite * suite2(void) { */

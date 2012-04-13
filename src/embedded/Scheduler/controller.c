@@ -16,6 +16,12 @@
  *	\attention 		Sections added/modified are as follow: 
  *                  - The header files: "list.h", "API_bluetooth_controler.h", "jobpriority.h", "jobtype.h", "job.h" and"Theta-API.h" were added.
  *                  - The function putJobInQueue was placed in this file from its original file, "main.c". 
+ * \n
+ * \date			11-04-2012 
+ * \version		    0.3
+ * \author 		    Mozhan Soltani
+ * \attention 		Sections added/modified are as follow: 
+ *                  - The function "execute_jobs" was updates.
  */
 
 #include <serial_interface.h>
@@ -25,6 +31,7 @@
 #include <jobtype.h>
 #include <job.h>
 #include <Theta-API.h>
+#include <stdlib.h>
 
 static struct List *g_taskList;
 
@@ -58,14 +65,16 @@ void execute_jobs() {
 			int (*task)();
 			task = currentJob.task_p2;
 			(*task)(); //execute the job
+			free(currentJob);
 		} /* If job_num == 1 */
 
-//	else if(currentJob.job_num == 2){
-//     void (*task)();
-//     task = currentJob.task_p3;
-//     (*task)(); //execute the job
-//    }
-//
+      else if (currentJob.job_num == 2){
+         void (*task)(unsigned char);
+         task = currentJob.task_p3;
+         (*task)(currentJob.agr1); //execute the job
+		 free(currentJob);
+      } /* If job_num == 2 */
+	  
 //	else if(currentJob.job_num == 3){
 //     int (*task)();
 //     task = currentJob.task_p4;

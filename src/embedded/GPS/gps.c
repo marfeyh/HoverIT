@@ -1,16 +1,18 @@
 /**
  * Author:  Johan Wikström Schützer & Gokul Reddy
- * Date:    2012-04-10
+ * Date:    2012-04-12
  * Version: 1.0 - 2012-04-03 - Johans code
  * Version: 1.1 - 2012-04-10 - Integrated Gokuls code
+ * Version: 1.2 - 2012-04-12 - Fixed some compilation errors (pointers-related) - Dmitry
  **/
-
+//#include <Serial.h>
 #include "gps.h" 
-#include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 /* #include "nmea_datastructs.h" */
 #include <Arduino.h>
-#include <Searduino.h>
+#include <searduino.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -117,19 +119,21 @@ double d2r(double d) {
 
 /* ADD COMMENT: GOKUL */  
 char* read_data(){  
-  char* linema = memalloc(300*sizeof(char));
-  // if lines for everything ifdef mega serial pot 1 like wise
+  char* linema = malloc(300*sizeof(char));
+  // if lines for everything ifdef mega 
+  //pot 1 like wise
   int boolean = -1;
   int i = 0;
   int boolRMC = -1;
   while(boolean==-1){
-     buffer = Serial.read();
+  //buffer = Serial.read();
+  buffer = 13;	//Just for testing	
    if (buffer != -1){
      if(buffer == 13){
-       inc = 0;
-       for (int i=1;i<7;i++){   
+       int i;
+       for (i=1;i<7;i++){   
 	  if (linema[i]==gprmc[i-1]){
-           boolRMC = 1;
+	    // boolRMC = 1;
          }       /*end if linema[i]*/
 	 else {
 	   boolean = -1;
@@ -152,8 +156,8 @@ char* get_time(char* data){
 }
 
 /* ADD COMMENT: GOKUL */
-struct Position * get_position(char* data){
-  struct Position *pos = calloc(1,size_of(struct Position));
+struct Position* get_position(char* data){
+  struct Position *pos = (struct Position *)calloc(1,sizeof(struct Position));
   char * temp1 = retrive_data (data,2);
   pos->latitude = atof(temp1);
   free(temp1);
@@ -161,7 +165,7 @@ struct Position * get_position(char* data){
   pos->longitude = atof(temp1);
   free(temp1);
   temp1 = retrive_data(data,5);
-  pos->nsew = temp1;
+  pos->nsew = *temp1;
   free(temp1);
     return pos;
 }
@@ -169,9 +173,10 @@ struct Position * get_position(char* data){
 /* ADD COMMENT: GOKUL */
 char* retrive_data(char* linema, int k){
   int cont = 0;
-  char* value = malloc(20*size(char));
-  
-  for (int i=0;i<300;i++){
+  int indices[20];
+   char* value = calloc(1,20*sizeof(char));
+  int i;
+  for (i=0;i<300;i++){
     if (linema[i]==','){    // check for the position of the  "," separator
       indices[cont]=i;
       cont++;
@@ -181,11 +186,12 @@ char* retrive_data(char* linema, int k){
       cont++;
     }
     int i = 0;
-    for (int j=indices[k];j<(indices[k+1]-1);j++){
+    int j;
+    for (j=indices[k];j<(indices[k+1]-1);j++){
       
-      value[i] = linema[j+1]); 
+      value[i] = linema[j+1]; 
     i++;
+  }
   }
   return value;
 }
-

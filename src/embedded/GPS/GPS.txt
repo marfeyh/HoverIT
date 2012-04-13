@@ -1,0 +1,90 @@
+$GPGGA,152958.764,,,,,0,0,,,M,,M,,*4F
+$GPGLL,,,,,152958.764,V,N*7D
+$GPGSA,M,1,,,,,,,,,,,,,,,*12
+$GPGSV,1,1,00*79
+$GPRMC,152958.764,V,,,,,0.00,0.00,030412,,,N*4E
+
+
+---------------
+Time in UTC (HhMmSs): 152958.764
+Status (A=OK,V=KO): V
+Latitude: 
+Direction (N/S): 
+Longitude: 
+Direction (E/W): 
+Velocity in knots: 0.00
+Heading in degrees: 0.00
+Date UTC (DdMmAa): 030412
+Magnetic degrees: 
+(E/W): 
+Mode: N
+---------------
+
+$GPVTG,0.00,T,,M,0.00,N,0.00,K,N*32
+$GPGGA,152958.964,,,,,0,0,,,M,,M,,*41
+$GPGLL,,,,,152958.964,V,N*73
+$GPGSA,M,1,,,,,,,,,,,,,,,*12
+$GPGSV,1,1,00*79
+$GPRMC,152958.964,V,,,,,0.00,0.00,030412,,,N*40
+
+
+---------------
+Time in UTC (HhMmSs): 152958.964
+Status (A=OK,V=KO): V
+Latitude: 
+Direction (N/S): 
+Longitude: 
+Direction (E/W): 
+Velocity in knots: 0.00
+Heading in degrees: 0.00
+Date UTC (DdMmAa): 030412
+Magnetic degrees: 
+(E/W): 
+Mode: N
+---------------
+
+
+
+
+Tests With EOT
+
+$GPGGA,191852.326,,,,,0,0,,,M,,M,,*49
+EOT
+$GPGLL,,,,,191852.326,V,N*7B
+EOT
+$GPGSA,M,1,,,,,,,,,,,,,,,*12
+EOT
+$GPGSV,1,1,01,02,,,36*7F
+EOT
+$GPRMC,191852.326,V,,,,,0.00,0.00,030412,,,N*48
+EOT
+
+---------------
+Time in UTC (HhMmSs): 191852.326
+Status (A=OK,V=KO): V
+Latitude: 
+Direction (N/S): 
+Longitude: 
+Direction (E/W): 
+Velocity in knots: 0.00
+Heading in degrees: 0.00
+Date UTC (DdMmAa): 030412
+Magnetic degrees: 
+(E/W): 
+Mode: N
+---------------
+
+$GPVTG,0.00,T,,M,0.00,N,0.00,K,N*32
+EOT
+$GPGGA,191852.526,,,,,0,0,,,M,,M,,*4F
+EOT
+$GPGLL,,,,,191852.526,V,N*7D
+EOT
+$GPGSA,M,1,,,,,,,,,,,,,,,*12
+EOT
+$GPGSV,1,1,01,02,,,36*7F
+EOT
+$GPRMC,191852.526,V,,,,,0.00,0.00,030412,,,N*4E
+EOT
+
+
