@@ -7,7 +7,7 @@
 
 #pragma once
 
-struct Position {
+struct position {
   float longitude;
   float latitude;
   char nsew;
@@ -31,6 +31,6 @@ char* read_data();
 
 char* get_time(char[]);
 
-struct Position *get_position(char[]);
+struct position *get_position(char[]);
 
 char* retrive_data(char[],int);

@@ -1,9 +1,8 @@
 /**
  * Author:  Johan Wikström Schützer & Gokul Reddy
- * Date:    2012-04-12
+ * Date:    2012-04-10
  * Version: 1.0 - 2012-04-03 - Johans code
  * Version: 1.1 - 2012-04-10 - Integrated Gokuls code
- * Version: 1.2 - 2012-04-12 - Fixed some compilation errors (pointers-related) - Dmitry
  **/
 //#include <Serial.h>
 #include "gps.h" 
@@ -81,7 +80,7 @@ int* get_Indices(char gpsData[]) {
  * Author: Johan
  * Calculates the distance between the two given points in kilometers 
  */
-double get_distance_km(struct Position p1, struct Position p2) {
+double get_distance_km(struct position p1, struct position p2) {
   double a = acos(sin(d2r(p1.latitude))*sin(d2r(p2.latitude)) + cos(d2r(p1.latitude))*cos(d2r(p2.latitude))*cos(d2r(p2.longitude-p1.longitude))); 
   return a*RADIUS_KM;
 }
@@ -90,7 +89,7 @@ double get_distance_km(struct Position p1, struct Position p2) {
  * Author: Johan
  * Calculates the distance between the two given points in miles 
  */
-double get_distance_mi(struct Position p1, struct Position p2) {
+double get_distance_mi(struct position p1, struct position p2) {
   double a = acos(sin(d2r(p1.latitude))*sin(d2r(p2.latitude)) + cos(d2r(p1.latitude))*cos(d2r(p2.latitude))*cos(d2r(p2.longitude-p1.longitude)));
   return a*RADIUS_MI;
 }
@@ -120,14 +119,12 @@ double d2r(double d) {
 /* ADD COMMENT: GOKUL */  
 char* read_data(){  
   char* linema = malloc(300*sizeof(char));
-  // if lines for everything ifdef mega 
-  //pot 1 like wise
+  // if lines for everything ifdef mega serial pot 1 like wise
   int boolean = -1;
   int i = 0;
-  int boolRMC = -1;
+  // int boolRMC = -1;
   while(boolean==-1){
-  //buffer = Serial.read();
-  buffer = 13;	//Just for testing	
+    //    buffer = Serial.read();
    if (buffer != -1){
      if(buffer == 13){
        int i;
@@ -156,8 +153,8 @@ char* get_time(char* data){
 }
 
 /* ADD COMMENT: GOKUL */
-struct Position* get_position(char* data){
-  struct Position *pos = (struct Position *)calloc(1,sizeof(struct Position));
+struct position* get_position(char* data){
+  struct position *pos =(struct position *) calloc(1,sizeof(struct position));
   char * temp1 = retrive_data (data,2);
   pos->latitude = atof(temp1);
   free(temp1);
@@ -174,7 +171,7 @@ struct Position* get_position(char* data){
 char* retrive_data(char* linema, int k){
   int cont = 0;
   int indices[20];
-   char* value = calloc(1,20*sizeof(char));
+  char* value = calloc(1,20*sizeof(char));
   int i;
   for (i=0;i<300;i++){
     if (linema[i]==','){    // check for the position of the  "," separator
