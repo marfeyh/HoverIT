@@ -17,6 +17,7 @@ int ledPin4 = 8;
 int timer1 = 10000;
 int timer2 = 7500;
 int timer3 = 5000;
+int timer4 = 200;
 
 void init_leds(void)
 {
@@ -52,4 +53,4 @@ void run_leds(void)
   delay(timer4);
   digitalWrite(ledPin4,LOW);
   delay(timer4);
-{
+}
