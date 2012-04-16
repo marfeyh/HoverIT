@@ -59,7 +59,7 @@ unsigned char get_direction(unsigned char* direction) {
 	return ((*direction) & 0b00000111);
 }
 
-unsigned char getValue_fan_speed(unsigned char* value) {
+unsigned char getValue_fans(unsigned char* value) {
 	return (0b00000111 & (*value));
 }
 

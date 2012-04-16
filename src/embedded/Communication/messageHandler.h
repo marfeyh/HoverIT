@@ -16,6 +16,6 @@ unsigned char create_hovercraft_pressure(unsigned char*);
 unsigned char create_battery_level(unsigned char*);
 unsigned char check_number_limit(unsigned char*);
 unsigned char is_increase(unsigned char*);
-unsigned char getValue_fan_speed(unsigned char*);
+unsigned char getValue_fans(unsigned char*);
 unsigned char get_direction(unsigned char*);
 #endif /* MESSAGEHANDLER_H_ */

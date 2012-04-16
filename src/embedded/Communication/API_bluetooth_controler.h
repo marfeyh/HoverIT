@@ -8,6 +8,10 @@
 #define API_BLUETOOTH_CONTROLER_H_
 
 
+
+
+void bluetooth_serial_setup();
+
 /**
  * API function which is called by timer
  * Basically when this function is called the bluetooth gets the resources of the board and

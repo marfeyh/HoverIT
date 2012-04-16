@@ -12,4 +12,6 @@
 void send_serial_string(char* string);
 void send_serial_binary(unsigned char* binary);
 
+int blink();
+
 #endif /* BLUETOOTH_CONTROLER_H_ */

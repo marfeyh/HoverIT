@@ -11,18 +11,28 @@
 #include <conventions.h>
 #include <stdio.h> // because of using NULL
 //Scheduler
-#include "../Scheduler/job.h"
-#include "../Scheduler/jobpriority.h"
-#include "../Scheduler/jobtype.h"
+#include <job.h>
+#include <jobpriority.h>
+#include <jobtype.h>
+#include<hover_api_stub.h>
+
 
 // Motor
-#include "../hover_api/hover_api.h"
+#include <propulsion_api.h>
+
+//Rudder direction
+#include <steering.h>
 
 /*
  * ===========================================================
  * API functions
  * ===========================================================
  */
+
+void bluetooth_serial_setup() {
+	serial_setup();
+
+}
 
 /**
  * A function to check the serial pins.
@@ -31,14 +41,12 @@
 void check_serial_input() {
 	unsigned char result = 255;
 	do {
-		//		debug_print_string("check_serial_input");
-		//		printf(
-		//				"Module bluetooth_controler.c, function check_serial_input: serial input is checked...\n");
 		result = serial_read();
-		//		debug_println(result);
+		// If there is any data available on serial input
 		if (result != 255) {
 			unsigned char messageType = parseBinary(result);
 			if (messageType != 255) {
+				//It should be free somewhere!
 				int (*func_ptr)(); // declaration of pointer to function
 				struct Job* job_ptr = (struct Job*) malloc(
 						sizeof(struct Job) * 1);
@@ -46,24 +54,29 @@ void check_serial_input() {
 					debug_print_string("Unable to get memory\n");
 					return;
 				}
-				//			debug_println(temp);
+				// call the api functions based on message type
 				switch (messageType) {
 				case FAN_FORWARD_SPEED:
 					if (is_increase(&result) == 1) {
-						switch (getValue_fan_speed(&result)) {
+						unsigned char res_value = getValue_fans(&result);
+						switch (res_value) {
 						case 0:
-//							func_ptr = increase_hover; // int increase_hover();
-//							job_ptr->task = func_ptr;
-//							job_ptr->prio = RIGHT_NOW;
-//							job_ptr->type = MOVEMENT;
+							func_ptr = increase_propulsion;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = RIGHT_NOW;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Forward increasing Speed in queue\n");
 							break;
 						case 1:
-//						func_ptr = decrease_hover; // int decrease_hover();
-//							job_ptr->task = func_ptr;
-//							job_ptr->prio = RIGHT_NOW;
-//							job_ptr->type = MOVEMENT;
+							func_ptr = decrease_propulsion; //blink; //increase_hover; // int increase_hover();
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = RIGHT_NOW;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Forward decreasing Speed in queue\n");
 							break;
@@ -72,33 +85,79 @@ void check_serial_input() {
 							break;
 						}
 					} else {
-						//						is_increase(&result) == 0
-						debug_print_string("put exact speed value\n");
+						debug_print_string("put exact Forward speed value\n");
+					}
+					break;
+				case FAN_HOVERING_SPEED:
+					if (is_increase(&result) == 1) {
+						unsigned char res_value = getValue_fans(&result);
+						switch (res_value) {
+						case 0:
+							func_ptr = increase_hover;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = RIGHT_NOW;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
+							debug_print_string(
+									"put Fan Hovering increasing \n");
+							break;
+						case 1:
+							func_ptr = decrease_hover;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = RIGHT_NOW;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
+							debug_print_string("put Fan Hovering decreasing\n");
+							break;
+						default:
+							debug_print_string(
+									"put Fan Hovering Speed ERROR\n");
+							break;
+						}
+					} else {
+						//						control_rudder(0); // hard left
+						debug_print_string("put exact FAN_HOVERING_SPEED \n");
 					}
 					break;
 				case RUDER_DIRECTION: {
-					switch (get_direction(&result)) {
-					case HARD_LEFT:
-						debug_print_string("put go_right in queue\n");
+					unsigned char res_direction = get_direction(&result);
+					switch (res_direction) {
+					case STRAIGHT:
+						control_rudder(STRAIGHT);
+						debug_print_string("STRAIGHT\n");
 						break;
-					case 5:
-						debug_print_string("put go_left in queue\n");
+					case HARD_LEFT:
+						control_rudder(HARD_LEFT);
+						debug_print_string("HARD_LEFT\n");
+						break;
+					case HARD_RIGHT:
+						control_rudder(HARD_RIGHT);
+						debug_print_string("HARD_RIGHT\n");
+						break;
+					case SOFT_RIGHT:
+						control_rudder(SOFT_RIGHT);
+						debug_print_string("SOFT_RIGHT\n");
+						break;
+					case SOFT_LEFT:
+						control_rudder(SOFT_LEFT);
+						debug_print_string("SOFT_LEFT\n");
+						break;
+					case BRAKE:
+						control_rudder(BRAKE);
+						debug_print_string("BRAKE\n");
 						break;
 					default:
 						debug_print_string("direction ERROR\n");
 						break;
 					}
+					break;
 				}
-					break;
-				case FAN_HOVERING_SPEED:
-					debug_print_string("put Fan_Hovering_Speed in queue\n");
-					break;
 				}
 			}
 		}
 	} while (result != 255);
-	//	printf(
-	//			"Module bluetooth_controler.c, function check_serial_input: serial input no more input...\n");
 	return;
 }
 
@@ -107,10 +166,10 @@ void check_serial_input() {
  * message argument is followed by hovercraft protocol available on wiki
  */
 unsigned char fan_forward_speed(unsigned char message) {
-	//	printf("Module bluetooth_controler, function fan_forward_speed: working\n");
+//	printf("Module bluetooth_controler, function fan_forward_speed: working\n");
 	debug_print_string("fan_forward_speed called\n");
 
-	// instead of return send_serial_binary should be called
+// instead of return send_serial_binary should be called
 	return create_fan_forward_speed(&message);
 }
 
@@ -119,11 +178,11 @@ unsigned char fan_forward_speed(unsigned char message) {
  * message argument is followed by hovercraft protocol available on wiki
  */
 unsigned char fan_hovering_speed(unsigned char message) {
-	//	printf(
-	//			"Module bluetooth_controler, function fan_hovering_speed: working\n");
+//	printf(
+//			"Module bluetooth_controler, function fan_hovering_speed: working\n");
 	debug_print_string("fan_hovering_speed called\n");
 
-	// instead of return send_serial_binary should be called
+// instead of return send_serial_binary should be called
 	return create_fan_hovering_speed(&message);
 }
 
@@ -132,10 +191,10 @@ unsigned char fan_hovering_speed(unsigned char message) {
  * message argument is followed by hovercraft protocol available on wiki
  */
 unsigned char ruder_direction(unsigned char message) {
-	//	printf("Module bluetooth_controler, function ruder_direction: working\n");
+//	printf("Module bluetooth_controler, function ruder_direction: working\n");
 	debug_print_string("ruder_direction called\n");
 
-	// instead of return send_serial_binary should be called
+// instead of return send_serial_binary should be called
 	return create_ruder_direction(&message);
 }
 
@@ -144,10 +203,10 @@ unsigned char ruder_direction(unsigned char message) {
  * message argument is followed by hovercraft protocol available on wiki
  */
 unsigned char hovercraft_speed(unsigned char message) {
-	//	printf("Module bluetooth_controler, function hovercraft_speed: working\n");
+//	printf("Module bluetooth_controler, function hovercraft_speed: working\n");
 	debug_print_string("hovercraft_speed called\n");
 
-	// instead of return send_serial_binary should be called
+// instead of return send_serial_binary should be called
 	return create_hovercraft_speed(&message);
 }
 
@@ -156,11 +215,11 @@ unsigned char hovercraft_speed(unsigned char message) {
  * message argument is followed by hovercraft protocol available on wiki
  */
 unsigned char hovercraft_pressure(unsigned char message) {
-	//	printf(
-	//			"Module bluetooth_controler, function hovercraft_pressure: working\n");
+//	printf(
+//			"Module bluetooth_controler, function hovercraft_pressure: working\n");
 	debug_print_string("hovercraft_pressure called\n");
 
-	// instead of return send_serial_binary should be called
+// instead of return send_serial_binary should be called
 	return create_hovercraft_pressure(&message);
 }
 
@@ -169,10 +228,10 @@ unsigned char hovercraft_pressure(unsigned char message) {
  * message argument is followed by hovercraft protocol available on wiki
  */
 unsigned char battery_level(unsigned char message) {
-	//	printf("Module bluetooth_controler, function battery_level: working\n");
+//	printf("Module bluetooth_controler, function battery_level: working\n");
 	debug_print_string("battery_level called\n");
 
-	// instead of return send_serial_binary should be called
+// instead of return send_serial_binary should be called
 	return create_battery_level(&message);
 }
 
@@ -184,13 +243,13 @@ unsigned char battery_level(unsigned char message) {
 
 void send_serial_string(char* string) {
 	serial_string_write(string);
-	//	printf(
-	//			"Module bluetooth_controler.c, function send_serial_string: string message is sent to serial_interface module\n");
+//	printf(
+//			"Module bluetooth_controler.c, function send_serial_string: string message is sent to serial_interface module\n");
 }
 
 void send_serial_binary(unsigned char* binary) {
 	serial_binary_write(binary);
-	//	printf(
-	//			"Module bluetooth_controler.c, function send_serial_binary: binary message is sent to serial_interface module\n");
+//	printf(
+//			"Module bluetooth_controler.c, function send_serial_binary: binary message is sent to serial_interface module\n");
 }
 
