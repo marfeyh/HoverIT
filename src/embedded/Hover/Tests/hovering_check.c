@@ -19,7 +19,7 @@
 #include "../hovering_init_fix.h"
 
 void setup (void) {
-
+  ard_init(11);
 }
 
 void teardown (void) {
@@ -33,7 +33,6 @@ void teardown (void) {
    pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */START_TEST(test_ard_init) {
- 
 	int using_pin=11;
 	fail_unless((ard_init(using_pin) == 0),"ard init failed");
 	// printf(" test 1 done");
@@ -46,7 +45,7 @@ void teardown (void) {
    pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */START_TEST(test_pin_program) {
-	ard_init(11);
+	
 	int level=100;
 	int using_pin=11;
 	//printf(" test 2 done");
@@ -117,17 +116,19 @@ START_TEST(test_equal){
 
 Suite * hovering_suite(void){
 	Suite *s = suite_create("Hovering motor controlling test");
-	TCase *tc = tcase_create("Core");
+	TCase *tc = tcase_create("Core with fixture");
+	TCase *tc2 = tcase_create("Core without fixture");
 	tcase_add_checked_fixture(tc,setup,teardown);
 	/* Add test cases */
-	tcase_add_test(tc,test_ard_init);
+	tcase_add_test(tc2,test_ard_init);
 	tcase_add_test(tc,test_pin_program);  
-	tcase_add_test(tc,test_random);
-	tcase_add_test(tc,test_positive);
-	tcase_add_test(tc,test_negative);
-	tcase_add_test(tc,test_equal);
+	tcase_add_test(tc2,test_random);
+	tcase_add_test(tc2,test_positive);
+	tcase_add_test(tc2,test_negative);
+	tcase_add_test(tc2,test_equal);
 	
 	/* Add to suite */
 	suite_add_tcase(s,tc);  
+	suite_add_tcase(s,tc2);
 	return s;
 }
