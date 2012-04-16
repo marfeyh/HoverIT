@@ -29,7 +29,10 @@ SRC_C += main.c
 endif
 
 # Arduino mode #
-ARDUINO = uno
+ARDUINO = stub
+
+# User C flags used in program for test #
+#USER_C_FLAGS=-DSTUB
 
 # Includes #
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk

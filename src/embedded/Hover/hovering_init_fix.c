@@ -22,12 +22,21 @@
 /* Initiations */
 int initialize(using_pin){
 	ard_init(using_pin);
-	hover_func(start,using_pin);
-	hover_func(stop,using_pin);
+int i=0;
+//for (i;i<10;i++){
+//BLINKER(100);	
+hover_func(start,using_pin);
+delay(1000);
+hover_func(normal,using_pin);
+delay(3000);
+
+hover_func(stop,using_pin);
+
+//}
 	/* Test code */
-	#ifdef STUB
-		printf("		Test init \n");
-	#endif
+//	#ifdef STUB
+//		printf("		Test init \n");
+//	#endif
 	return 0;
 	/*FUNCS funcs;
 	funcs.func1=set_level;
