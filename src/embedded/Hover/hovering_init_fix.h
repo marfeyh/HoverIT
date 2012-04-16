@@ -15,6 +15,6 @@
 	#define HOVERING_INIT_FIX_H
 
 	/* Function prototype */
-	
 
+	int initialize(int using_pin)	
 	#endif

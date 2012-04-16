@@ -15,6 +15,7 @@
 #include <searduino.h> /* Header for Searduino */
 #include <hovering_motor.h>
 #include <hovering_control.h>
+#include <hovering_init_fix.h>
 #include "searduino.h"
 
 /* Functions */
