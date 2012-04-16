@@ -26,24 +26,26 @@ void teardown (void) {
 
 }
 
-/* id/title: EN1/test random air pressure
+/* id/title: EN1/test Arduini initiation
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the correct hoverfan function has been called
    pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
-*/START_TEST(test_ard_init) {
+*/
+START_TEST(test_ard_init) {
 	int using_pin=11;
 	fail_unless((ard_init(using_pin) == 0),"ard init failed");
 }END_TEST
 
-/* id/title: EN2/test random air pressure
+/* id/title: EN2/test pin program
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the correct hoverfan function has been called
    pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
-*/START_TEST(test_pin_program) {
+*/
+START_TEST(test_pin_program) {
 	//init_motor();
 	int level=100;
 	int using_pin=11;
