@@ -9,8 +9,8 @@ Description: API for controling hovering fan
 #include <hovering_motor.h>
 #include <hovering_control.h>
 #include <pressure_check.h>
+#include <pin.h>
 
-#define USING_PIN 11
 #define LEVEL 10
 
 int start_hover() {         /* start the hovering fan */ 
