@@ -9,15 +9,9 @@
 
 #include <Arduino.h>
 #include<searduino.h>
+#include <fourLedsOn.h>
 
-int ledPin1 = 2;
-int ledPin2 = 4;
-int ledPin3 = 7;
-int ledPin4 = 8;
-int timer1 = 10000;
-int timer2 = 7500;
-int timer3 = 5000;
-int timer4 = 200;
+
 
 void init_leds(void)
 {

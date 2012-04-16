@@ -3,12 +3,11 @@ SEARDUINO_PATH = /opt/searduino
 PROG = leds
 
 # Add your source files here
-SRC_C=fourLedsOn.c  fourLedsOn.h
+SRC_C= main.c fourLedsOn.c
 SRC_CXX=
-MAIN_SRC = main.c
+MAIN_SRC =
 ARDUINO = stub
 SHLIB = leds.so
-TEST_DIR = ../tests
 
 LIB = libleds.a
 LIB_H =
