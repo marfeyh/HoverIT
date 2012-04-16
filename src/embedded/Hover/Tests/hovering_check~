@@ -1,0 +1,8 @@
+#ifndef HOVERING_CHECK_H
+#define HOVERING_CHECK_H
+
+void setup(void);
+void teardown(void);
+Suite* hovering_suite(void);
+
+#endif
