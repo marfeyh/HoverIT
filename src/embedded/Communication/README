@@ -1,6 +1,0 @@
-This work package will deliver bluetooth connectivity for the Hovercraft and uses the Arduino HardwareSerial to do so.
-
-At the moment it only builds for the Mega2560 processor and can not be ran in Searduino.
-Makke sure that the ARDUINO flag is set to mega2560 and build it using either
-make prog
-make lib-install
