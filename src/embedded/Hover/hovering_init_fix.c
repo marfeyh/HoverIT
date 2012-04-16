@@ -38,6 +38,27 @@ int initialize(int using_pin){
 	return 0;
 }
 
+/* Ardunio initiation */
+int ard_init(int using_pin){
+	/* Initialize the Arduino */
+	init();
+	/* Assign using pin to output */ 	
+	pinMode(using_pin,OUTPUT);
+	/* Test code */
+	return 0;
+}
+
+/* Set the Arduino active pin for using */
+int pin_program(int using_pin,int level) {	
+	analogWrite(using_pin,level);
+	return 0;
+	/* Test code */
+//	#ifdef STUB_TEST
+//		printf("		Test analog write \n");
+//	#endif
+	return 0;
+}
+
 /* This function prevents the motor from stop (Check boundary values)*/
 int check_and_fix_level(int using_pin,int throttle_stick_level){
 	if (throttle_stick_level<LOWEST_LEVEL){

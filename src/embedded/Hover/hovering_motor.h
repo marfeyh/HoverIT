@@ -27,11 +27,7 @@
 	} FUNCS;
 
 	/* Function prototypes */
-
-	/* Initialize Arduino */	
-	int ard_init(int using_pin);
-	/* Set the Arduino active pin for using */	
-	int pin_program(int using_pin, int level);	
+	
 	/* Function that gets arguments for start or stop the motor */
 	int hover_func(int (*func)(int), int using_pin);
 	/* Fucntion that gets arguments for change the speed of motor */	

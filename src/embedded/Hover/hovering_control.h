@@ -19,9 +19,9 @@
 	#define HIGHEST_LEVEL 254
 	#define LOWEST_LEVEL 133
 	#define STOP_LEVEL 120
-	#define USING_PIN 11
 
 	/* Function protoypes */
+
 	/* Start the hovering motor*/
 	int start(int using_pin);
 	/* Set the throttle stick

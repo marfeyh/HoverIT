@@ -1,6 +1,7 @@
 /*
  * @ Module name:  hovering_control.c
- * @ Description:  Contains the functions that control the hovering fan speed.
+ * @ Description:  Contains the functions that control
+ *   the hovering fan speed.
  *
  * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 20 March 2012

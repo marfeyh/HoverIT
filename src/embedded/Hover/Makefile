@@ -38,9 +38,13 @@ ARDUINO = stub
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
 # When use make check #
-check: SRC_C = hovering_motor.c hovering_control.c  hovering_init_fix.c hover_api.c pressure_check.c pressure_sensor.c ../hovering_check.c
+check: SRC_C = pressure_check.c pressure_sensor.c hover_api.c 
+check: SRC_C += hovering_motor.c hovering_control.c hovering_init_fix.c
+check: SRC_C += ../hovering_check.c
 check: USER_LD_FLAGS = -lcheck
-check: hovering_motor.o hovering_control.o hovering_init_fix.o hover_api.o pressure_check.o pressure_sensor.o $(TEST_DIR)hovering_check.o 
+#check: hovering_motor.o hovering_control.o hovering_init_fix.o hover_api.o 
+#check: pressure_check.o pressure_sensor.o $(TEST_DIR)hovering_check.o 
+check:
 	$(MAKE) check -C Tests
 
 # When use make clean_tests #

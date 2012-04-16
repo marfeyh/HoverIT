@@ -1,6 +1,7 @@
 /*
  * @ Module name:  hovering_motor.c
- * @ Description:  Contains the functions that start the hovering fan speed.
+ * @ Description:  Contains the functions that
+ *   control the hovering fan speed.
  *
  * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 20 March 2012
@@ -18,27 +19,6 @@
 #include "searduino.h"
 
 /* Functions */
-
-/* Ardunio initiation */
-int ard_init(int using_pin){
-	/* Initialize the Arduino */
-	init();
-	/* Assign using pin to output */ 	
-	pinMode(using_pin,OUTPUT);
-	/* Test code */
-	return 0;
-}
-
-/* Set the Arduino active pin for using */
-int pin_program(int using_pin,int level) {	
-	analogWrite(using_pin,level);
-	return 0;
-	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test analog write \n");
-//	#endif
-	return 0;
-}
 
 /* Function that gets arguments for start or stop the motor */
 int hover_func(int (*func)(int),int using_pin){
