@@ -16,11 +16,33 @@
 #define BATTERY_LEVEL 5
 #define CONNECTION 6
 
-
 #define STRAIGHT 0
 #define HARD_LEFT 1
 #define HARD_RIGHT 2
 #define SOFT_RIGHT 3
 #define SOFT_LEFT 4
 #define BRAKE 5
+
+#define INCREASING 0
+#define DECREASING 1
 #endif /* CONVENTIONS_H_ */
+
+/*
+ @author Amir Almasi
+ * @author Retta Shafirad
+ * @version:
+ * @param:
+ * @return:
+ * @deprecated:
+ * @see:
+ * @todo:
+ * @bug:
+ * @details
+ * @date
+ * @pre
+ * @warning
+ * @copyright
+ * @note
+ * @headerfile
+ * @file
+ */
