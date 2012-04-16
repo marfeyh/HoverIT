@@ -15,6 +15,10 @@
 	#define HOVERING_INIT_FIX_H
 
 	/* Function prototype */
-
-	int initialize(int using_pin)	
+	/* Arduino and motor initiation */
+	int initialize(int using_pin);
+	/* This function prevents the motor from stop
+	 (Check boundary values)*/
+	int check_and_fix_level(int using_pin, int throttle_stick_level);
+	
 	#endif

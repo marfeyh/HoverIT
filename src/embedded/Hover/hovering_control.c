@@ -14,6 +14,7 @@
 #include "Arduino.h"
 #include <hovering_motor.h>
 #include <hovering_control.h>
+#include <hovering_init_fix.h>
 
 /* Definition */
 #define throttle_stick_bottom_level 100
@@ -121,24 +122,5 @@ int set_level(int using_pin, int level){
 //		printf("		Test set New    L: %d \n",
 //		throttle_stick_level);
 //	#endif
-	return 0;
-}
-
-/* This function prevents the motor from stop (Check boundary values)*/
-int check_and_fix_level(int using_pin,int throttle_stick_level){
-	if (throttle_stick_level<LOWEST_LEVEL){
-		normal(using_pin);		
-		/* Test code */
-//		#ifdef STUB_TEST
-//			printf("		Test Too low \n");
-//		#endif
-	}
-	if (throttle_stick_level>HIGHEST_LEVEL){
-		turbo(using_pin);
-		/* Test code */
-//		#ifdef STUB_TEST
-//			printf("		Test Too high \n");
-//		#endif
-	}
 	return 0;
 }

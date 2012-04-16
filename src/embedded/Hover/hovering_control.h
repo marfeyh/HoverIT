@@ -39,8 +39,5 @@
 	int increase(int using_pin, int level);
 	/* decrease the motor rotating speed level times */
 	int decrease(int using_pin, int level);
-	/* This function prevents the motor from stop
-	 (Check boundary values)*/
-	int check_and_fix_level(int using_pin, int throttle_stick_level);
 
 	#endif
