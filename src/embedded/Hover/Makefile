@@ -32,7 +32,7 @@ endif
 ARDUINO = stub
 
 # User C flags used in program for test #
-#USER_C_FLAGS=-DSTUB
+#USER_C_FLAGS=-DSTUB_TEST
 
 # Includes #
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk

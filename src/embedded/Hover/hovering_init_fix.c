@@ -21,24 +21,14 @@
 /* Functions */
 
 /* Initiations */
-int initialize(using_pin){
+int initialize(int using_pin){
 	ard_init(using_pin);
-int i=0;
-//for (i;i<10;i++){
-//BLINKER(100);	
-hover_func(start,using_pin);
-delay(1000);
-hover_func(normal,using_pin);
-delay(3000);
-
-hover_func(stop,using_pin);
-
-//}
+	hover_func(start,using_pin);
+	delay(1000);
 	/* Test code */
-//	#ifdef STUB
+//	#ifdef STUB_TEST
 //		printf("		Test init \n");
 //	#endif
-	return 0;
 	/*FUNCS funcs;
 	funcs.func1=set_level;
 	funcs.func2=delay;
@@ -47,4 +37,3 @@ hover_func(stop,using_pin);
 	hover_loop(funcs);*/	
 	return 0;
 }
-
