@@ -33,8 +33,10 @@ void teardown (void) {
    pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */START_TEST(test_ard_init) {
+ 
 	int using_pin=11;
 	fail_unless((ard_init(using_pin) == 0),"ard init failed");
+	// printf(" test 1 done");
 }END_TEST
 
 /* id/title: EN2/test random air pressure
@@ -44,10 +46,12 @@ void teardown (void) {
    pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */START_TEST(test_pin_program) {
-	//init_motor();
+	ard_init(11);
 	int level=100;
 	int using_pin=11;
+	//printf(" test 2 done");
 	fail_unless((pin_program(using_pin,level) == 0),"pin test failed\n");
+
 }END_TEST
 
 /* id/title: ej1/test random air pressure
