@@ -1,14 +1,14 @@
 /*!
- @file bluetooth_controler.c
- @headerfile API_bluetooth_controler.h
+ @file bluetooth_command.c
  @headerfile bluetooth_controler.h
- @details This module is the brain of the bluetooth which controls it's functionalities
+ @details This module is only for the eBT500 commands based on the manual
+ @see http://www.parallax.com/dl/docs/prod/comm/eb500.pdf
  @author Amir Almasi
  @author Retta Shiferaw
- @version 0.7
- @note All the aruguments and returns of the functions are unsigned char
- @bug pointer to function should be free somewhere
- @todo pointer to job struct should be get free
+ @version 0.2
+ @todo only one command, set connetable to true, is implemented. Also commenting
+ the functions is left.
+ @warning malloc is used to get required memory. There can be some failure
  */
 
 #include <stdio.h>
