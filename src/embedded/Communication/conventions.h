@@ -1,8 +1,10 @@
-/*
- * conventions.h
- *
- *  Created on: Apr 5, 2012
- *      Author: amir
+/*!
+ @file conventions.h
+ @details This header file contains all conventions number based on project Wiki
+ @author Amir Almasi
+ @author Retta Shiferaw
+ @version 0.6
+ @see http://hoveritu.com/projects/semb2012/wiki for more information
  */
 
 #ifndef CONVENTIONS_H_

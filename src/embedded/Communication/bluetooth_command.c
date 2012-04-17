@@ -1,8 +1,14 @@
-/*
- * bluetooth_command.c
- * In this module, the bluetooth gets the
- *
- *  Created on: Apr 03, 2012
+/*!
+ @file bluetooth_controler.c
+ @headerfile API_bluetooth_controler.h
+ @headerfile bluetooth_controler.h
+ @details This module is the brain of the bluetooth which controls it's functionalities
+ @author Amir Almasi
+ @author Retta Shiferaw
+ @version 0.7
+ @note All the aruguments and returns of the functions are unsigned char
+ @bug pointer to function should be free somewhere
+ @todo pointer to job struct should be get free
  */
 
 #include <stdio.h>
