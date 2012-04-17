@@ -1,34 +1,46 @@
 #include <Arduino.h>
 #include <searduino.h>
+#include <toneWrapper.h>
+#include <alarm.h>
+
+int battery_beep_duration=0;
 
 void setup() {
+ setup_battery_level();
+}
 
+void setup_battery_level(){
+//  Serial.begin(9600);
 }
 
 void exec() {
 	for(;;){
-		int Battery=getBattery();
-		if(Battery<70 && Battery>30)
-			beep(1);
-		if(Battery<=30)
-			beep(2);
-		delay(3000);
+		loop_battery_level();
+		// Delay will be removed in integrated version
+		delay(100);
 	}
 }
 
-
+void loop_battery_level(){
+  int Battery=getBattery();
+  if(Battery==LOW_BATTERY && battery_beep_duration<LOW_BATTERY_DURATION){
+    beep(LOW_BATTERY);
+    battery_beep_duration++;
+  }else if(Battery<=EMPTY_BATTERY){
+    beep(EMPTY_BATTERY);
+  }else{
+      my_noTone(11);
+  }
+}
 
 
 void beep(int beep){
-  //noTone(11);
   switch(beep){
-    case 1:
-		digitalWrite(11,HIGH);
- //     tone(11, 500, 500);
+    case LOW_BATTERY:
+      my_tone(11, 4500);
       break;
-    case 2:
-		digitalWrite(12,HIGH);
- //     tone(11, 5000);
+    case EMPTY_BATTERY:
+      my_tone(11, 5000);
       break;
   }
 }
