@@ -1,67 +1,88 @@
-/*
- * serial_input.cpp
- * Following code is saved as c++ extension because it has to be compiled by c++ compiler since
- * it is using serial libraries of searduino
- *  Created on: Apr 03, 2012
+/*!
+ @file serial_interface.cpp
+ @headerfile Arduino.h
+ @headerfile searduino.h
+ @headerfile HardwareSerial.h
+ @headerfile serial_interface.h
+ @headerfile pin.h
+ @details Following code is saved as c++ extension because it has to be compiled by c++ compiler
+ since it is using serial libraries of searduino
+ @author Amir Almasi
+ @author Retta Shiferaw
+ @version 0.2
  */
-#include <stdio.h>
 #include <Arduino.h>
 #include <searduino.h>
 #include <HardwareSerial.h>
 #include <serial_interface.h>
+#include <pin.h>
 
-/**
- * API function which is called by scheduler
- * Basically when this function is called the bluetooth gets the resources of CPU and
- * it should check if there is anything sent to the bluetooth
+/*!
+ @brief When this function is called the bluetooth gets the resources of CPU, Arduino,
+ and it should check if there is anything available or not
+ @return unsigned char containing the binary message
+ return 255 if there was nothing availble
  */
 unsigned char serial_read() {
-	//	printf("Module serial_interface.cpp: function serial_read is working...\n");
-
 	// Check serial input if there is anything available
-	if (Serial1.available() > 0) {
-		unsigned char input = Serial1.read();
+	if (BLUETOOTH_PIN.available() > 0) {
+		unsigned char input = BLUETOOTH_PIN.read();
 		debug_print(&input);
 		return input;
-		//		putjobInque(findMessage(data));
-	}
+	}// if there is anything available on serial input
 	return 255;
 }
 
-/**
- *
+/*!
+ @brief A function to send the data to serial pins
+ @param pointer to unsigned char of the binary to be sent
  */
 void serial_binary_write(unsigned char* binary) {
 	//	printf("Module serial_interface.cpp: function serial_binary_write is working...\n");
-	Serial1.write(*binary);
+	BLUETOOTH_PIN.write(*binary);
 }
 
-/**
- *
+/*!
+ @brief A function to send string to bluetooth character by character to be sent
+ @param pointer to first char of the string to be sent
  */
 void serial_string_write(char* string) {
-	//	printf("Module serial_interface.cpp: function serial_string_write is working...\n");
 	for (; string != '\0'; string++) {
-		Serial1.print(*string);
+		BLUETOOTH_PIN.print(*string);
 	}
 }
 
+/*!
+ @brief A function to initialize pins
+ */
 void serial_setup(void) {
-	Serial.begin(9600);
-	Serial1.begin(9600);
+	MONITORING_PIN.begin(9600);
+	BLUETOOTH_PIN.begin(9600);
 }
 
-void debug_print(unsigned char* character) {
-	Serial.print(*character, HEX);
+/*!
+ @brief A function to send data to serial for the use monitoring IN HEX
+ @param pointer to unsigned char of first char of the string to be sent
+ */
+void debug_print(unsigned char* data) {
+	MONITORING_PIN.print(*data, HEX);
 }
 
-void debug_write(unsigned char* character) {
-	Serial.write(*character);
+/*!
+ @brief A function to send data to serial for the use monitoring IN BINARY
+ @param pointer to unsigned char of first char of the string to be sent
+ */
+void debug_write(unsigned char* data) {
+	MONITORING_PIN.write(*data);
 }
 
+/*!
+ @brief A function to send string to serial pin character by character
+ @param pointer to first char of the string to be sent
+ */
 void debug_print_string(char* character) {
 	for (; *character != '\0'; character++) {
-		Serial.print(*character);
+		MONITORING_PIN.print(*character);
 	}
-	Serial.print("\n");
+	MONITORING_PIN.print("\n");
 }
