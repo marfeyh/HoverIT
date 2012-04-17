@@ -13,17 +13,25 @@
 SRCPATH = ../
 
 # C FLAGS #
-CFLAGS= -I $(SRCPATH) -I/opt/searduino/include/searduino/arduino-sources/core -I/opt/searduino/include/searduino/  -I/opt/searduino/include/searduino/arduino  -I/opt/searduino/include/searduino/arduino-extras -lcheck -L/opt/searduino/lib -lsearduinostub
+CFLAGS= -I $(SRCPATH) \
+	-I/opt/searduino/include/searduino/arduino-sources/core \
+	-I/opt/searduino/include/searduino/ \
+	-I/opt/searduino/include/searduino/arduino \
+	-I/opt/searduino/include/searduino/arduino-extras \
+	-lcheck -L/opt/searduino/lib -lsearduinostub
 
 # Test objects #
-TESTOBJS= test_main.o hovering_check.o ../hovering_init_fix.o ../hover_api.o ../hovering_motor.o ../hovering_control.o ../pressure_check.o ../pressure_sensor.o
+TESTOBJS = test_main.o hovering_check.o ../hover_api.o ../hovering_motor.o \
+	   ../hovering_control.o ../hovering_init_fix.o \
+	   ../pressure_check.o ../pressure_sensor.o \
 
 # Check program #
 CHECK_PROGRAM=testsuite
 
 # When use make check #
+#check: 
 check: $(TESTOBJS)
-	echo "CHECKING..."
+	@echo "CHECKING..."
 	gcc $(TESTOBJS) $(CFLAGS) -o $(CHECK_PROGRAM)
 	export LD_LIBRARY_PATH=/opt/searduino/lib && ./$(CHECK_PROGRAM)
 

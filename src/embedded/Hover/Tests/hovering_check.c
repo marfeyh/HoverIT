@@ -2,7 +2,7 @@
  * @ Module name:  hovering_check.c
  * @ Description:  Contains the functions that check the hovering control files.
  *
- * @ Author names : Eva-Lisa Kedborn, Jing Liu 
+ * @ Author names : Eva-Lisa Kedborn, Jing Liu
  * 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 9 April 2012
  * @ Version      : 1
@@ -10,40 +10,54 @@
  */
 
 /* Includes */
+#include <stdlib.h>
 #include <check.h>
 #include "../pressure_check.h"
 #include "../pressure_sensor.h"
-#include <stdlib.h>
-#include <hovering_motor.h>
-#include <hovering_control.h>
+#include "../hovering_motor.h"
+#include "../hovering_control.h"
+#include "../hovering_init_fix.h"
 
 void setup (void) {
-
+  ard_init(11);
 }
 
 void teardown (void) {
 
 }
 
-/* Testcase 1 */
-START_TEST(test_ard_init) {
+/* id/title: EN1/test random air pressure
+   purpose: test correct implementation of hoverfan functions
+   prerequisites: none
+   expected results: the correct hoverfan function has been called
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
+                       Failures: 0, Errors: 0/any other results
+*/START_TEST(test_ard_init) {
 	int using_pin=11;
-  	fail_unless((ard_init(using_pin) == 0),"ard init failed");
+	fail_unless((ard_init(using_pin) == 0),"ard init failed");
+	// printf(" test 1 done");
 }END_TEST
 
-/* Testcase 2 */
-START_TEST(test_pin_program) {
-  	//init_motor();  
+/* id/title: EN2/test random air pressure
+   purpose: test correct implementation of hoverfan functions
+   prerequisites: none
+   expected results: the correct hoverfan function has been called
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
+                       Failures: 0, Errors: 0/any other results
+*/START_TEST(test_pin_program) {
+	
 	int level=100;
-	int using_pin=11;  
+	int using_pin=11;
+	//printf(" test 2 done");
 	fail_unless((pin_program(using_pin,level) == 0),"pin test failed\n");
+
 }END_TEST
 
 /* id/title: ej1/test random air pressure
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the correct hoverfan function has been called
-   pass/fail criteria: when check is run response is 100%: Checks: 4, 
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */
 
@@ -65,7 +79,7 @@ START_TEST(test_random){
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the decrease speed function has been called
-   pass/fail criteria: when check is run response is 100%: Checks: 4, 
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */
 
@@ -78,7 +92,7 @@ START_TEST(test_positive){
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the increase speed function has been called
-   pass/fail criteria: when check is run response is 100%: Checks: 4, 
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */
 
@@ -102,17 +116,19 @@ START_TEST(test_equal){
 
 Suite * hovering_suite(void){
 	Suite *s = suite_create("Hovering motor controlling test");
-	TCase *tc = tcase_create("Core");
+	TCase *tc = tcase_create("Core with fixture");
+	TCase *tc2 = tcase_create("Core without fixture");
 	tcase_add_checked_fixture(tc,setup,teardown);
 	/* Add test cases */
-	tcase_add_test(tc,test_ard_init);
+	tcase_add_test(tc2,test_ard_init);
 	tcase_add_test(tc,test_pin_program);  
-	tcase_add_test(tc,test_random);
-	tcase_add_test(tc,test_positive);
-	tcase_add_test(tc,test_negative);
-	tcase_add_test(tc,test_equal);
+	tcase_add_test(tc2,test_random);
+	tcase_add_test(tc2,test_positive);
+	tcase_add_test(tc2,test_negative);
+	tcase_add_test(tc2,test_equal);
 	
 	/* Add to suite */
 	suite_add_tcase(s,tc);  
+	suite_add_tcase(s,tc2);
 	return s;
 }

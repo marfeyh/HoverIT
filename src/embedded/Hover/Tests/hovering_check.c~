@@ -1,8 +1,8 @@
 /*
- * @ Module name:  check_hovering.c
+ * @ Module name:  hovering_check.c
  * @ Description:  Contains the functions that check the hovering control files.
  *
- * @ Author names : Eva-Lisa Kedborn, Jing Liu 
+ * @ Author names : Eva-Lisa Kedborn, Jing Liu
  * 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 9 April 2012
  * @ Version      : 1
@@ -10,12 +10,13 @@
  */
 
 /* Includes */
+#include <stdlib.h>
 #include <check.h>
 #include "../pressure_check.h"
 #include "../pressure_sensor.h"
-#include <stdlib.h>
-#include <hovering_motor.h>
-#include <hovering_control.h>
+#include "../hovering_motor.h"
+#include "../hovering_control.h"
+#include "../hovering_init_fix.h"
 
 void setup (void) {
 
@@ -28,14 +29,14 @@ void teardown (void) {
 /* Testcase 1 */
 START_TEST(test_ard_init) {
 	int using_pin=11;
-  	fail_unless((ard_init(using_pin) == 0),"ard init failed");
+	fail_unless((ard_init(using_pin) == 0),"ard init failed");
 }END_TEST
 
 /* Testcase 2 */
 START_TEST(test_pin_program) {
-  	//init_motor();  
+	//init_motor();
 	int level=100;
-	int using_pin=11;  
+	int using_pin=11;
 	fail_unless((pin_program(using_pin,level) == 0),"pin test failed\n");
 }END_TEST
 
@@ -43,7 +44,7 @@ START_TEST(test_pin_program) {
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the correct hoverfan function has been called
-   pass/fail criteria: when check is run response is 100%: Checks: 4, 
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */
 
@@ -65,7 +66,7 @@ START_TEST(test_random){
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the decrease speed function has been called
-   pass/fail criteria: when check is run response is 100%: Checks: 4, 
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */
 
@@ -78,7 +79,7 @@ START_TEST(test_positive){
    purpose: test correct implementation of hoverfan functions
    prerequisites: none
    expected results: the increase speed function has been called
-   pass/fail criteria: when check is run response is 100%: Checks: 4, 
+   pass/fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0/any other results
 */
 

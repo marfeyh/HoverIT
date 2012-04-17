@@ -6,7 +6,9 @@ Description: A stub to generate fake air pressure inside the hovercraft skirt
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#ifdef STUB
+	#include <time.h>
+#endif
 #include <pressure_sensor.h>
 
 float get_pressure(){   /* generate a random air pressure */
