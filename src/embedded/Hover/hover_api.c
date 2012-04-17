@@ -18,33 +18,32 @@ int start_hover() {         /* start the hovering fan */
   return 0;
 }
 
-int stop_hover(){           /* stop the fan */
-  hover_func(stop,USING_PIN);
+int stop_hover() {           /* stop the fan */
+  hover_func(stop, USING_PIN);
   return 0;
 }
 
-int hover_min(){   /* minimize the speed */
-  hover_func(normal,USING_PIN);
+int hover_min() {   /* minimize the speed */
+  hover_func(normal, USING_PIN);
   return 0;
 }
 
-int hover_max(){   /* maximize the speed */
-  hover_func(turbo,USING_PIN);
+int hover_max() {   /* maximize the speed */
+  hover_func(turbo, USING_PIN);
   return 0;
 }
 
-int decrease_hover(){       /* decrease the speed */
-  hover_change(decrease,USING_PIN,LEVEL);
+int decrease_hover() {       /* decrease the speed */
+  hover_change(decrease, USING_PIN, LEVEL);
   return 0;
 }
 
-int increase_hover(){       /* increase the speed */
-  hover_change(increase,USING_PIN,LEVEL);
+int increase_hover() {       /* increase the speed */
+  hover_change(increase, USING_PIN, LEVEL);
   return 0;
 }
 
-//int autocontrol(){          /* let the fan speed be cotrolled by pressure sensor
-//			       automatically */
-//  start_sensor_reading();
-//  return 0;
-//}
+int autocontrol() {         /* let the fan speed be cotrolled by pressure sensor			       automatically */
+  start_sensor_reading();
+  return 0;
+}

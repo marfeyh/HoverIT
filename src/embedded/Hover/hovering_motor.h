@@ -12,7 +12,9 @@
  */
 
 #define BLINK_PIN 11
-#define BLINKER(delay_time) { int i; pinMode(BLINK_PIN,OUTPUT); digitalWrite(BLINK_PIN,HIGH);delay(delay_time);digitalWrite(BLINK_PIN,LOW);delay(delay_time);}
+#define BLINKER(delay_time) { int i; pinMode(BLINK_PIN,OUTPUT); \
+		digitalWrite(BLINK_PIN,HIGH);delay(delay_time); \
+		digitalWrite(BLINK_PIN,LOW);delay(delay_time);}
 
 /* Make sure this header file is included one time */
 #ifndef HOVERING_MOTOR_H
@@ -27,11 +29,7 @@
 	} FUNCS;
 
 	/* Function prototypes */
-
-	/* Initialize Arduino */	
-	int ard_init(int using_pin);
-	/* Set the Arduino active pin for using */	
-	int pin_program(int using_pin, int level);	
+	
 	/* Function that gets arguments for start or stop the motor */
 	int hover_func(int (*func)(int), int using_pin);
 	/* Fucntion that gets arguments for change the speed of motor */	

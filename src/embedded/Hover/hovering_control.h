@@ -19,9 +19,9 @@
 	#define HIGHEST_LEVEL 254
 	#define LOWEST_LEVEL 133
 	#define STOP_LEVEL 120
-	#define USING_PIN 11
 
 	/* Function protoypes */
+
 	/* Start the hovering motor*/
 	int start(int using_pin);
 	/* Set the throttle stick
@@ -39,8 +39,5 @@
 	int increase(int using_pin, int level);
 	/* decrease the motor rotating speed level times */
 	int decrease(int using_pin, int level);
-	/* This function prevents the motor from stop
-	 (Check boundary values)*/
-	int check_and_fix_level(int using_pin, int throttle_stick_level);
 
 	#endif

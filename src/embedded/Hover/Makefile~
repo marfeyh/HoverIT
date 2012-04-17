@@ -20,7 +20,7 @@ PROG = hovering
 
 # Source files #
 SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
-	hover_api.c pressure_check.c pressure.c
+	hover_api.c pressure_check.c pressure_sensor.c
 SHLIB = hovering.so
 
 # For use in global main #
@@ -38,12 +38,12 @@ ARDUINO = stub
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
 # When use make check #
-check: SRC_C = pressure_check.c pressure.c hover_api.c \
+check: SRC_C = pressure_check.c pressure_sensor.c hover_api.c \
 	       hovering_motor.c hovering_control.c hovering_init_fix.c \
 	       ../hovering_check.c
 check: USER_LD_FLAGS = -lcheck
 #check: hovering_motor.o hovering_control.o hovering_init_fix.o hover_api.o 
-#check: pressure_check.o pressure.o $(TEST_DIR)hovering_check.o 
+#check: pressure_check.o pressure_sensor.o $(TEST_DIR)hovering_check.o 
 check:
 	$(MAKE) check -C Tests
 

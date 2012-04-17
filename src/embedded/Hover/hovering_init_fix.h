@@ -1,6 +1,7 @@
 /*
  * @ Module name:  hoveing_init_fix.h
- * @ Description:  Header file for the functions that initiates the hovering fan
+ * @ Description:  Header file for the functions that 
+ *   initiates the hovering fan
  *
  * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 20 March 2012
@@ -16,5 +17,14 @@
 
 	/* Function prototype */
 	
-
+	/* Arduino and motor initiation */
+	int initialize(int using_pin);
+	/* This function prevents the motor from stop
+	 (Check boundary values)*/
+	int check_and_fix_level(int using_pin, int throttle_stick_level);
+	/* Initialize Arduino */	
+	int ard_init(int using_pin);
+	/* Set the Arduino active pin for using */	
+	int pin_program(int using_pin, int level);
+	
 	#endif
