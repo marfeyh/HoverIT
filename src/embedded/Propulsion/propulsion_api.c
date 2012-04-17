@@ -1,7 +1,8 @@
 /*
-Author: Xinran He, Khatereh Khosravianarab
-Date: 2012-03-25
-Description: control fan speed api
+@AUTHOR - Xinran He, Khatereh Khosravianarab
+@Description: This file is the propulsion fan speed API and use propulsion file to stop,increase or decrease the speed.
+@ Version : 2.0
+@Date : 2012-03-25
 */
 
 #include <propulsion.h>
