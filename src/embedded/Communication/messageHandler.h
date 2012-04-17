@@ -4,6 +4,16 @@
  *  Created on: Mar 28, 2012
  */
 
+
+/*!
+ @file messageHandler.h
+ @details This header file contains all conventions number based on project Wiki
+ @author Amir Almasi
+ @author Retta Shiferaw
+ @version 0.6
+ @see http://hoveritu.com/projects/semb2012/wiki for more information
+ */
+
 #ifndef MESSAGEHANDLER_H_
 #define MESSAGEHANDLER_H_
 unsigned char parseBinary(unsigned char*);
