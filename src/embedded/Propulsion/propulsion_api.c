@@ -15,7 +15,7 @@ int start_propulsion_fan()
 }
 /* increase propulsion fan speed */
 int increase_propulsion(){
-  int speed = getSpeedLevel();
+  int speed = get_speed_level();
   if(speed >= MAXSPEED - 3){
     change_pro_speed(PERSPEED*3);
      return PERSPEED*3;
@@ -29,7 +29,7 @@ int increase_propulsion(){
 
 /* decrease propulsion fan speed */
 int decrease_propulsion(){
-  int speed = getSpeedLevel();
+  int speed = get_speed_level();
   if(speed <= 0){
     stop_pro_fan();
     return 0;
@@ -49,7 +49,7 @@ int stop_propulsion_fan(){
 
 /* specify the propulsion fan level*/
 int get_propulsion_level(){
-  int speed = getSpeedLevel();
+  int speed = get_speed_level();
   if(speed == 0){
     //printf("get_fan_level() ========= 0\n");
     return 0;
