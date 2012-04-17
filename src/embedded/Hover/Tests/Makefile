@@ -23,7 +23,7 @@ CFLAGS= -I $(SRCPATH) \
 # Test objects #
 TESTOBJS = test_main.o hovering_check.o ../hover_api.o ../hovering_motor.o \
 	   ../hovering_control.o ../hovering_init_fix.o \
-	   ../pressure_check.o ../pressure_sensor.o \
+	   ../pressure_check.o ../pressure.o \
 
 # Check program #
 CHECK_PROGRAM=testsuite

@@ -1,2 +1,2 @@
-int handle_pressure(float);
+int handle_pressure(int);
 int start_sensor_reading();
