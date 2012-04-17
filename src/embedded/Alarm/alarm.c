@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <searduino.h>
+#include <toneWrapper.h>
 #include <alarm.h>
 
 int battery_beep_duration=0;
@@ -28,7 +29,7 @@ void loop_battery_level(){
   }else if(Battery<=EMPTY_BATTERY){
     beep(EMPTY_BATTERY);
   }else{
-      noTone(11);
+      my_noTone(11);
   }
 }
 
@@ -36,10 +37,10 @@ void loop_battery_level(){
 void beep(int beep){
   switch(beep){
     case LOW_BATTERY:
-      tone(11, 4500);
+      my_tone(11, 4500);
       break;
     case EMPTY_BATTERY:
-      tone(11, 5000);
+      my_tone(11, 5000);
       break;
   }
 }
