@@ -24,9 +24,8 @@
  *                  - The function "execute_jobs" was updates.
  */
 
-#include <serial_interface.h>
 #include <list.h>
-#include <API_bluetooth_controler.h>
+#include <external.h>
 #include <jobpriority.h>
 #include <jobtype.h>
 #include <job.h>
@@ -65,14 +64,14 @@ void execute_jobs() {
 			int (*task)();
 			task = currentJob.task_p2;
 			(*task)(); //execute the job
-			free(currentJob);
+//			free(currentJob);
 		} /* If job_num == 1 */
 
       else if (currentJob.job_num == 2){
          void (*task)(unsigned char);
          task = currentJob.task_p3;
-         (*task)(currentJob.agr1); //execute the job
-		 free(currentJob);
+         (*task)(currentJob.arg1); //execute the job
+//		 free(currentJob);
       } /* If job_num == 2 */
 	  
 //	else if(currentJob.job_num == 3){
@@ -93,7 +92,7 @@ void execute_jobs() {
 void control() {
 	init_list(); // A task list is initialized.
 	while (1) {
-		check_serial_input();
+	  check_serial_input();
 		// Get gps data
 		// Get hovercraft speed
 		// Get Battery level
@@ -113,6 +112,5 @@ void control() {
  * \attention  This function is replaced here from its original module,"main.c". 
  */
 void putJobInQueue(struct Job job) {
-	debug_print_string("We are already in queue!!\n");
 	addJob(job, g_taskList);
 } /* putJobInQueue function */
