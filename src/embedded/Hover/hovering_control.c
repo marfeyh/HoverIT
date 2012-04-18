@@ -35,9 +35,8 @@ int start(int using_pin){
 	else {
 	/* Test code */
 	#ifdef STUB_TEST
-sadfsdaf
-//		printf("		Test motor has already been started \n"
-//		);
+		printf("		Test motor has already been started \n"
+		);
 	#endif
 	}
 	return 0;
@@ -48,9 +47,9 @@ int throttle_stick_bottom(int using_pin){
 	pin_program(using_pin, throttle_stick_bottom_level);
 	delay(1000);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test T S is bottom \n");
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test T S is bottom \n");
+	#endif
 	return 0;
 }
 
@@ -59,9 +58,9 @@ int normal(int using_pin){
 	throttle_stick_level=LOWEST_LEVEL;
 	pin_program(using_pin,throttle_stick_level);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test level is normal \n");
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test level is normal \n");
+	#endif
 	return 0;
 }
 
@@ -70,9 +69,9 @@ int turbo(int using_pin){
 	throttle_stick_level=HIGHEST_LEVEL;
 	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test level is turbo \n");
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test level is turbo \n");
+	#endif
 	return 0;
 }
 
@@ -81,9 +80,9 @@ int stop(int using_pin){
 	throttle_stick_level=STOP_LEVEL;
 	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test motor stopped \n");
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test motor stopped \n");
+	#endif
 	return 0;
 }
 
@@ -93,10 +92,10 @@ int increase(int using_pin, int level){
 	check_and_fix_level(using_pin, throttle_stick_level);
 	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test INC New    L: %d \n",
-//		throttle_stick_level);
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test INC New    L: %d \n",
+		throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -106,10 +105,10 @@ int decrease(int using_pin, int level){
 	check_and_fix_level(using_pin, throttle_stick_level);
 	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test DEC New    L: %d \n",
-//		throttle_stick_level);
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test DEC New    L: %d \n",
+		throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -119,9 +118,9 @@ int set_level(int using_pin, int level){
 	check_and_fix_level(using_pin, throttle_stick_level);
 	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test set New    L: %d \n",
-//		throttle_stick_level);
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test set New    L: %d \n",
+		throttle_stick_level);
+	#endif
 	return 0;
 }

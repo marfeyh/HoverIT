@@ -15,11 +15,6 @@
 #ifndef HOVERING_CONTROL_H
 	#define HOVERING_CONTROL_H
 
-	/* Defines */
-	#define HIGHEST_LEVEL 254
-	#define LOWEST_LEVEL 133
-	#define STOP_LEVEL 120
-
 	/* Function protoypes */
 
 	/* Start the hovering motor*/

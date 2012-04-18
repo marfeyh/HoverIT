@@ -1,41 +1,52 @@
+SRC_DIR =../
+SRC_C = hovering_check.c
+MAIN_SRC = test_main.c
+
+SEARDUINO_PATH = /opt/searduino
+
+#USER_C_FLAGS = 
+#USER_CXX_FLAGS = 
+#USER_LD_FLAGS =
+
 #
-#* @ Module name:  Test make file
-#* @ Description:  Compiles the files for testing control hovering fan
-#*
-#* @ Author names : Eva-Lisa Kedborn, Jing Liu
-#* 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
-#* @ Release      : 9 April 2012
-#* @ Version      : 1
-#* @ Refrences    : Arduino.cc, sandklef.com, Check manual
+# DO NOT CHANGE THINGS BELOW THIS LINE (UNLESS YOU ARE AWESOME)
 #
 
-# Source path #
-SRCPATH = ../
+ARDUINO=stub
+PROG=Testsuite
+USER_C_FLAGS += -I$(SRC_DIR)
+USER_CXX_FLAGS += -I$(SRC_DIR)
+USER_LD_FLAGS += -lcheck
+USER_OBJ_PATH = ./objs/
 
-# C FLAGS #
-CFLAGS= -I $(SRCPATH) \
-	-I/opt/searduino/include/searduino/arduino-sources/core \
-	-I/opt/searduino/include/searduino/ \
-	-I/opt/searduino/include/searduino/arduino \
-	-I/opt/searduino/include/searduino/arduino-extras \
-	-lcheck -L/opt/searduino/lib -lsearduinostub
+SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
+SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
 
-# Test objects #
-TESTOBJS = test_main.o hovering_check.o ../hover_api.o ../hovering_motor.o \
-	   ../hovering_control.o ../hovering_init_fix.o \
-	   ../pressure_check.o ../pressure.o \
+.PHONY: check clean-tests
 
-# Check program #
-CHECK_PROGRAM=testsuite
+check: $(PROG)
+	@echo $(OBJ_C) $(OBJ_CXX)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-# When use make check #
-#check: 
-check: $(TESTOBJS)
-	@echo "CHECKING..."
-	gcc $(TESTOBJS) $(CFLAGS) -o $(CHECK_PROGRAM)
-	export LD_LIBRARY_PATH=/opt/searduino/lib && ./$(CHECK_PROGRAM)
+gcovcheck: $(PPROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-# When use make clean #
-clean:
-	-rm $(TESTOBJS)
-	-rm $(CHECK_PROGRAM)
+gcovbcheck:
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+memcheck: $(PROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+%.check.c: $(SRC_DIR)/%.c
+	cp -f $< $@
+
+%.check.cpp: $(SRC_DIR)%.cpp
+	cp -f $< $@
+
+
+clean-tests: clean
+
+include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+
+

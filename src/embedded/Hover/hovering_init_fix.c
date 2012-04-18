@@ -26,9 +26,9 @@ int initialize(int using_pin){
 	hover_func(start,using_pin);
 	delay(1000);
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test init \n");
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test init \n");
+	#endif
 	/*FUNCS funcs;
 	funcs.func1=set_level;
 	funcs.func2=delay;
@@ -53,9 +53,9 @@ int pin_program(int using_pin,int level) {
 	analogWrite(using_pin,level);
 	return 0;
 	/* Test code */
-//	#ifdef STUB_TEST
-//		printf("		Test analog write \n");
-//	#endif
+	#ifdef STUB_TEST
+		printf("		Test analog write \n");
+	#endif
 	return 0;
 }
 
@@ -64,16 +64,16 @@ int check_and_fix_level(int using_pin,int throttle_stick_level){
 	if (throttle_stick_level<LOWEST_LEVEL){
 		normal(using_pin);		
 		/* Test code */
-//		#ifdef STUB_TEST
-//			printf("		Test Too low \n");
-//		#endif
+		#ifdef STUB_TEST
+			printf("		Test Too low \n");
+		#endif
 	}
 	if (throttle_stick_level>HIGHEST_LEVEL){
 		turbo(using_pin);
 		/* Test code */
-//		#ifdef STUB_TEST
-//			printf("		Test Too high \n");
-//		#endif
+		#ifdef STUB_TEST
+			printf("		Test Too high \n");
+		#endif
 	}
 	return 0;
 }
