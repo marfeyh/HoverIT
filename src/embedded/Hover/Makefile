@@ -24,9 +24,10 @@ SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
 SHLIB = hovering.so
 
 # For use in global main #
-ifndef GLOBAL_MAIN
-SRC_C += main.c
-endif
+#ifndef GLOBAL_MAIN
+#SRC_C += main.c
+#endif
+MAIN_SRC = main.c
 
 # Arduino mode #
 ARDUINO = stub
