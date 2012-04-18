@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include <searduino.h>
 #include <Theta-API.h>
 #include <API_bluetooth_controler.h>
 

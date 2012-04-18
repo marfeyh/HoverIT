@@ -9,7 +9,8 @@ MAIN_SRC = main.c
 ARDUINO = mega2560
 SHLIB = hovercraft.so
 
-USER_LD_FLAGS = -lscheduler -lbluetooth
+USER_C_FLAGS = -I ../../../bin/include
+USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -lscheduler -lbluetooth
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
