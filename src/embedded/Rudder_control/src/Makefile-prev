@@ -1,0 +1,21 @@
+TEST_DIR=tests/
+SEARDUINO_PATH = /opt/searduino
+PROG = RuddarControll
+
+# Add your source files here
+SRC_C = main.c steering.c
+SRC_CXX= RuddarControll.cpp
+ARDUINO = uno
+SHLIB = ruddar.so
+LIB = ruddar.a
+LIB_PATH = ./lib/
+include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+# Needs to be modified as well
+check: 
+	$(MAKE) check -C $(TEST_DIR)
+
+clean-tests:
+	$(MAKE) clean-tests -C $(TEST_DIR)
+
+.PHONY: check
