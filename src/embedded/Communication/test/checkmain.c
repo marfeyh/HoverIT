@@ -6,51 +6,51 @@ START_TEST (parseBinaryTest) {
   int i = 0b00000000;
   // Testing the Fan_Forward_Speed message
   for ( ; i < 0b00001111 ; i++){
-	  fail_unless(parseBinary(i)==0);
+	  fail_unless(parse_binary(i)==0);
   }
   for (i = 0b00010000 ; i < 0b00011111 ; i++){
-	  fail_if(parseBinary(i)==0);
+	  fail_if(parse_binary(i)==0);
   }
 
   // Testing Fan_Hovering_Speed message
   for (i = 0b00010000 ; i < 0b00011111 ; i++){
-	  fail_unless(parseBinary(i)==1);
+	  fail_unless(parse_binary(i)==1);
   }
   for (i = 0b00100000 ; i < 0b00111111 ; i++){
-	  fail_if(parseBinary(i)==1);
+	  fail_if(parse_binary(i)==1);
   }
 
   // Testing Ruder_Direction message
   for (i = 0b00100000 ; i < 0b00101111 ; i++){
-	  fail_unless(parseBinary(i)==2);
+	  fail_unless(parse_binary(i)==2);
   }
   for (i = 0b00110000 ; i < 0b00111111 ; i++){
-	  fail_if(parseBinary(i)==2);
+	  fail_if(parse_binary(i)==2);
   }
 
 
   // Testing Hovercraft Speed message
   for (i = 0b00110000 ; i < 0b00111111 ; i++){
-	  fail_unless(parseBinary(i)==3);
+	  fail_unless(parse_binary(i)==3);
   }
   for (i = 0b01000000 ; i < 0b01001111 ; i++){
-	  fail_if(parseBinary(i)==3);
+	  fail_if(parse_binary(i)==3);
   }
 
 
   // Testing Hovercraft Pressure message
   for (i = 0b01000000 ; i < 0b01001111 ; i++){
-	  fail_unless(parseBinary(i)==4);
+	  fail_unless(parse_binary(i)==4);
   }
   for (i = 0b01010000 ; i < 0b01011111 ; i++){
-	  fail_if(parseBinary(i)==4);
+	  fail_if(parse_binary(i)==4);
   }
   // Testing Battery Level message
   for (i = 0b01010000 ; i < 0b01011111 ; i++){
-	  fail_unless(parseBinary(i)==5);
+	  fail_unless(parse_binary(i)==5);
   }
   for (i = 0b01100000 ; i < 0b01101111 ; i++){
-	  fail_if(parseBinary(i)==5);
+	  fail_if(parse_binary(i)==5);
   }
 
  } END_TEST
@@ -62,8 +62,8 @@ START_TEST(fan_forward_speed_test) {
    static  unsigned char forward[5]={0, 13, 7, 15, 7};
    static unsigned char forward2[5]={19, 18, 21, 27, -12};
  
-  fail_unless(findMessage(&forward[_i])==0);
-  fail_if(findMessage(&forward2[_i])==0);
+  fail_unless(find_message(&forward[_i])==0);
+  fail_if(find_message(&forward2[_i])==0);
    
   
 } END_TEST
@@ -73,8 +73,8 @@ START_TEST(fan_hovering_speed_test){
    static unsigned char hovering_speed[6]={16, 17, 21, 29, 25, 30};
    static unsigned char hovering_speed2[6]={-2,12, 14, 45, 32, 35};
 
-   fail_unless(findMessage(&hovering_speed[_i])==1);
-   fail_if(findMessage(&hovering_speed2[_i])==1);
+   fail_unless(find_message(&hovering_speed[_i])==1);
+   fail_if(find_message(&hovering_speed2[_i])==1);
   
 }END_TEST
 
@@ -84,9 +84,9 @@ START_TEST(fan_hovering_speed_test){
    static unsigned char ruder_direction2[6]={16, 49, 21, 29, 25, 55};
   
   
-   fail_unless(findMessage(&ruder_direction[_i])==2);
+   fail_unless(find_message(&ruder_direction[_i])==2);
   
-   fail_if(findMessage(&ruder_direction2[_i])==2);
+   fail_if(find_message(&ruder_direction2[_i])==2);
 
 }END_TEST
 
@@ -95,8 +95,8 @@ START_TEST(hovecraft_speed_test){
    static unsigned char hove_speed[6]={48, 51, 53, 57, 60, 63};
    static unsigned char hove_speed2[6]={16, 31, 47, 29, 72, 65};
 
-   fail_unless(findMessage(&hove_speed[_i])==3);
-   fail_if(findMessage(&hove_speed2[_i])==3);
+   fail_unless(find_message(&hove_speed[_i])==3);
+   fail_if(find_message(&hove_speed2[_i])==3);
   
 }END_TEST
 
@@ -106,8 +106,8 @@ START_TEST(hovecraft_pressure_test){
    static unsigned char hove_pressure[7]={64, 66, 69, 70, 73, 77, 79};
    static unsigned char hove_pressure2[7]={1, 31, 47, 63, 80, 100,200};
 
-   fail_unless(findMessage(&hove_pressure[_i])==4);
-   fail_if(findMessage(&hove_pressure2[_i])==4);
+   fail_unless(find_message(&hove_pressure[_i])==4);
+   fail_if(find_message(&hove_pressure2[_i])==4);
  
 }END_TEST
 
@@ -116,8 +116,8 @@ START_TEST(battery_level_test){
    static unsigned char battery_level[7]={80, 85, 89.99, 91, 93, 94.555, 95};
    static unsigned char battery_level2[7]={1, -31, 79, 63, -80, 100,200};
 
-   fail_unless(findMessage(&battery_level[_i])==5);
-   fail_if(findMessage(&battery_level2[_i])==5);
+   fail_unless(find_message(&battery_level[_i])==5);
+   fail_if(find_message(&battery_level2[_i])==5);
  
 }END_TEST
 

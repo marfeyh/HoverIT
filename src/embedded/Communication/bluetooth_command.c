@@ -1,8 +1,15 @@
-/*
- * bluetooth_command.c
- * In this module, the bluetooth gets the
- *
- *  Created on: Apr 03, 2012
+/*!
+ @file bluetooth_command.c
+ @headerfile bluetooth_controler.h
+ @details This module is only for the eBT500 commands based on the manual
+ @see http://www.parallax.com/dl/docs/prod/comm/eb500.pdf
+ @author Amir Almasi
+ @author Retta Shiferaw
+ @version 0.2
+ @todo only one command, set connetable to true, is implemented. Also commenting
+ the functions is left.
+ @todo the header file of this module is missing now! missing!
+ @warning malloc is used to get required memory. There can be some failure
  */
 
 #include <stdio.h>
