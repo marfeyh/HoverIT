@@ -1,3 +1,14 @@
+#*
+#* @ Module name:  Main Makefile
+#* @ Description:  Compiles the files and test files for control hovering fan
+#*
+#* @ Author names : Eva-Lisa Kedborn, Jing Liu 
+#* 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
+#* @ Release      : 9 April 2012
+#* @ Version      : 1
+#* @ Refrences    : Arduino.cc, sandklef.com, Check manual
+#*
+
 TEST_DIR = Tests/
 SEARDUINO_PATH = /opt/searduino
 PROG = hovering
