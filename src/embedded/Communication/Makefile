@@ -1,0 +1,11 @@
+TEST_DIR=test/
+SEARDUINO_PATH = /opt/searduino
+PROG = Bluetooth
+
+# Add your source files here
+SRC_C = main.c messageHandler.c bluetooth_command.c bluetooth_controler.c controller.c list.c
+SRC_CXX = serial_interface.cpp
+ARDUINO = mega2560
+SHLIB = Bluetooth.so
+include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
