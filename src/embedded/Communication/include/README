@@ -1,0 +1,1 @@
+All the public API header files ( public_API.h ) will be located in this folder. Then, for the final integration only this folder would be checked to get the interface of the parts.

@@ -1,0 +1,26 @@
+#All the code should be structured as following
+# | Makefile
+# | src
+# 	| example.c
+#	| example1.c
+# | tests
+# 	| check_example.c
+
+all: bluetooth/*.c bluetooth/*.h
+	gcc -o bluetooth/test bluetooth/*.c -lbluetooth
+
+clean:
+	rm -f src/bluetooth/test src/bluetooth/test.exe src/bluetooth/*.o
+	rm -f src/bluetooth/tests/testsuite src/bluetooth/tests/testsuite.exe tests/*.o
+
+# change checkmain.c on both lines to whatever your file is called in "tests" folder
+testsuite.o: src/bluetooth/tests/checkmain.c
+	gcc -c src/bluetooth/tests/checkmain.c -o src/bluetooth/tests/testsuite.o -lbluetooth
+
+# change main.o and test.o on both lines to whatever your .c files are called in the "src" folder
+testsuite: src/bluetooth/bt_client.o src/bluetooth/hcraft_remote_api.o src/bluetooth/main_extension.o testsuite.o
+	gcc src/bluetooth/bt_client.o src/bluetooth/hcraft_remote_api.o src/bluetooth/main_extension.o src/bluetooth/tests/testsuite.o -o src/bluetooth/tests/testsuite -lcheck -lbluetooth
+
+check:	testsuite
+	@echo Running tests...
+	src/bluetooth/tests/./testsuite
