@@ -1,16 +1,16 @@
 TEST_DIR=test/
 SEARDUINO_PATH = /opt/searduino
-PROG = 
+PROG = Scheduler
 
 # Add your source files here
-SRC_C= 
+SRC_C= controller.c list.c
 SRC_CXX= 
 MAIN_SRC = 
 ARDUINO = mega2560
-SHLIB = 
+SHLIB = Scheduler.so
 
-LIB = 
-LIB_H = 
+LIB = libscheduler.a
+LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
