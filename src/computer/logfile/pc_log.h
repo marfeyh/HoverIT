@@ -2,7 +2,6 @@ typedef struct obj{
 	char* tag;
 	char* info;
 	char* function;
-	char* time;
 }log_obj;
 
 void init_log_file();
