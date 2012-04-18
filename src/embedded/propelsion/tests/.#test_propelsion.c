@@ -1,1 +1,0 @@
-yohanes@yohanes-Aspire-5741G.3118:1332914958
