@@ -3,6 +3,7 @@
  * Date:    2012-04-10
  * Version: 1.0 - 2012-04-03 - Johans code
  * Version: 1.1 - 2012-04-10 - Integrated Gokuls code
+ * Version: 1.2 - 2012-04-16 - Changes required by the first code review for my part of the code (Johan)
  **/
 //#include <Serial.h>
 #include "gps.h" 
@@ -18,16 +19,16 @@
 int buffer = -1;
 char gprmc[7] = "$GPRMC";
 
-/* Radius of earth in kilometer and miles */
-#define RADIUS_KM 6378.137
-#define RADIUS_MI 3958.761
-
-/* Parses decimal degrees to radians */
-double d2r(double);
+/* 
+ * Parses decimal degrees to radians 
+ * @param[in] d The degree to parse to radian 
+ */
+double degrees_to_radians(double);
 
 /* 
  * Author: Johan 
  * returns 0 if the given data starts with "$GPRMC", 1 if not 
+ * @param[in] gpsData the string of GPS data
  */
 int is_GPRMC(char gpsData[]) {
   return check_command(gpsData, "$GPRMC");
@@ -35,7 +36,8 @@ int is_GPRMC(char gpsData[]) {
 
 /* 
  * Author: Johan
- * returns 0 if the given data starts with "$GPGGA", 1 if not 
+ * returns 0 if the given data starts with "$GPGGA", 1 if not
+ * @param[in] gpsData the string of GPS data 
  */
 int is_GPGGA(char gpsData[]) {
   return check_command(gpsData, "$GPGGA");
@@ -44,6 +46,7 @@ int is_GPGGA(char gpsData[]) {
 /* 
  * Author: Johan 
  * returns 0 if the given data starts with "$GPGSV", 1 if not 
+ * @param[in] gpsData the string of GPS data
  */
 int is_GPGSV(char gpsData[]) {
   return check_command(gpsData, "$GPGSV");
@@ -52,6 +55,7 @@ int is_GPGSV(char gpsData[]) {
 /* 
  * Author: Johan
  * returns 0 if the given data starts with "$GPGSA", 1 if not 
+ * @param[in] gpsData the string of GPS data
  */
 int is_GPGSA(char gpsData[]) {
   return check_command(gpsData, "$GPGSA");
@@ -62,15 +66,18 @@ int is_GPGSA(char gpsData[]) {
  * returns a pointer to an array of 13 integers, containing the indices
  * of commas in the gps char array. 
  * DONT FORGET TO FREE THE VARIABLE IN WHICH THE RESULT IS STORED!
+ * @param[in] gpsData the string of GPS data
  */
-int* get_Indices(char gpsData[]) {
+int* get_indices(char gpsData[]) {
   int *indices = malloc(13*sizeof(int));
-  int i;
-  int j = 0;
-  for (i = 0; i < 300; i++) {
-    if (gpsData[i] == ',') {
-      indices[j] = i;
-      j++;
+  if (indices != NULL) {
+    int i;
+    int j = 0;
+    for (i = 0; i < 300; i++) {
+      if (gpsData[i] == ',') {
+	indices[j] = i;
+	j++;
+      }
     }
   }
   return indices;
@@ -78,20 +85,34 @@ int* get_Indices(char gpsData[]) {
 
 /* 
  * Author: Johan
- * Calculates the distance between the two given points in kilometers 
+ * Calculates the distance between the two given points in kilometers
+ * @param[in] p1 first position
+ * @param[in] p2 second position 
  */
 double get_distance_km(struct position p1, struct position p2) {
-  double a = acos(sin(d2r(p1.latitude))*sin(d2r(p2.latitude)) + cos(d2r(p1.latitude))*cos(d2r(p2.latitude))*cos(d2r(p2.longitude-p1.longitude))); 
-  return a*RADIUS_KM;
+  double lat_a = degrees_to_radians(p1.latitude);
+  double lat_b = degrees_to_radians(p2.latitude);
+  double lon_diff = degrees_to_radians(p2.longitude-p1.longitude);
+  double a = acos(sin(lat_a)*sin(lat_b); 
+  double b = cos(lat_a)*cos(lat_b)*cos(lon_diff)); 
+  double c = a + b;
+  return c*RADIUS_KM;
 }
 
 /* 
  * Author: Johan
  * Calculates the distance between the two given points in miles 
+ * @param[in] p1 first position
+ * @param[in] p2 second position
  */
 double get_distance_mi(struct position p1, struct position p2) {
-  double a = acos(sin(d2r(p1.latitude))*sin(d2r(p2.latitude)) + cos(d2r(p1.latitude))*cos(d2r(p2.latitude))*cos(d2r(p2.longitude-p1.longitude)));
-  return a*RADIUS_MI;
+  double lat_a = degrees_to_radians(p1.latitude);
+  double lat_b = degrees_to_radians(p2.latitude);
+  double lon_diff = degrees_to_radians(p2.longitude-p1.longitude);
+  double a = acos(sin(lat_a)*sin(lat_b); 
+  double b = cos(lat_a)*cos(lat_b)*cos(lon_diff)); 
+  double c = a + b;
+  return c*RADIUS_MI;
 }
 
 /* 
@@ -99,6 +120,8 @@ double get_distance_mi(struct position p1, struct position p2) {
  * function used by the others to avoid duplicated code.
  * Iterates through both arrays and checks if the first 6 characters
  * are the same. Returns 0 if they are the same, 1 if not.
+ * @param[in] gpsData the string with GPS data
+ * @param[in] gpr the string with the GPS command to be checked
  */ 
 int check_command(char gpsData[], char gpr[]) {
   int result = 0;
@@ -111,9 +134,13 @@ int check_command(char gpsData[], char gpr[]) {
   return result;
 }
 
-/* Parses decimal degrees to radians */
-double d2r(double d) {
-  return (d/180*M_PI);
+
+/* 
+ * Parses decimal degrees to radians 
+ * @param[in] d The degree to parse to radian 
+ */
+double degrees_to_radians(double d) {
+  return (d/(180*M_PI));
 }  
 
 /* ADD COMMENT: GOKUL */  
