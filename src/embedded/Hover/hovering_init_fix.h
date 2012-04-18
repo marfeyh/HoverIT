@@ -14,7 +14,12 @@
 /* Make sure this header file is included one time */
 #ifndef HOVERING_INIT_FIX_H
 	#define HOVERING_INIT_FIX_H
-
+	
+	/* Defines */
+	#define HIGHEST_LEVEL 254
+	#define LOWEST_LEVEL 133
+	#define STOP_LEVEL 120
+	
 	/* Function prototype */
 	
 	/* Arduino and motor initiation */
