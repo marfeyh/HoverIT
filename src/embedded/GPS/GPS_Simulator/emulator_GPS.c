@@ -1,5 +1,5 @@
 #include "emulator_GPS.h"
-
+//define MAXSTACK 269
 #define MAXSTACK 269
 #define POSITION -1
 
