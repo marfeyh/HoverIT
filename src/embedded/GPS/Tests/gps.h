@@ -10,7 +10,8 @@
 struct position {
   float longitude;
   float latitude;
-  char nsew;
+  char ns;
+  char ew;
 };
 
 int check_command(char[],char[]);
@@ -27,10 +28,13 @@ int is_GPGSV(char[]);
 /* returns 0 if the given data starts with "$GPGSA", 1 if not */
 int is_GPGSA(char[]);
 
-char* read_data();
+char* read_rmc_data();
 
 char* get_time(char[]);
 
 struct position *get_position(char[]);
 
 char* retrive_data(char[],int);
+
+/* Parses decimal degrees to radians */
+double d2r(double);
