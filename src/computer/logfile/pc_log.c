@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <time.h>
+#include "pc_log.h"
+
+FILE *p = NULL;
+char *file = "default.log";
+
+
+
+
+void init_log_file(){
+	p = fopen(file, "w");
+  	if (p== NULL) {
+  	printf("Error in opening a file..", file);
+  	}
+}
+
+void close_log_file(){
+	fclose(p);
+}
+
+void delet_log_file(){
+	remove(file);
+}
+
+char* get_time(){
+	char* output=NULL;	
+	time_t the_time;
+    struct tm *tp;
+    the_time = time(NULL);
+ 	tp = localtime(&the_time);
+	sprintf(output, "%2.2d-%2.2d-%2.2d %2.2d:%2.2d:%2.2d", tp->tm_year+1900, tp->tm_mon+1, tp->tm_mday, tp->tm_hour, tp->tm_min, tp->tm_sec);
+	return output;	
+}
+void log_file_writer(char* buf){
+  	size_t len = 0;
+  	len = strlen(buf);
+	fwrite(buf, len, 1, p);
+	//printf("\n Written Successfuly in the file.\n");
+
+}
+
+
+
+void log_to_file(char* tag, char* message, char *function ){	
+	char *line =  malloc(sizeof(char*));	
+	log_obj log = {tag, message, function, get_time()};
+	printf("log_level: %s, info: %s, function: %s,  \n",log.tag, log.info, log.function,log.time);
+	sprintf(line,"%s, %s, %s, %s  \n", log.tag, log.info, log.function,log.time);	
+	log_file_writer(line);
+	//free(line);
+	
+	
+}
+
+void main(){
+	init_log_file();	
+	log_to_file("Info","turn off","moter");
+	log_to_file("Error","connection fail","fan controller");
+	close_log_file();
+	//delet_log_file();
+}
