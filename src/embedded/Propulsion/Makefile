@@ -3,21 +3,34 @@ SEARDUINO_PATH = /opt/searduino
 PROG = propulsion
 
 # Add your source files here
-SRC_C = propulsion.c propulsion_api.c
-ifndef GLOBAL_MAIN
-SRC_C += main.c
-endif
+SRC_C= propulsion.c propulsion_api.c
+SRC_CXX= 
+MAIN_SRC = main.c
 ARDUINO = stub
 SHLIB = propulsion.so
+
+LIB = libpropulsion.a
+LIB_H = propulsion.h pin.h propulsion_api.h
+USER_LIB_INSTALL_PATH = ../../../bin
+
+export SRC_FILES= $(SRC_C) $(SRC_CXX)
+
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
 # Needs to be modified as well
-check: SRC_C = propulsion.c propulsion_api.c ../check_propulsion.c
-check: USER_LD_FLAGS = -lcheck
-check: propulsion.o $(TEST_DIR)check_propulsion.o
-	$(MAKE) check -C tests
+check:
+	$(MAKE) check -C $(TEST_DIR)
+
+gcovcheck:
+	$(MAKE) gcovcheck -C $(TEST_DIR)
+
+gcovbcheck:
+	$(MAKE) gcovbcheck -C $(TEST_DIR)
+
+memcheck:
+	$(MAKE) memcheck -C $(TEST_DIR)
 
 clean-tests:
-	$(MAKE) clean -C tests
+	$(MAKE) clean-tests -C $(TEST_DIR)
 
 .PHONY: check
