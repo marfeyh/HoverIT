@@ -3,14 +3,14 @@ SEARDUINO_PATH = /opt/searduino
 PROG = Bluetooth
 
 # Add your source files here
-SRC_C= bluetooth_command.c bluetooth_controler.c messageHandler.c
-SRC_CXX= serial_interface_cpp
+SRC_C= bluetooth_command.c bluetooth_controler.c message_handler.c
+SRC_CXX= serial_interface.cpp
 MAIN_SRC = main.c
 ARDUINO = mega2560
 SHLIB = bluetooth.so
 
 LIB = libbluetooth.a
-LIB_H = bluetooth_controler.h conventions.h messageHandler.h serial_interface.h API_bluetooth_contrroler.h
+LIB_H = pin.h bluetooth_controler.h conventions.h message_handler.h serial_interface.h API_bluetooth_controler.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
