@@ -16,12 +16,7 @@
 #include <bluetooth_controler.h>
 #include <conventions.h>
 #include <stdio.h> // because of using NULL
-//Headers of Scheduler
-//#include <job.h>
-//#include <jobpriority.h>
-//#include <jobtype.h>
-//#include<hover_api_stub.h>
-
+#include <external.h>
 // Header of Motor
 //#include <propulsion_api.h>
 
@@ -56,13 +51,13 @@ void check_serial_input() {
 			unsigned char message_type = parse_binary(result);
 			if (message_type != 255) {
 				int (*func_ptr)(); // declaration of pointer to function
-//				struct Job* job_ptr = (struct Job*) malloc(
-//						sizeof(struct Job) * 1); // declaration of pointer to job struct
-//				if (job_ptr == NULL) {
-//					debug_print_string("Unable to get memory\n");
-//					// we should call log_error in here
-//					return;
-//				} // if there was no memory to be allocated
+				struct Job* job_ptr = (struct Job*) malloc(
+						sizeof(struct Job) * 1); // declaration of pointer to job struct
+				if (job_ptr == NULL) {
+					debug_print_string("Unable to get memory\n");
+					// we should call log_error in here
+					return;
+				} // if there was no memory to be allocated
 				switch (message_type) { // call the API functions based on message type
 				case FAN_FORWARD_SPEED:
 					/* message type is 0000 */
