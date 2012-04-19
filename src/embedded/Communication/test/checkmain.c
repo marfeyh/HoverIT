@@ -1,6 +1,6 @@
 #include<check.h>
 #include<stdlib.h>
-#include<messageHandler.h>
+#include<message_handler.h>
 
 START_TEST (parseBinaryTest) {
   int i = 0b00000000;
