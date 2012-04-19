@@ -10,5 +10,5 @@ int increase_propulsion();
 int speedLevel;
 int decrease_propulsion();
 int get_propulsion_level();
-int newprospeed;
+//int newprospeed;
 int stop_propulsion_fan();

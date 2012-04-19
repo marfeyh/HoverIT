@@ -27,7 +27,7 @@ int initialise_propulsion()
 {
   // initialises the searduino init
 #ifndef GLOBAL_MAIN
-  init();
+//  init();
 #endif
   // sets PIN as output pin
   pinMode(PIN,OUTPUT);

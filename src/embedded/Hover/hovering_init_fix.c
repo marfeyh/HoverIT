@@ -41,7 +41,7 @@ int initialize(int using_pin){
 /* Ardunio initiation */
 int ard_init(int using_pin){
 	/* Initialize the Arduino */
-	init();
+//	init();
 	/* Assign using pin to output */ 	
 	pinMode(using_pin,OUTPUT);
 	/* Test code */
