@@ -1,23 +1,7 @@
-/*************************************************
- * Partly auto generated C file from wifi//wifi.ino
- *    (C) is a mix of original Arduino author's codes and Henrik Sandklef
- */
+
 
 #include <Arduino.h>
 #include "searduino.h"
-
-/*** End of auto generated part ***/
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -47,6 +31,8 @@ Describtion : try to connect to specified wifi network,and send and recieve data
 
 #define buff_size 120
 char buff[buff_size];
+
+void connect(void);
 
 //
 int led1 = 12;
@@ -129,5 +115,3 @@ void loop(){
 
 
 
-/* Part of this file has been auto generated from wifi//wifi.ino, 
- * which is part of the Arduino source code *******/
