@@ -1,16 +1,17 @@
-TEST_DIR=test/
+TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = Hovercraft
+PROG = propulsion
 
 # Add your source files here
-SRC_C= 
+SRC_C= propulsion.c propulsion_api.c
 SRC_CXX= 
 MAIN_SRC = main.c
 ARDUINO = mega2560
-SHLIB = hovercraft.so
+SHLIB = propulsion.so
 
-USER_C_FLAGS = -I ../../../bin/include
-USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering
+LIB = libpropulsion.a
+LIB_H = propulsion.h pin.h propulsion_api.h
+USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
