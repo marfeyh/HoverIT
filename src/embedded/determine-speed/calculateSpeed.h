@@ -12,17 +12,20 @@
 #define SPEED_H
 struct Speed
 {
-	int speed;
-	int time;
-    float bias;
-	
+  int speed;
+  unsigned long time;
+  float bias;
 };
-typedef struct Speed Speed;
-void create_speed(int speed, int time);
-void calculate_speed(int currentTime);
-int get_speed();
-int get_time();
 
-Speed *struct_adress;
+typedef struct Speed Speed;
+
+
+Speed* create_speed(void);
+void calculate_speed(Speed* st_speed);
+int get_speed(Speed* st_speed);
+int get_time(Speed* st_speed);
+void speed_free(Speed* st_speed);
+
+/*Speed *struct_adress;   /* Global variabe, not allowed */
 #endif
 

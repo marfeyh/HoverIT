@@ -7,7 +7,15 @@
  * Author: Viktor Green
  ******************************************/
 
-void initialize(void);
-float getXAccel(float);
-float calcBias(void);
+#if defined __cplusplus
+extern "C" {
+#endif
 
+void bma180_initialize(void);
+float getXAccel(float);
+float calcXBias(void);
+
+
+#if defined __cplusplus
+}
+#endif

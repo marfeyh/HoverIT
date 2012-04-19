@@ -5,50 +5,60 @@
  * Copyright (c) Whatever, no warranty.
  *
  * Author: Nena Stojova
+ * Date: 3/20/12
  * Edited by: Sorush Arefipour on 4/11/12
  * Integrator: Sorush Arefipour
- * Date: 3/20/12
+ * Edited by: Viktor Green on 2012-04-19
  ******************************************/
 
 #include <stdlib.h>
 #include "calculateSpeed.h"
 #include "bma180.h"
 
-void create_speed(int speed, int time){
+Speed* create_speed(void) {
+  
+  Speed* struct_adress;
+  struct_adress = (Speed*) malloc (sizeof (Speed));
+  if(NULL == struct_adress) {
+    /* Error */
+    return NULL;
+  }
 
-    struct_adress = (Speed*) malloc (sizeof (Speed));
-    struct_adress->speed = speed;
-    struct_adress->time = time;
-    struct_adress-> bias = calcBias();
+  bma_initialize();
 
+  struct_adress -> bias = calcXBias();
+  struct_adress -> speed = 0;
+  struct_adress -> time = millis();
 }
 
-void calculate_speed(int currentTime){
+void calculate_speed(Speed* st_speed){
 	
-	int deltaTime = currentTime - struct_adress->time;
+  unsigned long deltaTime;
+  unsigned long time;
 
-	int speed = struct_adress->speed + 56 * getXAccel(struct_adress->bias) * deltaTime;
-	
-	struct_adress->speed = speed;
-	struct_adress->time = currentTime;
+  time = millis();
+  deltaTime = time - st_speed->time;
+  
+  st_speed->speed += getXAccel(st_speed->bias) * deltaTime;
+  st_speed->time = time;
 
 } 
 
-int get_speed(){
+int get_speed(Speed* st_speed){
 
-return struct_adress->speed;
-
-}
-
-int get_time(){
-
-return struct_adress->time;
+return st_speed->speed;
 
 }
 
-void speed_free ()
+int get_time(Speed* st_speed){
+
+return st_speed->time;
+
+}
+
+void speed_free (Speed* st_speed)
 {
-  free (struct_adress);
+  free (st_speed);
 }
 
 

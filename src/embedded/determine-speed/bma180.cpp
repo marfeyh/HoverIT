@@ -8,6 +8,8 @@
  * Collaborator: Sorush Arefipour
  ******************************************/
 
+#include <stdio.h>
+#include <Arduino.h>
 #include <Wire.h>
 #include "bma180.h"
 
@@ -21,7 +23,7 @@
 #define BMA180_1200HZ_LOW_PASS_FILTER_VALUE 0X70
 #define BMA180_ENABLE_WRITE_CONTROL_REGISTER 0x0D
 
-void initialize(void) {
+void bma_initialize(void) {
   Wire.begin();
  
   /* Reset the sensor */
@@ -65,7 +67,7 @@ float getXAccel(float bias) {
    * The first value read is the lsb, the second is the msb.
    * We shift the msb right, past the lsb, befor they are or'ed together.
    * The acctual value we want doesn't use the last two bits,
-   * therefore we right shift the combined value two steps to the left.
+   * therefore we right shift the combined value two steps.
    */
   data = (signed short)( Wire.read() | (Wire.read() << 8)) >> 2;
 
@@ -73,13 +75,13 @@ float getXAccel(float bias) {
 
 }
 
-float calcBias(void) {
+float calcXBias(void) {
   int samples;
   float sum = 0.0;
 
   for(samples = 0; samples < 400; samples++) {
     sum += getXAccel(0.0);
-    delayMicroseconds(1600);
+    delayMicroseconds(625); /* 625 microseconds "should" represent 1200Hz */
   }
 
   return sum/(-400);
