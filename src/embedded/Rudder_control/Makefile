@@ -1,16 +1,17 @@
-TEST_DIR=test/
+TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = Hovercraft
+PROG = rudder
 
 # Add your source files here
-SRC_C= 
-SRC_CXX= 
+SRC_C= steering.c
+SRC_CXX= RuddarControll.cpp
 MAIN_SRC = main.c
 ARDUINO = mega2560
-SHLIB = hovercraft.so
+SHLIB = rudder.so
 
-USER_C_FLAGS = -I ../../../bin/include
-USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder
+LIB = librudder.a
+LIB_H = steering.h RuddarControll.h pin.h
+USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
