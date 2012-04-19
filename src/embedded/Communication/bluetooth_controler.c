@@ -16,17 +16,12 @@
 #include <bluetooth_controler.h>
 #include <conventions.h>
 #include <stdio.h> // because of using NULL
-//Headers of Scheduler
-#include <job.h>
-#include <jobpriority.h>
-#include <jobtype.h>
-#include<hover_api_stub.h>
-
+#include <external.h>
 // Header of Motor
-#include <propulsion_api.h>
+//#include <propulsion_api.h>
 
 // Header of Rudder direction
-#include <steering.h>
+//#include <steering.h>
 
 /*
  * ======================================================================
@@ -53,7 +48,7 @@ void check_serial_input() {
 		result = serial_read();
 		if (result != 255) { // If there is any data available on serial input
 			// variable message_type shows the message received
-			unsigned char message_type = parseBinary(result);
+			unsigned char message_type = parse_binary(result);
 			if (message_type != 255) {
 				int (*func_ptr)(); // declaration of pointer to function
 				struct Job* job_ptr = (struct Job*) malloc(

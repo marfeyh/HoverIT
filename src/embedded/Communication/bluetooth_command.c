@@ -8,6 +8,7 @@
  @version 0.2
  @todo only one command, set connetable to true, is implemented. Also commenting
  the functions is left.
+ @todo the header file of this module is missing now! missing!
  @warning malloc is used to get required memory. There can be some failure
  */
 
