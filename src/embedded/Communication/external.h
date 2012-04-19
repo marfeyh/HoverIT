@@ -37,4 +37,8 @@ extern int hover_max(); /* maximize the speed */
 extern int decrease_hover(); /* decrease the speed */
 extern int increase_hover(); /* increase the speed */
 extern int autocontrol(); /* let the fan speed be cotrolled by pressure  sensor automatically */
+
+// Rudder Direction
+extern void control_rudder(int);
+
 #endif
