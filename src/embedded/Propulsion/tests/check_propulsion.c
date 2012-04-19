@@ -18,7 +18,18 @@ void teardown (void) {
   //nothing for the moment
 }
 
-/* PROPULSION API UNIT TESTS */
+/* PROPULSION_API UNIT TESTS */
+
+/* 
+    Id/Title: AK1/test increase propulsion speed
+    Purpose: test if user increase propulsion fan over the
+	      maximum value of fan
+    Prerequisites: initialize propulsion fan
+    Expected results: propulsion fan speed should keep the 
+                      highest level without any errors
+    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+                       Failures: 0, Errors: 0
+*/
 START_TEST(Test_Pro){
 	fail_if(increase_propulsion() != PERSPEED , "Expected 41");
 	fail_if(increase_propulsion() != PERSPEED*2 , "Expected 82");
@@ -28,6 +39,14 @@ START_TEST(Test_Pro){
 }END_TEST
 
 
+/* 
+    Id/Title: AK2/test increase propulsion speed
+    Purpose: test if user keep decreasing propulsion fan
+    Prerequisites: initialize propulsion fan
+    Expected results: propulsion fan speed should stop without errors
+    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+                       Failures: 0, Errors: 0
+*/
 START_TEST(test_dec){
 	increase_propulsion();
 	fail_if(decrease_propulsion(), "Expected 0");
@@ -37,7 +56,14 @@ START_TEST(test_dec){
 	
 }END_TEST
 
-
+/* 
+    Id/Title: AK3/get current propulsion fan speed level
+    Purpose: test if user can get right propulsion fan speed level
+    Prerequisites: initialize propulsion fan
+    Expected results: return right current fan speed level
+    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+                       Failures: 0, Errors: 0
+*/
 START_TEST(test_fanlevel){
 	increase_propulsion();
     fail_if(get_propulsion_level() != 1 ,"Expected 1");
@@ -49,6 +75,14 @@ START_TEST(test_fanlevel){
 }END_TEST
 
 
+/* 
+    Id/Title: AK4/stop propulsion fan speed
+    Purpose: test if the propulsion fan is stoped normally
+    Prerequisites: initialize propulsion fan
+    Expected results: propulsion fan stop
+    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+                       Failures: 0, Errors: 0
+*/
 START_TEST(test_stop){
     increase_propulsion();
     fail_if(stop_propulsion_fan() != 0, "Expected 0");
