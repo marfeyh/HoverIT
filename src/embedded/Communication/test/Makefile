@@ -50,8 +50,6 @@ SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
 
 
 check: $(PROG)
-#check:
-	@echo $(OBJ_C) $(OBJ_CXX)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
 gcovcheck: $(PPROG)

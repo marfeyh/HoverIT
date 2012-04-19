@@ -17,9 +17,6 @@
 #include <conventions.h>
 #include <stdio.h> // because of using NULL
 #include <external.h>
-// Header of Motor
-//#include <propulsion_api.h>
-
 // Header of Rudder direction
 //#include <steering.h>
 
@@ -66,23 +63,23 @@ void check_serial_input() {
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00001000 */
-							//							func_ptr = increase_propulsion;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = increase_propulsion;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Forward increasing Speed in queue\n");
 							break;
 						case DECREASING:
 							/* value was 00001001 */
-							//							func_ptr = decrease_propulsion;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = decrease_propulsion;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Forward decreasing Speed in queue\n");
 							break;
@@ -102,23 +99,23 @@ void check_serial_input() {
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00011000 */
-							//							func_ptr = increase_hover;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = increase_hover;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Hovering increasing \n");
 							break;
 						case DECREASING:
 							/* value was 00011001 */
-							//							func_ptr = decrease_hover;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = decrease_hover;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string("put Fan Hovering decreasing\n");
 							break;
 						default:
