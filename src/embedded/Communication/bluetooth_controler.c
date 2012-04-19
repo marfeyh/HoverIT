@@ -17,9 +17,6 @@
 #include <conventions.h>
 #include <stdio.h> // because of using NULL
 #include <external.h>
-// Header of Motor
-//#include <propulsion_api.h>
-
 // Header of Rudder direction
 //#include <steering.h>
 
