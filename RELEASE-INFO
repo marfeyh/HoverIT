@@ -1,0 +1,21 @@
+This repository contains the release code of the pproject, only the test & integration managers have access to write to this repository.
+
+When code is pushed to this repository Hudson will automatically tag the branch and try to build the code and run all test cases. The 
+results of the build together with test coverage data and test results will be published in the project management system.
+
+Before yoou push code to this branch make sure that you have pulled the latest version of the master branch on this repository into 
+the branch that you want to push. Make sure that you do not have any conflicts and that the code is working as intended. You must 
+be able to build a static library out of the code. It must be possilbe to include and link the built library with all other modules
+developed for the same target as your module. Your code should have unit tests that covers most of the code. If possible there should 
+be integration tests that can verify that the integration succeded.
+
+
+
+=======================================================================================================================================
+
+Integration Schedule & Log
+
+18-04-2012
+
+	Scheduler & Bluetooth
+	
