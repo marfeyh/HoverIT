@@ -20,7 +20,7 @@ MAIN_SRC = main.c
 ARDUINO = mega2560
 SHLIB = hovering.so
 
-LIB = libhovering.a
+#LIB = 
 LIB_H = hovering_motor.h hovering_control.h hovering_init_fix.h \
 	hover_api.h pressure_check.h pressure.h pin.h
 USER_LIB_INSTALL_PATH = ../../../bin
