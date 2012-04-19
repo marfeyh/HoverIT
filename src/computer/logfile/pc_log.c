@@ -6,18 +6,21 @@
 #include "pc_log.h"
 
 FILE *p = NULL;
-char *file = "default.log";
+char *file = "default";
 
 
-void init_log_file(){
+void init_log_file(){	
 	p = fopen(file, "w");
 	
-  	if (p== NULL) {
-  	printf("Error in opening a file..", file);
-  	}
+	if (p== NULL) 
+  		printf("Error in opening a file..", file);
+  	rename("default", __TIME__);
+	
+	//pclose(p);
 }
 
 void close_log_file(){
+	
 	fclose(p);
 }
 
@@ -32,15 +35,17 @@ char* get_time(){
     the_time = time(NULL);
  	tp = localtime(&the_time);
 	sprintf(str, "%2.2d-%2.2d-%2.2d %2.2d:%2.2d:%2.2d", tp->tm_year+1900, tp->tm_mon+1, tp->tm_mday, tp->tm_hour, tp->tm_min, tp->tm_sec);
+	//printf("Time: %s \n", str);
 	return str;	
 }
 
 void log_file_writer(char* buf){
-	p = fopen(file,"a");  	
+	//p = fopen(file,"a+");  	
 	size_t len = 0;
   	len = strlen(buf);
 	fwrite(buf, len, 1, p);
 	//printf("\n Written Successfuly in the file.\n");
+	//fclose(p);
 
 }
 
@@ -52,7 +57,7 @@ void log_to_file(char* tag, char* message, char *function ){
 	printf("log_level: %s, info: %s, function: %s \n",log.tag, log.info, log.function);
 	sprintf(temp,"%s, %s, %s, %s  \n",get_time(),log.tag, log.info, log.function);		
 	log_file_writer(temp);
-	close_log_file();
+	
 	
 	
 }
