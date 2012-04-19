@@ -36,7 +36,7 @@ char* get_time(){
 }
 
 void log_file_writer(char* buf){
-	  	
+	p = fopen(file,"a");  	
 	size_t len = 0;
   	len = strlen(buf);
 	fwrite(buf, len, 1, p);
@@ -52,6 +52,7 @@ void log_to_file(char* tag, char* message, char *function ){
 	printf("log_level: %s, info: %s, function: %s \n",log.tag, log.info, log.function);
 	sprintf(temp,"%s, %s, %s, %s  \n",get_time(),log.tag, log.info, log.function);		
 	log_file_writer(temp);
+	close_log_file();
 	
 	
 }
