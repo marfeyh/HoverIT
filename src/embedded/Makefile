@@ -18,6 +18,16 @@ all:
 	$(MAKE) lib-install -C Hover
 	$(MAKE) prog -C Hovercraft
 
+check:
+	$(MAKE) check -C Propulsion
+
+gcovcheck:
+	$(MAKE) gcovcheck -C Propulsion
+	gcovr
+
+clean-tests:
+	$(MAKE) clean-tests -C Propulsion
+
 clean:
 	$(MAKE) clean -C Scheduler
 	$(MAKE) clean -C Communication
