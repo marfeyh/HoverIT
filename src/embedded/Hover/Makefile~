@@ -1,37 +1,54 @@
+#*
+#* @ Module name:  Main Makefile
+#* @ Description:  Compiles the files and test files for control hovering fan
+#*
+#* @ Author names : Eva-Lisa Kedborn, Jing Liu 
+#* 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
+#* @ Release      : 9 April 2012
+#* @ Version      : 1
+#* @ Refrences    : Arduino.cc, sandklef.com, Check manual
+#*
+
+# Searduino Path #
+SEARDUINO_PATH=/opt/searduino
+
+# Test path #
 TEST_DIR = Tests/
-SEARDUINO_PATH = /opt/searduino
+
+# Compiled file #
 PROG = hovering
 
-# Add your source files here
+# Source files #
 SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
-	hover_api.c pressure_check.c pressure.c
-MAIN_SRC = main.c
-ARDUINO = mega2560
+	hover_api.c pressure_check.c pressure_sensor.c
 SHLIB = hovering.so
 
-#LIB = 
-LIB_H = hovering_motor.h hovering_control.h hovering_init_fix.h \
-	hover_api.h pressure_check.h pressure.h pin.h
-USER_LIB_INSTALL_PATH = ../../../bin
+# For use in global main #
+ifndef GLOBAL_MAIN
+SRC_C += main.c
+endif
 
-export SRC_FILES = $(SRC_C)
+# Arduino mode #
+ARDUINO = stub
 
+# User C flags used in program for test #
+#USER_C_FLAGS=-DSTUB_TEST
+
+# Includes #
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
-# Needs to be modified as well
+# When use make check #
+check: SRC_C = pressure_check.c pressure_sensor.c hover_api.c \
+	       hovering_motor.c hovering_control.c hovering_init_fix.c \
+	       ../hovering_check.c
+check: USER_LD_FLAGS = -lcheck
+#check: hovering_motor.o hovering_control.o hovering_init_fix.o hover_api.o 
+#check: pressure_check.o pressure_sensor.o $(TEST_DIR)hovering_check.o 
 check:
-	$(MAKE) check -C $(TEST_DIR)
+	$(MAKE) check -C Tests
 
-gcovcheck:
-	$(MAKE) gcovcheck -C $(TEST_DIR)
-
-gcovbcheck:
-	$(MAKE) gcovbcheck -C $(TEST_DIR)
-
-memcheck:
-	$(MAKE) memcheck -C $(TEST_DIR)
-
+# When use make clean_tests #
 clean-tests:
-	$(MAKE) clean-tests -C $(TEST_DIR)
+	$(MAKE) clean -C Tests
 
 .PHONY: check
