@@ -1,7 +1,7 @@
 /* 
-Author: Eva-Lisa Kedborn, Jing Liu
-Date: 2012-03-28
-Description: API for controling hovering fan
+*@Author: Eva-Lisa Kedborn, Jing Liu
+*@Date: 2012-03-28
+*@Description: API for controling hovering fan
 */
 
 #include <stdlib.h>
@@ -11,7 +11,7 @@ Description: API for controling hovering fan
 #include <pressure_check.h>
 #include <pin.h>
 
-#define LEVEL 10
+#define HOVER_LEVEL 10
 
 int start_hover() {         /* start the hovering fan */ 
   initialize(USING_PIN);
@@ -34,12 +34,12 @@ int hover_max() {   /* maximize the speed */
 }
 
 int decrease_hover() {       /* decrease the speed */
-  hover_change(decrease, USING_PIN, LEVEL);
+  hover_change(decrease, USING_PIN,HOVER_LEVEL);
   return 0;
 }
 
 int increase_hover() {       /* increase the speed */
-  hover_change(increase, USING_PIN, LEVEL);
+  hover_change(increase, USING_PIN, HOVER_LEVEL);
   return 0;
 }
 
