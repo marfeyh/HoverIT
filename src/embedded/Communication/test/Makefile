@@ -20,8 +20,6 @@
 # SRC_FILES can be set by a calling makefile to set the files of the src folder
 #
 
-UBRR1H=ture
-
 SRC_DIR=../
 SRC_C=
 SRC_CXX=
@@ -45,9 +43,8 @@ USER_LD_FLAGS += -lcheck
 USER_OBJ_PATH = ./objs/
 
 
-#SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
-#SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
-SRC_C = ../message_handler.c
+SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
+SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
 
 .PHONY: check clean-tests
 
@@ -55,18 +52,27 @@ SRC_C = ../message_handler.c
 check: $(PROG)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcovcheck: $(PPROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+gcov: USER_C_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_LD_FLAGS += -lgcov
+gcov: check
 
-gcovbcheck:
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-memcheck: $(PROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+debug: USER_C_FLAGS += -g
+debug: USER_CXX_FLAGS += -g
+debug: check
 
+
+gcovcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+
+gcovbcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+
+memcheck: debug
+	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
 
 clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-
-
