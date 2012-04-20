@@ -1,18 +1,13 @@
-SRCPATH = ../../src
-SRCOBJS = $(wildcard $(SRCPATH)/*.o)
-TESTSRCS = $(wildcard *.c)
+SRC_DIR = ../../src/embedded/Communication
 
-unit: testsuite
-	@echo Running tests...
-	./testsuite
+check: maincheck.o Communication/info_test.o
+	gcc maincheck.o $(SRC_DIR)/info.o Communication/info_test.o -l check -o $@
 
-testsuite.o: $(TESTSRCS)
-	gcc -c unitmain.c -o testsuite.o $(ECTRAGCCFLAGS)
+gcovcheck:
 
-testsuite: $(SRCOBJS) testsuite.o
-	gcc $(SRCOBJS) testsuite.o -o testsuite $(EXTRAGCCFLAGS) -lcunit 
+gcovbcheck:
 
+memcheck:
 
-clean:
-	rm -f testsuite testsuite.exe testsuite.o
-
+maincheck.o: main_test.c main_test.h
+	gcc -c $< -I . -o $@
