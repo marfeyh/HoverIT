@@ -1,10 +1,14 @@
 /*
-Author: Xinran He, Khatereh Khosravianarab
-Date: 2012-03-25
-Update: 2012-04-10
-Description: control fan speed api
-*/
+ * @ Module name:  propulsion_api.c
+ * @ Description:  control fan speed api.
+ *
+ * @ Author names : Xinran He, Khatereh Khosravianarab
+ * @ Release      : 25 March 2012
+ * @ Version      : 2.0
+ */
 
+
+#include <stdio.h>
 #include <propulsion.h>
 #include <propulsion_api.h>
 
