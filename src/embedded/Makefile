@@ -16,6 +16,7 @@ all:
 	$(MAKE) lib-install -C Communication
 	$(MAKE) lib-install -C Propulsion
 	$(MAKE) lib-install -C Hover
+	$(MAKE) lib-install -C Rudder_control
 	$(MAKE) prog -C Hovercraft
 
 check:
@@ -33,4 +34,5 @@ clean:
 	$(MAKE) clean -C Communication
 	$(MAKE) clean -C Propulsion
 	$(MAKE) clean -C Hover
+	$(MAKE) clean -C Rudder_control
 	$(MAKE) clean -C Hovercraft
