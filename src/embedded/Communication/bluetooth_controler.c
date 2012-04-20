@@ -133,32 +133,32 @@ void check_serial_input() {
 					switch (res_direction) {
 					case STRAIGHT:
 						/* value is 0000 */
-						//						control_rudder(STRAIGHT);
+						control_rudder(STRAIGHT);
 						debug_print_string("STRAIGHT\n");
 						break;
 					case HARD_LEFT:
 						/* value is 0001 */
-						//						control_rudder(HARD_LEFT);
+						control_rudder(HARD_LEFT);
 						debug_print_string("HARD_LEFT\n");
 						break;
 					case HARD_RIGHT:
 						/* value is 0010 */
-						//						control_rudder(HARD_RIGHT);
+						control_rudder(HARD_RIGHT);
 						debug_print_string("HARD_RIGHT\n");
 						break;
 					case SOFT_RIGHT:
 						/* value is 0011 */
-						//						control_rudder(SOFT_RIGHT);
+						control_rudder(SOFT_RIGHT);
 						debug_print_string("SOFT_RIGHT\n");
 						break;
 					case SOFT_LEFT:
 						/* value is 0100 */
-						//						control_rudder(SOFT_LEFT);
+						control_rudder(SOFT_LEFT);
 						debug_print_string("SOFT_LEFT\n");
 						break;
 					case BRAKE:
 						/* value is 0101 */
-						//						control_rudder(BRAKE);
+						control_rudder(BRAKE);
 						debug_print_string("BRAKE\n");
 						break;
 					default:

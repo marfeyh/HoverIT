@@ -10,6 +10,7 @@
 # SRC_C & SRC_CXX should contain the .c & .cpp files for the source and test
 # MAIN_SRC should contain maximum one file, the one that holds the main
 #	function for the tests
+# PROG is the name of the testing executable
 # SEARDUINO_PATH should as always be the path to the searduino installation
 # 	usually /opt/searduino, unless you compiled it yourself
 # USER_C_FLAGS & USER_CXX_FLAGS is if you need to give gcc & g++ any extra
@@ -17,15 +18,11 @@
 # USER_LD_FLABS should be used to add flags to the linker.
 #	For example if you need to link with some cool library
 #
-# SRC_FILES can be set by a calling makefile to set the files of the src folder
-#
-
-UBRR1H=ture
 
 SRC_DIR=../
-SRC_C=
+SRC_C=main.c
 SRC_CXX=
-MAIN_SRC=checkmain.c
+MAIN_SRC=
 
 SEARDUINO_PATH = /opt/searduino
 
@@ -42,31 +39,25 @@ PROG=Testsuite
 USER_C_FLAGS += -I$(SRC_DIR)
 USER_CXX_FLAGS += -I$(SRC_DIR)
 USER_LD_FLAGS += -lcheck
-USER_OBJ_PATH = ./objs/
 
-
-#SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
-#SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
-SRC_C = ../message_handler.c
+SRC_C:=$(patsubst $(SRC_DIR)%.c, %.check.c, $(SRC_C))
+SRC_CXX:=$(patsubst $(SRC_DIR)%.cpp, %.check.cpp, $(SRC_CXX))
 
 .PHONY: check clean-tests
 
-
 check: $(PROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+	export LD_LIBRARY_PATH=/opt/searduino/lib && ./$(PROG)
 
-gcovcheck: $(PPROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+%.check.c: $(SRC_DIR)/%.c
+	cp -f $< $@
 
-gcovbcheck:
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+%.check.cpp: $(SRC_DIR)%.cpp
+	cp -f $< $@
 
-memcheck: $(PROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
-
-
-clean-tests: clean
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
+clean-tests: clean
+	-rm $(filter %.check.c, $(SRC_C))
+	-rm $(filter %.check.cpp, $(SRC_CXX))
 
