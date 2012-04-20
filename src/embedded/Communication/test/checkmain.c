@@ -1,6 +1,7 @@
 #include<check.h>
 #include<stdlib.h>
 #include<message_handler.h>
+#include <conventions.h>
 
 START_TEST (parseBinaryTest) {
   int i = 0b00000000;
@@ -128,10 +129,10 @@ START_TEST (create_fan_forward_speed_Test) {
   // The value of the message should be less than 16 which is 4 low value bits
   // The message should be 0000
   for (; i < 0b00010000 ; i++){
-	  fail_unless(create_fan_forward_speed(&i)== i);
+	  fail_unless(create_fan_forward_speed(i)== i);
   }
   for (i = 0b00010000 ; i < 0b11111111 ; i++){
-	  fail_if(create_fan_forward_speed(&i)== i);
+	  fail_if(create_fan_forward_speed(i)== i);
   }
  } END_TEST
 
@@ -141,7 +142,7 @@ START_TEST (create_fan_hovering_speed_Test) {
   // The value of the message should be less than 16 which is 4 low value bits
   // The message should be 0001
   for (; i < 0b00010000 ; i++){
-	  fail_unless(create_fan_hovering_speed(&i)== (i | (1<<4)));
+	  fail_unless(create_fan_hovering_speed(i)== (i | (1<<4)));
   }
  } END_TEST
 
@@ -150,7 +151,7 @@ START_TEST (create_ruder_direction_Test) {
   // The value of the message should be less than 16 which is 4 low value bits
   // The message should be 0010
   for (; i < 0b00010000 ; i++){
-	  fail_unless(create_ruder_direction(&i)== (i | (1<<5)));
+	  fail_unless(create_ruder_direction(i)== (i | (1<<5)));
   }
  } END_TEST
 
@@ -159,7 +160,7 @@ START_TEST (create_hovercraft_speed_Test) {
   // The value of the message should be less than 16 which is 4 low value bits
   // The message should be 0011
   for (; i < 0b00010000 ; i++){
-	  fail_unless(create_hovercraft_speed(&i)== (i | (3<<4)));
+	  fail_unless(create_hovercraft_speed(i)== (i | (3<<4)));
   }
  } END_TEST
 
@@ -168,7 +169,7 @@ START_TEST (create_hovercraft_pressure_Test) {
   // The value of the message should be less than 16 which is 4 low value bits
   // The message should be 0100
   for (; i < 0b00010000 ; i++){
-	  fail_unless(create_hovercraft_pressure(&i)== (i | (1<<6)));
+	  fail_unless(create_hovercraft_pressure(i)== (i | (1<<6)));
   }
  } END_TEST
 START_TEST (create_battery_level_Test) {
@@ -176,7 +177,7 @@ START_TEST (create_battery_level_Test) {
   // The value of the message should be less than 16 which is 4 low value bits
   // The message should be 0101
   for (; i < 0b00010000 ; i++){
-	  fail_unless(create_battery_level(&i)== (i | (5<<4)));
+	  fail_unless(create_battery_level(i)== (i | (5<<4)));
   }
  } END_TEST
 
@@ -184,10 +185,10 @@ START_TEST (check_number_limit_Test) {
   unsigned char i = 0b00000000;
  // the number limit should be less than 16 and bigger than -1
   for (; i < 0b00010000 ; i++){
-	  fail_unless(check_number_limit(&i)== 1);
+	  fail_unless(check_number_limit(i)== 1);
   }
   for (i = 0b00010000; i < 0b11111111 ; i++){
-	  fail_if(create_battery_level(&i)== 1);
+	  fail_if(create_battery_level(i)== 1);
   }
  } END_TEST
 
@@ -196,7 +197,7 @@ START_TEST (check_number_limit_Test) {
  * to be availbale in weki to the other group so as they can call and 
  * use them when ever they want     
 **/
-
+/**
 START_TEST (API_fan_forward_speed_Test) {
   unsigned char i =  0b00000000;
   for (; i < 0b00010000 ; i++)
@@ -244,7 +245,7 @@ START_TEST (API_battery_level_Test) {
 
  } END_TEST
 
-
+**/
 
 Suite* test_hello(void) {
   Suite* s = suite_create("Amir_Retta");
@@ -265,11 +266,13 @@ Suite* test_hello(void) {
   tcase_add_test(tc,create_hovercraft_pressure_Test);
   tcase_add_test(tc,create_battery_level_Test);
   tcase_add_test(tc, check_number_limit_Test);
+ /**
   tcase_add_test(tc, API_fan_forward_speed_Test);
   tcase_add_test(tc, API_fan_hovering_speed_Test);
   tcase_add_test(tc, API_ruder_direction_Test);
   tcase_add_test(tc, API_hovercraft_speed_Test);
   tcase_add_test(tc, API_battery_level_Test);
+**/
  
   suite_add_tcase(s, tc);
   return s;
