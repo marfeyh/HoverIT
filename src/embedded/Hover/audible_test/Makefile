@@ -3,7 +3,7 @@ SEARDUINO_PATH = /opt/searduino
 PROG = audible_test
 
 # Add your source files here
-SRC_C = audible_test.cpp 
+SRC_C = audible_test.c 
 
 MAIN_SRC = main.c
 ARDUINO = uno
