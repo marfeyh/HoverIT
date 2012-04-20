@@ -13,9 +13,10 @@
 
 /* Includes */
 #include "Arduino.h" /* Arduino header */
-#include <hovering_motor.h> 
+#include <hovering_motor.h>
 #include <hovering_control.h>
 #include <hovering_init_fix.h>
+#include <print_audible_test.h>
 
 /* Definition */
 /* The minimum PWM value that is possible to send to ESC from Arduino pin 
@@ -36,10 +37,9 @@ int start(int using_pin){
 	   has not been started */
 	if (throttle_stick_level < THROTTLE_STICK_BOTTOM_LEVEL){
 		throttle_stick_bottom(using_pin);
-	}else {
-	/* Test code */
-	
 	}
+	/* Test code */
+	test_start ();
 	return 0;
 }
 
@@ -47,6 +47,8 @@ int start(int using_pin){
 int throttle_stick_bottom (int using_pin){
 	pin_program(using_pin, THROTTLE_STICK_BOTTOM_LEVEL);
 	delay(1000);
+	/* Test code */
+	test_throttle_Stick_is_bottom ();
 	return 0;
 }
 
@@ -54,6 +56,8 @@ int throttle_stick_bottom (int using_pin){
 int normal (int using_pin){
 	throttle_stick_level = LOWEST_LEVEL;
 	pin_program(using_pin,throttle_stick_level);
+	/* Test code */
+	test_normal ();	
 	return 0;
 }
 
@@ -61,6 +65,8 @@ int normal (int using_pin){
 int turbo (int using_pin){
 	throttle_stick_level = HIGHEST_LEVEL;
 	pin_program(using_pin, throttle_stick_level);
+	/* Test code */
+	test_turbo ();	
 	return 0;
 }
 
@@ -68,6 +74,8 @@ int turbo (int using_pin){
 int stop (int using_pin){
 	throttle_stick_level = STOP_LEVEL;
 	pin_program(using_pin, throttle_stick_level);
+	/* Test code */
+	test_stop ();
 	return 0;
 }
 
@@ -76,6 +84,8 @@ int increase (int using_pin, int level){
 	throttle_stick_level += level;
 	check_and_fix_level(using_pin, throttle_stick_level);
 	pin_program(using_pin, throttle_stick_level);
+	/* Test code */
+	test_increase (throttle_stick_level);
 	return 0;
 }
 
@@ -84,6 +94,8 @@ int decrease (int using_pin, int level){
 	throttle_stick_level -= level;
 	check_and_fix_level(using_pin, throttle_stick_level);
 	pin_program(using_pin, throttle_stick_level);
+	/* Test code */
+	test_decrease (throttle_stick_level);
 	return 0;
 }
 
@@ -92,5 +104,7 @@ int set_level (int using_pin, int level){
 	throttle_stick_level = level;
 	check_and_fix_level(using_pin, throttle_stick_level);
 	pin_program(using_pin, throttle_stick_level);
+	/* Test code */
+	test_set_level (throttle_stick_level);
 	return 0;
 }

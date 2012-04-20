@@ -16,14 +16,16 @@
 #include <hovering_motor.h>
 #include <hovering_control.h>
 #include <hovering_init_fix.h>
+#include <print_audible_test.h>
 
 /* Functions */
 
 /* Initiations */
 int initialize (int using_pin){
 	ard_init (using_pin);
-	hover_func (start,using_pin);
+	hover_func (start,using_pin);	
 	delay (1000);
+	hover_func (normal,using_pin);	
 	/*FUNCS funcs;
 	funcs.func1=set_level;
 	funcs.func2=delay;
@@ -45,16 +47,20 @@ int ard_init (int using_pin){
 /* Set the Arduino active pin for using */
 int pin_program(int using_pin,int level) {
 	analogWrite(using_pin,level);
+	/* Test code */
+	test_analogwrite ();
 	return 0;
 }
 
 /* This function prevents the motor from stop (Check boundary values)*/
 int check_and_fix_level (int using_pin,int throttle_stick_level){
 	if (throttle_stick_level < LOWEST_LEVEL){
-		normal (using_pin);		
+		test_Too_low ();
+		normal (using_pin);
 	}
 	if (throttle_stick_level > HIGHEST_LEVEL){
-		turbo (using_pin);	
+		test_Too_high ();		
+		turbo (using_pin);
 	}
 	return 0;
 }

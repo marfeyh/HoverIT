@@ -1,5 +1,5 @@
 /*
- * @ Module name:  hovering_motor.c
+ * @ Module name:  hovering_motor.cpp
  * @ Description:  Contains the functions that
  *   control the hovering fan speed.
  *
@@ -12,11 +12,11 @@
  */
 
 /* Includes */
-#include <Arduino.h> /* Header for Arduino */ 
+#include "Arduino.h" /* Header for Arduino */ 
 #include <searduino.h> /* Header for Searduino */
 #include <hovering_motor.h>
 #include <hovering_control.h>
-#include <print_audible_test.h>
+#include "searduino.h"
 
 /* Functions */
 
@@ -27,7 +27,7 @@ int hover_func(int (*func)(int),int using_pin){
 	}
 
 /* Fucntion that gets arguments for change the speed of motor */
-int hover_change(int (*climb_decesnd)(int,int), int using_pin, int level){
+int hover_func(int (*climb_decesnd)(int,int), int using_pin, int level){
 	climb_decesnd(using_pin, level);
 	return 0;
 }
