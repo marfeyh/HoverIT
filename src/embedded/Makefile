@@ -21,7 +21,6 @@ all:
 
 check:
 	$(MAKE) check -C Propulsion
-	$(MAKE) check -C Communication
 
 gcovcheck:
 	$(MAKE) gcovcheck -C Propulsion
