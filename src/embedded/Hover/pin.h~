@@ -14,4 +14,3 @@
 /* Define pin */
 
 #define USING_PIN 10
-#define TONE_PIN 9
