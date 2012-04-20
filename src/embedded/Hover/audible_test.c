@@ -1,19 +1,38 @@
+/*
+ * @ Module name:  audible_test.c
+ * @ Description:  Contains the functions for testing hovering functions
+ *   and show the result by voice
+ *
+ * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
+ * @ Release      : 20 April 2012
+ * @ Version      : 1.0
+ * @ Refrences    : Arduino.cc, sandklef.com
+ * dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ * Turnigy_Plush_and_Sentry_ESC user manual
+ */
+
+/* Includes */
 #include <Arduino.h> 
 #include <searduino.h>
 #include <print_audible_test.h>
 #include <pin.h>
 
+/* Defines */
 #define BEEP 254;
 #define SILENCE 0;
 #define SILENT_DELAY_TIME 50
 // I can not use defines
 //should i declare  loop_ count and loop_number in each function?	
+
+/* Variables */
 int beep_time;
 int silence_time;	
 int loop_count;
 int loop_number; 
 int beep_delay_time;
 int silence_delay_time;
+
+/* Functions */
 
 int test_start (void) {
 	beep_time = 100;
