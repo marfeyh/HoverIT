@@ -73,7 +73,7 @@ memcheck: debug
 	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
 
 clean-tests: clean
-	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
