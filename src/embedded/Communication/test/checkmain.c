@@ -246,17 +246,17 @@ START_TEST (API_battery_level_Test) {
  } END_TEST
 
 **/
- START_TEST(is_increase_Test){
+ START_TEST(increase_decrease_Test){
    /**
     *according to the protocol for the value of the range 8 (ob00001000) and 
     * 15 (0b00001111) the program should return 1 as increase anything else shoul     *d return 255
     **/
      unsigned char i= 0b00001000;
      for(; i < 0b00001111; i++){
-        fail_unless(is_increase(&i)==1);    
+        fail_unless(increase_decrease(&i)==1);    
      }
      for(i=0b00001111; i<0b11111111; i++){
-        fail_if(is_increase(&i)==255);
+        fail_if(increase_decrease(&i)==255);
      }
 }END_TEST
 START_TEST(get_direction_Test){
@@ -280,10 +280,10 @@ START_TEST(get_value_fans_Test){
    **/ 
   unsigned char i=0b00000000;
   for(; i < 0b11111111; i++){
-    fail_unless(getValue_fans(&i)== 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7);
+    fail_unless(get_value_fans(&i)== 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7);
   }
   for( ; i < 0b11111111; i++){
-    fail_if(getValue_fans(&i)== -6 | -7 | 12 | -1 | -3 | 88 | 55 | 200);
+    fail_if(get_value_fans(&i)== -6 | -7 | 12 | -1 | -3 | 88 | 55 | 200);
   }
 }END_TEST
 
@@ -309,7 +309,7 @@ Suite* test_hello(void) {
   tcase_add_test(tc,create_hovercraft_pressure_Test);
   tcase_add_test(tc,create_battery_level_Test);
   tcase_add_test(tc, check_number_limit_Test);
-  tcase_add_test(tc,is_increase_Test);
+  tcase_add_test(tc,increase_decrease_Test);
   tcase_add_test(tc,get_direction_Test);
   tcase_add_test(tc,get_value_fans_Test);
  /**
