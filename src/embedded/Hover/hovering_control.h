@@ -6,13 +6,13 @@
  * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 20 March 2012
  * @ Version      : 1.0
- * @ Refrences    : Arduino.cc, sandklef.com
+ * @ References    : Arduino.cc, sandklef.com
  * dreamincode.net/forums/topic/34861-functions-stored-in-structure
  * Turnigy_Plush_and_Sentry_ESC user manual
  */
 
 /* Make sure this header file is included one time */
-#ifndef HOVERING_CONTROL_H
+#if !defined HOVERING_CONTROL_H
 	#define HOVERING_CONTROL_H
 
 	/* Function protoypes */

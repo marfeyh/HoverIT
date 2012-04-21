@@ -6,7 +6,7 @@
  * 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 9 April 2012
  * @ Version      : 1
- * @ Refrences    : Arduino.cc, sandklef.com, Check manual
+ * @ References    : Arduino.cc, sandklef.com, Check manual
  */
 
 #ifndef HOVERING_CHECK_H

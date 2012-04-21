@@ -11,10 +11,9 @@ Description: the main to execute pressure_loop
 #include <hovering_control.h>
 
 int main(void) {
-        //init();
+        init();
 	//for (;;) {	
-	start_hover();
-//BLINKER(500);
-//}
+		start_hover();
+	//}
 	return 0;
 }

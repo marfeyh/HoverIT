@@ -39,9 +39,9 @@ int test_start (void) {
 	silence_time = 50;
 	loop_number = 8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TONE_PIN, 254);
+		analogWrite (TEST_PIN, 254);
 		delay (beep_time);
-		analogWrite (TONE_PIN, 0);
+		analogWrite (TEST_PIN, 0);
 		delay (silence_time);
 	}
 	silent_delay();
@@ -53,12 +53,12 @@ int test_stop (void) {
 	silence_time = 300;
 	loop_number = 4;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TONE_PIN, 254);
+		analogWrite (TEST_PIN, 254);
 		delay (beep_time);
-		analogWrite (TONE_PIN, 0);
+		analogWrite (TEST_PIN, 0);
 		delay (silence_time);
 	}
-	analogWrite (TONE_PIN, 254);
+	analogWrite (TEST_PIN, 254);
 	delay (500);
 	silent_delay();
 	return 0;
@@ -69,9 +69,9 @@ int test_normal (void){
 	silence_time=50;
 	loop_number=6;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TONE_PIN, 254);
+		analogWrite (TEST_PIN, 254);
 		delay (beep_time);
-		analogWrite (TONE_PIN, 0);
+		analogWrite (TEST_PIN, 0);
 		delay (silence_time);
 	}
 	silent_delay();
@@ -84,9 +84,9 @@ int test_turbo (void) {
 	silence_time=50;
 	loop_number=8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TONE_PIN, 254);
+		analogWrite (TEST_PIN, 254);
 		delay (beep_time);
-		analogWrite (TONE_PIN, 0);
+		analogWrite (TEST_PIN, 0);
 		delay (silence_time);
 	}
 	silent_delay();
@@ -98,9 +98,9 @@ int test_analogwrite (void){
 	silence_time=50;
 	loop_number=2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TONE_PIN, 254);
+		analogWrite (TEST_PIN, 254);
 		delay (beep_time);
-		analogWrite (TONE_PIN, 0);
+		analogWrite (TEST_PIN, 0);
 		delay (silence_time);
 	}
 	silent_delay();
@@ -111,9 +111,9 @@ int test_Too_low (void){
 	silence_time=50;
 	loop_number=2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TONE_PIN, 254);
+		analogWrite (TEST_PIN, 254);
 		delay (beep_time);
-		analogWrite (TONE_PIN, 0);
+		analogWrite (TEST_PIN, 0);
 		delay (silence_time);
 	}
 	silent_delay();
@@ -146,7 +146,7 @@ int test_set_level (int throttle_stick_level){
 }
 
 int silent_delay(void){
-	analogWrite (TONE_PIN, 0);
+	analogWrite (TEST_PIN, 0);
 	delay (SILENT_DELAY_TIME);
 	return 0;
 }

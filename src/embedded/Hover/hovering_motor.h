@@ -6,7 +6,7 @@
  * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 20 March 2012
  * @ Version      : 1.0
- * @ Refrences    : Arduino.cc, sandklef.com
+ * @ References    : Arduino.cc, sandklef.com
  * dreamincode.net/forums/topic/34861-functions-stored-in-structure
  * Turnigy_Plush_and_Sentry_ESC user manual
  */
@@ -17,7 +17,7 @@
 		digitalWrite(BLINK_PIN,LOW);delay(delay_time);}
 
 /* Make sure this header file is included one time */
-#ifndef HOVERING_MOTOR_H
+#if !defined HOVERING_MOTOR_H
 	#define HOVERING_MOTOR_H
 	
 	/* Struct to be used in hover_loop */
@@ -36,7 +36,6 @@
 	int hover_change(int (*climb_decesnd)(int,int),
 	int using_pin, int level);
 	/* Loop for motor */
-	int hover_loop(FUNCS funcs_in, int using_pin,
-	 int throttle_stick_level);
+	int hover_loop(FUNCS funcs_in, int using_pin);
 
 	#endif
