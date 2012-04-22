@@ -26,7 +26,9 @@ int initialize (int using_pin){
 	pinMode (using_pin, OUTPUT);
 	hover_func (start, using_pin);	
 	delay (1000);
-
+	hover_func (stop, using_pin);
+	delay (1000);
+	hover_func (turbo, using_pin);
 	/*FUNCS funcs;
 	funcs.func1=set_level;
 	funcs.func2=delay;
