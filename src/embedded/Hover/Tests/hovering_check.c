@@ -30,7 +30,7 @@ void teardown (void) {
 
 }
 
-/* II/Title: EN1/Test Arduino board initiation 
+/* Id/Title: tc-01(EN1)/Test Arduino board initiation 
    Purpose: test correct implementation of hoverfan functions
    Prerequisites: none
    Expected results: the correct hoverfan function has been called
@@ -76,7 +76,7 @@ START_TEST(test_pin_program) {
 
 
 /* 
-   Id/Title: EJ1/test random air pressure
+   Id/Title: tc-02(EJ1)/test random air pressure
    Purpose: test correct implementation of hoverfan functions
    Prerequisites: none
    Expected results: the correct hoverfan function has been called
@@ -99,7 +99,7 @@ START_TEST(test_random) {
 }END_TEST
 
 /* 
-   Id/Title: EJ2/test air pressure higher than preferred value
+   Id/Title: tc-03(EJ2)/test air pressure higher than preferred value
    Purpose: test correct implementation of hoverfan functions
    Prerequisites: none
    Expected results: the decrease speed function has been called
@@ -113,7 +113,7 @@ START_TEST(test_positive) {
 }END_TEST
 
 /* 
-   Id/Title: EJ3/test air pressure lower than preferred value
+   Id/Title: tc-04(EJ3)/test air pressure lower than preferred value
    Purpose: test correct implementation of hoverfan functions
    Prerequisites: none
    Expected results: the increase speed function has been called
@@ -127,7 +127,7 @@ START_TEST(test_negative) {
 }END_TEST
 
 /* 
-   Id/Title: EJ2/test air pressure equal to the preferred value
+   Id/Title: tc-04(EJ4)/test air pressure equal to the preferred value
    Purpose: test correct implementation of hoverfan functions
    Prerequisites: none
    Expected results: the speed of the hovering fan is unchanged
