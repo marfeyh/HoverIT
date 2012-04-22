@@ -20,7 +20,7 @@ int main(void) {
 		increase_hover();
 		decrease_hover();
 		hover_min();
-		decrease_hover();
+decrease_hover();
 		//stop_hover();
 	//}
 	return 0;
