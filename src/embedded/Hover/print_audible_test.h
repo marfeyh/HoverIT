@@ -14,4 +14,5 @@ int test_motor_already_started (void);
 int test_increase (int throttle_stick_level);
 int test_decrease (int throttle_stick_level);
 int test_set_level (int throttle_stick_level);
+int test_set_fixed_level (int throttle_stick_level);
 int silent_delay(void);

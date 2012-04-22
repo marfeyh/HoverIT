@@ -5,15 +5,16 @@ Description: the main to execute pressure_loop
 */
 
 /* Includes */
-#include "Arduino.h"
+#include <Arduino.h>
+#include <searduino.h>
 #include <hover_api.h>
-#include <hovering_motor.h>
-#include <hovering_control.h>
 
 int main(void) {
         init();
 	//for (;;) {	
 		start_hover();
+		increase_hover();
+		stop_hover();
 	//}
 	return 0;
 }
