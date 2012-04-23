@@ -43,24 +43,7 @@ int hover_min();
 */
 int hover_max();
 
-/*!
-@brief Function to decrease the rotation speed of the fan
-@param takes no parameters
-@returns integer 0 if successful
-*/
-int decrease_hover();
 
-/*!
-@brief Function to increase the rotation speed of the fan
-@param takes no parameters
-@returns integer 0 if successful
-*/
-int increase_hover();
-
-/*!
-@brief Function for the rotation speed of the fan to be controlled 
-automatically by sensing the air pressure inside the skirt.
-@param takes no parameters
-@returns integer 0 if successful
-*/
-int autocontrol();
+int decrease_hover();       /* decrease the speed */
+int increase_hover();       /* increase the speed */
+int autocontrol();          /* let the fan speed be cotrolled by pressure  sensor automatically */

@@ -17,6 +17,19 @@
 
 	/* Function protoypes */
 
+<<<<<<< HEAD
+	/* Set the level to 100 or Start the hovering motor*/
+	int start(int using_pin, int test_pin);
+	/* Set the level to 100 or start the motor if the motor has not \
+	 been started (The minimum acceptable value for ESC)*/
+	int throttle_stick_bottom(int using_pin, int test_pin);
+	/* Set the level to 143 or set the motor to lowest rotating speed */
+	int normal(int using_pin, int test_pin);
+	/* Set the level to 254 or set the motor to highest rotating speed */
+	int turbo(int using_pin, int test_pin);
+	/* Set the level to 120 or stop the motor */
+	int stop(int using_pin, int test_pin);
+=======
 	/* Start the hovering motor*/
 	int start(int using_pin);
 	/* Set the throttle stick
@@ -30,9 +43,19 @@
 	int stop(int using_pin);
 	/* set the motor rotating speed to specified level */
 	int set_level(int using_pin, int level);
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298
 	/* Increase the motor rotating speed level times */
-	int increase(int using_pin, int level);
+	int increase(int using_pin, int test_pin, int level);
 	/* decrease the motor rotating speed level times */
+<<<<<<< HEAD
+	int decrease(int using_pin, int test_pin, int level);
+	/* set the motor rotating speed to specified level */
+	int set_level(int using_pin, int test_pin, int level);
+	/* set the motor rotating speed to specified to the level which
+	fixed to be no higher than 254 and no lower than 143*/
+	int set_fixed_level (int using_pin, int test_pin, int level);
+=======
 	int decrease(int using_pin, int level);
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298
 
 	#endif

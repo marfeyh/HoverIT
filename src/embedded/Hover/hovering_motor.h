@@ -19,7 +19,7 @@
 /* Make sure this header file is included one time */
 #if !defined HOVERING_MOTOR_H
 	#define HOVERING_MOTOR_H
-	
+
 	/* Struct to be used in hover_loop */
 	typedef struct {
 		int (*func1)(int);
@@ -27,14 +27,14 @@
 		int level;
 		int delay_time;
 	} FUNCS;
-
+	
 	/* Function prototypes */
 	
 	/* Function that gets arguments for start or stop the motor */
-	int hover_func(int (*func)(int), int using_pin);
+	int hover_func(int (*func)(int,int), int using_pin, int test_pin);
 	/* Fucntion that gets arguments for change the speed of motor */	
-	int hover_change(int (*climb_decesnd)(int,int),
-	int using_pin, int level);
+	int hover_change(int (*climb_decesnd)(int,int,int),
+	int using_pin,int test_pin, int level);
 	/* Loop for motor */
 	int hover_loop(FUNCS funcs_in, int using_pin);
 

@@ -20,15 +20,19 @@
 
 /* Functions */
 
+<<<<<<< HEAD
+/* 	Setting using_pin and test pin and start the motor */
+int initialize (int using_pin, int test_pin){
+	pinMode (test_pin, OUTPUT);
+=======
 /* Initiations */
 int initialize (int using_pin){
 	pinMode (9, OUTPUT); //TEST_PIN ????
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298
 	pinMode (using_pin, OUTPUT);
-	hover_func (start, using_pin);	
+	hover_func (start, using_pin, test_pin);	
 	delay (1000);
-	hover_func (stop, using_pin);
-	delay (1000);
-	hover_func (turbo, using_pin);
+
 	/*FUNCS funcs;
 	funcs.func1=set_level;
 	funcs.func2=delay;
@@ -39,22 +43,59 @@ int initialize (int using_pin){
 }
 
 /* Set the Arduino active pin for using */
-int pin_program (int using_pin, int level) {
+int pin_program (int using_pin, int test_pin, int level) {
 	analogWrite (using_pin, level);
 	/* Test code */
-	test_analogwrite ();
+	test_analogwrite (test_pin);
 	return 0;
 }
 
+<<<<<<< HEAD
+/* This function prevents the motor from stop (Check boundary values) */
+int check_and_fix_level (int using_pin,int test_pin, \
+int throttle_stick_level){
+=======
 /* This function prevents the motor from stop (Check boundary values)*/
 int check_and_fix_level (int using_pin, int throttle_stick_level){
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298
 	if (throttle_stick_level < LOWEST_LEVEL){
-		test_Too_low ();
-		normal (using_pin);
+		test_Too_low (test_pin);
+		normal (using_pin, test_pin);
 	}
 	if (throttle_stick_level > HIGHEST_LEVEL){
-		test_Too_high ();		
-		turbo (using_pin);
+		test_Too_high (test_pin);		
+		turbo (using_pin, test_pin);
 	}
 	return 0;
 }
+<<<<<<< HEAD
+
+/* This function prevents the motor from stop (Check boundary values)
+and also prevent increase to function when the motor is stopped */
+int check_and_fix_level_increase (int using_pin, int test_pin, \
+int throttle_stick_level, int level){
+	if (throttle_stick_level < LOWEST_LEVEL){
+		test_Too_low (test_pin);
+		return throttle_stick_level;
+	}else if (throttle_stick_level > HIGHEST_LEVEL){
+			test_Too_high (test_pin);		
+			turbo (using_pin, test_pin);
+			return throttle_stick_level;	
+	}else {
+		return throttle_stick_level + level;}
+}
+
+
+/* This function prevents the motor from stop (Check boundary values)
+and also prevent decrease to function when the motor is stopped */
+int check_and_fix_level_decrease (int using_pin,int test_pin, \
+int throttle_stick_level,int level){
+	/* If the motor is stopped then nothing should be done */
+	if (throttle_stick_level < LOWEST_LEVEL){		
+		test_Too_low (test_pin);
+		return throttle_stick_level;
+	}
+	return throttle_stick_level - level;
+}
+=======
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298
