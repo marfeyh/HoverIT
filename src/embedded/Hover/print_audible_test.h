@@ -14,5 +14,9 @@ int test_motor_already_started (int test_pin);
 int test_increase (int throttle_stick_level);
 int test_decrease (int throttle_stick_level);
 int test_set_level (int throttle_stick_level);
+<<<<<<< HEAD
 int test_set_fixed_level (int throttle_stick_level);
 int silent_delay(int test_pin);
+=======
+int silent_delay(void);
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298

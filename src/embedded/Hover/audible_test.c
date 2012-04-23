@@ -105,8 +105,13 @@ int test_analogwrite (int test_pin){
 	silent_delay(test_pin);
 	return 0;
 }
+<<<<<<< HEAD
 int test_Too_low (int test_pin){
 	beep_time=20;
+=======
+int test_Too_low (void){
+	beep_time=10;
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298
 	silence_time=50;
 	loop_number=2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
@@ -144,6 +149,7 @@ int test_set_level (int throttle_stick_level){
 	return throttle_stick_level;
 }
 
+<<<<<<< HEAD
 int test_set_fixed_level (int throttle_stick_level){
 
 	return throttle_stick_level;
@@ -151,6 +157,10 @@ int test_set_fixed_level (int throttle_stick_level){
 
 int silent_delay(int test_pin){
 	analogWrite (test_pin, 0);
+=======
+int silent_delay(void){
+	analogWrite (TEST_PIN, 0);
+>>>>>>> 48c12a0c59fb5ce02150739d3e379fdceb64d298
 	delay (SILENT_DELAY_TIME);
 	return 0;
 }

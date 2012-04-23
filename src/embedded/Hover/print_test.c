@@ -1,6 +1,5 @@
 #include <Arduino.h> 
 #include <searduino.h>
-#include <stdio.h>
 #include <print_audible_test.h>
 #include <pin.h>
 
@@ -67,11 +66,20 @@ int test_set_level (int throttle_stick_level){
 	return 0;
 }
 
-int test_set_fixed_level (int throttle_stick_level){
-	printf("		Test set fixed  L: %d \n", \
-	throttle_stick_level);
-	return 0;
-}
 int silent_delay(void){
 	return 0;
 }
+
+/*
+
+
+
+printf("		Test init \n");
+printf("\n\n -- hover_func  %p  %d\n\n\n",func,using_pin);
+printf("		Test function OK\n");
+printf("		Test Loop OK    L: %d\n",
+throttle_stick_level);
+
+
+
+*/

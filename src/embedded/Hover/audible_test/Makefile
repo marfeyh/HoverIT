@@ -1,22 +1,17 @@
 TEST_DIR = Tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = hovering
+PROG = audible_test
 
 # Add your source files here
-SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
-	hover_api.c pressure_check.c pressure.c
+SRC_C = audible_test.c 
+
 MAIN_SRC = main.c
 ARDUINO = uno
-SHLIB = hovering.so
-# User C flag 
-#USER_C_FLAGS=-DSTUB_TEST
-SRC_C += audible_test.c
-#SRC_C += print_test.c
-#print_test.c ############
+#mega2560
+SHLIB = audible_test.so
 
-#LIB =
-LIB_H = hovering_motor.h hovering_control.h hovering_init_fix.h \
-	hover_api.h pressure_check.h pressure.h pin.h print_audible_test.h
+#LIB = 
+LIB_H = audible_test.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES = $(SRC_C)
@@ -39,4 +34,4 @@ memcheck:
 clean-tests:
 	$(MAKE) clean-tests -C $(TEST_DIR)
 
-.PHONY: check
+.PHONY: check                                   

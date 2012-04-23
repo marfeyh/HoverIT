@@ -18,7 +18,7 @@
  * @brief start the hovring fan
  */
 int start_hover() {
-  initialize(USING_PIN, TEST_PIN);
+  initialize(USING_PIN);
   return 0;
 }
 
@@ -26,7 +26,7 @@ int start_hover() {
  * @brief stop the fan
  */
 int stop_hover() {          
-  hover_func(stop, USING_PIN, TEST_PIN);
+  hover_func(stop, USING_PIN);
   return 0;
 }
 
@@ -34,7 +34,7 @@ int stop_hover() {
  * @brief minimize the speed
  */
 int hover_min() {
-  hover_func(normal, USING_PIN, TEST_PIN);
+  hover_func(normal, USING_PIN);
   return 0;
 }
 
@@ -42,7 +42,7 @@ int hover_min() {
  * @brief maximize the speed
  */
 int hover_max() {
-  hover_func(turbo, USING_PIN, TEST_PIN);
+  hover_func(turbo, USING_PIN);
   return 0;
 }
 
@@ -50,7 +50,7 @@ int hover_max() {
  * @brief decrease the speed
  */
 int decrease_hover() {       
-  hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL);
+  hover_change(decrease, USING_PIN,HOVER_LEVEL);
   return 0;
 }
 
@@ -58,7 +58,7 @@ int decrease_hover() {
  * @brief increase the speed
  */
 int increase_hover() {
-  hover_change(increase, USING_PIN, TEST_PIN, HOVER_LEVEL);
+  hover_change(increase, USING_PIN, HOVER_LEVEL);
   return 0;
 }
 
