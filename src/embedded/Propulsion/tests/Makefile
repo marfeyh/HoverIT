@@ -65,9 +65,11 @@ debug: check
 
 gcovcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
 
 gcovbcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
 
 memcheck: debug
 	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
