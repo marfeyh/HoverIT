@@ -38,5 +38,4 @@
 	fixed to be no higher than 254 and no lower than 143*/
 	int set_fixed_level (int using_pin, int test_pin, int level);
 
-
 	#endif

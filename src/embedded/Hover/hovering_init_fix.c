@@ -79,4 +79,3 @@ int throttle_stick_level,int level){
 	}
 	return throttle_stick_level - level;
 }
-

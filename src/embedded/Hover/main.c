@@ -14,6 +14,11 @@ int main(void) {
         init();
 	//for (;;) {	
 		start_hover();
+		hover_min();
+		delay(1000);
+		hover_max();
+		delay(2000);
+		stop_hover();
 	//}
 	return 0;
 }

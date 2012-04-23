@@ -104,7 +104,7 @@ int decrease (int using_pin, int test_pin, int level){
 int set_level(int using_pin, int test_pin, int level){
 	pin_program (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_set_level (test_pin);
+	test_set_level (throttle_stick_level);
 	return 0;
 }
 

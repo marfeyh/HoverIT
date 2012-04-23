@@ -20,8 +20,6 @@
 #define BEEP 254
 #define SILENCE 0
 #define SILENT_DELAY_TIME 50
-// I can not use defines
-//should i declare  loop_ count and loop_number in each function?	
 
 /* Variables */
 int beep_time;
@@ -38,7 +36,7 @@ int test_start (int test_pin) {
 	silence_time = 50;
 	loop_number = 8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, 254);
+		analogWrite (test_pin, BEEP);
 		delay (beep_time);
 		analogWrite (test_pin, 0);
 		delay (silence_time);
@@ -106,52 +104,8 @@ int test_analogwrite (int test_pin){
 	return 0;
 }
 
-int test_Too_low (int test_pin){
-	beep_time=20;
-	silence_time=50;
-	loop_number=2;
-	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, 254);
-		delay (beep_time);
-		analogWrite (test_pin, 0);
-		delay (silence_time);
-	}
-	silent_delay(test_pin);
-	return 0;
-}
-
-int test_Too_high (int test_pin){
-	return 0;
-}
-
-int test_throttle_Stick_is_bottom (int test_pin){
-	return 0;
-}
-
-int test_motor_already_started (int test_pin){
-	return 0;
-}
-
-int test_increase (int throttle_stick_level){
-	return throttle_stick_level;
-}
-
-int test_decrease (int throttle_stick_level){
-	return throttle_stick_level;
-}
-
-int test_set_level (int throttle_stick_level){
-
-	return throttle_stick_level;
-}
-
-int test_set_fixed_level (int throttle_stick_level){
-
-	return throttle_stick_level;
-}
-
 int silent_delay(int test_pin){
 	analogWrite (test_pin, 0);
 	delay (SILENT_DELAY_TIME);
-	return 0;
+	return test_pin;
 }

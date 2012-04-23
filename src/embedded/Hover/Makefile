@@ -6,14 +6,15 @@ PROG = hovering
 SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
 	hover_api.c pressure_check.c pressure.c
 MAIN_SRC = main.c
-ARDUINO = uno
+#ARDUINO = uno
+#ARDUINO = mega
+ARDUINO = stub
 SHLIB = hovering.so
-# User C flag 
-#USER_C_FLAGS=-DSTUB_TEST
-SRC_C += audible_test.c
-#SRC_C += print_test.c
-#print_test.c ############
 
+USER_C_FLAGS=-DSTUB_TEST #When using uno or mega, should be commented
+SRC_C += print_test.c	#When using uno or mega, should be commented
+#SRC_C += audible_test.c # When using stub, should be commented
+ 
 #LIB =
 LIB_H = hovering_motor.h hovering_control.h hovering_init_fix.h \
 	hover_api.h pressure_check.h pressure.h pin.h print_audible_test.h
