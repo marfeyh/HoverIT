@@ -1,3 +1,17 @@
+/*
+2	
+ * @ Module name:  main.c
+3	
+ * @ Description:  Contains the functions that will send a tone to pin 11 (speakers)based on battery level it will generate different frequencies 
+4	
+ * @ Author names :Neda Mohammadian
+5	
+ * @ Release      :23 April 2012
+6	
+ * @ Version      : 2
+7	
+ */
+
 #include <Arduino.h>
 #include <searduino.h>
 #include <toneWrapper.h>
@@ -11,36 +25,43 @@ void setup() {
 
 void setup_battery_level(){
 //  Serial.begin(9600);
+	pinMode(13,OUTPUT);
 }
 
 void exec() {
 	for(;;){
 		loop_battery_level();
+		digitalRead(13) ? digitalWrite(13,LOW) : digitalWrite(13,HIGH);
 		// Delay will be removed in integrated version
 		delay(100);
 	}
 }
 
-void loop_battery_level(){
+int loop_battery_level(){
   int Battery=getBattery();
   if(Battery==LOW_BATTERY && battery_beep_duration<LOW_BATTERY_DURATION){
     beep(LOW_BATTERY);
     battery_beep_duration++;
+	return 1;
   }else if(Battery<=EMPTY_BATTERY){
     beep(EMPTY_BATTERY);
+	return 0;
   }else{
       my_noTone(11);
+	  return -1;
   }
 }
 
 
-void beep(int beep){
+int beep(int beep){
   switch(beep){
     case LOW_BATTERY:
       my_tone(11, 4500);
+	  return 0;
       break;
     case EMPTY_BATTERY:
       my_tone(11, 5000);
+	  return -1;
       break;
   }
 }
