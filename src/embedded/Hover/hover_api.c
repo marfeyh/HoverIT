@@ -1,6 +1,8 @@
-/**
+/*!
  *@file hover_api.c
- *@Author  Eva-Lisa Kedborn, Jing Liu
+ *@headerfile hover_api.h
+ *@Author Eva-Lisa Kedborn
+ *@Author Jing Liu
  *@date 2012-03-28
  *@brief API for controling hovering fan
  */
@@ -14,7 +16,7 @@
 
 #define HOVER_LEVEL 10
 
-/**
+/*!
  * @brief start the hovring fan
  */
 int start_hover() {
@@ -38,7 +40,7 @@ int hover_min() {
   return 0;
 }
 
-/**
+/*!
  * @brief maximize the speed
  */
 int hover_max() {
@@ -46,7 +48,7 @@ int hover_max() {
   return 0;
 }
 
-/**
+/*!
  * @brief decrease the speed
  */
 int decrease_hover() {       
@@ -54,7 +56,7 @@ int decrease_hover() {
   return 0;
 }
 
-/**
+/*!
  * @brief increase the speed
  */
 int increase_hover() {
@@ -62,7 +64,7 @@ int increase_hover() {
   return 0;
 }
 
-/**
+/*!
  * @brief fan speed cotrolled by pressure sensor automatically
  */
 int autocontrol() {       
