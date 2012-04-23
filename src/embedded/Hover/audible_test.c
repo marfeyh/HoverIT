@@ -107,7 +107,7 @@ int test_analogwrite (void){
 	return 0;
 }
 int test_Too_low (void){
-	beep_time=20;
+	beep_time=10;
 	silence_time=50;
 	loop_number=2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
@@ -141,11 +141,6 @@ int test_decrease (int throttle_stick_level){
 }
 
 int test_set_level (int throttle_stick_level){
-
-	return throttle_stick_level;
-}
-
-int test_set_fixed_level (int throttle_stick_level){
 
 	return throttle_stick_level;
 }

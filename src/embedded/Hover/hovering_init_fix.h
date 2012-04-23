@@ -24,18 +24,10 @@
 	
 	/* Arduino and motor initiation */
 	int initialize(int using_pin);
-	/* Set the Arduino active pin for using */	
-	int pin_program(int using_pin, int level);
 	/* This function prevents the motor from stop
 	 (Check boundary values)*/
 	int check_and_fix_level(int using_pin, int throttle_stick_level);
-	/* This function prevents the motor from stop (Check boundary values)
-	and also prevent increase to function when the motor is stopped */
-	int check_and_fix_level_increase (int using_pin, \
-	int throttle_stick_level, int level);	
-	/* This function prevents the motor from stop (Check boundary values)	
-	and also prevent decrease to function when the motor is stopped */
-	int check_and_fix_level_decrease (int using_pin, \
-	int throttle_stick_level, int level);
+	/* Set the Arduino active pin for using */	
+	int pin_program(int using_pin, int level);
 	
 	#endif

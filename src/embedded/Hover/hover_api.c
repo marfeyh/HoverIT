@@ -1,8 +1,6 @@
-/*!
+/**
  *@file hover_api.c
- *@headerfile hover_api.h
- *@Author Eva-Lisa Kedborn
- *@Author Jing Liu
+ *@Author  Eva-Lisa Kedborn, Jing Liu
  *@date 2012-03-28
  *@brief API for controling hovering fan
  */
@@ -16,11 +14,11 @@
 
 #define HOVER_LEVEL 10
 
-/*!
+/**
  * @brief start the hovring fan
  */
 int start_hover() {
-  initialize(USING_PIN, TEST_PIN);
+  initialize(USING_PIN);
   return 0;
 }
 
@@ -28,7 +26,7 @@ int start_hover() {
  * @brief stop the fan
  */
 int stop_hover() {          
-  hover_func(stop, USING_PIN, TEST_PIN);
+  hover_func(stop, USING_PIN);
   return 0;
 }
 
@@ -36,35 +34,35 @@ int stop_hover() {
  * @brief minimize the speed
  */
 int hover_min() {
-  hover_func(normal, USING_PIN, TEST_PIN);
+  hover_func(normal, USING_PIN);
   return 0;
 }
 
-/*!
+/**
  * @brief maximize the speed
  */
 int hover_max() {
-  hover_func(turbo, USING_PIN, TEST_PIN);
+  hover_func(turbo, USING_PIN);
   return 0;
 }
 
-/*!
+/**
  * @brief decrease the speed
  */
 int decrease_hover() {       
-  hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL);
+  hover_change(decrease, USING_PIN,HOVER_LEVEL);
   return 0;
 }
 
-/*!
+/**
  * @brief increase the speed
  */
 int increase_hover() {
-  hover_change(increase, USING_PIN, TEST_PIN, HOVER_LEVEL);
+  hover_change(increase, USING_PIN, HOVER_LEVEL);
   return 0;
 }
 
-/*!
+/**
  * @brief fan speed cotrolled by pressure sensor automatically
  */
 int autocontrol() {       
