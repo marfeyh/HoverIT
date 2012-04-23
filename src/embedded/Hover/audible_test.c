@@ -12,14 +12,13 @@
  */
 
 /* Includes */
-#include <Arduino.h> 
+#include <Arduino.h>
 #include <searduino.h>
 #include <print_audible_test.h>
-#include <pin.h>
 
 /* Defines */
-#define BEEP 254;
-#define SILENCE 0;
+#define BEEP 254
+#define SILENCE 0
 #define SILENT_DELAY_TIME 50
 // I can not use defines
 //should i declare  loop_ count and loop_number in each function?	
@@ -34,101 +33,101 @@ int silence_delay_time;
 
 /* Functions */
 
-int test_start (void) {
+int test_start (int test_pin) {
 	beep_time = 100;
 	silence_time = 50;
 	loop_number = 8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TEST_PIN, 254);
+		analogWrite (test_pin, 254);
 		delay (beep_time);
-		analogWrite (TEST_PIN, 0);
+		analogWrite (test_pin, 0);
 		delay (silence_time);
 	}
-	silent_delay();
+	silent_delay(test_pin);
 	return 0;
 }
 
-int test_stop (void) {
+int test_stop (int test_pin) {
 	beep_time = 100;
 	silence_time = 300;
 	loop_number = 4;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TEST_PIN, 254);
+		analogWrite (test_pin, 254);
 		delay (beep_time);
-		analogWrite (TEST_PIN, 0);
+		analogWrite (test_pin, 0);
 		delay (silence_time);
 	}
-	analogWrite (TEST_PIN, 254);
+	analogWrite (test_pin, 254);
 	delay (500);
-	silent_delay();
+	silent_delay(test_pin);
 	return 0;
 }
 
-int test_normal (void){
+int test_normal (int test_pin){
 	beep_time=200;
 	silence_time=50;
 	loop_number=6;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TEST_PIN, 254);
+		analogWrite (test_pin, 254);
 		delay (beep_time);
-		analogWrite (TEST_PIN, 0);
+		analogWrite (test_pin, 0);
 		delay (silence_time);
 	}
-	silent_delay();
+	silent_delay(test_pin);
 	return 0;
 }
 
 
-int test_turbo (void) {
+int test_turbo (int test_pin) {
 	beep_time=50;
 	silence_time=50;
 	loop_number=8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TEST_PIN, 254);
+		analogWrite (test_pin, 254);
 		delay (beep_time);
-		analogWrite (TEST_PIN, 0);
+		analogWrite (test_pin, 0);
 		delay (silence_time);
 	}
-	silent_delay();
+	silent_delay(test_pin);
 	return 0;
 }
 
-int test_analogwrite (void){
+int test_analogwrite (int test_pin){
 	beep_time=10;
 	silence_time=50;
 	loop_number=2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TEST_PIN, 254);
+		analogWrite (test_pin, 254);
 		delay (beep_time);
-		analogWrite (TEST_PIN, 0);
+		analogWrite (test_pin, 0);
 		delay (silence_time);
 	}
-	silent_delay();
+	silent_delay(test_pin);
 	return 0;
 }
-int test_Too_low (void){
+int test_Too_low (int test_pin){
 	beep_time=20;
 	silence_time=50;
 	loop_number=2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (TEST_PIN, 254);
+		analogWrite (test_pin, 254);
 		delay (beep_time);
-		analogWrite (TEST_PIN, 0);
+		analogWrite (test_pin, 0);
 		delay (silence_time);
 	}
-	silent_delay();
+	silent_delay(test_pin);
 	return 0;
 }
 
-int test_Too_high (void){
+int test_Too_high (int test_pin){
 	return 0;
 }
 
-int test_throttle_Stick_is_bottom (void){
+int test_throttle_Stick_is_bottom (int test_pin){
 	return 0;
 }
 
-int test_motor_already_started (void){
+int test_motor_already_started (int test_pin){
 	return 0;
 }
 
@@ -150,8 +149,8 @@ int test_set_fixed_level (int throttle_stick_level){
 	return throttle_stick_level;
 }
 
-int silent_delay(void){
-	analogWrite (TEST_PIN, 0);
+int silent_delay(int test_pin){
+	analogWrite (test_pin, 0);
 	delay (SILENT_DELAY_TIME);
 	return 0;
 }

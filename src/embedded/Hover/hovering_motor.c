@@ -21,14 +21,15 @@
 /* Functions */
 
 /* Function that gets arguments for start or stop the motor */
-int hover_func (int (*func)(int), int using_pin){
-	func (using_pin);
+int hover_func (int (*func)(int,int), int using_pin, int test_pin){
+	func (using_pin, test_pin);
 	return 0;
 	}
 
 /* Fucntion that gets arguments for change the speed of motor */
-int hover_change (int (*climb_decesnd)(int, int), int using_pin, int level){
-	climb_decesnd(using_pin, level);
+int hover_change (int (*climb_decesnd)(int, int, int), int using_pin, \
+int test_pin, int level){
+	climb_decesnd(using_pin, test_pin, level);
 	return 0;
 }
 
