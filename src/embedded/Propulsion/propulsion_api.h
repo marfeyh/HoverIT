@@ -48,4 +48,4 @@ int stop_propulsion_fan();
 @param integer between 0 and 122
 @returns -1 for error or current fan speed
 */
-int set_propulsion_fan(int speed)
+int set_propulsion_fan(int set_speed)
