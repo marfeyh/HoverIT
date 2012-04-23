@@ -1,6 +1,5 @@
 SRC_DIR =../
-SRC_C = ../hovering_motor.c ../hovering_control.c ../hovering_init_fix.c \
-	../hover_api.c ../pressure_check.c ../pressure.c hovering_check.c
+SRC_C = hovering_check.c
 MAIN_SRC = test_main.c
 
 SEARDUINO_PATH = /opt/searduino
