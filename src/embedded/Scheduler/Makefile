@@ -7,7 +7,12 @@ PROG = Scheduler
 SRC_C= list.c
 SRC_CXX= 
 MAIN_SRC = 
+<<<<<<< HEAD
 ARDUINO = uno
+=======
+ARDUINO = stub
+#ARDUINO = mega2560
+>>>>>>> b3c0cb5afecd9e739d2cb73f7a849bb75681927f
 SHLIB = scheduler.so
 
 LIB = libscheduler.a
