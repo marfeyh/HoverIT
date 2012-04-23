@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /** 
 * @file propulsion_api.c 
 * @headerfile propulsion.h
@@ -106,6 +107,8 @@ int get_propulsion_level(){
 
 
 =======
+=======
+>>>>>>> 87fa6b315e7755ffd596415d370cb509e3f07ae3
 /*!
   @file propulsion_api.c 
   @headerfile propulsion.h
@@ -126,7 +129,10 @@ int get_propulsion_level(){
 int start_propulsion_fan()
 {
   initialise_propulsion();
+<<<<<<< HEAD
   init_motor();
+=======
+>>>>>>> 87fa6b315e7755ffd596415d370cb509e3f07ae3
   return 0;
 }
 
@@ -205,4 +211,7 @@ int get_propulsion_level(){
 }
 
 
+<<<<<<< HEAD
 >>>>>>> f0eff24cb01f2f824d53c7cb953e72bf59cf9c2f
+=======
+>>>>>>> 87fa6b315e7755ffd596415d370cb509e3f07ae3

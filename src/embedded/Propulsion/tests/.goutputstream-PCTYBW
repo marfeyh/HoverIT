@@ -1,0 +1,2 @@
+testobj: check_propelsion.c
+	gcc -c check_propelsion.c -I $(SRC_DIR) -I . -o check_propelsion.o
