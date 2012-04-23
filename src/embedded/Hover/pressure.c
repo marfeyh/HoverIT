@@ -25,21 +25,21 @@ int get_pressure() {
 }
 
 /*!
-@brief generate air pressure higher than preferred 
+@brief Generates fake air pressure higher than preferred 
 */
 int get_positive() {
   return 70;
 }
 
 /*!
-@brief generate air pressure lower than preferred 
+@brief Generates fake air pressure lower than preferred 
 */
 int get_negative() {
   return 30;
 }
 
 /*!
-@brief generate air pressure equal to preferred
+@brief Generates fake air pressure equal to preferred
 */
 int get_equal() {
   return 50;
