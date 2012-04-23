@@ -12,7 +12,7 @@
  */
 
 /* Includes */
-#include "Arduino.h" /* Arduino header */
+#include <Arduino.h> /* Arduino header */
 #include <hovering_motor.h>
 #include <hovering_control.h>
 #include <hovering_init_fix.h>
@@ -34,9 +34,6 @@ int throttle_stick_level = 0;
 /* Start the motor */
 int start(int using_pin, int test_pin) {
 	/* Set the level to 100 or Start the hovering motor*/
-int start(int using_pin){
-	/* Set the throttle stick is in the buttom position if the motor
-	   has not been started */
 	if (throttle_stick_level < THROTTLE_STICK_BOTTOM_LEVEL){
 		throttle_stick_bottom(using_pin, test_pin);
 	}
@@ -50,12 +47,11 @@ if the motor has not been started (The minimum acceptable value for ESC) */
 int throttle_stick_bottom(int using_pin, int test_pin) {
 	throttle_stick_level = THROTTLE_STICK_BOTTOM_LEVEL;
 	set_level(using_pin, test_pin, throttle_stick_level);
-/* Set the output signal to minimum acceptable for ESC */
-int throttle_stick_bottom (int using_pin){
-	pin_program(using_pin, THROTTLE_STICK_BOTTOM_LEVEL);
 	delay(1000);
-	/* Test code */
-	test_throttle_Stick_is_bottom (test_pin);
+	/* Test code */	
+	#if defined STUB_TEST	
+		test_throttle_Stick_is_bottom (test_pin);
+	#endif
 	return 0;
 }
 
@@ -63,11 +59,6 @@ int throttle_stick_bottom (int using_pin){
 int normal (int using_pin,int test_pin){
 	throttle_stick_level = LOWEST_LEVEL;
 	set_level(using_pin, test_pin, throttle_stick_level);
-
-/* Set the motor to lowest rotating speed */
-int normal (int using_pin){
-	throttle_stick_level = LOWEST_LEVEL;
-	pin_program(using_pin,throttle_stick_level);
 	/* Test code */
 	test_normal (test_pin);	
 	return 0;
@@ -77,10 +68,6 @@ int normal (int using_pin){
 int turbo (int using_pin,int test_pin){
 	throttle_stick_level = HIGHEST_LEVEL;
 	set_level(using_pin, test_pin, throttle_stick_level);
-/* Set the motor to highest rotating speed */
-int turbo (int using_pin){
-	throttle_stick_level = HIGHEST_LEVEL;
-	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
 	test_turbo (test_pin);	
 	return 0;
@@ -90,10 +77,6 @@ int turbo (int using_pin){
 int stop (int using_pin, int test_pin){
 	throttle_stick_level = STOP_LEVEL;
 	set_level(using_pin, test_pin, throttle_stick_level);
-/* stop the motor */
-int stop (int using_pin){
-	throttle_stick_level = STOP_LEVEL;
-	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
 	test_stop (test_pin);
 	return 0;
@@ -104,12 +87,10 @@ int increase (int using_pin, int test_pin, int level){
 	throttle_stick_level = check_and_fix_level_increase(using_pin, \
 	test_pin, throttle_stick_level, level);
 	set_fixed_level (using_pin, test_pin, throttle_stick_level);
-int increase (int using_pin, int level){
-	throttle_stick_level += level;
-	check_and_fix_level(using_pin, throttle_stick_level);
-	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
-	test_increase (test_pin);
+	#if defined STUB_TEST
+		test_increase (throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -118,12 +99,10 @@ int decrease (int using_pin, int test_pin, int level){
 	throttle_stick_level = check_and_fix_level_decrease (using_pin, \
 	test_pin, throttle_stick_level, level);
 	set_fixed_level (using_pin, test_pin, throttle_stick_level);
-int decrease (int using_pin, int level){
-	throttle_stick_level -= level;
-	check_and_fix_level(using_pin, throttle_stick_level);
-	pin_program(using_pin, throttle_stick_level);
 	/* Test code */
-	test_decrease (test_pin);
+	#if defined STUB_TEST
+		test_decrease (throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -131,7 +110,9 @@ int decrease (int using_pin, int level){
 int set_level(int using_pin, int test_pin, int level){
 	pin_program (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_set_level (test_pin);
+	#if defined STUB_TEST
+		test_set_level (throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -142,12 +123,8 @@ int set_fixed_level (int using_pin, int test_pin, int level){
 	check_and_fix_level (using_pin, test_pin, throttle_stick_level);
 	set_level (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_set_fixed_level (test_pin);
-int set_level (int using_pin, int level){
-	throttle_stick_level = level;
-	check_and_fix_level(using_pin, throttle_stick_level);
-	pin_program(using_pin, throttle_stick_level);
-	/* Test code */
-	test_set_level (throttle_stick_level);
+	#if defined STUB_TEST
+		test_set_level (throttle_stick_level);
+	#endif
 	return 0;
 }

@@ -27,9 +27,9 @@
 		int level;
 		int delay_time;
 	} FUNCS;
-	
+
 	/* Function prototypes */
-	
+
 	/* Function that gets arguments for start or stop the motor */
 	int hover_func(int (*func)(int,int), int using_pin, int test_pin);
 	/* Fucntion that gets arguments for change the speed of motor */	

@@ -30,12 +30,12 @@
 	 (Check boundary values)*/
 	int check_and_fix_level(int using_pin,int test_pin, \
 	 int throttle_stick_level);
-	/* This function prevents the motor from stop (Check boundary values)
-	and also prevent increase to function when the motor is stopped */
+	/* This function prevent increase to function when the motor \
+	 is stopped */
 	int check_and_fix_level_increase (int using_pin, int test_pin, \
 	int throttle_stick_level, int level);	
-	/* This function prevents the motor from stop (Check boundary values)
-	and also prevent decrease to function when the motor is stopped */
+	/* This function prevents decrease to function when the motor \
+	is stopped */
 	int check_and_fix_level_decrease (int using_pin, int test_pin, \
 	int throttle_stick_level, int level);
 
