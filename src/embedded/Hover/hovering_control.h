@@ -29,22 +29,22 @@
 	/* Set the level to 120 or stop the motor */
 	int stop(int using_pin, int test_pin);
 	/* Start the hovering motor*/
-	int start(int using_pin);
+	//int start(int using_pin);
 	/* Set the throttle stick
 	 is in the buttom position if the motor has not been started */
-	int throttle_stick_bottom(int using_pin);
+	//int throttle_stick_bottom(int using_pin);
 	/* Set the motor to lowest rotating speed */
-	int normal(int using_pin);
+	//int normal(int using_pin);
 	/* Set the motor to highest rotating speed */
-	int turbo(int using_pin);
+	//int turbo(int using_pin);
 	/* stop the motor */
-	int stop(int using_pin);
+	//int stop(int using_pin);
 	/* set the motor rotating speed to specified level */
-	int set_level(int using_pin, int level);
+	//int set_level(int using_pin, int level);
 	/* Increase the motor rotating speed level times */
 	int increase(int using_pin, int test_pin, int level);
 	/* decrease the motor rotating speed level times */
-	int decrease(int using_pin, int test_pin, int level);
+	//int decrease(int using_pin, int test_pin, int level);
 	/* set the motor rotating speed to specified level */
 	int set_level(int using_pin, int test_pin, int level);
 	/* set the motor rotating speed to specified to the level which
