@@ -1,15 +1,9 @@
-/*
-2	
- * @ Module name:  main.c
-3	
- * @ Description:  Contains the functions that will send a tone to pin 11 (speakers)based on battery level it will generate different frequencies 
-4	
- * @ Author names :Neda Mohammadian
-5	
- * @ Release      :23 April 2012
-6	
- * @ Version      : 2
-7	
+/*	
+ * @ Module name:  main.c	
+ * @ Description:  Contains the functions that will send a tone to pin 11 (speakers)based on battery level it will generate different frequencies 	
+ * @ Author names :Neda Mohammadian	,mahsa mirtalebi
+ * @ Release      :23 April 2012	(//first release in 17 april)
+ * @ Version      : 2	
  */
 
 #include <Arduino.h>
@@ -31,7 +25,7 @@ void setup_battery_level(){
 void exec() {
 	for(;;){
 		loop_battery_level();
-		digitalRead(13) ? digitalWrite(13,LOW) : digitalWrite(13,HIGH);
+		//digitalRead(13) ? digitalWrite(13,LOW) : digitalWrite(13,HIGH);
 		// Delay will be removed in integrated version
 		delay(100);
 	}

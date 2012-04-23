@@ -1,16 +1,10 @@
 /*
-2	
- * @ Module name:  main.c
-3	
- * @ Description:  main file to run functions in alarm.c
-4	
- * @ Author names :Neda MOhammadian
-5	
- * @ Release      :17 April 2012
-6	
- * @ Version      : 1
-7	
- */
+* @ Module name:  main.c
+* @ Description:  main file to run functions in alarm.c
+* @ Author names :Neda MOhammadian
+* @ Release      :17 April 2012
+* @ Version      : 1
+*/
 #include <Arduino.h>
 #include <searduino.h>
 #include <alarm.h>

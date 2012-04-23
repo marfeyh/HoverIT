@@ -1,16 +1,10 @@
 /*
-2	
  * @ Module name:  alarm.h
-3	
  * @ Description:  Header file alarm.c
-4	
  * @ Author names :Neda Mohammadian
-5	
  * @ Release      :17 April 2012
-6	
- * @ Version      : 1
-7	
- */
+ * @ Version      : 2
+*/
  
  #ifndef ALARM_H
 #define ALARM_H
