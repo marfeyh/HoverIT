@@ -70,7 +70,7 @@ gcovbcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
 
 memcheck: debug
-	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
+	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
 
 clean-tests: clean
 	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
