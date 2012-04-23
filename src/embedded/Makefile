@@ -26,6 +26,9 @@ gcovcheck:
 	$(MAKE) gcovcheck -C Propulsion
 	gcovr -x --xml > coverage.xml
 
+memcheck:
+	$(MAKE) memcheck -C Propulsion
+
 clean-tests:
 	$(MAKE) clean-tests -C Propulsion
 
