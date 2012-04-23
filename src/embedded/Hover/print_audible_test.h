@@ -12,5 +12,5 @@ int test_decrease (int throttle_stick_level);
 int test_set_level (int throttle_stick_level);
 int test_set_fixed_level (int throttle_stick_level);
 int silent_delay(int test_pin);
-int silent_delay(void);
+int silent_delay();
 
