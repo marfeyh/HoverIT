@@ -17,7 +17,7 @@
 #include <print_audible_test.h>
 
 /* Defines */
-#define BEEP 254
+#define BEEP BEEP
 #define SILENCE 0
 #define SILENT_DELAY_TIME 50
 
@@ -38,7 +38,7 @@ int test_start (int test_pin) {
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
 		analogWrite (test_pin, BEEP);
 		delay (beep_time);
-		analogWrite (test_pin, 0);
+		analogWrite (test_pin, SILENCE);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);
@@ -50,40 +50,39 @@ int test_stop (int test_pin) {
 	silence_time = 300;
 	loop_number = 4;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, 254);
+		analogWrite (test_pin, BEEP);
 		delay (beep_time);
-		analogWrite (test_pin, 0);
+		analogWrite (test_pin, SILENCE);
 		delay (silence_time);
 	}
-	analogWrite (test_pin, 254);
+	analogWrite (test_pin, BEEP);
 	delay (500);
 	silent_delay(test_pin);
 	return 0;
 }
 
 int test_normal (int test_pin){
-	beep_time=200;
-	silence_time=50;
-	loop_number=6;
+	beep_time = 200;
+	silence_time = 50;
+	loop_number = 6;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, 254);
+		analogWrite (test_pin, BEEP);
 		delay (beep_time);
-		analogWrite (test_pin, 0);
+		analogWrite (test_pin, SILENCE);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);
 	return 0;
 }
 
-
 int test_turbo (int test_pin) {
-	beep_time=50;
-	silence_time=50;
-	loop_number=8;
+	beep_time = 50;
+	silence_time = 50;
+	loop_number = 8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, 254);
+		analogWrite (test_pin, BEEP);
 		delay (beep_time);
-		analogWrite (test_pin, 0);
+		analogWrite (test_pin, SILENCE);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);
@@ -91,21 +90,58 @@ int test_turbo (int test_pin) {
 }
 
 int test_analogwrite (int test_pin){
-	beep_time=10;
-	silence_time=50;
-	loop_number=2;
+	beep_time = 10;
+	silence_time = 50;
+	loop_number = 2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, 254);
+		analogWrite (test_pin, BEEP);
 		delay (beep_time);
-		analogWrite (test_pin, 0);
+		analogWrite (test_pin, SILENCE);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);
 	return 0;
 }
 
+int test_motor_already_started (int test_pin){
+	beep_time = 100;
+	silence_time = 50;
+	loop_number = 4;	
+	for (loop_count = 0; loop_count < loop_number; loop_count++){
+		analogWrite (test_pin, BEEP);
+		delay (beep_time);
+		analogWrite (test_pin, SILENCE);
+		delay (silence_time);
+	}
+	analogWrite (test_pin, BEEP);
+	delay (50);	
+	silent_delay(test_pin);
+	return 0;
+}
+
+int test_Too_low (int test_pin){
+	beep_time = 200;
+	silence_time = 200;
+	loop_number = 3;
+	for (loop_count = 0; loop_count < loop_number; loop_count++){
+		analogWrite (test_pin, BEEP);
+		delay (beep_time);
+		analogWrite (test_pin, SILENCE);
+		delay (silence_time);
+	}
+	analogWrite (test_pin, BEEP);
+	delay (50);	
+	silent_delay(test_pin);
+	return 0;
+}
+
+int test_Too_high (int test_pin){
+	test_Too_low (test_pin);
+	return 0;
+}
+
 int silent_delay(int test_pin){
-	analogWrite (test_pin, 0);
+	analogWrite (test_pin, SILENCE);
 	delay (SILENT_DELAY_TIME);
 	return test_pin;
 }

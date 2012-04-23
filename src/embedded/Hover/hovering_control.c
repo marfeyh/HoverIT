@@ -49,7 +49,9 @@ int throttle_stick_bottom(int using_pin, int test_pin) {
 	set_level(using_pin, test_pin, throttle_stick_level);
 	delay(1000);
 	/* Test code */	
-	test_throttle_Stick_is_bottom (test_pin);
+	#if defined STUB_TEST	
+		test_throttle_Stick_is_bottom (test_pin);
+	#endif
 	return 0;
 }
 
@@ -86,7 +88,7 @@ int increase (int using_pin, int test_pin, int level){
 	test_pin, throttle_stick_level, level);
 	set_fixed_level (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	#if defined STUB_TEST 
+	#if defined STUB_TEST
 		test_increase (throttle_stick_level);
 	#endif
 	return 0;
