@@ -20,6 +20,8 @@
 # SRC_FILES can be set by a calling makefile to set the files of the src folder
 #
 
+UBRR1H=ture
+
 SRC_DIR=../
 SRC_C=
 SRC_CXX=
@@ -43,8 +45,9 @@ USER_LD_FLAGS += -lcheck
 USER_OBJ_PATH = ./objs/
 
 
-SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
-SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+#SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
+#SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+SRC_C = ../message_handler.c
 
 .PHONY: check clean-tests
 
@@ -70,9 +73,12 @@ gcovbcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
 
 memcheck: debug
-	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
+	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
 
 clean-tests: clean
-	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+
+

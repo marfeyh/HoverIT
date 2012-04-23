@@ -1,6 +1,7 @@
 #include<check.h>
 #include<stdlib.h>
 #include<message_handler.h>
+#include <conventions.h>
 
 START_TEST (parseBinaryTest) {
   int i = 0b00000000;
@@ -196,7 +197,7 @@ START_TEST (check_number_limit_Test) {
  * to be availbale in weki to the other group so as they can call and 
  * use them when ever they want     
 **/
-
+/**
 START_TEST (API_fan_forward_speed_Test) {
   unsigned char i =  0b00000000;
   for (; i < 0b00010000 ; i++)
@@ -244,6 +245,48 @@ START_TEST (API_battery_level_Test) {
 
  } END_TEST
 
+**/
+ START_TEST(increase_decrease_Test){
+   /**
+    *according to the protocol for the value of the range 8 (ob00001000) and 
+    * 15 (0b00001111) the program should return 1 as increase anything else shoul     *d return 255
+    **/
+     unsigned char i= 0b00001000;
+     for(; i < 0b00001111; i++){
+        fail_unless(increase_decrease(&i)==1);    
+     }
+     for(i=0b00001111; i<0b11111111; i++){
+        fail_if(increase_decrease(&i)==255);
+     }
+}END_TEST
+START_TEST(get_direction_Test){
+  /**
+   * this test function checks the get_direction, for any 8 bit binary number
+   * should return a number in the reange 0 to 5
+  **/
+    unsigned char i=0b00000000;
+    for(; i < 0b11111111; i++){
+      fail_unless(get_direction(&i)== 0 | 1 | 2 | 3 | 4 | 5);
+     }
+    for( ; i < 0b11111111; i++){
+      fail_if(get_direction(&i)== 6 | 7 | 12 | -1 | -3 | 88);
+     }
+}END_TEST
+
+START_TEST(get_value_fans_Test){
+  /**
+   *this test function checks the get_value function gets its exact value whic is
+   * in the range 0 to 7 and sholud fail other than te satated range
+   **/ 
+  unsigned char i=0b00000000;
+  for(; i < 0b11111111; i++){
+    fail_unless(get_value_fans(&i)== 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7);
+  }
+  for( ; i < 0b11111111; i++){
+    fail_if(get_value_fans(&i)== -6 | -7 | 12 | -1 | -3 | 88 | 55 | 200);
+  }
+}END_TEST
+
 
 
 Suite* test_hello(void) {
@@ -256,6 +299,7 @@ Suite* test_hello(void) {
   tcase_add_loop_test(tc, hovecraft_speed_test, 0, 6);
   tcase_add_loop_test(tc, hovecraft_pressure_test, 0, 7);
   tcase_add_loop_test(tc, battery_level_test, 0, 7);
+  
 
  // tcase_add_test(tc,findMessageTest);
   tcase_add_test(tc,create_fan_forward_speed_Test);
@@ -265,11 +309,16 @@ Suite* test_hello(void) {
   tcase_add_test(tc,create_hovercraft_pressure_Test);
   tcase_add_test(tc,create_battery_level_Test);
   tcase_add_test(tc, check_number_limit_Test);
+  tcase_add_test(tc,increase_decrease_Test);
+  tcase_add_test(tc,get_direction_Test);
+  tcase_add_test(tc,get_value_fans_Test);
+ /**
   tcase_add_test(tc, API_fan_forward_speed_Test);
   tcase_add_test(tc, API_fan_hovering_speed_Test);
   tcase_add_test(tc, API_ruder_direction_Test);
   tcase_add_test(tc, API_hovercraft_speed_Test);
   tcase_add_test(tc, API_battery_level_Test);
+**/
  
   suite_add_tcase(s, tc);
   return s;

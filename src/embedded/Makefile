@@ -21,9 +21,11 @@ all:
 
 check:
 	$(MAKE) check -C Propulsion
+	$(MAKE) check -C Communication
 
 gcovcheck:
 	$(MAKE) gcovcheck -C Propulsion
+	$(MAKE) gcovcheck -C Communication
 	gcovr -x --xml > coverage.xml
 
 memcheck:
@@ -31,8 +33,9 @@ memcheck:
 
 clean-tests:
 	$(MAKE) clean-tests -C Propulsion
+	$(MAKE) clean-tests -C Communication
 
-clean:
+clean: clean-tests
 	$(MAKE) clean -C Scheduler
 	$(MAKE) clean -C Communication
 	$(MAKE) clean -C Propulsion

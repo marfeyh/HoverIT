@@ -58,8 +58,8 @@ void check_serial_input() {
 				switch (message_type) { // call the API functions based on message type
 				case FAN_FORWARD_SPEED:
 					/* message type is 0000 */
-					if (1 == is_increase(&result)) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = getValue_fans(&result); // check the last bit
+					if (1 == increase_decrease(&result)) { // first bit is 1 then either increasing or decreasing
+						unsigned char res_value = get_value_fans(&result); // check the last bit
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00001000 */
@@ -94,8 +94,8 @@ void check_serial_input() {
 					break;
 				case FAN_HOVERING_SPEED:
 					/* message type is 0001 */
-					if (is_increase(&result) == 1) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = getValue_fans(&result); // check the last bit
+					if (increase_decrease(&result) == 1) { // first bit is 1 then either increasing or decreasing
+						unsigned char res_value = get_value_fans(&result); // check the last bit
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00011000 */
