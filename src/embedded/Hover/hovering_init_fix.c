@@ -22,7 +22,7 @@
 
 /* 	Setting using_pin and test pin and start the motor */
 int initialize (int using_pin, int test_pin){
-	pinMode (test_pin, OUTPUT)
+	pinMode (test_pin, OUTPUT);
 	pinMode (using_pin, OUTPUT);
 	hover_func (start, using_pin, test_pin);	
 	delay (1000);
