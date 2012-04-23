@@ -1,7 +1,10 @@
-/* 
-Author: Eva-Lisa Kedborn, Jing Liu
-Date: 2012-03-26
-Description: A stub to generate fake air pressure inside the hovercraft skirt
+/*!
+@file hover_api.c
+@headerfile pressure.h
+@author Eva-Lisa Kedborn
+@author Jing Liu
+@date 2012-03-26
+@brief Stub to generate fake air pressure inside the hovercraft skirt
 */
 
 #include <stdio.h>
@@ -11,7 +14,10 @@ Description: A stub to generate fake air pressure inside the hovercraft skirt
 #endif
 #include <pressure.h>
 
-int get_pressure() {   /* generate a random air pressure */
+/*!
+@brief Generates a fake random air pressure inside the hovercraft skirt
+*/ 
+int get_pressure() {
   int random;
   srand(time(NULL));
   random = rand() % 100;
