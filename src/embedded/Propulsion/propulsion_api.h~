@@ -42,3 +42,10 @@ int get_propulsion_level();
 @returns 0
 */
 int stop_propulsion_fan();
+
+/*!
+@brief Function to set propulsion fan speed
+@param integer between 0 and 122
+@returns -1 for error or current fan speed
+*/
+int set_propulsion_fan(int speed)

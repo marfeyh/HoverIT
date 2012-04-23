@@ -1,26 +1,19 @@
-/** 
-* @file propulsion_api.c 
-* @headerfile propulsion.h
-* @headerfile propulsion_api.h
-* @Description: This file is the propulsion fan speed API 
+/*!
+  @file propulsion_api.c 
+  @headerfile propulsion.h
+  @headerfile propulsion_api.h
+  @Description: This file is the propulsion fan speed API 
                 and use propulsion file to stop,increase or decrease the speed. 
-* @author Xinran He, Khatereh Khosravianarab
-* @version 0.6
-* @date 2012-03-25
+  @author Xinran He, Khatereh Khosravianarab
+  @version 0.6
+  @date 2012-03-25
 */
-
-/*	
- * ======================================================================
- * API functions
- * ======================================================================
- */
 
 #include <propulsion.h>
 #include <propulsion_api.h>
 
-
-/**
- * @brief initialise propulsion fan
+/*!
+@brief initialise propulsion fan
  */
 int start_propulsion_fan()
 {
@@ -29,8 +22,8 @@ int start_propulsion_fan()
   return 0;
 }
 
-/**
- * @brief increase propulsion fan speed
+/*!
+@brief increase propulsion fan speed
  */
 int increase_propulsion(){
   int speed = get_speed_level();
@@ -45,8 +38,8 @@ int increase_propulsion(){
   return -1;
 }
 
-/**
- * @brief decrease propulsion fan speed
+/*!
+@brief decrease propulsion fan speed
  */
 int decrease_propulsion(){
   int speed = get_speed_level();
@@ -61,30 +54,30 @@ int decrease_propulsion(){
   return -1;
 }
 
-/**
- * @brief set a specific speed number
+/*!
+@brief set a specific speed number
  */
-int set_propulsion_fan(int speed){
-  if( speed < 0 || speed > 122 ){
+int set_propulsion_fan(int set_speed){
+  if( set_speed < 0 || set_speed > 122 ){
      stop_pro_fan();
      return -1;
   }
   else{
-    change_pro_speed(speed);
-    return speed;
+    change_pro_speed(set_speed);
+    return set_speed;
   }
 }
 
-/**
- * @brief stop propulsion fan speed
+/*!
+@brief stop propulsion fan speed
  */
 int stop_propulsion_fan(){
   stop_pro_fan();
   return 0;
 }
 
-/**
- * @brief specify the propulsion fan level
+/*!
+@brief specify the propulsion fan level
  */
 int get_propulsion_level(){
   int speed = get_speed_level();

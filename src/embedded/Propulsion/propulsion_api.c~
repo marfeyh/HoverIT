@@ -64,14 +64,14 @@ int decrease_propulsion(){
 /**
  * @brief set a specific speed number
  */
-int set_propulsion_fan(int speed){
-  if( speed < 0 || speed > 122 ){
+int set_propulsion_fan(int set_speed){
+  if( set_speed < 0 || set_speed > 122 ){
      stop_pro_fan();
      return -1;
   }
   else{
-    change_pro_speed(speed);
-    return speed;
+    change_pro_speed(set_speed);
+    return set_speed;
   }
 }
 
