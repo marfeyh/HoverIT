@@ -16,7 +16,9 @@ int main(void) {
 		start_hover();
 		hover_min();
 		delay(1000);
-		hover_max();
+		//hover_max();
+		delay(2000);
+		increase_hover();
 		delay(2000);
 		stop_hover();
 	//}

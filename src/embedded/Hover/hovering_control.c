@@ -86,7 +86,9 @@ int increase (int using_pin, int test_pin, int level){
 	test_pin, throttle_stick_level, level);
 	set_fixed_level (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_increase (test_pin);
+	#if defined STUB_TEST 
+		test_increase (throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -96,7 +98,9 @@ int decrease (int using_pin, int test_pin, int level){
 	test_pin, throttle_stick_level, level);
 	set_fixed_level (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_decrease (test_pin);
+	#if defined STUB_TEST
+		test_decrease (throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -104,7 +108,9 @@ int decrease (int using_pin, int test_pin, int level){
 int set_level(int using_pin, int test_pin, int level){
 	pin_program (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_set_level (throttle_stick_level);
+	#if defined STUB_TEST
+		test_set_level (throttle_stick_level);
+	#endif
 	return 0;
 }
 
@@ -115,6 +121,8 @@ int set_fixed_level (int using_pin, int test_pin, int level){
 	check_and_fix_level (using_pin, test_pin, throttle_stick_level);
 	set_level (using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_set_level (throttle_stick_level);
+	#if defined STUB_TEST
+		test_set_level (throttle_stick_level);
+	#endif
 	return 0;
 }

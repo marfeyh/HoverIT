@@ -5,9 +5,9 @@ PROG = hovering
 # Add your source files here
 SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
 	hover_api.c pressure_check.c pressure.c
-MAIN_SRC = main.c
-#ARDUINO = uno
-#ARDUINO = mega
+MAIN_SRC = main.c # When using uno or mega, should be commented
+#ARDUINO = uno # When using stub or mega, should be commented
+#ARDUINO = mega # When using stub or uno, should be commented
 ARDUINO = stub
 SHLIB = hovering.so
 
