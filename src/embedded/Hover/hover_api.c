@@ -26,7 +26,7 @@ int start_hover() {
  * @brief stop the fan
  */
 int stop_hover() {          
-  hover_func(stop, USING_PIN);
+  hover_func(stop, USING_PIN, TEST_PIN);
   return 0;
 }
 
@@ -50,7 +50,7 @@ int hover_max() {
  * @brief decrease the speed
  */
 int decrease_hover() {       
-  hover_change(decrease, USING_PIN, HOVER_LEVEL);
+  hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL);
   return 0;
 }
 
