@@ -21,13 +21,13 @@ void teardown (void) {
 /* PROPULSION_API UNIT TESTS */
 
 /* 
-    Id/Title: AK1/test increase propulsion speed
+    Id/Title: tc-06(XK1)/test increases propulsion speed
     Purpose: test if user increase propulsion fan over the
 	      maximum value of fan
     Prerequisites: initialize propulsion fan
     Expected results: propulsion fan speed should keep the 
                       highest level without any errors
-    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
 START_TEST(Test_Pro){
@@ -40,11 +40,11 @@ START_TEST(Test_Pro){
 
 
 /* 
-    Id/Title: AK2/test increase propulsion speed
+    Id/Title: tc-07(XK2)/test increase propulsion speed
     Purpose: test if user keep decreasing propulsion fan
     Prerequisites: initialize propulsion fan
     Expected results: propulsion fan speed should stop without errors
-    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_dec){
@@ -57,11 +57,11 @@ START_TEST(test_dec){
 }END_TEST
 
 /* 
-    Id/Title: AK3/get current propulsion fan speed level
+    Id/Title: tc-08(XK3)/test get current propulsion fan speed level
     Purpose: test if user can get right propulsion fan speed level
     Prerequisites: initialize propulsion fan
     Expected results: return right current fan speed level
-    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_fanlevel){
@@ -76,11 +76,11 @@ START_TEST(test_fanlevel){
 
 
 /* 
-    Id/Title: AK4/stop propulsion fan speed
+    Id/Title: tc-09(XK4)/test stop propulsion fan speed
     Purpose: test if the propulsion fan is stoped normally
     Prerequisites: initialize propulsion fan
     Expected results: propulsion fan stop
-    Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_stop){
@@ -90,12 +90,28 @@ START_TEST(test_stop){
     increase_propulsion();
     fail_if(stop_propulsion_fan() != 0, "Expected 0");
 }END_TEST
+
+/* 
+    Id/Title: tc-15(XK5)/test set propulsion fan speed by manual
+    Purpose: user wants to set propulsion fan by himself
+    Prerequisites: initialize propulsion fan
+    Expected results: propulsion fan speed should change to
+	 	      the speed that the user wants
+    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
+                       Failures: 0, Errors: 0
+*/
+START_TEST(Test_set_speed){
+	fail_if(set_propulsion_fan(30) != 30,"Expected 30");
+	fail_if(set_propulsion_fan(50) != 50,"Expected 50");
+	fail_if(set_propulsion_fan(-40) != -1,"Expected -40");
+	fail_if(set_propulsion_fan(500) != -1,"Expected 500");
+}
  /* END OF PROPULSION API UNIT TESTS */
 
 
 /* PROPULSION UNIT TESTS */
 
-/* id: 
+/* id: tc-10(Y1)
    purpose: tests init() function of searduino and setting PIN as output
    prerequisites: none
    expected results: 0 will be returned
@@ -105,7 +121,7 @@ START_TEST(test_init) {
  
 }END_TEST
 
-/* id: 
+/* id: tc-11(Y2)
    purpose: tests the initialising/preparation state of the propulsion
    prerequisites: the searduino init() function is called
    expected results: 0 will be returned
@@ -115,7 +131,7 @@ START_TEST(test_prepare_motor) {
   fail_unless((manage_motor() == 0),NULL);
 }END_TEST
 
-/* id: 
+/* id: tc-12(Y3)
    purpose: tests the stopped state of the propulsion
    prerequisites: 1. the searduino init() function is called
                   2. the propulsion is in another state
@@ -127,7 +143,7 @@ START_TEST(test_stop_motor) {
   fail_unless((manage_motor() == 1),NULL);
 }END_TEST
 
-/* id: 
+/* id: tc-13(Y4)
    purpose: tests the boundary speed level of the propulsion
    prerequisites: 1. the searduino init() function is called
                   2. the propulsion is aleardy initialized
@@ -145,7 +161,7 @@ START_TEST(test_minimum_speed) {
   fail_unless((get_speed_level() == 1),NULL);  
 }END_TEST
 
-/* id: 
+/* id: tc-14(Y5)
    purpose: tests the boundary speed level of the propulsion
    prerequisites: 1. the searduino init() function is called
                   2. the propulsion is aleardy initialized
@@ -182,6 +198,7 @@ Suite * propulsion_suite(void) {
   tcase_add_test(tc, test_dec);
   tcase_add_test(tc, test_fanlevel);
   tcase_add_test(tc, test_stop);
+  tcase_add_test(tc, Test_set_speed);
   suite_add_tcase(s,tc);
   return s;
 }
