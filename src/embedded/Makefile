@@ -24,7 +24,7 @@ check:
 
 gcovcheck:
 	$(MAKE) gcovcheck -C Propulsion
-	gcovr
+	gcovr --xml > coverage.xml
 
 clean-tests:
 	$(MAKE) clean-tests -C Propulsion
