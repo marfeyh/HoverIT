@@ -22,18 +22,26 @@ int get_pressure() {
   srand(time(NULL));
   random = rand() % 100;
   return random ;
-
 }
 
-int get_positive() {   /* generate air pressure higher than preferred */
+/*!
+@brief generate air pressure higher than preferred 
+*/
+int get_positive() {
   return 70;
 }
 
-int get_negative() {  /* generate air pressure lower than preferred */
+/*!
+@brief generate air pressure lower than preferred 
+*/
+int get_negative() {
   return 30;
 }
 
-int get_equal() {  /* generate air pressure equal to preferred */
+/*!
+@brief generate air pressure equal to preferred
+*/
+int get_equal() {
   return 50;
 }
   
