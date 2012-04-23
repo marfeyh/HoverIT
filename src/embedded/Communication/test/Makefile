@@ -20,6 +20,8 @@
 # SRC_FILES can be set by a calling makefile to set the files of the src folder
 #
 
+UBRR1H=ture
+
 SRC_DIR=../
 SRC_C=
 SRC_CXX=
@@ -43,15 +45,14 @@ USER_LD_FLAGS += -lcheck
 USER_OBJ_PATH = ./objs/
 
 
-SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
-SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+#SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
+#SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+SRC_C = ../message_handler.c
 
 .PHONY: check clean-tests
 
 
 check: $(PROG)
-#check:
-	@echo $(OBJ_C) $(OBJ_CXX)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
 gcovcheck: $(PPROG)

@@ -17,9 +17,6 @@
 #include <conventions.h>
 #include <stdio.h> // because of using NULL
 #include <external.h>
-// Header of Motor
-//#include <propulsion_api.h>
-
 // Header of Rudder direction
 //#include <steering.h>
 
@@ -61,28 +58,28 @@ void check_serial_input() {
 				switch (message_type) { // call the API functions based on message type
 				case FAN_FORWARD_SPEED:
 					/* message type is 0000 */
-					if (1 == is_increase(&result)) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = getValue_fans(&result); // check the last bit
+					if (1 == increase_decrease(&result)) { // first bit is 1 then either increasing or decreasing
+						unsigned char res_value = get_value_fans(&result); // check the last bit
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00001000 */
-							//							func_ptr = increase_propulsion;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = increase_propulsion;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Forward increasing Speed in queue\n");
 							break;
 						case DECREASING:
 							/* value was 00001001 */
-							//							func_ptr = decrease_propulsion;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = decrease_propulsion;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Forward decreasing Speed in queue\n");
 							break;
@@ -97,28 +94,28 @@ void check_serial_input() {
 					break;
 				case FAN_HOVERING_SPEED:
 					/* message type is 0001 */
-					if (is_increase(&result) == 1) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = getValue_fans(&result); // check the last bit
+					if (increase_decrease(&result) == 1) { // first bit is 1 then either increasing or decreasing
+						unsigned char res_value = get_value_fans(&result); // check the last bit
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00011000 */
-							//							func_ptr = increase_hover;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = increase_hover;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string(
 									"put Fan Hovering increasing \n");
 							break;
 						case DECREASING:
 							/* value was 00011001 */
-							//							func_ptr = decrease_hover;
-							//							job_ptr->task_p2 = func_ptr;
-							//							job_ptr->job_num = 1;
-							//							job_ptr->prio = RIGHT_NOW;
-							//							job_ptr->type = MOVEMENT;
-							//							putJobInQueue(*job_ptr);
+							func_ptr = decrease_hover;
+							job_ptr->task_p2 = func_ptr;
+							job_ptr->job_num = 1;
+							job_ptr->prio = PRIO_HIGH;
+							job_ptr->type = MOVEMENT;
+							putJobInQueue(*job_ptr);
 							debug_print_string("put Fan Hovering decreasing\n");
 							break;
 						default:
@@ -136,32 +133,32 @@ void check_serial_input() {
 					switch (res_direction) {
 					case STRAIGHT:
 						/* value is 0000 */
-						//						control_rudder(STRAIGHT);
+						control_rudder(STRAIGHT);
 						debug_print_string("STRAIGHT\n");
 						break;
 					case HARD_LEFT:
 						/* value is 0001 */
-						//						control_rudder(HARD_LEFT);
+						control_rudder(HARD_LEFT);
 						debug_print_string("HARD_LEFT\n");
 						break;
 					case HARD_RIGHT:
 						/* value is 0010 */
-						//						control_rudder(HARD_RIGHT);
+						control_rudder(HARD_RIGHT);
 						debug_print_string("HARD_RIGHT\n");
 						break;
 					case SOFT_RIGHT:
 						/* value is 0011 */
-						//						control_rudder(SOFT_RIGHT);
+						control_rudder(SOFT_RIGHT);
 						debug_print_string("SOFT_RIGHT\n");
 						break;
 					case SOFT_LEFT:
 						/* value is 0100 */
-						//						control_rudder(SOFT_LEFT);
+						control_rudder(SOFT_LEFT);
 						debug_print_string("SOFT_LEFT\n");
 						break;
 					case BRAKE:
 						/* value is 0101 */
-						//						control_rudder(BRAKE);
+						control_rudder(BRAKE);
 						debug_print_string("BRAKE\n");
 						break;
 					default:
