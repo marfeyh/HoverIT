@@ -1,12 +1,14 @@
+#include "embedded_log.h"
+#include "pc_log.h"
 void main(){
 	
 	init_log_file();
-	sleep(1);		
-	log_to_file("Info","moter controll","increase_speed()","increase");
+	send_info("Moter","increse_speed()","increase speed");
 	sleep(1);
-	log_to_file("Error","scheduel controll", "jump_queen()","smothing error");
+    send_warning("Barrier", "barrier_level()","warn low level");
+    sleep(1);
+    send_error("Bluetooh","connection()","connection faile");
 	sleep(1);
-	log_to_file("Warning","skirt","increase_pressure()", "data is over range");
 	close_log_file();
 	//delet_log_file();
 }

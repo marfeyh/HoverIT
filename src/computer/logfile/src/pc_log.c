@@ -94,9 +94,9 @@ void file_writer(char *buf){
 void log_to_file(char *tag, char *module, char *function, char *message){	
 	
 	char temp[100]; /*one line of log information*/			
-	log_obj log = {tag, message,module,function};  /*add log information in log object*/
+	log_obj log = {tag, module,function,message};  /*add log information in log object*/
 	//printf("log_level: %s, info: %s, function: %s \n",log.tag, log.info, log.function);
-	sprintf(temp,"%s, %s, %s, %s, %s  \n",get_time(),log.tag, log.info, log.module, log.function);	/*constaract the strings*/	
+	sprintf(temp,"%s, %s, %s, %s, %s  \n",get_time(),log.tag, log.module, log.function, log.info);	/*constaract the strings*/	
 	file_writer(temp); /* wirte one line in file*/
 }
 

@@ -8,9 +8,9 @@
 
 typedef struct obj{
 	char *tag;  /* log level e.g. Info, Error and Warning )*/
-	char *info; /* log description*/
 	char *module;   /* which module the log come from*/	
 	char *function; /* which funcion the log comse from*/
+	char *info; /* log description*/
 	
 }log_obj;
 
