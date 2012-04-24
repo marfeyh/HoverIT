@@ -22,7 +22,7 @@ void teardown(void){
 /* PROPULSION_API UNIT TESTS */
 
 /* 
-   Id/Title: tc-06(XK1)/test increases propulsion speed
+   Id/Title: XK1/test increases propulsion speed
    Purpose: test if user increase propulsion fan over the
             maximum value of fan
    Prerequisites: initialize propulsion fan
@@ -32,14 +32,14 @@ void teardown(void){
                        Failures: 0, Errors: 0
 */
 START_TEST(Test_Pro){
-  fail_if(increase_propulsion() != PERSPEED , "Expected 41");
+  fail_if(increase_propulsion() != PERSPEED, "Expected 41");
   fail_if(increase_propulsion() != PERSPEED * 2 , "Expected 82");
   fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 123");
   fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 123");
 }END_TEST
 
 /* 
-   Id/Title: tc-07(XK2)/test increase propulsion speed
+   Id/Title: XK2/test increase propulsion speed
    Purpose: test if user keep decreasing propulsion fan
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan speed should stop without errors
@@ -55,7 +55,7 @@ START_TEST(test_dec){
 }END_TEST
 
 /* 
-   Id/Title: tc-08(XK3)/test get current propulsion fan speed level
+   Id/Title: XK3/test get current propulsion fan speed level
    Purpose: test if user can get right propulsion fan speed level
    Prerequisites: initialize propulsion fan
    Expected results: return right current fan speed level
@@ -73,7 +73,7 @@ START_TEST(test_fanlevel){
 }END_TEST
 
 /* 
-   Id/Title: tc-09(XK4)/test stop propulsion fan speed
+   Id/Title: XK4/test stop propulsion fan speed
    Purpose: test if the propulsion fan is stoped normally
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan stop
@@ -89,7 +89,7 @@ START_TEST(test_stop){
 }END_TEST
 
 /* 
-   Id/Title: tc-14(XK5)/test set propulsion fan speed by manual
+   Id/Title: XK5/test set propulsion fan speed by manual
    Purpose: user wants to set propulsion fan by himself
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan speed should change to
@@ -108,7 +108,7 @@ START_TEST(Test_set_speed){
 
  /* PROPULSION UNIT TESTS */
 
- /* id: tc-10(Y1)
+ /* id: Y1
     purpose: tests init() function of searduino and setting PIN as output and
     the initialising/preparation state of the propulsion
     prerequisites: none
@@ -119,7 +119,7 @@ START_TEST(test_init) {
   fail_unless((manage_motor() == 0),NULL);
 }END_TEST
 
- /* id: tc-11(Y2)
+ /* id: Y2
     purpose: tests the stopped state of the propulsion
     prerequisites: 1. the searduino init() function is called
                    2. the propulsion is in another state
@@ -131,7 +131,7 @@ START_TEST(test_stop_motor) {
   fail_unless((manage_motor() == 1),NULL);
 }END_TEST
 
- /* id: tc-12(Y3)
+ /* id: Y3
     purpose: tests the boundary speed level of the propulsion
     prerequisites: 1. the searduino init() function is called
                    2. the propulsion is aleardy initialized
@@ -149,7 +149,7 @@ START_TEST(test_minimum_speed) {
   fail_unless((get_speed_level() == 1),NULL);  
 }END_TEST
 
- /* id: tc-13(Y4)
+ /* id: Y4
     purpose: tests the boundary speed level of the propulsion
     prerequisites: 1. the searduino init() function is called
                    2. the propulsion is aleardy initialized
