@@ -1,15 +1,15 @@
-/*
- * @ Module name:  hovering_check.h
- * @ Description:  Header file for testing conrol hovering fan files.
- *
- * @ Author names : Eva-Lisa Kedborn, Jing Liu
- * 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
- * @ Release      : 9 April 2012
- * @ Version      : 1
- * @ References    : Arduino.cc, sandklef.com, Check manual
- */
+/*!
+@file hovering_check.h
+@author Eva-Lisa Kedborn
+@author Jing Liu
+@author Seyed Ehsan Mohajerani
+@author Navid Amiriarshad
+@brief Header file for testing conrol hovering fan files.
+@version 0.4
+@date 2012-04-09
+*/
 
-#ifndef HOVERING_CHECK_H
+#if !defined HOVERING_CHECK_H
 	#define HOVERING_CHECK_H
 
 	void setup(void);
