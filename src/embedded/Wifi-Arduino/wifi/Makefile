@@ -1,9 +1,11 @@
 
 ARDUINO=uno
+
 PROG=wifi-code
+
 SHLIB_LIBS=-lpthread 
-SRC_C=
-SRC_CXX=wifi.cpp 
+SRC_C= main.c
+SRC_CXX=wifi_wrapper.cpp 
 
 
 USER_C_FLAGS=-I/opt/searduino/3pp/include
