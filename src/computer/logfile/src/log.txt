@@ -1,0 +1,12 @@
+
+2012-04-24 11:41:41, Info, increase, moter controll, increase_speed()  
+2012-04-24 11:41:42, Error, smothing error, scheduel controll, jump_queen()  
+2012-04-24 11:41:43, Warning, data is over range, skirt, increase_pressure()  
+
+2012-04-24 11:42:16, Info, increase, moter controll, increase_speed()  
+2012-04-24 11:42:17, Error, smothing error, scheduel controll, jump_queen()  
+2012-04-24 11:42:18, Warning, data is over range, skirt, increase_pressure()  
+
+2012-04-24 11:44:41, Info, increase, moter controll, increase_speed()  
+2012-04-24 11:44:42, Error, smothing error, scheduel controll, jump_queen()  
+2012-04-24 11:44:43, Warning, data is over range, skirt, increase_pressure()  
