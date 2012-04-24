@@ -1,26 +1,32 @@
-/*
-Author: Eva-Lisa Kedborn, Jing Liu
-Date: 2012-03-19
-Description: the main to execute pressure_loop
+/*!
+@file main.c
+@author Eva-Lisa Kedborn
+@author Jing Liu
+@date 2012-03-19
+@brief Main function to run the hover code separately from the
+rest of the project
 */
 
-/* Includes */
 #include "Arduino.h"
 #include <hover_api.h>
 #include <hovering_motor.h>
 #include <hovering_control.h>
 
+/*!
+@brief Main function to run manual tests
+@param none
+@returns integer 0 if successful
+*/
 int main(void) {
+
         init();
-	//for (;;) {	
-		start_hover();
-		hover_min();
-		delay(1000);
-		//hover_max();
-		delay(2000);
-		increase_hover();
-		delay(2000);
-		stop_hover();
-	//}
+	start_hover();
+	hover_min();
+	delay(1000);
+	hover_max();
+	delay(2000);
+	increase_hover();
+	delay(2000);
+
 	return 0;
 }
