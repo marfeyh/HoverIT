@@ -1,14 +1,12 @@
 /*
  ============================================================================
- Name        : batteryLevel.c
+ Name        : batteryLevel.h
  Author      : Kuhan Loh, Aran Gerami, Denir Leric
- Version     : v 0.1
- Copyright   : Your copyright notice
+ Version     : v 0.2
+ Copyright   : Copyright (C) 2011, 2012 Denir Leric
  Description : Battery Check in C
  ============================================================================
  */
 
-int SENSOR_PIN = A5;    // select the input pin for the potentiometer
-int LED_PIN = 13;       // select the pin for the LED
-int SENSOR_VALUE = 0;   // variable to store the value coming from the sensor*/
-int PERCENTAGE = 0;
+uint8_t check(uint8_t LED_PIN);
+const static uint8_t SENSOR_PIN = 19;

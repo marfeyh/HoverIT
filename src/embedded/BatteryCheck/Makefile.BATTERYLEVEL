@@ -1,0 +1,69 @@
+#
+#       Searduino
+#
+#  Copyright (C) 2011, 2012 Denir Leric      
+#                                                                   
+#                                               
+#
+####################################################################
+
+#
+# Instructions on how to use this Makefile can be found at the end 
+# of this file
+#
+
+#
+# Path to your Searduino installation
+#
+SEARDUINO_PATH=/opt/searduino/
+
+#
+# Source code
+#
+SRC_C=batteryLevel.c main.c
+SRC_CXX=
+
+#
+# Build type should be any of the following
+#
+# ARDUINO=due
+# ARDUINO=uno
+# ARDUINO=mega
+# ARDUINO=stub
+#
+# By default, we're building for local execution (not Arduino boards)
+#   you can change this value at wish
+#
+ARDUINO=uno
+
+PROG=batteryLevelSHLIB=batteryLevel.so
+
+include $(SEARDUINO_PATH)/share/searduino//mk/searduino.mk
+
+
+########## Build instructions ################
+#
+#
+#
+# Build shared library (for use in simulators):
+#
+#    Set the ARDUNIO variable in this Makefile to stub and then execute
+#
+#        make clean shlib
+#
+#
+# Build stand alone binary
+#
+#     Set the ARDUNIO variable in this Makefile to stub and then execute
+#
+#        make clean prog
+#
+#
+# Build binary for uno
+#
+#     Set the ARDUNIO variable in this Makefile to uno and then execute
+#
+#        make clean prog
+#
+#
+#

@@ -2,8 +2,8 @@
  ============================================================================
  Name        : batteryLevel.c
  Author      : Kuhan Loh, Aran Gerami, Denir Leric
- Version     : v 0.1
- Copyright   : Your copyright notice
+ Version     : v 0.2
+ Copyright   : Copyright (C) 2011, 2012 Denir Leric
  Description : Battery Check in C
  ============================================================================
  */
@@ -11,14 +11,19 @@
 
 #include <Arduino.h>
 #include <searduino.h>
+#include "batteryLevel.h"
 #include <pins_arduino.h>
-#include <batteryLevel.h>
+#include "../BatteryMeter/batteryLevel.h"
 
 
-void check(void) {
+uint8_t check(uint8_t LED_PIN) {
+
+		uint8_t SENSOR_VALUE = 0;
+		uint8_t PERCENTAGE = 0;
 
 		SENSOR_VALUE = analogRead(SENSOR_PIN);
 		PERCENTAGE = (SENSOR_VALUE/1023*100) - 16.67;
+		setPercentage(PERCENTAGE);
 
 		  if (SENSOR_VALUE >  0 && SENSOR_VALUE < 204.7){
 		    digitalWrite(LED_PIN, 1);
