@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../GPS_Simulator/emulator_GPS.h"
+#include "./tests/GPS_Simulator/emulator_GPS.h"
 #include "gps.h"
 
 #define LINEMA 300
