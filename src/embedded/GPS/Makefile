@@ -22,11 +22,10 @@
 #
 
 
-SRC_C=gps.c
+SRC_C=api_gps.c core_gps.c
 SRC_CXX=
 # use this for uno
-MAIN_SRC=test.c
-MAIN_SRC=
+MAIN_SRC=./tests/test_all.c
 ARDUINO=stub
 #ARDUINO = uno
 
@@ -41,7 +40,6 @@ SEARDUINO_PATH=/opt/searduino
 check: $(SHLIB)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-#include $(SEARDUINO_PATH)/mk/searduino_lib.mk
 
 check-upload:
 	BOARD=due

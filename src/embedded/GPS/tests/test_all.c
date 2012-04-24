@@ -1,5 +1,5 @@
-#include "gps.h"
-#include "../GPS_Simulator/emulator_GPS.h"
+#include "../gps.h"
+#include "./GPS_Simulator/emulator_GPS.h"
 #include <stdio.h>
 #include <stdlib.h>
 
