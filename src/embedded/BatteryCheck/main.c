@@ -1,29 +1,27 @@
 /*
  ============================================================================
- Name        : batteryLevel.c
+ Name        : main.c
  Author      : Kuhan Loh, Aran Gerami, Denir Leric
- Version     : v 0.1
- Copyright   : Your copyright notice
+ Version     : v 0.2
+ Copyright   : Copyright (C) 2011, 2012 Denir Leric
  Description : Battery Check in C
  ============================================================================
  */
 
 
 #include <Arduino.h>
-#include <searduino.h>
-#include <pins_arduino.h>
-#include <batteryLevel.h>
+#include "batteryLevel.h"
 
 void setup(){
-	pinMode(LED_PIN, OUTPUT);
+	pinMode(13, OUTPUT);
 }
 
-int main(void) {
+uint8_t main(void) {
 
 	init();
 	setup();
-	for(;;){
-		batteryLevel:check();
+	for(;;)
+	{
+		check(13);
 	}
-	return 0;
 }
