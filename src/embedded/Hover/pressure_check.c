@@ -1,6 +1,8 @@
 /* 
 @file pressure_check.c
 @headerfile pressure_check.h
+@headerfile pressure.h
+@headerfile hovering motor.h
 @author Eva-Lisa Kedborn
 @author Jing Liu
 @date: 2012-03-20
@@ -10,8 +12,8 @@
 */
 
 #include <stdio.h>
-#include "pressure.h"   /* file from pressure sensor group */
-//#include <hovering_motor.h>    /* file from our own group */
+#include "pressure.h"
+#include <hovering_motor.h> 
 #include "pressure_check.h"
 #define PROPER_GAP 50
 #define MAX_GAP_RANGE 60
@@ -35,15 +37,15 @@ int start_sensor_reading() {
          interger -1 if the pressure should be decreased,
 	 integer 0 if no adjustment needs to be made
 */
-int handle_pressure(int gap){
+int handle_pressure(int gap) {
   
-  if(gap > MAX_GAP_RANGE){
-    // increase(10);   /* function from hovering_motor.c to increase fan speed */
+  if (gap > MAX_GAP_RANGE) {
+    increase(10);   /* function from hovering_motor.c to increase fan speed */
     return 1;
   }
  
-  if(gap < MIN_GAP_RANGE){
-    // decrease(10);   /* function from hovering_motor.c to decrease fan speed */
+  if (gap < MIN_GAP_RANGE) {
+    decrease(10);   /* function from hovering_motor.c to decrease fan speed */
     return -1;
   }
   return 0;

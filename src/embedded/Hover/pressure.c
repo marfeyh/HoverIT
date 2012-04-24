@@ -9,8 +9,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#ifdef STUB
-	#include <time.h>
+#if STUB
+   #define #include <time.h>
 #endif
 #include <pressure.h>
 
