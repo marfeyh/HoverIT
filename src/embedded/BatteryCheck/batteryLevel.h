@@ -9,3 +9,4 @@
  */
 
 uint8_t check(uint8_t LED_PIN);
+const static uint8_t SENSOR_PIN = 19;

@@ -11,15 +11,13 @@
 
 #include <Arduino.h>
 #include <searduino.h>
-#include <pins_arduino.h>
 #include "batteryLevel.h"
 
 
 uint8_t check(uint8_t LED_PIN) {
 
-		const static uint8_t SENSOR_PIN = 19;
-		uint8_t SENSOR_VALUE= 0;
-		uint8_t  PERCENTAGE = 0;
+		uint8_t SENSOR_VALUE = 0;
+		uint8_t PERCENTAGE = 0;
 
 		SENSOR_VALUE = analogRead(SENSOR_PIN);
 		PERCENTAGE = (SENSOR_VALUE/1023*100) - 16.67;
