@@ -20,6 +20,8 @@
 #include "../hovering_control.h"
 #include "../hovering_init_fix.h"
 
+#define LEVEL 150
+
 /* Preparation for the tests that need Arduino initialization (Fixture) */
 /*!
 @brief Initialize Arduino board
@@ -71,7 +73,7 @@ START_TEST(test_initialize) {
 @returns
 */
 START_TEST(test_pin_program) {
-	fail_unless((pin_program(using_pin, TEST_PIN, level) \
+	fail_unless((pin_program(USING_PIN, TEST_PIN, LEVEL) \
 	== 0),"pin test failed\n");
 }END_TEST
 
@@ -96,10 +98,10 @@ START_TEST(test_check_and_fix_level) {
 	legal range*/
 	int throttle_illegel_high_level = random(1000) +255;
 	/* A random value between 133 and 254 which is within the legal range*/
-	int throttle_illegel_ok_level = random(111) +133;
+	int throttle_ok_level = random(111) +133;
 	/* A random value between 0 and 132 which is lower than legal range*/
-	int throttle_illegel_low_level = randon(132);
-	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN \
+	int throttle_illegel_low_level = random(132);
+	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN, \
 	throttle_illegel_high_level) == HIGHEST_LEVEL),"pin test failed\n");
 	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN, 
 	throttle_ok_level) == throttle_ok_level),"pin test failed\n");
@@ -125,19 +127,19 @@ START_TEST(test_check_and_fix_level) {
 @param
 @returns
 */
-START_TEST(test_check_and_fix_level) {
+START_TEST(test_check_and_fix_level_increase) {
 	/* A random value between 255 and 1255 which is higher than \
 	legal range*/
 	int throttle_illegel_high_level = random(1000) +255;
 	/* A random value between 133 and 254 which is within the legal range*/
-	int throttle_illegel_ok_level = random(111) +133;
+	int throttle_ok_level = random(111) +133;
 	/* A random value between 0 and 132 which is lower than legal range*/
 	int throttle_illegel_low_level = randon(132);
-	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN \
+	fail_unless((check_and_fix_level_increase(USING_PIN, TEST_PIN, \
 	throttle_illegel_high_level) == HIGHEST_LEVEL),"pin test failed\n");
-	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN, 
+	fail_unless((check_and_fix_level_increase(USING_PIN, TEST_PIN, 
 	throttle_ok_level) == throttle_ok_level),"pin test failed\n");
-	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN, 
+	fail_unless((check_and_fix_level_increase(USING_PIN, TEST_PIN, 
 	throttle_illegel_low_level) == LOWEST_LEVEL),"pin test failed\n");
 }END_TEST
 
@@ -156,19 +158,19 @@ START_TEST(test_check_and_fix_level) {
 @param
 @returns
 */
-START_TEST(test_check_and_fix_level) {
+START_TEST(test_check_and_fix_level_decrease) {
 	/* A random value between 255 and 1255 which is higher than \
 	legal range*/
 	int throttle_illegel_high_level = random(1000) +255;
 	/* A random value between 133 and 254 which is within the legal range*/
-	int throttle_illegel_ok_level = random(111) +133;
+	int throttle_ok_level = random(111) +133;
 	/* A random value between 0 and 132 which is lower than legal range*/
-	int throttle_illegel_low_level = randon(132);
-	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN \
+	int throttle_illegel_low_level = random(132);
+	fail_unless((check_and_fix_level_decrease(USING_PIN, TEST_PIN, \
 	throttle_illegel_high_level) == HIGHEST_LEVEL),"pin test failed\n");
-	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN, 
+	fail_unless((check_and_fix_level_decrease(USING_PIN, TEST_PIN, 
 	throttle_ok_level) == throttle_ok_level),"pin test failed\n");
-	fail_unless((check_and_fix_level(USING_PIN, TEST_PIN, 
+	fail_unless((check_and_fix_level_decrease(USING_PIN, TEST_PIN, 
 	throttle_illegel_low_level) == LOWEST_LEVEL),"pin test failed\n");
 }END_TEST
 
@@ -265,11 +267,11 @@ START_TEST(test_equal) {
 */
 Suite * hovering_suite(void) {
 	Suite *s = suite_create("Hovering motor controlling test");
-	TCase *tc = tcase_create("Core with fixture");
-	TCase *tc2 = tcase_create("Core without fixture");
+	TCase *tc_with_fixture = tcase_create("Core with fixture");
+	TCase *tc_without_fixture = tcase_create("Core without fixture");
 	tcase_add_checked_fixture(tc_with_fixture, setup, teardown);
 
-	tcase_add_test(tc_without_fixture, test_ard_init);
+	tcase_add_test(tc_without_fixture, test_initialize);
 	tcase_add_test(tc_with_fixture, test_pin_program);  
 	tcase_add_test(tc_without_fixture, test_random);
 	tcase_add_test(tc_without_fixture, test_positive);

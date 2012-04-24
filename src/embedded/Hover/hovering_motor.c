@@ -12,7 +12,7 @@
  */
 
 /* Includes */
-#include <Arduino.h> /* Header for Arduino */ 
+#include <Arduino.h> /* Header for Arduino */
 #include <searduino.h> /* Header for Searduino */
 #include <hovering_motor.h>
 #include <hovering_control.h>

@@ -19,17 +19,17 @@
 #include <print_audible_test.h>
 
 /* Definition */
-/* The minimum PWM value that is possible to send to ESC from Arduino pin 
-   and it is for initiating the motor */
+/* The minimum PWM value that is possible to send to ESC from Arduino pin
+ and it is for initiating the motor */
 #define THROTTLE_STICK_BOTTOM_LEVEL 100
 
 /* Variable */
-/* The PWM value which is sent to ESC from Arduino and represents the motor 
-rotating power it can be between 143 (for lowest rotating speed) and 254
+/* The PWM value which is sent to ESC from Arduino and represents the motor
+ rotating power it can be between 143 (for lowest rotating speed) and 254
 (for the highest rotating speed */
 int throttle_stick_level = 0;
 
-/* Functions */	
+/* Functions */
 
 /* Start the motor */
 int start(int using_pin, int test_pin) {
@@ -48,8 +48,8 @@ int throttle_stick_bottom(int using_pin, int test_pin) {
 	throttle_stick_level = THROTTLE_STICK_BOTTOM_LEVEL;
 	set_level(using_pin, test_pin, throttle_stick_level);
 	delay(1000);
-	/* Test code */	
-	#if defined STUB_TEST	
+	/* Test code */
+	#if defined STUB_TEST
 		test_throttle_Stick_is_bottom (test_pin);
 	#endif
 	return 0;
@@ -60,7 +60,7 @@ int normal (int using_pin,int test_pin){
 	throttle_stick_level = LOWEST_LEVEL;
 	set_level(using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_normal (test_pin);	
+	test_normal (test_pin);
 	return 0;
 }
 
@@ -69,7 +69,7 @@ int turbo (int using_pin,int test_pin){
 	throttle_stick_level = HIGHEST_LEVEL;
 	set_level(using_pin, test_pin, throttle_stick_level);
 	/* Test code */
-	test_turbo (test_pin);	
+	test_turbo (test_pin);
 	return 0;
 }
 
