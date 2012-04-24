@@ -9,6 +9,8 @@
 @date 2012-04-09
 */
 
+#include <Arduino.h>
+#include <searduino.h>
 #include <check.h>
 #include <pin.h> 
 #include <stdlib.h> 
