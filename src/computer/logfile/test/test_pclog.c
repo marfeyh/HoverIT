@@ -12,10 +12,10 @@ void teardown (void) {
  	close_log_file();
 }
 
-START_TEST(test_log_file_writer) {
+START_TEST(test_file_writer) {
 
   
-	fail_unless(log_file_writer("just test!") == 1,
+	fail_unless(file_writer("just test!") == 1,
 	      	  "failed in writing ");
 
 }END_TEST
@@ -37,7 +37,7 @@ Suite * pclog_suite(void) {
   
   TCase *tc = tcase_create("Core");
   tcase_add_checked_fixture(tc,setup,teardown);
-  tcase_add_test(tc,test_log_file_writer);
+  tcase_add_test(tc,test_file_writer);
   //tcase_add_test(tc,test_division);
   suite_add_tcase(s,tc);
   return s;
