@@ -1,32 +1,21 @@
-TEST_DIR=tests/
+TEST_DIR=../tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = rudder
+PROG = battery
 
 # Add your source files here
-<<<<<<< HEAD
-SRC_C= steering.c
-SRC_CXX= RuddarControll.cpp
-MAIN_SRC = main.c
-ARDUINO = mega2560
-SHLIB = rudder.so
-
-LIB = librudder.a
-LIB_H = steering.h RuddarControll.h pin.h
-=======
-SRC_C= fourLedsOn.c
+SRC_C= batteryLevel.c
 SRC_CXX=
 MAIN_SRC = main.c
-ARDUINO = stub
-SHLIB = leds.so
+ARDUINO = uno
+SHLIB = battery.so
 
-LIB = libleds.a
+LIB = battery.a
 LIB_H =
->>>>>>> 0f4bf99b83d16e84ce369e26742ffdbe78c23ea0
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
-include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+include $(SEARDUINO_PATH)/share/searduino//mk/searduino.mk
 
 # Needs to be modified as well
 check:
