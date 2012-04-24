@@ -3,7 +3,9 @@
   @headerfile propulsion.h
   @headerfile propulsion_api.h
   @Description: This file is the propulsion fan speed API 
-                and use propulsion file to stop,increase or decrease the speed. 
+                to stop,increase or decrease and get the current level
+				of propulsion fan, and set the specific number of 
+				propulsion fan speed. 
   @author Xinran He, Khatereh Khosravianarab
   @version 0.6
   @date 2012-03-25
