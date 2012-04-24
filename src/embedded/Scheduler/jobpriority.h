@@ -1,7 +1,7 @@
 /** 
  *  \file			jobpriority.h	
  *	\version		0.1
- *	\author 		Dmitri Igoshin
+ *	\author 		Dmitry Igoshin
  *	\attention 		Sections added/modified are as follow: 
  *                  - The initial enum PRIORITY was provided.
  *  \n
@@ -17,6 +17,10 @@
 #if !defined jobpriority_h
 #define jobpriority_h
 
+/**
+@enum priority
+@brief job priority (the more - the higher)
+**/
 enum PRIORITY {PRIO_LOW=10,PRIO_MEDIUM=20,PRIO_HIGH=30,PRIO_RIGHT_NOW=40};
 
 #endif

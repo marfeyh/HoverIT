@@ -18,6 +18,10 @@
  * \attention	  Sections added/modified are as follow:
  *				  - The field "arg1" was added to the struct Job.
  *				  - Comments were modified considering the provided coding standards.
+ * @date  24-04-2012
+ * @version 0.3 
+ * @author Dmitry Igoshin
+ * @attention added more comments
  */
 #pragma once
 #include <jobpriority.h>
@@ -25,15 +29,17 @@
 #if !defined job_h
 #define job_h
 
+/**
+@struct Job
+@brief Job to be executed
+**/
 struct Job {
-    unsigned char job_num; /* indicates which task pointer is used */
-	unsigned char arg1;			   /* is passed to the task pointers that take integer arguments */
-//	void (*task_p1)();
-	int (*task_p2)();
-	void (*task_p3)(unsigned char);
-//	int (*task_p4)(int);
-	enum PRIORITY prio;
-	enum JOB_TYPE type;
+        unsigned char job_num;           /* @var indicates which task pointer is used */
+	unsigned char arg1;              /* @var is passed to the task pointers that take integer arguments */
+	int (*task_p2)();                /* @var pointer to a void function */
+	void (*task_p3)(unsigned char);  /* @var pointer to the fucntion taking char argument*/
+	enum PRIORITY prio;              /* @var job priority */
+	enum JOB_TYPE type;              /* @var type of job */     
 };
 
 

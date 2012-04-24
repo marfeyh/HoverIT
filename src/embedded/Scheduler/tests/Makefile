@@ -1,31 +1,71 @@
-SRCPATH = ../../
-SRCOBJS = $(wildcard $(SRCPATH)/*.o)
-TESTSRCS = $(wildcard *.c)
+#
+# Makefile to run check
+#
+# ! IMPORTANT NOTE !
+# If there is at least one C file in the source, the main file must
+# be a c file; it should then be placed either in the MAIN_SRC variable
+# or first in the SRC_C variable
+#
+# SRC_DIR should be the path to the source files
+# SRC_C & SRC_CXX should contain the .c & .cpp files for the source and test
+# MAIN_SRC should contain maximum one file, the one that holds the main
+#	function for the tests
+# SEARDUINO_PATH should as always be the path to the searduino installation
+# 	usually /opt/searduino, unless you compiled it yourself
+# USER_C_FLAGS & USER_CXX_FLAGS is if you need to give gcc & g++ any extra
+#	commands. For example if you need add a include path
+# USER_LD_FLABS should be used to add flags to the linker.
+#	For example if you need to link with some cool library
+#
+# SRC_FILES can be set by a calling makefile to set the files of the src folder
+#
 
-check: testsuite
-	@echo Running tests...
-	./checkmain
+SRC_DIR=../
+SRC_C=
+SRC_CXX=
+MAIN_SRC=checkmain.c
 
-# gcovcheck: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
-# gcovcheck: check
-# 	gcov testsuite
-# 	cd $(SRCPATH) && gcov main.c
+SEARDUINO_PATH = /opt/searduino
 
-# gcovcheckb: EXTRAGCCFLAGS+= -fprofile-arcs -ftest-coverage -lgcov
-# gcovcheckb: check
-# 	gcov -b -c testsuite
-# 	cd $(SRCPATH) && gcov -b -c main.c
+USER_C_FLAGS = 
+USER_CXX_FLAGS = 
+USER_LD_FLAGS =
 
-memcheck: EXTRAGCCFLAGS+= -g
-memcheck: testsuite
-	@echo Running tests under valgrind...
-	valgrind --leak-check=full ./checkmain
+#
+# DO NOT CHANGE THINGS BELOW THIS LINE (UNLESS YOU ARE AWESOME)
+#
 
-testsuite.o:
-	gcc -c checkmain.c -fprofile-arcs -ftest-coverage -lgcov -lcheck
+ARDUINO=stub
+PROG=Testsuite
+USER_C_FLAGS += -I$(SRC_DIR)
+USER_CXX_FLAGS += -I$(SRC_DIR)
+USER_LD_FLAGS += -lcheck
+USER_OBJ_PATH = ./objs/
 
-testsuite: testsuite.o
-	gcc $(SRCOBJS) checkmain.o -o checkmain -fprofile-arcs -ftest-coverage -lcheck
 
-clean:
-	rm -f checkmain checkmain.o *.gcov *.gcda *.gcno
+SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
+SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+
+.PHONY: check clean-tests
+
+
+check: $(PROG)
+#check:
+	@echo $(OBJ_C) $(OBJ_CXX)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+gcovcheck: $(PPROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+gcovbcheck:
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+memcheck: $(PROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+
+
+clean-tests: clean
+
+include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+

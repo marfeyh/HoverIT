@@ -1,11 +1,43 @@
-## Makefile to compile and link the basic scheduler and its demo
-## Author: Kirill Blazhko
-##
-all: list.h list.c job.h jobpriority.h jobtype.h demotasks.h main.c
-	gcc -o ../bin/main main.c -L. list.c $(EXTRAGCCFLAGS)
+#Modified by Dmitry Igoshin
+TEST_DIR=tests/
+SEARDUINO_PATH = /opt/searduino
+PROG = Scheduler
+#cd /
+# Add your source files here
+SRC_C= list.c
+SRC_CXX= 
+MAIN_SRC = 
+<<<<<<< HEAD
+ARDUINO = uno
+=======
+ARDUINO = stub
+#ARDUINO = mega2560
+>>>>>>> b3c0cb5afecd9e739d2cb73f7a849bb75681927f
+SHLIB = scheduler.so
 
-gdb: EXTRAGCCFLAGS+= -g
-gdb: main
+LIB = libscheduler.a
+LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
+USER_LIB_INSTALL_PATH = ../../../bin
 
-clean:
-	rm -rf ../bin/main
+export SRC_FILES= $(SRC_C) $(SRC_CXX)
+
+include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+#include /opt/searduino/share/searduino/mk/searduino.mk
+
+# Needs to be modified as well
+check:
+	$(MAKE) check -C $(TEST_DIR)
+
+gcovcheck:
+	$(MAKE) gcovcheck -C $(TEST_DIR)
+
+gcovbcheck:
+	$(MAKE) gcovbcheck -C $(TEST_DIR)
+
+memcheck:
+	$(MAKE) memcheck -C $(TEST_DIR)
+
+clean-tests:
+	$(MAKE) clean-tests -C $(TEST_DIR)
+
+.PHONY: check
