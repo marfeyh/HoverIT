@@ -11,11 +11,11 @@
 #include <propulsion.h>
 #include <propulsion_api.h>
 
-void setup(void) {
+void setup(void){
   //nothing for the moment
 }
 
-void teardown(void) {
+void teardown(void){
   //nothing for the moment
 }
 
@@ -36,7 +36,6 @@ START_TEST(Test_Pro){
   fail_if(increase_propulsion() != PERSPEED * 2 , "Expected 82");
   fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 123");
   fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 123");
-  
 }END_TEST
 
 /* 
@@ -187,7 +186,7 @@ Suite * propulsion_suite(void) {
   tcase_add_test(tc, test_fanlevel);
   tcase_add_test(tc, test_stop);
   tcase_add_test(tc, Test_set_speed);
-  suite_add_tcase(s,tc);
+  suite_add_tcase(s, tc);
   return s;
 }
 
