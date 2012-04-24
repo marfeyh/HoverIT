@@ -12,6 +12,8 @@
 #include <Arduino.h>
 #include <searduino.h>
 #include "batteryLevel.h"
+#include <pins_arduino.h>
+#include "../BatteryMeter/batteryLevel.h"
 
 
 uint8_t check(uint8_t LED_PIN) {
@@ -21,6 +23,7 @@ uint8_t check(uint8_t LED_PIN) {
 
 		SENSOR_VALUE = analogRead(SENSOR_PIN);
 		PERCENTAGE = (SENSOR_VALUE/1023*100) - 16.67;
+		setPercentage(PERCENTAGE);
 
 		  if (SENSOR_VALUE >  0 && SENSOR_VALUE < 204.7){
 		    digitalWrite(LED_PIN, 1);
