@@ -32,10 +32,10 @@ void teardown(void){
                        Failures: 0, Errors: 0
 */
 START_TEST(Test_Pro){
-  fail_if(increase_propulsion() != PERSPEED, "Expected 41");
-  fail_if(increase_propulsion() != PERSPEED * 2 , "Expected 82");
-  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 123");
-  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 123");
+  fail_if(increase_propulsion() != PERSPEED, "Expected 40");
+  fail_if(increase_propulsion() != PERSPEED * 2 , "Expected 80");
+  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 120");
+  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 120");
 }END_TEST
 
 /* 
@@ -48,10 +48,13 @@ START_TEST(Test_Pro){
 */
 START_TEST(test_dec){
   increase_propulsion();
-  fail_if(decrease_propulsion(), "Expected 0");
+  fail_if(decrease_propulsion() != PERSPEED, "Expected 40");
   increase_propulsion();
   increase_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED , "Expected 41");
+  fail_if(decrease_propulsion() != PERSPEED * 2 , "Expected 80");
+  decrease_propulsion();
+  decrease_propulsion();
+  fail_if(decrease_propulsion() != PERSPEED, "Expected 40.");
 }END_TEST
 
 /* 

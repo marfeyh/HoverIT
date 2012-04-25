@@ -43,12 +43,15 @@ int increase_propulsion(){
  */
 int decrease_propulsion(){
   int speed = get_speed_level();
-  if( speed <= 0 ){
-    stop_pro_fan();
-    return 0;
+  printf("speed == %d\n", speed);
+  if( speed == 40 ){
+    change_pro_speed(PERSPEED);
+	printf("4000000000\n");
+    return speed;
   }
-  else if( speed > 0 ){
+  else if( speed > 40 ){
     change_pro_speed(speed - PERSPEED);
+	printf(">>>>>>>>>40\n");
     return speed - PERSPEED;
   }
   return -1;
