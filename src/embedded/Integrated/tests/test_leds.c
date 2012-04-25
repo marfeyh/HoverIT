@@ -61,9 +61,10 @@ START_TEST(test_init) {
 
  START_TEST(test_loop_full) {
   init_leds();
+	 seasim_set_generic_input(19 , 818.5, INPUT);
   check();
 
- uint8_t  SENSOR_VALUE = 818.5;
+ 
 	fail_unless(digitalRead(ledPin1) == HIGH);
 	fail_unless(digitalRead(ledPin2) == HIGH);
     fail_unless(digitalRead(ledPin3) == HIGH);
@@ -84,9 +85,10 @@ START_TEST(test_init) {
 
 START_TEST(test_loop_full2) {
   init_leds();
+	seasim_set_generic_input(19 , 1000, INPUT);
   check();
 
- uint8_t  SENSOR_VALUE = 1000;
+ 
 	fail_unless(digitalRead(ledPin1) == HIGH);
 	fail_unless(digitalRead(ledPin2) == HIGH);
     fail_unless(digitalRead(ledPin3) == HIGH);
