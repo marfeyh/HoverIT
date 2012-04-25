@@ -2,10 +2,10 @@
 #include <searduino.h>
 #include "toneWrapper.h"
 
-void my_tone(uint8_t pin, uint8_t frequency) {
+void my_tone(int pin, int frequency) {
 	tone(pin,frequency);
 }
 
-void my_noTone(uint8_t pin) {
+void my_noTone(int pin) {
 	noTone(pin);
 }

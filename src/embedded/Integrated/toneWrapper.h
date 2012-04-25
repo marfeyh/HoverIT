@@ -4,8 +4,8 @@
 extern "C" {
 #endif
 
-void my_tone(uint8_t, uint8_t);
-void my_noTone(uint8_t);
+void my_tone(int, int);
+void my_noTone(int);
 
 #ifdef __cplusplus
 }
