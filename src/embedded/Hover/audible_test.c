@@ -1,5 +1,17 @@
-/*
- * @ Module name:  audible_test.c
+/*!
+ @file audible_test.c
+ @headerfile API_bluetooth_controler.h
+ @headerfile bluetooth_controler.h
+ @details This module is the brain of the bluetooth which controls it's functionalities
+ @author Seyed Ehsan Mohajerani
+ @author Navid Amiriarshad
+ @version 0.7
+ @note All the aruguments and returns of the functions are unsigned char
+ @bug pointer to function should be free somewhere
+ @todo pointer to job struct should be get free
+ */
+/*!
+ @file  .c
  * @ Description:  Contains the functions for testing hovering functions
  *   and show the result by voice
  *
@@ -23,9 +35,9 @@
 
 /* Variables */
 int beep_time;
-int silence_time;	
+int silence_time;
 int loop_count;
-int loop_number; 
+int loop_number;
 int beep_delay_time;
 int silence_delay_time;
 
@@ -106,7 +118,7 @@ int test_analogwrite (int test_pin){
 int test_motor_already_started (int test_pin){
 	beep_time = 100;
 	silence_time = 50;
-	loop_number = 4;	
+	loop_number = 4;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
 		analogWrite (test_pin, BEEP);
 		delay (beep_time);
@@ -114,7 +126,7 @@ int test_motor_already_started (int test_pin){
 		delay (silence_time);
 	}
 	analogWrite (test_pin, BEEP);
-	delay (50);	
+	delay (50);
 	silent_delay(test_pin);
 	return 0;
 }
@@ -130,7 +142,7 @@ int test_Too_low (int test_pin){
 		delay (silence_time);
 	}
 	analogWrite (test_pin, BEEP);
-	delay (50);	
+	delay (50);
 	silent_delay(test_pin);
 	return 0;
 }
