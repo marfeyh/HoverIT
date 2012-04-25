@@ -31,8 +31,8 @@
 
 uint8_t check() {
 
-   const static uint8_t SENSOR_PIN = 19;
-        	uint16_t SENSOR_VALUE = 0;
+		const static uint8_t SENSOR_PIN = 19;
+		uint8_t SENSOR_VALUE = 0;
 
 		SENSOR_VALUE = analogRead(SENSOR_PIN);
 
@@ -82,5 +82,5 @@ uint8_t check() {
 		        //5Volts remaining
 		  }
 
-
+	return 0;
 }
