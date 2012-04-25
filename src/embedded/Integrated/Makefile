@@ -3,8 +3,8 @@ SEARDUINO_PATH = /opt/searduino
 PROG = leds
 
 # Add your source files here
-SRC_C= batteryLevel.c
-SRC_CXX=
+SRC_C= alarm.c batteryLevel.c fourLedsOn.c
+SRC_CXX= toneWrapper.cpp
 MAIN_SRC = main.c
 ARDUINO = stub
 SHLIB = leds.so

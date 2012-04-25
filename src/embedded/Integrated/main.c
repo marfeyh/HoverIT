@@ -10,13 +10,19 @@
 #include <Arduino.h>
 #include <searduino.h>
 #include "batteryLevel.h"
+#include "alarm.h"
+#include "fourLedsOn.h"
 
 int main(void)
 {
-  init();
-  init_leds();
+    init();
+    init_leds();
+    init_alarm();    
 
-  for(;;){
-    check();
-  }
+    for(;;){
+        uint8_t percentage = check();
+        setup_alarm(percentage);
+        display_percentage(percentage);
+        delay(100);
+    }
 }

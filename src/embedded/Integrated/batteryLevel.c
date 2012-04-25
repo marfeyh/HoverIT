@@ -14,22 +14,22 @@
 #include <searduino.h>
 #include "batteryLevel.h"
 
-void init_leds(void)
-{
+//void init_leds(void)
+//{
+//
+// pinMode(ledPin1, OUTPUT);
+//  pinMode(ledPin2, OUTPUT);
+//  pinMode(ledPin3, OUTPUT);
+//  pinMode(ledPin4, OUTPUT);
+//  digitalWrite(ledPin1,HIGH);
+//  digitalWrite(ledPin2,HIGH);
+//  digitalWrite(ledPin3,HIGH);
+//  digitalWrite(ledPin4,HIGH);
+//  delay(timer1);
+//
+//}
 
- pinMode(ledPin1, OUTPUT);
-  pinMode(ledPin2, OUTPUT);
-  pinMode(ledPin3, OUTPUT);
-  pinMode(ledPin4, OUTPUT);
-  digitalWrite(ledPin1,HIGH);
-  digitalWrite(ledPin2,HIGH);
-  digitalWrite(ledPin3,HIGH);
-  digitalWrite(ledPin4,HIGH);
-  delay(timer1);
-
-}
-
-void check() {
+uint8_t check() {
 
 		const static uint8_t SENSOR_PIN = 19;
 		uint8_t SENSOR_VALUE = 0;
@@ -37,43 +37,48 @@ void check() {
 		SENSOR_VALUE = analogRead(SENSOR_PIN);
 
 		  if (SENSOR_VALUE >  0 && SENSOR_VALUE < 204.7){
-			   digitalWrite(ledPin1,HIGH);
-			   digitalWrite(ledPin2,HIGH);
-			   digitalWrite(ledPin3,HIGH);
-			   digitalWrite(ledPin4,HIGH);
-			   delay(timer1);
-			   digitalWrite(ledPin1,LOW);
-			   delay(timer1);
-			   digitalWrite(ledPin2,LOW);
-			   delay(timer1);
-			   digitalWrite(ledPin3,LOW);
-			   delay(timer1);
-			   digitalWrite(ledPin4,LOW);
-			   delay(timer1);
+//			   digitalWrite(ledPin1,HIGH);
+//			   digitalWrite(ledPin2,HIGH);
+//			   digitalWrite(ledPin3,HIGH);
+//			   digitalWrite(ledPin4,HIGH);
+//			   delay(timer1);
+//			   digitalWrite(ledPin1,LOW);
+//			   delay(timer1);
+//			   digitalWrite(ledPin2,LOW);
+//			   delay(timer1);
+//			   digitalWrite(ledPin3,LOW);
+//			   delay(timer1);
+//			   digitalWrite(ledPin4,LOW);
+//			   delay(timer1);
+              return 20;
 		        //1Volt Remaining
 		  } else if (SENSOR_VALUE >  204.6 && SENSOR_VALUE < 409.3){
-			   digitalWrite(ledPin1,LOW);
-			   digitalWrite(ledPin2,LOW);
-			   digitalWrite(ledPin3,LOW);
-			   digitalWrite(ledPin4,HIGH);
-		        //2Volts Remaining
+//			   digitalWrite(ledPin1,LOW);
+//			   digitalWrite(ledPin2,LOW);
+//			   digitalWrite(ledPin3,LOW);
+//			   digitalWrite(ledPin4,HIGH);
+              return 40;
+              //2Volts Remaining
 		  } else if (SENSOR_VALUE >  409.2 && SENSOR_VALUE < 613.9){
-			   digitalWrite(ledPin1,LOW);
-			   digitalWrite(ledPin2,LOW);
-			   digitalWrite(ledPin3,HIGH);
-			   digitalWrite(ledPin4,HIGH);
+//			   digitalWrite(ledPin1,LOW);
+//			   digitalWrite(ledPin2,LOW);
+//			   digitalWrite(ledPin3,HIGH);
+//			   digitalWrite(ledPin4,HIGH);
+              return 60;
 		        //3Volts Remaining
 		  } else if (SENSOR_VALUE >  613.8 && SENSOR_VALUE < 818.5){
-			   digitalWrite(ledPin1,LOW);
-			   digitalWrite(ledPin2,HIGH);
-			   digitalWrite(ledPin3,HIGH);
-			   digitalWrite(ledPin4,HIGH);
-		        //4Volts Remaining
+//			   digitalWrite(ledPin1,LOW);
+//			   digitalWrite(ledPin2,HIGH);
+//			   digitalWrite(ledPin3,HIGH);
+//			   digitalWrite(ledPin4,HIGH);
+              return 80;
+              //4Volts Remaining
 		  } else if (SENSOR_VALUE > 818.4){
-			   digitalWrite(ledPin1,HIGH);
-			   digitalWrite(ledPin2,HIGH);
-			   digitalWrite(ledPin3,HIGH);
-			   digitalWrite(ledPin4,HIGH);
+//			   digitalWrite(ledPin1,HIGH);
+//			   digitalWrite(ledPin2,HIGH);
+//			   digitalWrite(ledPin3,HIGH);
+//			   digitalWrite(ledPin4,HIGH);
+              return 100;
 		        //5Volts remaining
 		  }
 

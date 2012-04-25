@@ -9,16 +9,16 @@
 
 #ifndef BATTERY_LEVEL_H
 #define BATTERY_LEVEL_H
-#define ledPin1 2
-#define ledPin2  4
-#define ledPin3  7
-#define ledPin4  8
-#define timer1  500
+//#define ledPin1 2
+//#define ledPin2  4
+//#define ledPin3  7
+//#define ledPin4  8
+//#define timer1  500
 
 
 
-void init_leds(void);
-void run_leds(void);
-void check(void);
+//void init_leds(void);
+//void run_leds(void);
+uint8_t check(void);
 
 #endif

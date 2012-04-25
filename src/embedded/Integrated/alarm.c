@@ -11,18 +11,19 @@
 #include "toneWrapper.h"
 #include "alarm.h"
 
-int battery_beep_duration=0;
+int battery_beep_duration;
 
-void setup() {
- setup_battery_level();
+void init_alarm() {
+    setup_battery_level();
 }
 
 void setup_battery_level(){
-//  Serial.begin(9600);
-	pinMode(13,OUTPUT);
+//    Serial.begin(9600);
+	//pinMode(13,OUTPUT);
+    battery_beep_duration = 0;
 }
 
-void exec(uint8_t percentage) {
+void setup_alarm(uint8_t percentage) {
 //	for(;;){
 		loop_battery_level(percentage);
 		//digitalRead(13) ? digitalWrite(13,LOW) : digitalWrite(13,HIGH);
