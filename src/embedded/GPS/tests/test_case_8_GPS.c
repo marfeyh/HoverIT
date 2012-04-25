@@ -1,8 +1,12 @@
 
 /**
-  Author: Fangzhou Cao
-  Date: 23-04-2012     Version:0.1
-**/
+ * \file 		test_case_8_GPS.c
+ * \date 		23-04-2012
+ * \version 	0.1 
+ * \author 		Fangzhou Cao          
+ * \attention 	Sections added/modified are as follow:
+ * 		 none
+ */
 
 
 #include <check.h>
@@ -13,11 +17,11 @@
 #define LINEMA 300
 
 /**
- ID:8
- Purpose: to test get_time(char*) and get_position(char*).
- Preparation: Get fake GPS data from GPS simulator.
- Action: pass the fake GPS data to those two functions and check the return values.
- Expected outcome: time != NULL, position != NULL.
+ *ID:8
+ *Purpose: to test get_time(char*) and get_position(char*).
+ *Preparation: Get fake GPS data from GPS simulator.
+ *Action: pass the fake GPS data to those two functions and check the return values.
+ *Expected outcome: time != NULL, position != NULL.
   
 **/
 

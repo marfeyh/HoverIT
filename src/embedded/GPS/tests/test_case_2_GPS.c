@@ -1,19 +1,24 @@
+
 /**
-  Author: Fangzhou Cao
-  Date: 22-04-2012     Version:0.1
-**/
+ * \file 		test_case_2_GPS.c
+ * \date 		22-04-2012
+ * \version 	0.1 
+ * \author 		Fangzhou Cao          
+ * \attention 	Sections added/modified are as follow:
+ * 		 none
+ */
 
 #include <check.h>
 #include <stdlib.h>
 #include "gps.h"
 
 /**
- ID:2
- Purpose: to test is_GPGSV(char[]) and is_GPGSA(char[]) functions.
- Preparation: create two gpsDatas, "$GPGSV" and "$GPGSA".
- Action: call those two functions with two gpsDatas as their arguments correspondingly and get their results.
- Expected outcome: resultGPGSV == 0 , resultGPGSA == 0.
-                   hereby the GPS_test_1 sccueed.
+ * ID:2
+ * Purpose: to test is_GPGSV(char[]) and is_GPGSA(char[]) functions.
+ *Preparation: create two gpsDatas, "$GPGSV" and "$GPGSA".
+ *Action: call those two functions with two gpsDatas as their arguments correspondingly and get their results.
+ *Expected outcome: resultGPGSV == 0 , resultGPGSA == 0.
+ *hereby the GPS_test_1 sccueed
   
 **/
 
@@ -37,11 +42,11 @@ START_TEST(GPS_test_1) {
 
 
 /**
- Purpose: to test is_GPGSV(char[]) and is_GPGSA(char[]) functions.
- Preparation: create a gpsData, "$I_LOVE_POLAR_BEAR".
- Action: call those two functions with gpsData as argument and get their results.
- Expected outcome: resultGPGSV == 1 , resultGPGSA == 1.
-                   hereby the GPS_test_2 succeed.
+ *Purpose: to test is_GPGSV(char[]) and is_GPGSA(char[]) functions.
+ *Preparation: create a gpsData, "$I_LOVE_POLAR_BEAR".
+ *Action: call those two functions with gpsData as argument and get their results.
+ *Expected outcome: resultGPGSV == 1 , resultGPGSA == 1.
+ *                  hereby the GPS_test_2 succeed.
   
 **/
 
