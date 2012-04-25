@@ -18,22 +18,14 @@ void init_alarm() {
 }
 
 void setup_battery_level(){
-//    Serial.begin(9600);
-	//pinMode(13,OUTPUT);
     battery_beep_duration = 0;
 }
 
 void setup_alarm(uint8_t percentage) {
-//	for(;;){
-		loop_battery_level(percentage);
-		//digitalRead(13) ? digitalWrite(13,LOW) : digitalWrite(13,HIGH);
-		// Delay will be removed in integrated version
-//		delay(100);
-//	}
+    loop_battery_level(percentage);
 }
 
 int loop_battery_level(uint8_t Battery){
-//  int Battery=getBattery();
   if(Battery==LOW_BATTERY && battery_beep_duration<LOW_BATTERY_DURATION){
     beep(LOW_BATTERY);
     battery_beep_duration++;
@@ -60,7 +52,3 @@ int beep(int beep){
       break;
   }
 }
-
-//int getBattery(){     
-//  return 20;
-//}

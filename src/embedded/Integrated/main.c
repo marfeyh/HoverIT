@@ -1,10 +1,10 @@
 /*
  * @ Module name:  main.c
- * @ Description:  main file to run functions in fourLedson.c
- * @ Author names :Nahid Vafaie, Kuhan Loh, Aran Gerami, Denir Leric
- * @ Release      :13 April 2012
- * @ Version      : 3
- * @ Refrences    : Arduino.cc, sandklef.com
+ * @ Description:  a simple control loop
+ * @ Author names : Bruce Yinhe
+ * @ Release      : 25 April 2012
+ * @ Version      : 1
+ * @ Refrences    : 
  */
 
 #include <Arduino.h>
@@ -15,14 +15,22 @@
 
 int main(void)
 {
+    /* arduino init */
     init();
+    /* init the leds */
     init_leds();
+    /* init the alarm*/
     init_alarm();    
 
+    /* enter the simple control loop*/
     for(;;){
+        /* get the percentage from the battery*/
         uint8_t percentage = check();
+        /* send the percentage to the alarm */
         setup_alarm(percentage);
+        /* send the percentage to the leds*/
         display_percentage(percentage);
+        /* delay 0.1 s */
         delay(100);
     }
 }
