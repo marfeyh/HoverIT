@@ -15,7 +15,7 @@ USER_C_FLAGS=-DSTUB_TEST #When using uno or mega, should be commented
 SRC_C += print_test.c	#When using uno or mega, should be commented
 #SRC_C += audible_test.c # When using stub, should be commented
  
-LIB = libhovering.a libpropulsion.a
+LIB = libhovering.a
 LIB_H = hovering_motor.h hovering_control.h hovering_init_fix.h \
 	hover_api.h pressure_check.h pressure.h pin.h print_audible_test.h
 USER_LIB_INSTALL_PATH = ../../../bin
