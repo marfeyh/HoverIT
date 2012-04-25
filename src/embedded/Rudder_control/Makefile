@@ -3,7 +3,6 @@ SEARDUINO_PATH = /opt/searduino
 PROG = rudder
 
 # Add your source files here
-<<<<<<< HEAD
 SRC_C= steering.c
 SRC_CXX= RuddarControll.cpp
 MAIN_SRC = main.c
@@ -12,16 +11,6 @@ SHLIB = rudder.so
 
 LIB = librudder.a
 LIB_H = steering.h RuddarControll.h pin.h
-=======
-SRC_C= fourLedsOn.c
-SRC_CXX=
-MAIN_SRC = main.c
-ARDUINO = stub
-SHLIB = leds.so
-
-LIB = libleds.a
-LIB_H =
->>>>>>> 0f4bf99b83d16e84ce369e26742ffdbe78c23ea0
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
