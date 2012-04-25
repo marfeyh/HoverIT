@@ -7,6 +7,7 @@
 
 #include <check.h>
 #include "../RuddarControll.h"
+#include "ruddar_check.h"
 
 START_TEST (test_one)
 {

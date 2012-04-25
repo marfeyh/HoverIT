@@ -22,14 +22,14 @@
 #
 
 SRC_DIR=../
-SRC_C=
+SRC_C= 
 SRC_CXX= check_RuddarControll.cpp
-MAIN_SRC=checkmain.cpp
+MAIN_SRC= checkmain.c
 
 SEARDUINO_PATH = /opt/searduino
 
 USER_C_FLAGS = 
-USER_CXX_FLAGS = 
+USER_CXX_FLAGS =
 USER_LD_FLAGS =
 
 #
@@ -41,35 +41,44 @@ PROG=Testsuite
 USER_C_FLAGS += -I$(SRC_DIR)
 USER_CXX_FLAGS += -I$(SRC_DIR)
 USER_LD_FLAGS += -lcheck
+USER_OBJ_PATH = ./objs/
 
-SRC_C:=$(patsubst $(SRC_DIR)%.c, %.check.c,  $(SRC_C) $(addprefix $(SRC_DIR), $(SRC_FILES)))
-SRC_CXX:=$(patsubst $(SRC_DIR)%.cpp, %.check.cpp, $(SRC_CXX) $(addprefix $(SRC_DIR), $(SRC_FILES)))
+
+SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
+SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
 
 .PHONY: check clean-tests
+
 
 check: $(PROG)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcovcheck: $(PPROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+gcov: USER_C_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_LD_FLAGS += -lgcov
+gcov: check
 
-gcovbcheck:
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-memcheck: $(PROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+debug: USER_C_FLAGS += -g
+debug: USER_CXX_FLAGS += -g
+debug: check
 
-%.check.c: $(SRC_DIR)/%.c
-	cp -f $< $@
 
-%.check.cpp: $(SRC_DIR)%.cpp
-	cp -f $< $@
+gcovcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
 
+gcovbcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+
+memcheck: debug
+	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
 
 clean-tests: clean
-	-rm $(filter %.check.c, $(SRC_C))
-	-rm $(filter %.check.cpp, $(SRC_CXX))
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+
+
 
 

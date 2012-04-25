@@ -6,7 +6,7 @@
  */
 
 #include <stdlib.h>
-#include "check_RuddarControll.cpp"
+#include "ruddar_check.h"
 
 main(void) {
   int number_failed;
