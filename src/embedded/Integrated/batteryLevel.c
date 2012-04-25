@@ -31,8 +31,8 @@ void init_leds(void)
 
 void check() {
 
-		const static uint8_t SENSOR_PIN = 19;
-		uint8_t SENSOR_VALUE = 0;
+   const static uint8_t SENSOR_PIN = 19;
+        	uint16_t SENSOR_VALUE = 0;
 
 		SENSOR_VALUE = analogRead(SENSOR_PIN);
 
@@ -77,5 +77,5 @@ void check() {
 		        //5Volts remaining
 		  }
 
-	return 0;
+
 }

@@ -28,7 +28,7 @@ MAIN_SRC=checkmain.c
 
 SEARDUINO_PATH = /opt/searduino
 
-USER_C_FLAGS =
+USER_C_FLAGS = -I/opt/searduino/include/searduino/seasim -I/opt/searduino/include/searduino/ -I/opt/searduino/include/searduino/arduino
 USER_CXX_FLAGS =
 USER_LD_FLAGS =
 
