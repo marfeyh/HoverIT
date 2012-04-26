@@ -56,10 +56,11 @@ int throttle_stick_level){
 and also prevent increase to function when the motor is stopped */
 int check_and_fix_level_increase (int using_pin, int test_pin, \
 int throttle_stick_level, int level){
-	if (throttle_stick_level < LOWEST_LEVEL){
-		test_Too_low (test_pin);
-		return throttle_stick_level;
-	}else if (throttle_stick_level > HIGHEST_LEVEL){
+  //	if (throttle_stick_level < LOWEST_LEVEL){
+  //		test_Too_low (test_pin);
+  //		return throttle_stick_level;
+  //	}else 
+        if (throttle_stick_level > HIGHEST_LEVEL){
 			test_Too_high (test_pin);		
 			turbo (using_pin, test_pin);
 			return throttle_stick_level;	

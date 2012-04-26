@@ -6,8 +6,8 @@ PROG = propulsion
 SRC_C= propulsion.c propulsion_api.c
 SRC_CXX= 
 MAIN_SRC = main.c
-ARDUINO = stub
-#ARDUINO = mega2560
+#ARDUINO = stub
+ARDUINO = mega2560
 SHLIB = propulsion.so
 
 LIB = libpropulsion.a
