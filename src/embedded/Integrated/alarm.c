@@ -18,6 +18,8 @@ void init_alarm() {
 }
 
 void setup_battery_level(){
+    /* for searduino test*/
+    pinMode(11, OUTPUT);
     battery_beep_duration = 0;
 }
 

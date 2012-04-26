@@ -1,12 +1,12 @@
 TEST_DIR=tests
 SEARDUINO_PATH = /opt/searduino
-PROG = leds
+PROG = batterymeter
 
 # Add your source files here
-SRC_C= alarm.c batteryLevel.c fourLedsOn.c
+SRC_C= alarm.c batteryLevel.c batteryMeter.c fourLedsOn.c
 SRC_CXX= toneWrapper.cpp
 MAIN_SRC = main.c
-ARDUINO = uno
+ARDUINO = stub
 SHLIB = leds.so
 
 LIB = libleds.a

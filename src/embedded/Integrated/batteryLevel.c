@@ -14,12 +14,19 @@
 #include <searduino.h>
 #include "batteryLevel.h"
 
+uint8_t get_sensor_value(uint8_t SENSOR_PIN) {
+    // SENSOR_VALUE = analogRead(SENSOR_PIN);
+    uint8_t SENSOR_VALUE = 200;
+    return SENSOR_VALUE;
+}
+
 uint8_t check() {
 
 		const static uint8_t SENSOR_PIN = 19;
 		uint8_t SENSOR_VALUE = 0;
 
-		SENSOR_VALUE = analogRead(SENSOR_PIN);
+        // 0 - 1024
+        SENSOR_VALUE = get_sensor_value(SENSOR_PIN); 
 
 		  if (SENSOR_VALUE >  0 && SENSOR_VALUE < 204.7){
               return 20;
@@ -40,3 +47,5 @@ uint8_t check() {
 
 	return 0;
 }
+
+
