@@ -20,6 +20,8 @@
 # SRC_FILES can be set by a calling makefile to set the files of the src folder
 #
 
+UBRR1H=ture
+
 SRC_DIR=../
 SRC_C=
 SRC_CXX=
@@ -43,8 +45,9 @@ USER_LD_FLAGS += -lcheck
 USER_OBJ_PATH = ./objs/
 
 
-SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
-SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+#SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
+#SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+SRC_C = ../message_handler.c
 
 .PHONY: check clean-tests
 
@@ -57,24 +60,27 @@ gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
 gcov: USER_LD_FLAGS += -lgcov
 gcov: check
 
+
 debug: USER_C_FLAGS += -g
 debug: USER_CXX_FLAGS += -g
 debug: check
 
+
 gcovcheck: gcov
-	gcov $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
 
 gcovbcheck: gcov
-	gcov -b $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
 
-memcheck: debug check
-	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
-
+memcheck: debug
+	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
 
 clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
 
 

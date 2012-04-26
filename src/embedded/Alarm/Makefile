@@ -1,17 +1,16 @@
-#Modified by Dmitry Igoshin
-TEST_DIR=tests/
+TEST_DIR=test/
 SEARDUINO_PATH = /opt/searduino
-PROG = Scheduler
+PROG = Alarm
 
 # Add your source files here
-SRC_C= controller.c list.c
-SRC_CXX= 
-MAIN_SRC = 
-ARDUINO = mega2560
-SHLIB = scheduler.so
+SRC_C= alarm.c
+SRC_CXX= toneWrapper.cpp
+MAIN_SRC = main.c
+ARDUINO = due
+SHLIB = 
 
-LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
+LIB = 
+LIB_H = 
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)

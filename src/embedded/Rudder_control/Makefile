@@ -1,17 +1,16 @@
-#Modified by Dmitry Igoshin
 TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = Scheduler
+PROG = rudder
 
 # Add your source files here
-SRC_C= controller.c list.c
-SRC_CXX= 
-MAIN_SRC = 
+SRC_C= steering.c
+SRC_CXX= RuddarControll.cpp
+MAIN_SRC = main.c
 ARDUINO = mega2560
-SHLIB = scheduler.so
+SHLIB = rudder.so
 
-LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
+LIB = librudder.a
+LIB_H = steering.h RuddarControll.h pin.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
