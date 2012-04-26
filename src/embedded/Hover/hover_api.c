@@ -15,7 +15,8 @@
 #include <pressure_check.h>
 #include <pin.h>
 
-#define HOVER_LEVEL 10
+#define HOVER_LEVEL_AUTO 10
+#define HOVER_LEVEL_MANUAL 40
 
 /*!
 @brief start the hovering fan
@@ -50,18 +51,35 @@ int hover_max() {
 }
 
 /*!
-@brief decrease the fan speed
+@brief increase the speed through manual control, in total 3 levels
  */
-int decrease_hover() {       
-  hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL);
+int increase_hover_manual() {
+  hover_change(increase, USING_PIN, TEST_PIN, HOVER_LEVEL_MANUAL);
   return 0;
 }
 
 /*!
-@brief increase the speed
+@brief decrease the speed through manual control, in total 3 levels
  */
-int increase_hover() {
-  hover_change(increase, USING_PIN, TEST_PIN, HOVER_LEVEL);
+int decrease_hover_manual() {       
+  hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL_MANUAL);
+  return 0;
+}
+
+
+/*!
+@brief decrease the fan speed automatically
+ */
+int decrease_hover_auto() {       
+  hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL_AUTO);
+  return 0;
+}
+
+/*!
+@brief increase the speed automatically
+ */
+int increase_hover_auto() {
+  hover_change(increase, USING_PIN, TEST_PIN, HOVER_LEVEL_AUTO);
   return 0;
 }
 

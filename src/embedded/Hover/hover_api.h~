@@ -60,16 +60,14 @@ one level at a time. Three speed levels possible.
 int increase_hover_manual();
 
 /*!
-@brief Function to decrease the rotation speed of the fan used for automatic
-control.
+@brief Function to decrease the rotation speed of the fan
 @param takes no parameters
 @returns integer 0 if successful
 */
 int decrease_hover_auto();
 
 /*!
-@brief Function to increase the rotation speed of the fan used for automatic
-control.
+@brief Function to increase the rotation speed of the fan
 @param takes no parameters
 @returns integer 0 if successful
 */
