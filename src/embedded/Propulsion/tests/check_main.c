@@ -1,0 +1,19 @@
+/*
+AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
+DATA :2012-04-05
+DESCRIPTION: The main function for the unit tests of the propulsion and
+propulsion API functions. 
+*/
+#include <stdlib.h>
+#include <check.h>
+#include "check_propulsion.h"
+
+int main(void) {
+  int number_failed;
+  Suite *s = propulsion_suite();
+  SRunner *sr = srunner_create(s);
+  srunner_run_all(sr, CK_NORMAL);
+  number_failed = srunner_ntests_failed(sr);
+  srunner_free(sr);
+  return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+}

@@ -99,7 +99,7 @@ void check_serial_input() {
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00011000 */
-							func_ptr = increase_hover;
+							func_ptr = increase_hover_auto;
 							job_ptr->task_p2 = func_ptr;
 							job_ptr->job_num = 1;
 							job_ptr->prio = PRIO_HIGH;
@@ -110,7 +110,11 @@ void check_serial_input() {
 							break;
 						case DECREASING:
 							/* value was 00011001 */
+<<<<<<< HEAD
 							func_ptr = decrease_hover;
+=======
+							func_ptr = decrease_hover_auto;
+>>>>>>> 8ab692a862ee1745809ce2124b95e15008474e0f
 							job_ptr->task_p2 = func_ptr;
 							job_ptr->job_num = 1;
 							job_ptr->prio = PRIO_HIGH;
