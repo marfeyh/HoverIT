@@ -17,7 +17,7 @@ all:
 	$(MAKE) lib-install -C Propulsion
 	$(MAKE) lib-install -C Hover
 	$(MAKE) lib-install -C Rudder_control
-	$(MAKE) lib-install -C determine_speed
+	$(MAKE) lib-install -C determine-speed
 	$(MAKE) prog -C Hovercraft
 
 check:
