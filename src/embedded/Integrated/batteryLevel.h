@@ -14,11 +14,9 @@
 //#define ledPin3  7
 //#define ledPin4  8
 //#define timer1  500
+#define SENSOR_PIN 5
 
-
-
-//void init_leds(void);
-//void run_leds(void);
 uint8_t check(void);
+int init_battery_check(void);
 
 #endif

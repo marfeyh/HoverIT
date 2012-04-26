@@ -6,7 +6,7 @@ PROG = batterymeter
 SRC_C= alarm.c batteryLevel.c batteryMeter.c fourLedsOn.c
 SRC_CXX= toneWrapper.cpp
 MAIN_SRC = main.c
-ARDUINO = stub
+ARDUINO = uno
 SHLIB = leds.so
 
 LIB = libleds.a

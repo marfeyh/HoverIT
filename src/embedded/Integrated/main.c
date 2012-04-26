@@ -20,5 +20,6 @@ int main(void) {
     /* enter the simple control loop, this will be the scheduler*/
     for(;;){
         int percentage = setup_battery_meter();
+//        printf("\nPercentage: %d\n", percentage);
     }
 }
