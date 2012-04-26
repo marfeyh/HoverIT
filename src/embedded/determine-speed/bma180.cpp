@@ -23,7 +23,7 @@
 #define BMA180_1200HZ_LOW_PASS_FILTER_VALUE 0X70
 #define BMA180_ENABLE_WRITE_CONTROL_REGISTER 0x0D
 
-void bma_initialize(void) {
+void Bma180Initialize(void) {
   Wire.begin();
  
   /* Reset the sensor */
@@ -53,7 +53,7 @@ void bma_initialize(void) {
   Wire.endTransmission();
 }
 
-float getXAccel(float bias) {
+float GetXAccel(float bias) {
  
   int data;
 
@@ -75,12 +75,12 @@ float getXAccel(float bias) {
 
 }
 
-float calcXBias(void) {
+float CalcXBias(void) {
   int samples;
   float sum = 0.0;
 
   for(samples = 0; samples < 400; samples++) {
-    sum += getXAccel(0.0);
+    sum += GetXAccel(0.0);
     delayMicroseconds(625); /* 625 microseconds "should" represent 1200Hz */
   }
 
