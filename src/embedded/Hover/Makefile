@@ -1,19 +1,28 @@
+#*
+#* @ Module name:  Main Makefile
+#* @ Description:  Compiles the files and test files for control hovering fan
+#*
+#* @ Author names : Eva-Lisa Kedborn, Jing Liu 
+#* 		    Seyed Ehsan Mohajerani, Navid Amiriarshad
+#* @ Release      : 9 April 2012
+#* @ Version      : 1
+#* @ Refrences    : Arduino.cc, sandklef.com, Check manual
+#*
+
 TEST_DIR = Tests/
 SEARDUINO_PATH = /opt/searduino
 PROG = hovering
 
 # Add your source files here
 SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
-	hover_api.c pressure_check.c
-SRC_CXX= 
+	hover_api.c pressure_check.c pressure.c
 MAIN_SRC = main.c
-#ARDUINO = stub
-ARDUINO = mega2560
+ARDUINO = stub
+#ARDUINO = mega2560
 SHLIB = hovering.so
 
 LIB = libhovering.a
-LIB_H = hovering_motor.h hovering_control.h hovering_init_fix.h \
-	hover_api.h pressure_check.h pin.h print_audible_test.h
+LIB_H = hover_api.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 USER_C_FLAGS=-DSTUB_TEST #When using uno or mega, should be commented

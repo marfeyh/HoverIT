@@ -1,12 +1,22 @@
+#
+#* @ Module name:  Test make file
+#* @ Description:  Compiles the files for testing control hovering fan
+#*
+#* @ Author names : Eva-Lisa Kedborn, Jing Liu
+#* 		    Seyed Ehsan Mohajerani, Navid Amiriarshad#* @ Release      : 9 April 2012
+#* @ Version      : 1
+#* @ Refrences    : Arduino.cc, sandklef.com, Check manual
+#
+
 SRC_DIR =../
 SRC_C = hovering_check.c
 MAIN_SRC = test_main.c
 
 SEARDUINO_PATH = /opt/searduino
 
-#USER_C_FLAGS = 
-#USER_CXX_FLAGS = 
-#USER_LD_FLAGS =
+USER_C_FLAGS = 
+USER_CXX_FLAGS = 
+USER_LD_FLAGS =
 
 #
 # DO NOT CHANGE THINGS BELOW THIS LINE (UNLESS YOU ARE AWESOME)

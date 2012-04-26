@@ -1,14 +1,44 @@
-## Makefile to run all other make files
-## Reference: Taken from Henrik's example
-##
+#All the code should be structured as following
+# / src
+# 	| Makefile   
+#	/embedded
+#		| Makefile <-- You are here
+#		/feature
+#       		| Makefile 
+# 			| example.c
+#			| example1.c
+# 			/tests
+#	 			| check_main.c
 
 
-default:
-	@echo "--- Normal compilation ----------------------------------"
-	@echo "make all     produces binary in bin/"
-	@echo " "
-	
-all:
-	cd src && $(MAKE) all
+all: 
+	$(MAKE) lib-install -C Scheduler
+	$(MAKE) lib-install -C Communication
+	$(MAKE) lib-install -C Propulsion
+	$(MAKE) lib-install -C Hover
+	$(MAKE) lib-install -C Rudder_control
+	$(MAKE) prog -C Hovercraft
 
+check:
+	$(MAKE) check -C Propulsion
+	$(MAKE) check -C Communication
 
+gcovcheck:
+	$(MAKE) gcovcheck -C Propulsion
+	$(MAKE) gcovcheck -C Communication
+	gcovr -x --xml > coverage.xml
+
+memcheck:
+	$(MAKE) memcheck -C Propulsion
+
+clean-tests:
+	$(MAKE) clean-tests -C Propulsion
+	$(MAKE) clean-tests -C Communication
+
+clean: clean-tests
+	$(MAKE) clean -C Scheduler
+	$(MAKE) clean -C Communication
+	$(MAKE) clean -C Propulsion
+	$(MAKE) clean -C Hover
+	$(MAKE) clean -C Rudder_control
+	$(MAKE) clean -C Hovercraft
