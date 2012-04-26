@@ -28,5 +28,4 @@ int initialise_propulsion();
 int get_speed_level();
 void change_pro_speed(int level);
 void stop_pro_fan();
-void init_motor();
 unsigned char get_motor_status();

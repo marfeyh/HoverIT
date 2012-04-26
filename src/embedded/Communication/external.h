@@ -34,8 +34,8 @@ extern int start_hover(); /* start the hovering fan */
 extern int stop_hover(); /* stop the fan */
 extern int hover_min(); /* minimize the speed */
 extern int hover_max(); /* maximize the speed */
-extern int decrease_hover(); /* decrease the speed */
-extern int increase_hover(); /* increase the speed */
+extern int decrease_hover_auto(); /* decrease the speed */
+extern int increase_hover_auto(); /* increase the speed */
 extern int autocontrol(); /* let the fan speed be cotrolled by pressure  sensor automatically */
 
 // Rudder Direction

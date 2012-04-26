@@ -65,6 +65,7 @@ debug: check
 
 gcovcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
+<<<<<<< HEAD
 
 gcovbcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
@@ -74,6 +75,19 @@ memcheck: debug
 
 clean-tests: clean
 	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
+=======
+	gcov *.gcno
+
+gcovbcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
+
+memcheck: debug
+	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
+
+clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
+>>>>>>> df8ba53262ab796fb8b6e02a7cf0a614b2f65128
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 

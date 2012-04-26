@@ -5,13 +5,12 @@ PROG = propulsion
 # Add your source files here
 SRC_C= propulsion.c propulsion_api.c
 SRC_CXX= 
-MAIN_SRC = main.c
-#ARDUINO = stub
-ARDUINO = mega2560
+MAIN_SRC =  main.c
+ARDUINO = stub
 SHLIB = propulsion.so
 
 LIB = libpropulsion.a
-LIB_H = propulsion.h pin.h propulsion_api.h
+LIB_H = 
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
@@ -19,6 +18,11 @@ export SRC_FILES= $(SRC_C) $(SRC_CXX)
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
 # Needs to be modified as well
+#check: propulsion.o $(TEST_DIR)check_propulsion.o
+#	$(MAKE) check -C tests
+
+clean-tests:
+	$(MAKE) clean -C tests
 check:
 	$(MAKE) check -C $(TEST_DIR)
 
@@ -31,7 +35,7 @@ gcovbcheck:
 memcheck:
 	$(MAKE) memcheck -C $(TEST_DIR)
 
-clean-tests:
-	$(MAKE) clean-tests -C $(TEST_DIR)
+#clean-tests:
+#	$(MAKE) clean-tests -C $(TEST_DIR)
 
 .PHONY: check

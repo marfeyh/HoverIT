@@ -63,5 +63,3 @@ clean-tests: clean
 	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-
-

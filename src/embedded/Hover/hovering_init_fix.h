@@ -1,35 +1,43 @@
 /*
- * @ Module name:  hoveing_init_fix.h
+ * @ Module name:  hovering_init_fix.h
  * @ Description:  Header file for the functions that 
  *   initiates the hovering fan
  *
  * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
  * @ Release      : 20 March 2012
  * @ Version      : 1.0
- * @ Refrences    : Arduino.cc, sandklef.com
+ * @ References    : Arduino.cc, sandklef.com
  * dreamincode.net/forums/topic/34861-functions-stored-in-structure
  * Turnigy_Plush_and_Sentry_ESC user manual
  */
 
 /* Make sure this header file is included one time */
-#ifndef HOVERING_INIT_FIX_H
+#if !defined HOVERING_INIT_FIX_H
 	#define HOVERING_INIT_FIX_H
 	
 	/* Defines */
 	#define HIGHEST_LEVEL 254
-	#define LOWEST_LEVEL 133
+	#define LOWEST_LEVEL 143
 	#define STOP_LEVEL 120
-	
+
 	/* Function prototype */
-	
+
 	/* Arduino and motor initiation */
-	int initialize(int using_pin);
+	int initialize(int using_pin, int test_pin);
+	/* Set the Arduino active pin for using */	
+	int pin_program(int using_pin, int test_pin, int level);
 	/* This function prevents the motor from stop
 	 (Check boundary values)*/
-	int check_and_fix_level(int using_pin, int throttle_stick_level);
-	/* Initialize Arduino */	
-	int ard_init(int using_pin);
-	/* Set the Arduino active pin for using */	
-	int pin_program(int using_pin, int level);
+	int check_and_fix_level(int using_pin,int test_pin, \
+	 int throttle_stick_level);
+	/* This function prevent increase to function when the motor \
+	 is stopped */
+	int check_and_fix_level_increase (int using_pin, int test_pin, \
+	int throttle_stick_level, int level);	
+	/* This function prevents decrease to function when the motor \
+	is stopped */
+	int check_and_fix_level_decrease (int using_pin, int test_pin, \
+	int throttle_stick_level, int level);
+
 	
 	#endif
