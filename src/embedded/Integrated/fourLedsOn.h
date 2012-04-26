@@ -14,13 +14,9 @@
 #define ledPin3  7
 #define ledPin4  8
 #define timer1  500
-#define timer2  7500
-#define timer3  5000
-#define timer4  200
+
 
 void init_leds(void);
 void run_leds(void);
-void display_percentage(uint8_t value);
-
 
 #endif
