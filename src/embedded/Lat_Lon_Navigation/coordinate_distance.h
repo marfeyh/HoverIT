@@ -6,12 +6,14 @@
  *
  */
 
-#ifndef COORDINATE_DISTANCE_H_INCLUDED
-#define COORDINATE_DISTANCE_H_INCLUDED
+#ifndef COORDINATE_DISTANCE_H
+#define COORDINATE_DISTANCE_H
 
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+
+#define d2r (M_PI / 180.0)
 
 double haversine_km(double lat1, double long1, double lat2, double long2);
 

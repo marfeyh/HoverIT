@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <check.h>
-#include <check_coordinate_distance.h>
+#include "check_coordinate_distance.h"
+
 
 int main(void) {
   int number_failed;

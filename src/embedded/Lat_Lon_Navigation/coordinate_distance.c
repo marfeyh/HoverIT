@@ -12,9 +12,6 @@
 
 #include "coordinate_distance.h"
 
-#define d2r (M_PI / 180.0)
-
-
 /*Below is haversine mathematical function to calculate 
 the distance between two coordinates*/
 
