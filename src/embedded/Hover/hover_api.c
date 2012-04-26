@@ -18,7 +18,7 @@
 #define HOVER_LEVEL 10
 
 /*!
-@brief start the hovring fan
+@brief start the hovering fan
  */
 int start_hover() {
   initialize(USING_PIN, TEST_PIN);

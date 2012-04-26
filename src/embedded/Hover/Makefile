@@ -7,8 +7,8 @@ SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
 	hover_api.c pressure_check.c
 SRC_CXX= 
 MAIN_SRC = main.c
-ARDUINO = stub
-#ARDUINO = mega2560
+#ARDUINO = stub
+ARDUINO = mega2560
 SHLIB = hovering.so
 
 LIB = libhovering.a
@@ -21,7 +21,7 @@ SRC_C += print_test.c	#When using uno or mega, should be commented
 #SRC_C += audible_test.c # When using stub, should be commented
  
 USER_C_FLAGS=-Istub/include
-USER_LD_FLAGS=-Lstub/../../bin/$(BOARD) -lpressure_stub
+USER_LD_FLAGS=-Lstub/lib/$(BOARD) -lpressure_stub
 
 export SRC_FILES = $(SRC_C) $(SRC_CXX)
 
