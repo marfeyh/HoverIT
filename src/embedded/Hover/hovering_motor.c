@@ -18,6 +18,9 @@
 #include <hovering_control.h>
 #include <print_audible_test.h>
 
+unsigned char loop_need;
+
+
 /* Functions */
 
 /* Function that gets arguments for start or stop the motor */
@@ -35,7 +38,7 @@ int test_pin, int level){
 
 /* Loop for motor */
 int hover_loop(FUNCS funcs_in, int using_pin){
-	while(1){
+	while(loop_need){
 		funcs_in.func1(funcs_in.level);
 		funcs_in.func2(funcs_in.delay_time);
 	}
