@@ -20,8 +20,11 @@ all:
 	$(MAKE) prog -C Hovercraft
 
 check:
+#	$(MAKE) check -C Scheduler
 	$(MAKE) check -C Propulsion
 	$(MAKE) check -C Communication
+#	$(MAKE) check -C Hover
+	$(MAKE) check -C Rudder_control
 
 gcovcheck:
 	$(MAKE) gcovcheck -C Propulsion
