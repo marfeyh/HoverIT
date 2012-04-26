@@ -57,16 +57,16 @@ class RuddarControll
 public: 
        RuddarControll();
        int setupRuddar();
-       void controllRuddar(int command);
+       int controllRuddar(int command);
  
-private:
-        void setHardLeft();
-        void setHardRight();
-        void setCurrent();
-        void setStraight();
-        void setBrake();
-        void setSoftRight();
-        void setSoftLeft();
+//private:
+        int setHardLeft();
+        int setHardRight();
+        int setCurrent();
+        int setStraight();
+        int setBrake();
+        int setSoftRight();
+        int setSoftLeft();
 
 };
 
