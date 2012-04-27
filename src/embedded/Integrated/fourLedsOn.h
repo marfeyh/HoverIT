@@ -13,8 +13,7 @@
 #define ledPin2  4
 #define ledPin3  7
 #define ledPin4  8
-#define timer1  500
-
+#define ledState LOW
 
 void init_leds(void);
 void run_leds(void);

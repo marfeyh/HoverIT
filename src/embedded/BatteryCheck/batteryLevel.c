@@ -1,55 +1,41 @@
 /*
- ============================================================================
- Name        : batteryLevel.c
- Author      : Kuhan Loh, Aran Gerami, Denir Leric
- Version     : v 0.2
- Copyright   : Copyright (C) 2011, 2012 Denir Leric
- Description : Battery Check in C
- ============================================================================
+ * @ Module name:  batteryLevel.c
+ * @ Description:  Contains the functions that reads the voltage of the battery and
+ *                  turns on four leds to show how much battery left
+ * @ Author names :Kuhan Loh, Aran Gerami, Denir Leric
+ * @ Release      :24 April 2012
+ * @ Version      :4
+ * @ Refrences    : Arduino.cc, sandklef.com
  */
+
 
 
 #include <Arduino.h>
 #include <searduino.h>
 #include "batteryLevel.h"
 
-
-uint8_t check(uint8_t LED_PIN) {
+uint8_t check() {
 
 		const static uint8_t SENSOR_PIN = 19;
-		uint8_t SENSOR_VALUE = 0;
-		uint8_t PERCENTAGE = 0;
+		uint16_t SENSOR_VALUE = 0;
 
 		SENSOR_VALUE = analogRead(SENSOR_PIN);
-		PERCENTAGE = (SENSOR_VALUE/1023*100) - 16.67;			//Trying to subtract a double variable from a integer, that is wrong.
 
 		  if (SENSOR_VALUE >  0 && SENSOR_VALUE < 204.7){
-		   /* digitalWrite(LED_PIN, 1);
-		    delay(1000);
-		    digitalWrite(LED_PIN, 0);
-		    delay(1000);*/
-		        //1Volt Remaining
+              return 20;
+              //1Volt Remaining
 		  } else if (SENSOR_VALUE >  204.6 && SENSOR_VALUE < 409.3){
-		   /* digitalWrite(LED_PIN, 1);
-		    delay(2000);
-		    digitalWrite(LED_PIN, 0);
-		    delay(2000);*/
-		        //2Volts Remaining
+              return 40;
+              //2Volts Remaining
 		  } else if (SENSOR_VALUE >  409.2 && SENSOR_VALUE < 613.9){
-		    /*digitalWrite(LED_PIN, 1);
-		    delay(3000);
-		    digitalWrite(LED_PIN, 0);
-		    delay(3000);*/
-		        //3Volts Remaining
+              return 60;
+              //3Volts Remaining
 		  } else if (SENSOR_VALUE >  613.8 && SENSOR_VALUE < 818.5){
-		    /*digitalWrite(LED_PIN, 1);
-		    delay(4000);
-		    digitalWrite(LED_PIN, 0);
-		    delay(4000);*/
-		        //4Volts Remaining
+              return 80;
+              //4Volts Remaining
 		  } else if (SENSOR_VALUE > 818.4){
-		    /*digitalWrite(LED_PIN, 1);*/
-		        //5Volts remaining
+              return 100;
+              //5Volts remaining
 		  }
 
 	return 0;

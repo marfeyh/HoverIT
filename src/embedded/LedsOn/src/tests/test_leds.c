@@ -29,7 +29,7 @@ void teardown (void) {
  Purpose: tests if all the leds initially work and turn on
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -48,7 +48,7 @@ START_TEST(test_init) {
  Purpose: tests when battery percentage is 100 then all the leds should be on
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -68,7 +68,7 @@ START_TEST(test_init) {
  Purpose: tests when battery percentage is 81 then all the leds should be on
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -88,7 +88,7 @@ START_TEST(test_loop_full2) {
  Purpose: tests when battery percentage is 80 then leds 2, 3, 4 should be on and led 1 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -108,7 +108,7 @@ START_TEST(test_loop_half1) {
  Purpose: tests when battery percentage is 61 then leds 2, 3, 4 should be on and led 1 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -128,7 +128,7 @@ START_TEST(test_loop_half2) {
  Purpose: tests when battery percentage is 60 then leds 3, 4 should be on and leds 1,2 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -148,7 +148,7 @@ START_TEST(test_loop_lesshalf1) {
  Purpose: tests when battery percentage is 41 then leds 3, 4 should be on and leds 1,2 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -168,7 +168,7 @@ START_TEST(test_loop_lesshalf2) {
  Purpose: tests when battery percentage is 40 then led 4 should be on and leds 1,2,3 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -187,10 +187,9 @@ START_TEST(test_loop_halfempty1) {
  Id/Title: tc-07 tests leds condition on 21 percentage
  Purpose: tests when battery percentage is 21 then led 4 should be on and leds 1,2,3 should be off Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
-
 START_TEST(test_loop_halfempty2) {
   init_leds();
 
@@ -207,7 +206,7 @@ START_TEST(test_loop_halfempty2) {
  Purpose: tests when battery percentage is 20 then all the leds should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -216,10 +215,10 @@ START_TEST(test_loop_empty1) {
 	init_leds();
 	
 	display_percentage(20);
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == LOW);
-    fail_unless(digitalRead(ledPin3) == LOW);
-    fail_unless(digitalRead(ledPin4) == LOW);
+	fail_unless(digitalRead(ledPin1) == HIGH);
+	fail_unless(digitalRead(ledPin2) == HIGH);
+    fail_unless(digitalRead(ledPin3) == HIGH);
+    fail_unless(digitalRead(ledPin4) == HIGH);
 	
 }END_TEST
 
@@ -228,7 +227,7 @@ START_TEST(test_loop_empty1) {
  Purpose: tests when battery percentage is 1 then all the leds should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
  Failures: 0, Errors: 0
  */
 
@@ -236,12 +235,34 @@ START_TEST(test_loop_empty2) {
 	init_leds();
 	
 	display_percentage(1);
+	fail_unless(digitalRead(ledPin1) == HIGH);
+	fail_unless(digitalRead(ledPin2) == HIGH);
+    fail_unless(digitalRead(ledPin3) == HIGH);
+    fail_unless(digitalRead(ledPin4) == HIGH);
+	
+}END_TEST
+
+/* 
+ Id/Title: tc-09 tests leds condition on 0 percentage
+ Purpose: tests when battery percentage is 0 then all the leds should be off
+ Prerequisites: leds be connected
+ Expected results: All the ledpins be in HIGH position
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Failures: 0, Errors: 0
+ */
+
+START_TEST(test_loop_fullempty) {
+	init_leds();
+	
+	display_percentage(0);
 	fail_unless(digitalRead(ledPin1) == LOW);
 	fail_unless(digitalRead(ledPin2) == LOW);
     fail_unless(digitalRead(ledPin3) == LOW);
     fail_unless(digitalRead(ledPin4) == LOW);
 	
 }END_TEST
+
+
 
 Suite * leds_suite(void) {
   Suite *s = suite_create("Leds");
@@ -259,6 +280,7 @@ Suite * leds_suite(void) {
   tcase_add_test(tc,test_loop_halfempty2);
   tcase_add_test(tc,test_loop_empty1);
   tcase_add_test(tc,test_loop_empty2);
+  tcase_add_test(tc,test_loop_fullempty);
   tcase_set_timeout(tc,0);
   suite_add_tcase(s,tc);
   return s;

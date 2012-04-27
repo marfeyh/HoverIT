@@ -10,6 +10,7 @@
 
 
 #include <Arduino.h>
+#include <searduino.h>
 #include "batteryLevel.h"
 
 void setup(){
