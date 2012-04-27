@@ -111,35 +111,19 @@ Suite* pressure_test(void) {
   tcase_add_test(tc2,test_negative_values);
   tcase_add_test(tc3,test_all_values);
   suite_add_tcase(s, tc1);
-  //suite_add_tcase(s, tc2);
-  //suite_add_tcase(s, tc3);
+  suite_add_tcase(s, tc2);
+  suite_add_tcase(s, tc3);
   return s;
 }
 
 
 
 int main(void) {
-  /*int number_failed;
+  int number_failed;
   Suite* suite = pressure_test();
   SRunner* suite_runner = srunner_create(suite);
   srunner_run_all(suite_runner,CK_NORMAL);
   number_failed = srunner_ntests_failed(suite_runner);
   srunner_free(suite_runner);
   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-  */
-unsigned int in = 1023; /*!< Value for inside pin */
-  unsigned int out = 0;   /*!< Value for outside pin */
-
-  seasim_set_input(0, in, INPUT);    /*!< Sets value to the pin */
-
-  for(out = 0; out < 1023; out++) {
-
-    seasim_set_input(1, out, INPUT); /*!< Sets value to the pin */
-
-    /*!
-     * Test case will pass if return from get_pressure() is bigger then 0.
-     */
-    
-    fail_unless(get_pressure() > 0);
-  }
 }

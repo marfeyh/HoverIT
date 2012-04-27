@@ -44,7 +44,7 @@ unsigned int get_pressure() {
    * Calculation for getting pressure difference in Pa.
    */
   pressure_diff_pa = inside_pressure_pa - outside_pressure_pa;
-  printf("TAG %f \n", pressure_diff_pa);
+  
   if(pressure_diff_pa > max_value) {
     return max_value;
   }
@@ -59,6 +59,5 @@ unsigned int get_pressure() {
   /*!
    * Returns pressure difference value 
    */ 
-  
   return (unsigned int) pressure_diff_pa; 
 }
