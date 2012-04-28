@@ -7,10 +7,10 @@
 
 #include <check.h>
 #include <stdlib.h>
-#include "../../job.h"
-#include "../../jobpriority.h"
-#include "../../jobtype.h"
-#include "../../list.h"
+#include "../job.h"
+#include "../jobpriority.h"
+#include "../jobtype.h"
+#include "../list.h"
 //#include "../../src/loc_struct.h"
 //#include "../../src/job_queue.h"
 
