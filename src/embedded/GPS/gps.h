@@ -4,8 +4,8 @@
  * Version: 1.0 - 2012-04-03 - Function prototypes
  * Version: 1.5 - 2012-04-10 - Added Gokuls parts (function prototypes and structs) 
  **/
-
-#pragma once
+if !defined __posi_gps
+#define __posi_gps
 
 struct position {
   float longitude;
@@ -38,3 +38,5 @@ char* retrive_data(char[],int);
 
 /* Parses decimal degrees to radians */
 double d2r(double);
+
+#endif
