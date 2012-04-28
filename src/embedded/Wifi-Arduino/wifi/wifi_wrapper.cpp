@@ -5,7 +5,7 @@
 #include <WiFlySerial.h>
 #include <wifi_wrapper.h>
 
-
+//Rx & Tx pin 
 #define ArduinoBoard_RX 2
 #define ArduinoBoard_TX 3
 
