@@ -7,6 +7,10 @@
 
 static int hover_speed = 0;
 
+void init_brake_propulsion(void){
+
+}
+
 int reverse_motor(int current_hover_speed){
   
 
