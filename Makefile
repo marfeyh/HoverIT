@@ -1,10 +1,14 @@
-all: 
-	cd src && $(MAKE) 
+all:
+	$(MAKE) all -C src/embedded
+	$(MAKE) all -C src/computer
 
-check: 
-	cd src && $(MAKE) check
+embedded:
+	$(MAKE) all -C src/embedded
+
+embedded-gcov:
+	$(MAKE) gcovcheck -C src/embedded
 
 clean:
-	cd src && $(MAKE) clean 
-
-.PHONY: all check clean
+	$(MAKE) clean -C src/embedded
+	$(MAKE) clean-tests -C src/embedded
+	$(MAKE) clean -C bin
