@@ -61,7 +61,7 @@ int start(int using_pin, int test_pin) {
 	test_start (test_pin);
 	return 0;
 }
-0
+
 /* Set the level to 100 or start the motor \
 if the motor has not been started (The minimum acceptable value for ESC) */
 int throttle_stick_bottom(int using_pin, int test_pin) {
