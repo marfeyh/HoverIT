@@ -1,3 +1,22 @@
+
+/*!
+ * @file brake_propulsion.c
+ * @headerfile brake_propulsion.h
+ * @headerfile hover_speed.h
+ * @headerfile propulsion.h 
+ * @headerfile pin.h
+ * @headerfile searduino.h
+ * @description: This functions is billed for reversing the propulsion fan
+   direction of the hovercraft. More descriptions are still in offing.
+ * @author: Ezeh Prince Anthony Anayo
+ * @author: Xinran He
+ * @version: 0.2
+ * @date: 2012-04-26
+ * @reference: Arduino.cc
+ * @reference: sandklef.com
+ * @reference: hoveritu.com
+ */
+
 #include <brake_propulsion.h>
 #include <hover_speed.h>
 #include <propulsion.h>
