@@ -19,11 +19,12 @@
  ****************************************************************************/
 
 /*!
- @file hovering_motor.h
- @brief This module is headerfile for hovering_motor.h 
+ @file brake.c
+ @headerfile brake.h
+ @brief This module contains the functions for breaking hovercraft.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
- @date 20 March 2012
+ @date 30 March 2012
  @version 1.0
  @refrence Arduino.cc
  @refrence sandklef.com
@@ -34,31 +35,27 @@
  @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
  */
 
-#define BLINK_PIN 11
-#define BLINKER(delay_time) { int i; pinMode(BLINK_PIN,OUTPUT); \
-		digitalWrite(BLINK_PIN,HIGH);delay(delay_time); \
-		digitalWrite(BLINK_PIN,LOW);delay(delay_time);}
+#include <hover_api.h>
+#include <stdlib.h>
+#include <hover_api.h>
+#include <hovering_motor.h>
+#include <hovering_control.h>
+#include <pressure_check.h>
+#include <pin.h>
 
-/* Make sure this header file is included one time */
-#if !defined HOVERING_MOTOR_H
-	#define HOVERING_MOTOR_H
+int hovrining_brake(void){
+	hover_min();
+	return 0;
+}
 
-	/* Struct to be used in hover_loop */
-	typedef struct {
-		int (*func1)(int);
-		void (*func2)(long unsigned int);
-		int level;
-		int delay_time;
-	} FUNCS;
+int propulsion_brake(void){
+	stop_propulsion_fan();
+	delay(3000);
+	change_polarity(5000);
+	max_propulsion_fan(5000);
+	delay(3000);
 
-	/* Function prototypes */
+	return 0;
+}
 
-	/* Function that gets arguments for start or stop the motor */
-	int hover_func(int (*func)(int,int), int using_pin, int test_pin);
-	/* Fucntion that gets arguments for change the speed of motor */	
-	int hover_change(int (*climb_decesnd)(int,int,int),
-	int using_pin,int test_pin, int level);
-	/* Loop for motor */
-	int hover_loop(FUNCS funcs_in, int using_pin);
-
-	#endif
+int change_pol_

@@ -1,13 +1,39 @@
-/*
- * @ Module name:  hovering_init_fix.c
- * @ Description:  Contains the functions that start the hovering fan speed.
+
+/***************************************************************************
+ * Copyright (C) 2012  Seyed Ehsan Mohajerani
+ *                     Navid Amiriarshad
+ * 
+ * This program is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
- * @ Release      : 20 March 2012
- * @ Version      : 1.0
- * @ References    : Arduino.cc, sandklef.com
- * dreamincode.net/forums/topic/34861-functions-stored-in-structure
- * Turnigy_Plush_and_Sentry_ESC user manual
+ ****************************************************************************/
+
+/*!
+ @file hovering_init_fix.c
+ @headerfile hovering_init_fix.h
+ @brief This module contains the functions that initialize the hovering 
+	motor and fix any wrong value which is being sent to hovering motor.
+ @author Seyed Ehsan Mohajerani
+ @author Navid Amiriarshad
+ @date 20 March 2012
+ @version 1.0
+ @refrence Arduino.cc
+ @refrence sandklef.com
+ @refrence hoveritu.com
+ @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @refrence Turnigy_Plush_and_Sentry_ESC user manual
+ @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
+ @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
  */
 
 /* Includes */

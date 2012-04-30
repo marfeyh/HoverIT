@@ -21,7 +21,8 @@
 /*!
  @file hovering_control.c
  @headerfile hovering_control.h
- @brief This module contains the functions that control the hovering fan speed
+ @brief This module contains the functions that control the hovering fan
+	 speed.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
  @date 20 March 2012
@@ -35,7 +36,7 @@
  @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
  */
 
-#include <Arduino.h> /* Arduino header */
+#include <Arduino.h>
 #include <hovering_motor.h>
 #include <hovering_control.h>
 #include <hovering_init_fix.h>

@@ -21,8 +21,8 @@
 /*!
  @file audible_test.c
  @headerfile print_audible_test.h
- @brief This module is the brain of the bluetooth which controls it's 
-  functionalities
+ @brief This module contain the functions for audible test when using 
+	Arduino.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
  @date 20 April 2012
