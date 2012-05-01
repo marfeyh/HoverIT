@@ -33,7 +33,7 @@
 #define BRAKE_PROPULSION_H
 #define DELAY_SPEED_TIME 2000 milliseconds
 
-int int_brake_propulsion(void);
+int init_brake_propulsion(void);
 int brake_pro(void);
 int reverse_prop_motor(int current_hover_speed);
 
