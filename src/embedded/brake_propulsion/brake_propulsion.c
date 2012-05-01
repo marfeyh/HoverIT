@@ -30,11 +30,11 @@ void init_brake_propulsion(void){
 
 }
 
-int reverse_motor(int current_hover_speed){
+int reverse_prop_motor(int current_hover_speed){
   
 
   change_pro_speed(current_hover_speed - 20);
-  break_pro();
+  brake_pro();
   return 0;
 }
 
