@@ -1,8 +1,12 @@
 
 /**
-  Author: Fangzhou Cao
-  Date: 23-04-2012     Version:0.1
-**/
+ * \file 		test_case_7_GPS.c
+ * \date 		23-04-2012
+ * \version 	0.1 
+ * \author 		Fangzhou Cao          
+ * \attention 	Sections added/modified are as follow:
+ * 		 none
+ */
 
 
 #include <check.h>
@@ -15,11 +19,11 @@
 
 
 /**
- ID:7
- Purpose: Testing read_rmc_data() function.
- Preparation: Get fake GPS data from GPS simulator.
- Action: call this function and check the header of return value.
- Expected outcome: header = "$GPRMC".
+ *ID:7
+ *Purpose: Testing read_rmc_data() function.
+ *Preparation: Get fake GPS data from GPS simulator.
+ *Action: call this function and check the header of return value.
+ *Expected outcome: header = "$GPRMC".
   
 **/
 

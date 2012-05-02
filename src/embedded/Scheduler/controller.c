@@ -31,7 +31,7 @@
 #include <job.h>
 #include <Theta-API.h>
 #include <stdlib.h>
-
+#include "calculateSpeed.h"
 static struct List *g_taskList;
 
 /**
@@ -91,6 +91,8 @@ void control() {
 	init_list(); // A task list is initialized.
 	while (1) {
 	  check_serial_input();
+	  extern Speed *g_speed_p;
+	  int speed = get_speed(g_speed_p);
 		// Get gps data
 		// Get hovercraft speed
 		// Get Battery level

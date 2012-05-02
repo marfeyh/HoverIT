@@ -5,6 +5,7 @@
  * \author 		Mozhan Soltani          
  * \attention 	Sections added/modified are as follow:
  * 				- The eight test cases, the test suite "gprmc_suite" and the main funtion were provided.  
+ * 				- The correct gps data was borrowed from http://www.gpsinformation.org/dale/nmea.htm
  */
 
 #include <check.h>
