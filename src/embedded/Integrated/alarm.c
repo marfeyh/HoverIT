@@ -23,25 +23,11 @@ void setup_battery_level(){
     battery_beep_duration = 0;
 }
 
-<<<<<<< HEAD
 void setup_alarm(uint8_t percentage) {
     loop_battery_level(percentage);
 }
 
 int loop_battery_level(uint8_t Battery){
-=======
-void exec(uint8_t percentage) {
-//	for(;;){
-		loop_battery_level(percentage);
-		//digitalRead(13) ? digitalWrite(13,LOW) : digitalWrite(13,HIGH);
-		// Delay will be removed in integrated version
-//		delay(100);
-//	}
-}
-
-int loop_battery_level(uint8_t Battery){
-//  int Battery=getBattery();
->>>>>>> d331acbf237bcc0c3e26050f2de0fc8886b6295f
   if(Battery==LOW_BATTERY && battery_beep_duration<LOW_BATTERY_DURATION){
     beep(LOW_BATTERY);
     battery_beep_duration++;
@@ -50,10 +36,11 @@ int loop_battery_level(uint8_t Battery){
     beep(EMPTY_BATTERY);
 	return 0;
   }else{
-    my_noTone(11);
-	return -1;
+      my_noTone(11);
+	  return -1;
   }
 }
+
 
 int beep(int beep){
   switch(beep){
@@ -67,10 +54,3 @@ int beep(int beep){
       break;
   }
 }
-<<<<<<< HEAD
-=======
-
-//int getBattery(){     
-//  return 20;
-//}
->>>>>>> d331acbf237bcc0c3e26050f2de0fc8886b6295f

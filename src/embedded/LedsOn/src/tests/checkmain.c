@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "test_leds.c"
 
-main(void) {
+int main(void) {
   int number_failed;
   Suite *s = leds_suite();
   SRunner *sr = srunner_create(s);
