@@ -1,5 +1,5 @@
 /*!
- @file bluetooth_controler.h
+ @file communication_controler.h
  @details This header file contains internal functions
  @author Amir Almasi
  @author Retta Shiferaw

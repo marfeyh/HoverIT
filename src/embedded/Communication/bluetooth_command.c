@@ -13,7 +13,7 @@
  */
 
 #include <stdio.h>
-#include<bluetooth_controler.h>
+#include<communication_controler.h>
 
 #define CONCATINATION(dist, source) strcat(dist, source)
 #define SPACE " "
@@ -96,18 +96,38 @@ unsigned char* version() {
 }
 
 void connect(char* mac_adress, unsigned char* time_out) {
-	char connect_string[27] = "con";
-	if (*time_out == 255) {
-		CONCATINATION(connect_string, SPACE);
-		CONCATINATION(connect_string, mac_adress);
-	} else {
-		CONCATINATION(connect_string, SPACE);
-		CONCATINATION(connect_string, mac_adress);
-		CONCATINATION(connect_string, SPACE);
-		CONCATINATION(connect_string, time_out);
+	char* command = (char*) malloc(sizeof(char) * 28);
+	/*
+	 char connect_string[27] = "con";
+	 if (*time_out == 255) {
+	 CONCATINATION(connect_string, SPACE);
+	 CONCATINATION(connect_string, mac_adress);
+	 } else {
+	 CONCATINATION(connect_string, SPACE);
+	 CONCATINATION(connect_string, mac_adress);
+	 CONCATINATION(connect_string, SPACE);
+	 CONCATINATION(connect_string, time_out);
+	 }
+	 CONCATINATION(connect_string, "\r");
+	 printf("%s", connect_string);
+	 */
+}
+
+char** new_string(unsigned char size) {
+	char* str_ptr = (char*) malloc(sizeof(char) * size);
+	if (str_ptr == '\0') {
+		// log_error should be called in here
+//		something went wrong
+//		return failure
 	}
-	CONCATINATION(connect_string, "\r");
-	printf("%s", connect_string);
+	*str_ptr = '\0';
+	return &str_ptr;
+}
+
+unsigned char append_string(char* head_ptr, char* string_ptr) {
+	char* temp_location = head_ptr;
+	for (; temp_location != '\0';)
+		return 1;
 }
 
 unsigned char* disconnect() {

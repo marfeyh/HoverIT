@@ -1,5 +1,5 @@
 /*!
- @file API_bluetooth_controler.h
+ @file API_communication_controler.h
  @details This header file contains all API functions
  @author Amir Almasi
  @author Retta Shiferaw
@@ -74,4 +74,7 @@ unsigned char hovercraft_pressure(unsigned char message);
  @return unsigned char containing value and message type
  */
 unsigned char battery_level(unsigned char message);
+
+
+unsigned char send_information (char* information);
 #endif /* API_BLUETOOTH_CONTROLER_H_ */
