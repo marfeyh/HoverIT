@@ -13,6 +13,7 @@
  */
 #include <Arduino.h>
 #include <stdio.h>
+#include "pins.h"
 
 /*!
  * /attention Pin numbers should be changed! 
@@ -32,13 +33,13 @@ unsigned int get_pressure() {
    * Takes output of analog port 0 and converts it into Pa.
    * /attention The analog port number MUST be changed!
    */
-  inside_pressure_pa = ((float) analogRead(0)/1023+0.04)/0.000004; 
+  inside_pressure_pa = ((float) analogRead(PRESSURE_PIN_0)/1023+0.04)/0.000004; 
 
   /*!
    * Takes output of analog port 1 and converts it into Pa.
    * /attention The analog port number MUST be changed!
    */
-  outside_pressure_pa = ((float) analogRead(1)/1023+0.04)/0.000004; 
+  outside_pressure_pa = ((float) analogRead(PRESSURE_PIN_1)/1023+0.04)/0.000004; 
   
   /*!
    * Calculation for getting pressure difference in Pa.
