@@ -7,7 +7,7 @@
 # or first in the SRC_C variable
 #
 # SRC_DIR should be the path to the source files
-# SRC_C & SRC_CXX should contain the .c & .cpp files for the source and test
+# SRC_C & SRC_CXX should contain the .c & .cpp files for test
 # MAIN_SRC should contain maximum one file, the one that holds the main
 #	function for the tests
 # SEARDUINO_PATH should as always be the path to the searduino installation
@@ -21,15 +21,15 @@
 #
 
 SRC_DIR=../
-SRC_C=
+SRC_C= check_propulsion.c
 SRC_CXX=
-MAIN_SRC=checkmain.c
+MAIN_SRC= check_main.c
 
 SEARDUINO_PATH = /opt/searduino
 
-USER_C_FLAGS = 
-USER_CXX_FLAGS = 
-USER_LD_FLAGS =
+USER_C_FLAGS =
+USER_CXX_FLAGS =
+USER_LD_FLAGS = 
 
 #
 # DO NOT CHANGE THINGS BELOW THIS LINE (UNLESS YOU ARE AWESOME)
@@ -57,23 +57,37 @@ gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
 gcov: USER_LD_FLAGS += -lgcov
 gcov: check
 
+
 debug: USER_C_FLAGS += -g
 debug: USER_CXX_FLAGS += -g
 debug: check
 
+
 gcovcheck: gcov
-	gcov $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+	rm -f objs/*.gcda objs/*.gcno
+<<<<<<< HEAD
 
 gcovbcheck: gcov
-	gcov -b $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+	rm -f objs/*.gcda objs/*.gcno
 
-memcheck: debug check
+memcheck: debug
 	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
 
+clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
+=======
+	gcov *.gcno
+
+gcovbcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
+
+memcheck: debug
+	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
 
 clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
+>>>>>>> df8ba53262ab796fb8b6e02a7cf0a614b2f65128
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 

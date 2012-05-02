@@ -1,22 +1,21 @@
-
-TEST_DIR=tests/
+TEST_DIR=../tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = Scheduler
-#cd /
-# Add your source files here
-SRC_C= list.c
-SRC_CXX= 
-MAIN_SRC = 
-SHLIB = scheduler.so
+PROG = battery
 
-LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
+# Add your source files here
+SRC_C= batteryLevel.c
+SRC_CXX=
+MAIN_SRC = main.c
+ARDUINO = uno
+SHLIB = battery.so
+
+LIB = battery.a
+LIB_H =
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
-include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-#include /opt/searduino/share/searduino/mk/searduino.mk
+include $(SEARDUINO_PATH)/share/searduino//mk/searduino.mk
 
 # Needs to be modified as well
 check:

@@ -1,22 +1,22 @@
-
 TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = Scheduler
-#cd /
-# Add your source files here
-SRC_C= list.c
-SRC_CXX= 
-MAIN_SRC = 
-SHLIB = scheduler.so
+PROG = propulsion
 
-LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
+# Add your source files here
+SRC_C= propulsion.c propulsion_api.c
+SRC_CXX= 
+MAIN_SRC = main.c
+#ARDUINO = stub
+ARDUINO = mega2560
+SHLIB = propulsion.so
+
+LIB = libpropulsion.a
+LIB_H = propulsion.h pin.h propulsion_api.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-#include /opt/searduino/share/searduino/mk/searduino.mk
 
 # Needs to be modified as well
 check:

@@ -50,27 +50,18 @@ SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
 
 
 check: $(PROG)
+#check:
+	@echo $(OBJ_C) $(OBJ_CXX)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcov: USER_C_FLAGS += -fprofile-arcs -ftest-coverage
-gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
-gcov: USER_LD_FLAGS += -lgcov
-gcov: check
+gcovcheck: $(PPROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-debug: USER_C_FLAGS += -g
-debug: USER_CXX_FLAGS += -g
-debug: check
+gcovbcheck:
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcovcheck: gcov
-	gcov $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
-
-gcovbcheck: gcov
-	gcov -b $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
-
-memcheck: debug check
-	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
+memcheck: $(PROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
 
 clean-tests: clean

@@ -1,22 +1,20 @@
-
-TEST_DIR=tests/
+TEST_DIR=test/
 SEARDUINO_PATH = /opt/searduino
-PROG = Scheduler
-#cd /
-# Add your source files here
-SRC_C= list.c
-SRC_CXX= 
-MAIN_SRC = 
-SHLIB = scheduler.so
+PROG = Hovercraft
 
-LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
-USER_LIB_INSTALL_PATH = ../../../bin
+# Add your source files here
+SRC_C= 
+SRC_CXX= 
+MAIN_SRC = main.c
+ARDUINO = mega2560
+SHLIB = hovercraft.so
+
+USER_C_FLAGS = -I ../../../bin/include
+USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-#include /opt/searduino/share/searduino/mk/searduino.mk
 
 # Needs to be modified as well
 check:

@@ -2,15 +2,16 @@
 /**
   Author: Fangzhou Cao
   Date: 25-03-2012     Version:0.1
+  Edited by Dmitry Igoshin 25-04-2012	
 **/
 
 
 #include <check.h>
 #include <stdlib.h>
-#include "../../job.h"
-#include "../../jobpriority.h"
-#include "../../jobtype.h"
-#include "../../list.h"
+#include "../job.h"
+#include "../jobpriority.h"
+#include "../jobtype.h"
+#include "../list.h"
 //#include "../../src/loc_struct.h"
 //#include "../../src/job_queue.h"
 

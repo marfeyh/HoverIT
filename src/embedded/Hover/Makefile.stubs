@@ -1,24 +1,20 @@
-
-TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = Scheduler
-#cd /
+
 # Add your source files here
-SRC_C= list.c
+SRC_C = pressure_stub.c
 SRC_CXX= 
-MAIN_SRC = 
-SHLIB = scheduler.so
+MAIN_SRC =
+ARDUINO = stub
+SHLIB =
 
-LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
-USER_LIB_INSTALL_PATH = ../../../bin
+LIB = libpressure_stub.a
+LIB_H = pressure.h
+USER_LIB_INSTALL_PATH = ./stub/
 
-export SRC_FILES= $(SRC_C) $(SRC_CXX)
+export SRC_FILES = $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-#include /opt/searduino/share/searduino/mk/searduino.mk
 
-# Needs to be modified as well
 check:
 	$(MAKE) check -C $(TEST_DIR)
 

@@ -10,6 +10,7 @@
 # SRC_C & SRC_CXX should contain the .c & .cpp files for the source and test
 # MAIN_SRC should contain maximum one file, the one that holds the main
 #	function for the tests
+# PROG is the name of the testing executable
 # SEARDUINO_PATH should as always be the path to the searduino installation
 # 	usually /opt/searduino, unless you compiled it yourself
 # USER_C_FLAGS & USER_CXX_FLAGS is if you need to give gcc & g++ any extra
@@ -21,15 +22,15 @@
 #
 
 SRC_DIR=../
-SRC_C=
+SRC_C = ../propulsion.c ../propulsion_api.c check_propulsion.c
 SRC_CXX=
-MAIN_SRC=checkmain.c
+MAIN_SRC=check_main.c
 
 SEARDUINO_PATH = /opt/searduino
 
 USER_C_FLAGS = 
 USER_CXX_FLAGS = 
-USER_LD_FLAGS =
+USER_LD_FLAGS = 
 
 #
 # DO NOT CHANGE THINGS BELOW THIS LINE (UNLESS YOU ARE AWESOME)
@@ -40,40 +41,34 @@ PROG=Testsuite
 USER_C_FLAGS += -I$(SRC_DIR)
 USER_CXX_FLAGS += -I$(SRC_DIR)
 USER_LD_FLAGS += -lcheck
-USER_OBJ_PATH = ./objs/
 
-
-SRC_C += $(addprefix $(SRC_DIR), $(filter %.c, $(SRC_FILES)))
-SRC_CXX += $(addprefix $(SRC_DIR), $(filter %.cpp, $(SRC_FILES)))
+SRC_C:=$(patsubst $(SRC_DIR)%.c,%.check.c,  $(SRC_C) $(addprefix $(SRC_DIR), $(SRC_FILES)))
+SRC_CXX:=$(patsubst $(SRC_DIR)%.cpp, %.check.cpp, $(SRC_CXX) $(addprefix $(SRC_DIR), $(SRC_FILES)))
 
 .PHONY: check clean-tests
-
 
 check: $(PROG)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcov: USER_C_FLAGS += -fprofile-arcs -ftest-coverage
-gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
-gcov: USER_LD_FLAGS += -lgcov
-gcov: check
+gcovcheck: $(PPROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-debug: USER_C_FLAGS += -g
-debug: USER_CXX_FLAGS += -g
-debug: check
+gcovbcheck:
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcovcheck: gcov
-	gcov $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+memcheck: $(PROG)
+	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcovbcheck: gcov
-	gcov -b $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+%.check.c: $(SRC_DIR)/%.c
+	cp -f $< $@
 
-memcheck: debug check
-	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
+%.check.cpp: $(SRC_DIR)%.cpp
+	cp -f $< $@
 
 
 clean-tests: clean
+	-rm $(filter %.check.c, $(SRC_C))
+	-rm $(filter %.check.cpp, $(SRC_CXX))
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 

@@ -1,22 +1,21 @@
-
-TEST_DIR=tests/
+TEST_DIR=test/
 SEARDUINO_PATH = /opt/searduino
-PROG = Scheduler
-#cd /
-# Add your source files here
-SRC_C= list.c
-SRC_CXX= 
-MAIN_SRC = 
-SHLIB = scheduler.so
+PROG = Bluetooth
 
-LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
+# Add your source files here
+SRC_C= bluetooth_command.c bluetooth_controler.c message_handler.c
+SRC_CXX= serial_interface.cpp
+MAIN_SRC = main.c
+ARDUINO = mega2560
+SHLIB = bluetooth.so
+
+LIB = libbluetooth.a
+LIB_H = pin.h bluetooth_controler.h conventions.h message_handler.h serial_interface.h API_bluetooth_controler.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
-#include /opt/searduino/share/searduino/mk/searduino.mk
 
 # Needs to be modified as well
 check:

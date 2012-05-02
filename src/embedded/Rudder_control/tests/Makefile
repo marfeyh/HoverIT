@@ -10,6 +10,7 @@
 # SRC_C & SRC_CXX should contain the .c & .cpp files for the source and test
 # MAIN_SRC should contain maximum one file, the one that holds the main
 #	function for the tests
+# PROG is the name of the testing executable
 # SEARDUINO_PATH should as always be the path to the searduino installation
 # 	usually /opt/searduino, unless you compiled it yourself
 # USER_C_FLAGS & USER_CXX_FLAGS is if you need to give gcc & g++ any extra
@@ -22,8 +23,8 @@
 
 SRC_DIR=../
 SRC_C=
-SRC_CXX=
-MAIN_SRC=checkmain.c
+SRC_CXX= checkmain.cpp check_RuddarControll.cpp
+MAIN_SRC=
 
 SEARDUINO_PATH = /opt/searduino
 
@@ -57,24 +58,27 @@ gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
 gcov: USER_LD_FLAGS += -lgcov
 gcov: check
 
+
 debug: USER_C_FLAGS += -g
 debug: USER_CXX_FLAGS += -g
 debug: check
 
+
 gcovcheck: gcov
-	gcov $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+	rm -f objs/*.gcda objs/*.gcno
 
 gcovbcheck: gcov
-	gcov -b $(addsuffix .gno, $(SRC_FILES:.c=))
-	gcovr --xml coverage.xml
+	rm -f objs/*.gcda objs/*.gcno
 
-memcheck: debug check
+memcheck: debug
 	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
 
-
 clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+
+
 
 
