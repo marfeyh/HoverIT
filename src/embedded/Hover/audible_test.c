@@ -40,7 +40,7 @@
 #include <searduino.h>
 #include <print_audible_test.h>
 
-#define BEEP BEEP
+#define BEEP 254
 #define SILENCE 0
 #define SILENT_DELAY_TIME 50
 
