@@ -1,12 +1,16 @@
-/*
-  AUTHORS: Xinran He, Ezeh Prince Anthony Anayo
-  DATA :2012-05-02
-  DESCRIPTION: This file is the unit tests for brakeing 
-	       propulsion fan 
-               check libraries are used as a tool for the unit tests. 
-               check their manual for details.
-  http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
-*/
+/*!
+ * @file: check_brake_pro.c
+ * @description: This file is the unit testing for the brake 
+    propulsion fan functions.Apparently, check libraries are 
+    used as a tool for the unit testing.For more details, you 
+    are obliged to check their manual for more clarifications.
+ * @author: Xinran He
+ * @author: Ezeh prince Anthony Anayo
+ * @date:2012-05-02
+ * @version: 0.2
+ * @reference:http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
+ */
+ 
 #include <check.h>
 #include <propulsion.h>
 #include <propulsion_api.h>
