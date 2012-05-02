@@ -6,7 +6,8 @@
  */
 
 #include <stdlib.h>
-#include "check_RuddarControll.cpp"
+#include "check_RuddarControll.h"
+//#include "check_RuddarControll.cpp"
 
 main(void) {
   int number_failed;

@@ -17,9 +17,14 @@ PROG = hovering
 SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
 	hover_api.c pressure_check.c pressure.c
 MAIN_SRC = main.c
+<<<<<<< HEAD
 ARDUINO = stub
 #ARDUINO = mega2560
 #ARDUINO = uno
+=======
+#ARDUINO = stub
+ARDUINO = mega2560
+>>>>>>> 7266f572dc43cc2958c65fbf97c5aae83ffca897
 SHLIB = hovering.so
 
 LIB = libhovering.a

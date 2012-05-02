@@ -20,20 +20,33 @@ all:
 	$(MAKE) prog -C Hovercraft
 
 check:
-	$(MAKE) check -C Propulsion
+#	$(MAKE) check -C Scheduler
 	$(MAKE) check -C Communication
+	$(MAKE) check -C Propulsion
+#	$(MAKE) check -C Hover
+	$(MAKE) check -C Rudder_control
 
 gcovcheck:
-	$(MAKE) gcovcheck -C Propulsion
+#	$(MAKE) gcovcheck -C Scheduler
 	$(MAKE) gcovcheck -C Communication
+	$(MAKE) gcovcheck -C Propulsion
+#	$(MAKE) gcovcheck -C Hover
+	$(MAKE) gcovcheck -C Rudder_control
 	gcovr -x --xml > coverage.xml
 
 memcheck:
+#	$(MAKE) memcheck -C Scheduler
+	$(MAKE) memcheck -C Communication
 	$(MAKE) memcheck -C Propulsion
+#	$(MAKE) memcheck -C Hover
+	$(MAKE) memcheck -C Rudder_control
 
 clean-tests:
-	$(MAKE) clean-tests -C Propulsion
+	$(MAKE) clean-tests -C Scheduler
 	$(MAKE) clean-tests -C Communication
+	$(MAKE) clean-tests -C Propulsion
+	$(MAKE) clean-tests -C Hover
+	$(MAKE) clean-tests -C Rudder_control
 
 clean: clean-tests
 	$(MAKE) clean -C Scheduler

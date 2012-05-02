@@ -23,8 +23,8 @@
 
 SRC_DIR=../
 SRC_C=
-SRC_CXX= check_RuddarControll.cpp
-MAIN_SRC=checkmain.cpp
+SRC_CXX= checkmain.cpp check_RuddarControll.cpp
+MAIN_SRC=
 
 SEARDUINO_PATH = /opt/searduino
 

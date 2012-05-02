@@ -5,6 +5,9 @@ all:
 embedded:
 	$(MAKE) all -C src/embedded
 
+embedded-check:
+	$(MAKE) check -C src/embedded
+
 embedded-gcov:
 	$(MAKE) gcovcheck -C src/embedded
 
