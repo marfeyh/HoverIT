@@ -18,7 +18,7 @@ int lastButton = LOW;
 int percentage = 0;
 
 int init_battery_meter() {
-    pinMode(0, INPUT);
+   // pinMode(0, INPUT);
     
     /*init the battery check pin*/
     init_battery_check();
@@ -26,11 +26,13 @@ int init_battery_meter() {
     init_leds();
     /* init the alarm*/
     init_alarm();
-    return 1;
+    return 0;
 }
 
+
+// Denir changed this method to be able to applicable in real world
 int setup_battery_meter() {
-    currentButton = digitalRead(13);
+  /*  currentButton = digitalRead(13);
 
     if (lastButton == LOW && currentButton == HIGH)
         percentage += 5;
@@ -38,11 +40,11 @@ int setup_battery_meter() {
     lastButton = currentButton;
     
     if (percentage > 100)
-        percentage = 0;
+        percentage = 0;*/
     
     
 //    /* get the percentage from the battery*/
-//    uint8_t percentage = check();
+     uint8_t percentage = check();
     /* send the percentage to the alarm */
     setup_alarm(percentage);
     /* send the percentage to the leds*/

@@ -17,6 +17,7 @@
 #define SENSOR_PIN 5
 
 uint8_t check(void);
+uint8_t get_sensor_value(void);
 int init_battery_check(void);
 
 #endif
