@@ -1,4 +1,4 @@
-/* @AUTHOR - Markus Feyh 
+/* @Author - Markus Feyh 
    @Description: Sets the pins for pressure sensing
 */
 #define PRESSURE_PIN_0 0

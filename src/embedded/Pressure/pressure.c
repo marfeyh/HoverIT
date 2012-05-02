@@ -4,8 +4,9 @@
  *           converts those to Pa and calculates the difference.
  *  \author  Rob Bruinsma
  *  \author  Anna Orazova
- *  \version 2.0
- *  \date    2012/04/25
+ *  \author  Markus Feyh
+ *  \version 2.1
+ *  \date    2012/05/02
  */
 
 /*!
@@ -13,30 +14,68 @@
  */
 #include <Arduino.h>
 #include <stdio.h>
+
+
+/*!
+ * pins.h included to allow the pins.h to be substituted during 
+ * integration
+ */
 #include "pins.h"
 
+/*!
+ * 
+ */
 static unsigned int pressure_difference;
 static unsigned int pressure_inner;
 static unsigned int pressure_outer;
 
-unsigned int get_pressure_difference() {
-  return pressure_difference;
-}
 
-unsigned int get_pressure_inner() {
-  return pressure_inner;
-}
+/*
+ * ======================================================================
+ * API functions
+ * ======================================================================
+ */
 
-unsigned int get_pressure_outer() {
-  return pressure_outer;
-}
+
 /*!
- * /attention Pin numbers should be changed! 
  * /brief     Function for getting pressure difference
  *  
  * /return    Difference between inside and outside pressure in Pa
  */
-void get_pressure() {
+unsigned int get_pressure_difference() {
+  return pressure_difference;
+}
+
+/*!
+ * /brief     Function for getting the inner pressure sensor's value
+ *  
+ * /return    Inside pressure in Pa
+ */
+unsigned int get_pressure_inner() {
+  return pressure_inner;
+}
+
+/*!
+ * /brief     Function for getting the outer pressure sensor's value
+ *  
+ * /return    Outer pressure in Pa
+ */
+
+unsigned int get_pressure_outer() {
+  return pressure_outer;
+}
+
+/*
+ * ===========================================================
+ * Internal  functions
+ * ===========================================================
+ */
+
+/*!
+ * /attention Pin numbers should be changed in the header file pins.h
+ * /brief     Function for getting pressure from the physical sensors
+ */
+void check_pressure() {
 
   float inside_pressure_pa = 0;  /*!< Pressure in Pa inside of the skirt */
   float outside_pressure_pa = 0; /*!< Pressure in Pa outside of the skirt */
@@ -49,14 +88,14 @@ void get_pressure() {
    * /attention The analog port number MUST be changed!
    */
   inside_pressure_pa = ((float) analogRead(PRESSURE_PIN_0)/1023+0.04)/0.000004; 
-  pressure_inside = (unsigned int) inside_pressure_pa;
+  pressure_inner = (unsigned int) inside_pressure_pa;
 
   /*!
    * Takes output of analog port 1 and converts it into Pa.
    * /attention The analog port number MUST be changed!
    */
   outside_pressure_pa = ((float) analogRead(PRESSURE_PIN_1)/1023+0.04)/0.000004; 
-  pressure_outside = (unsigned int) outside_pressure_pa;
+  pressure_outer = (unsigned int) outside_pressure_pa;
   
   /*!
    * Calculation for getting pressure difference in Pa.

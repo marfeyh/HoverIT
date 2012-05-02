@@ -3,8 +3,8 @@
  *  \brief   Test cases for pressure.c
  *  \author  Rob Bruinsma
  *  \author  Anna Orazova
- *  \version 1.0
- *  \date    2012/04/26
+ *  \version 1.1
+ *  \date    2012/05/02
  */
 
 /*!
@@ -31,26 +31,31 @@
  * Includes header file for pressure.c
  */
 #include "pressure.h"
+/*!
+ * Includes header file for pin definitions
+ */
+#include "pins.h"
 
 /*!
- * /attention Pin numbers should be changed! 
+ * /attention Pin numbers should be changed in the header file pins.h 
  * /brief     Test case for checking positive values
  */
 START_TEST (test_positive_values) {
   unsigned int in = 1023; /*!< Value for inside pin */
   unsigned int out = 0;   /*!< Value for outside pin */
 
-  seasim_set_input(0, in, INPUT);    /*!< Sets value to the pin */
+  seasim_set_input(PRESSURE_PIN_0, in, INPUT);    /*!< Sets value to the pin */
 
   for(out = 0; out < 1023; out++) {
 
-    seasim_set_input(1, out, INPUT); /*!< Sets value to the pin */
+    seasim_set_input(PRESSURE_PIN_1, out, INPUT); /*!< Sets value to the pin */
+    check_pressure();
 
     /*!
      * Test case will pass if return from get_pressure() is bigger then 0.
      */
     
-    fail_unless(get_pressure() > 0);
+    fail_unless(get_pressure_difference() > 0);
   }
 }END_TEST
 
@@ -62,16 +67,16 @@ START_TEST (test_negative_values) {
   int in = 0;   /*!< Value for inside pin */
   int out = 0;  /*!< Value for outside pin */
 
-  seasim_set_generic_input(0, in, INPUT);   /*!< Sets value to the pin */
+  seasim_set_generic_input(PRESSURE_PIN_0, in, INPUT);   /*!< Sets value to the pin */
 
   for(out = 0; out <= 1023; out++) {
 
-    seasim_set_generic_input(1, out, INPUT); /*!< Sets value to the pin */
-
+    seasim_set_generic_input(PRESSURE_PIN_1, out, INPUT); /*!< Sets value to the pin */
+    check_pressure();
     /*!
      * Test case will pass if return from get_pressure() is equal to 0.
      */
-    fail_unless(get_pressure() == 0);
+    fail_unless(get_pressure_difference() == 0);
   }
 }END_TEST
 
@@ -85,16 +90,16 @@ START_TEST (test_all_values) {
 
   for (in = 0; in <= 1023;in++) {
 
-    seasim_set_generic_input(0, in, INPUT);    /*!< Sets value to the pin */
+    seasim_set_generic_input(PRESSURE_PIN_0, in, INPUT);    /*!< Sets value to the pin */
 
     for(out = 0; out <= 1023;out++) {
 
-      seasim_set_generic_input(1, out, INPUT); /*!< Sets value to the pin */
-      
+      seasim_set_generic_input(PRESSURE_PIN_1, out, INPUT); /*!< Sets value to the pin */
+      check_pressure();
       /*!
        * Test case will pass if return from get_pressure() is more or equal 0.
        */
-      fail_unless(get_pressure >= 0);
+      fail_unless(get_pressure_difference() >= 0);
     }
   }
 }END_TEST
