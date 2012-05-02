@@ -3,7 +3,7 @@
  @headerfile stdio.h
  @headerfile Arduino.h
  @headerfile searduino.h
- @headerfile API_bluetooth_controler.h
+ @headerfile API_communication_controler.h
  @headerfile Theta-API.h
  @headerfile hover_api_stub.h
  @headerfile propulsion_api.h
@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <Arduino.h>
 #include <searduino.h>
-#include <API_bluetooth_controler.h>
+#include <API_communication_controler.h>
 //#include <Theta-API.h>
 //#include <hover_api_stub.h>
 //#include <propulsion_api.h>

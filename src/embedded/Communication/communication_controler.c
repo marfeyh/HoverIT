@@ -1,7 +1,7 @@
 /*!
- @file bluetooth_controler.c
- @headerfile API_bluetooth_controler.h
- @headerfile bluetooth_controler.h
+ @file communication_controler.c
+ @headerfile API_communication_controler.h
+ @headerfile communication_controler.h
  @details This module is the brain of the bluetooth which controls it's functionalities
  @author Amir Almasi
  @author Retta Shiferaw
@@ -12,13 +12,11 @@
  */
 
 #include <serial_interface.h>
-#include <API_bluetooth_controler.h>
-#include <bluetooth_controler.h>
+#include <API_communication_controler.h>
+#include <communication_controler.h>
 #include <conventions.h>
 #include <stdio.h> // because of using NULL
 #include <external.h>
-// Header of Rudder direction
-//#include <steering.h>
 
 /*
  * ======================================================================
@@ -59,27 +57,32 @@ void check_serial_input() {
 				case FAN_FORWARD_SPEED:
 					/* message type is 0000 */
 					if (1 == increase_decrease(&result)) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = get_value_fans(&result); // check the last bit
+						unsigned char res_value = get_value_fans(&result); // check the last bits
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00001000 */
-							func_ptr = increase_propulsion;
-							job_ptr->task_p2 = func_ptr;
-							job_ptr->job_num = 1;
-							job_ptr->prio = PRIO_HIGH;
-							job_ptr->type = MOVEMENT;
-							putJobInQueue(*job_ptr);
+							/**
+							 func_ptr = increase_propulsion;
+							 job_ptr->task_p2 = func_ptr;
+							 job_ptr->job_num = 1;
+							 job_ptr->prio = PRIO_HIGH;
+							 job_ptr->type = MOVEMENT;
+							 putJobInQueue(*job_ptr);
+							 */
+							send_information("amir almasi");
 							debug_print_string(
 									"put Fan Forward increasing Speed in queue\n");
 							break;
 						case DECREASING:
 							/* value was 00001001 */
-							func_ptr = decrease_propulsion;
-							job_ptr->task_p2 = func_ptr;
-							job_ptr->job_num = 1;
-							job_ptr->prio = PRIO_HIGH;
-							job_ptr->type = MOVEMENT;
-							putJobInQueue(*job_ptr);
+							/**
+							 func_ptr = decrease_propulsion;
+							 job_ptr->task_p2 = func_ptr;
+							 job_ptr->job_num = 1;
+							 job_ptr->prio = PRIO_HIGH;
+							 job_ptr->type = MOVEMENT;
+							 putJobInQueue(*job_ptr);
+							 */
 							debug_print_string(
 									"put Fan Forward decreasing Speed in queue\n");
 							break;
@@ -89,33 +92,56 @@ void check_serial_input() {
 						}
 					} // first bit is 1 then either increasing or decreasing
 					else {
+						unsigned char res_value = get_value_fans(&result); // check the last bits
+						switch (res_value) {
+						case STOP:
+							/* value was 00000000 */
+							// Call the stop api function of fan forward
+							debug_print_string(
+									"put Fan Forward STOP in queue\n");
+							break;
+						case TURBO:
+							/* value was 00000111 */
+							// Call the turbo api function of fan forward
+							debug_print_string(
+									"put Fan Forward TURBO in queue\n");
+							break;
+						default:
+							debug_print_string(
+									"Fan Forward not implemented commands ERROR\n");
+							break;
+						}
 						debug_print_string("put exact Forward speed value\n");
 					} // The message was exact fan forwarding speed value
 					break;
 				case FAN_HOVERING_SPEED:
 					/* message type is 0001 */
 					if (increase_decrease(&result) == 1) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = get_value_fans(&result); // check the last bit
+						unsigned char res_value = get_value_fans(&result); // check the last bits
 						switch (res_value) {
 						case INCREASING:
 							/* value was 00011000 */
-							func_ptr = increase_hover_auto;
-							job_ptr->task_p2 = func_ptr;
-							job_ptr->job_num = 1;
-							job_ptr->prio = PRIO_HIGH;
-							job_ptr->type = MOVEMENT;
-							putJobInQueue(*job_ptr);
+							/**
+							 func_ptr = increase_hover_auto;
+							 job_ptr->task_p2 = func_ptr;
+							 job_ptr->job_num = 1;
+							 job_ptr->prio = PRIO_HIGH;
+							 job_ptr->type = MOVEMENT;
+							 putJobInQueue(*job_ptr);
+							 */
 							debug_print_string(
 									"put Fan Hovering increasing \n");
 							break;
 						case DECREASING:
 							/* value was 00011001 */
-							func_ptr = decrease_hover_auto;
-							job_ptr->task_p2 = func_ptr;
-							job_ptr->job_num = 1;
-							job_ptr->prio = PRIO_HIGH;
-							job_ptr->type = MOVEMENT;
-							putJobInQueue(*job_ptr);
+							/**
+							 func_ptr = decrease_hover_auto;
+							 job_ptr->task_p2 = func_ptr;
+							 job_ptr->job_num = 1;
+							 job_ptr->prio = PRIO_HIGH;
+							 job_ptr->type = MOVEMENT;
+							 putJobInQueue(*job_ptr);
+							 */
 							debug_print_string("put Fan Hovering decreasing\n");
 							break;
 						default:
@@ -124,8 +150,27 @@ void check_serial_input() {
 							break;
 						} // first bit is 1 then either increasing or decreasing
 					} else {
+						unsigned char res_value = get_value_fans(&result); // check the last bits
+						switch (res_value) {
+						case STOP:
+							/* value was 00010000 */
+							// Call the stop api function of hovering
+							debug_print_string(
+									"put Fan Hovering STOP in queue\n");
+							break;
+						case TURBO:
+							/* value was 00010111 */
+							// Call the turbo api function of hovering
+							debug_print_string(
+									"put Fan Hovering TURBO in queue\n");
+							break;
+						default:
+							debug_print_string(
+									"Fan Hovering not implemented commands ERROR\n");
+							break;
+						}
 						debug_print_string("put exact FAN_HOVERING_SPEED \n");
-					} // The message was exact fan forwarding speed value
+					} // The message was exact fan hovering speed value
 					break;
 				case RUDER_DIRECTION: {
 					/* message type is 0010 */
@@ -133,32 +178,32 @@ void check_serial_input() {
 					switch (res_direction) {
 					case STRAIGHT:
 						/* value is 0000 */
-						control_rudder(STRAIGHT);
+//						 control_rudder(STRAIGHT);
 						debug_print_string("STRAIGHT\n");
 						break;
 					case HARD_LEFT:
 						/* value is 0001 */
-						control_rudder(HARD_LEFT);
+//						 control_rudder(HARD_LEFT);
 						debug_print_string("HARD_LEFT\n");
 						break;
 					case HARD_RIGHT:
 						/* value is 0010 */
-						control_rudder(HARD_RIGHT);
+//						 control_rudder(HARD_RIGHT);
 						debug_print_string("HARD_RIGHT\n");
 						break;
 					case SOFT_RIGHT:
 						/* value is 0011 */
-						control_rudder(SOFT_RIGHT);
+//						 control_rudder(SOFT_RIGHT);
 						debug_print_string("SOFT_RIGHT\n");
 						break;
 					case SOFT_LEFT:
 						/* value is 0100 */
-						control_rudder(SOFT_LEFT);
+//						 control_rudder(SOFT_LEFT);
 						debug_print_string("SOFT_LEFT\n");
 						break;
 					case BRAKE:
 						/* value is 0101 */
-						control_rudder(BRAKE);
+//						 control_rudder(BRAKE);
 						debug_print_string("BRAKE\n");
 						break;
 					default:
@@ -258,6 +303,11 @@ unsigned char battery_level(unsigned char message) {
 	return create_battery_level(&message);
 }
 
+unsigned char send_information (char* information){
+	stream_data(information);
+	return 0;
+}
+
 /*
  * ===========================================================
  * Internal  functions
@@ -279,4 +329,3 @@ void send_serial_string(char* string) {
 void send_serial_binary(unsigned char* binary) {
 	serial_binary_write(binary);
 }
-

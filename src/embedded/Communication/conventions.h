@@ -34,6 +34,11 @@
  */
 #define INCREASING 0
 #define DECREASING 1
+/*
+ For only three bits of value for the stop and turbo commands
+ */
+#define TURBO 7
+#define STOP 0
 #endif /* CONVENTIONS_H_ */
 
 /*
