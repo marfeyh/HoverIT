@@ -56,167 +56,178 @@ void check_serial_input() {
 				switch (message_type) { // call the API functions based on message type
 				case FAN_FORWARD_SPEED:
 					/* message type is 0000 */
-					if (1 == increase_decrease(&result)) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = get_value_fans(&result); // check the last bits
-						switch (res_value) {
-						case INCREASING:
-							/* value was 00001000 */
-							/**
-							 func_ptr = increase_propulsion;
-							 job_ptr->task_p2 = func_ptr;
-							 job_ptr->job_num = 1;
-							 job_ptr->prio = PRIO_HIGH;
-							 job_ptr->type = MOVEMENT;
-							 putJobInQueue(*job_ptr);
-							 */
-							send_information("amir almasi");
-							debug_print_string(
-									"put Fan Forward increasing Speed in queue\n");
-							break;
-						case DECREASING:
-							/* value was 00001001 */
-							/**
-							 func_ptr = decrease_propulsion;
-							 job_ptr->task_p2 = func_ptr;
-							 job_ptr->job_num = 1;
-							 job_ptr->prio = PRIO_HIGH;
-							 job_ptr->type = MOVEMENT;
-							 putJobInQueue(*job_ptr);
-							 */
-							debug_print_string(
-									"put Fan Forward decreasing Speed in queue\n");
-							break;
-						default:
-							debug_print_string("put Fan Forward Speed ERROR\n");
-							break;
-						}
-					} // first bit is 1 then either increasing or decreasing
-					else {
-						unsigned char res_value = get_value_fans(&result); // check the last bits
-						switch (res_value) {
-						case STOP:
-							/* value was 00000000 */
-							// Call the stop api function of fan forward
-							debug_print_string(
-									"put Fan Forward STOP in queue\n");
-							break;
-						case TURBO:
-							/* value was 00000111 */
-							// Call the turbo api function of fan forward
-							debug_print_string(
-									"put Fan Forward TURBO in queue\n");
-							break;
-						default:
-							debug_print_string(
-									"Fan Forward not implemented commands ERROR\n");
-							break;
-						}
-						debug_print_string("put exact Forward speed value\n");
-					} // The message was exact fan forwarding speed value
+					fan_forward_speed_handler(result);
 					break;
 				case FAN_HOVERING_SPEED:
 					/* message type is 0001 */
-					if (increase_decrease(&result) == 1) { // first bit is 1 then either increasing or decreasing
-						unsigned char res_value = get_value_fans(&result); // check the last bits
-						switch (res_value) {
-						case INCREASING:
-							/* value was 00011000 */
-							/**
-							 func_ptr = increase_hover_auto;
-							 job_ptr->task_p2 = func_ptr;
-							 job_ptr->job_num = 1;
-							 job_ptr->prio = PRIO_HIGH;
-							 job_ptr->type = MOVEMENT;
-							 putJobInQueue(*job_ptr);
-							 */
-							debug_print_string(
-									"put Fan Hovering increasing \n");
-							break;
-						case DECREASING:
-							/* value was 00011001 */
-							/**
-							 func_ptr = decrease_hover_auto;
-							 job_ptr->task_p2 = func_ptr;
-							 job_ptr->job_num = 1;
-							 job_ptr->prio = PRIO_HIGH;
-							 job_ptr->type = MOVEMENT;
-							 putJobInQueue(*job_ptr);
-							 */
-							debug_print_string("put Fan Hovering decreasing\n");
-							break;
-						default:
-							debug_print_string(
-									"put Fan Hovering Speed ERROR\n");
-							break;
-						} // first bit is 1 then either increasing or decreasing
-					} else {
-						unsigned char res_value = get_value_fans(&result); // check the last bits
-						switch (res_value) {
-						case STOP:
-							/* value was 00010000 */
-							// Call the stop api function of hovering
-							debug_print_string(
-									"put Fan Hovering STOP in queue\n");
-							break;
-						case TURBO:
-							/* value was 00010111 */
-							// Call the turbo api function of hovering
-							debug_print_string(
-									"put Fan Hovering TURBO in queue\n");
-							break;
-						default:
-							debug_print_string(
-									"Fan Hovering not implemented commands ERROR\n");
-							break;
-						}
-						debug_print_string("put exact FAN_HOVERING_SPEED \n");
-					} // The message was exact fan hovering speed value
+					fan_hovering_speed_handler(result);
 					break;
-				case RUDER_DIRECTION: {
+				case RUDER_DIRECTION:
 					/* message type is 0010 */
-					unsigned char res_direction = get_direction(&result); // To get the direction
-					switch (res_direction) {
-					case STRAIGHT:
-						/* value is 0000 */
-//						 control_rudder(STRAIGHT);
-						debug_print_string("STRAIGHT\n");
-						break;
-					case HARD_LEFT:
-						/* value is 0001 */
-//						 control_rudder(HARD_LEFT);
-						debug_print_string("HARD_LEFT\n");
-						break;
-					case HARD_RIGHT:
-						/* value is 0010 */
-//						 control_rudder(HARD_RIGHT);
-						debug_print_string("HARD_RIGHT\n");
-						break;
-					case SOFT_RIGHT:
-						/* value is 0011 */
-//						 control_rudder(SOFT_RIGHT);
-						debug_print_string("SOFT_RIGHT\n");
-						break;
-					case SOFT_LEFT:
-						/* value is 0100 */
-//						 control_rudder(SOFT_LEFT);
-						debug_print_string("SOFT_LEFT\n");
-						break;
-					case BRAKE:
-						/* value is 0101 */
-//						 control_rudder(BRAKE);
-						debug_print_string("BRAKE\n");
-						break;
-					default:
-						debug_print_string("direction ERROR\n");
-						break;
-					} // end of switch case of rudder direction value
+					ruder_direction_handler(result);
 					break;
-				} // end of switch case of rudder direction message type
+				default:
+					/* If something is not based on protocol */
+					debug_print_string(
+							"Something not based on protocol is received\n");
+					break;
+
 				} //  end of the switch case of message type
 			} // end of if message received is based on protocol
 		} // end of if there is any data available on serial input
 	} while (255 != result);
 	return;
+}
+
+
+unsigned char ruder_direction_handler(unsigned char command) {
+	unsigned char res_direction = get_direction(&command); // To get the direction
+	switch (res_direction) {
+	case STRAIGHT:
+		/* value is 0000 */
+		//						 control_rudder(STRAIGHT);
+		debug_print_string("STRAIGHT\n");
+		break;
+	case HARD_LEFT:
+		/* value is 0001 */
+		//						 control_rudder(HARD_LEFT);
+		debug_print_string("HARD_LEFT\n");
+		break;
+	case HARD_RIGHT:
+		/* value is 0010 */
+		//						 control_rudder(HARD_RIGHT);
+		debug_print_string("HARD_RIGHT\n");
+		break;
+	case SOFT_RIGHT:
+		/* value is 0011 */
+		//						 control_rudder(SOFT_RIGHT);
+		debug_print_string("SOFT_RIGHT\n");
+		break;
+	case SOFT_LEFT:
+		/* value is 0100 */
+		//						 control_rudder(SOFT_LEFT);
+		debug_print_string("SOFT_LEFT\n");
+		break;
+	case BRAKE:
+		/* value is 0101 */
+		//						 control_rudder(BRAKE);
+		debug_print_string("BRAKE\n");
+		break;
+	default:
+		debug_print_string("direction ERROR\n");
+		break;
+	} // end of switch case of rudder direction value
+	return 0;
+}
+
+unsigned char fan_hovering_speed_handler(unsigned char command) {
+	if (increase_decrease(&command) == 1) { // first bit is 1 then either increasing or decreasing
+		unsigned char res_value = get_value_fans(&command); // check the last bits
+		switch (res_value) {
+		case INCREASING:
+			/* value was 00011000 */
+			/**
+			 func_ptr = increase_hover_auto;
+			 job_ptr->task_p2 = func_ptr;
+			 job_ptr->job_num = 1;
+			 job_ptr->prio = PRIO_HIGH;
+			 job_ptr->type = MOVEMENT;
+			 putJobInQueue(*job_ptr);
+			 */
+			debug_print_string("put Fan Hovering increasing \n");
+			break;
+		case DECREASING:
+			/* value was 00011001 */
+			/**
+			 func_ptr = decrease_hover_auto;
+			 job_ptr->task_p2 = func_ptr;
+			 job_ptr->job_num = 1;
+			 job_ptr->prio = PRIO_HIGH;
+			 job_ptr->type = MOVEMENT;
+			 putJobInQueue(*job_ptr);
+			 */
+			debug_print_string("put Fan Hovering decreasing\n");
+			break;
+		default:
+			debug_print_string("put Fan Hovering Speed ERROR\n");
+			break;
+		} // first bit is 1 then either increasing or decreasing
+	} else {
+		unsigned char res_value = get_value_fans(&command); // check the last bits
+		switch (res_value) {
+		case STOP:
+			/* value was 00010000 */
+			// Call the stop api function of hovering
+			debug_print_string("put Fan Hovering STOP in queue\n");
+			break;
+		case TURBO:
+			/* value was 00010111 */
+			// Call the turbo api function of hovering
+			debug_print_string("put Fan Hovering TURBO in queue\n");
+			break;
+		default:
+			debug_print_string("Fan Hovering not implemented commands ERROR\n");
+			break;
+		}
+		debug_print_string("put exact FAN_HOVERING_SPEED \n");
+	} // The message was exact fan hovering speed value
+	return 0;
+}
+
+unsigned char fan_forward_speed_handler(unsigned char command) {
+	if (1 == increase_decrease(&command)) { // first bit is 1 then either increasing or decreasing
+		unsigned char res_value = get_value_fans(&command); // check the last bits
+		switch (res_value) {
+		case INCREASING:
+			/* value was 00001000 */
+			/**
+			 func_ptr = increase_propulsion;
+			 job_ptr->task_p2 = func_ptr;
+			 job_ptr->job_num = 1;
+			 job_ptr->prio = PRIO_HIGH;
+			 job_ptr->type = MOVEMENT;
+			 putJobInQueue(*job_ptr);
+			 */
+			send_information("amir almasi");
+			debug_print_string("put Fan Forward increasing Speed in queue\n");
+			break;
+		case DECREASING:
+			/* value was 00001001 */
+			/**
+			 func_ptr = decrease_propulsion;
+			 job_ptr->task_p2 = func_ptr;
+			 job_ptr->job_num = 1;
+			 job_ptr->prio = PRIO_HIGH;
+			 job_ptr->type = MOVEMENT;
+			 putJobInQueue(*job_ptr);
+			 */
+			debug_print_string("put Fan Forward decreasing Speed in queue\n");
+			break;
+		default:
+			debug_print_string("put Fan Forward Speed ERROR\n");
+			break;
+		}
+	} // first bit is 1 then either increasing or decreasing
+	else {
+		unsigned char res_value = get_value_fans(&command); // check the last bits
+		switch (res_value) {
+		case STOP:
+			/* value was 00000000 */
+			// Call the stop api function of fan forward
+			debug_print_string("put Fan Forward STOP in queue\n");
+			break;
+		case TURBO:
+			/* value was 00000111 */
+			// Call the turbo api function of fan forward
+			debug_print_string("put Fan Forward TURBO in queue\n");
+			break;
+		default:
+			debug_print_string("Fan Forward not implemented commands ERROR\n");
+			break;
+		}
+		debug_print_string("put exact Forward speed value\n");
+	} // The message was exact fan forwarding speed value
+	return 0;
 }
 
 /*!
@@ -303,7 +314,7 @@ unsigned char battery_level(unsigned char message) {
 	return create_battery_level(&message);
 }
 
-unsigned char send_information (char* information){
+unsigned char send_information(char* information) {
 	stream_data(information);
 	return 0;
 }
