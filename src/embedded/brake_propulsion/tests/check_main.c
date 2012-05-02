@@ -1,9 +1,10 @@
-/*
-AUTHORS: Xinran He, Ezeh Prince Anthony Anayo
-DATA :2012-05-02
-DESCRIPTION: The main function for the unit tests of brakeing 
-	     propulsion fan
-*/
+/*!
+ *@authors: Xinran He, Ezeh Prince Anthony Anayo
+ *@description: The main function for the unit tests of braking and reversing 
+   the direction of the propulsion fan
+ *@date: 2012-05-02
+ */
+ 
 #include <stdlib.h>
 #include <check.h>
 #include "check_propulsion.h"
