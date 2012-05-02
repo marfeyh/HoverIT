@@ -76,7 +76,7 @@ int stop_propulsion_fan(){
   int current_hover_speed = get_speed_level();
   stop_pro_fan();
   delay(2000);
-  reverse_motor(current_hover_speed);
+  reverse_prop_motor(current_hover_speed);
   
   return 0;
 }
