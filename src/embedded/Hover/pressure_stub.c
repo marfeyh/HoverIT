@@ -31,7 +31,6 @@
 #if STUB_TEST
    #define #include <time.h>
 #endif
-#include <time.h>
 #include <pressure.h>
 
 /*!
