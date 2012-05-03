@@ -24,8 +24,7 @@
  * ======================================================================
  */
 
-
-unsigned char connection_status(){
+unsigned char connection_status() {
 	// For checking the connection status
 	return check_connection();
 }
@@ -46,6 +45,7 @@ void communication_serial_setup() {
 void check_serial_input() {
 	unsigned char temp = connection_status();
 	debug_print(&temp);
+	stream_information("Amir");
 //	debug_write(&temp);
 	// result variable shows the available data on serial pin.
 	unsigned char result = 255;
@@ -173,8 +173,16 @@ unsigned char battery_level(unsigned char message) {
 	return create_battery_level(&message);
 }
 
-unsigned char send_information(unsigned char information) {
-	stream_data(&information);
+/*!
+ @brief A function to send stream of information to serial pin by sending character by character.
+ @param pointer to first char of the stream string to be sent
+ */
+unsigned char stream_information(char* information) {
+	unsigned char tag = 0b01111110;
+	send_serial_binary(&tag); // start streaming and send the starting tag
+	send_serial_string(information); // send the actual message
+	tag = 0b01111110;
+	send_serial_binary(&tag); // send the finishing tag
 	return 0;
 }
 
@@ -199,10 +207,6 @@ void send_serial_string(char* string) {
 void send_serial_binary(unsigned char* binary) {
 	serial_binary_write(binary);
 }
-
-
-
-
 
 unsigned char ruder_direction_handler(unsigned char command) {
 	unsigned char res_direction = get_direction(&command); // To get the direction
@@ -312,7 +316,6 @@ unsigned char fan_forward_speed_handler(unsigned char command) {
 			 job_ptr->type = MOVEMENT;
 			 putJobInQueue(*job_ptr);
 			 */
-			send_information(fan_forward_speed(0b00001110));
 			debug_print_string("put Fan Forward increasing Speed in queue\n");
 			break;
 		case DECREASING:

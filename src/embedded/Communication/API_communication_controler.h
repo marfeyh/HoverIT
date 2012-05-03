@@ -76,7 +76,7 @@ unsigned char hovercraft_pressure(unsigned char message);
 unsigned char battery_level(unsigned char message);
 
 
-unsigned char send_information (unsigned char information);
+unsigned char stream_information (char* information);
 
 unsigned char connection_status();
 #endif /* API_BLUETOOTH_CONTROLER_H_ */

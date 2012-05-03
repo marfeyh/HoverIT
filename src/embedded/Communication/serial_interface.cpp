@@ -16,6 +16,7 @@
 #include <HardwareSerial.h>
 #include <serial_interface.h>
 #include <pin.h>
+#include <string.h>
 
 /*!
  @brief When this function is called the bluetooth gets the resources of CPU, Arduino,
@@ -48,8 +49,11 @@ void serial_binary_write(unsigned char* binary) {
  @param pointer to first char of the string to be sent
  */
 void serial_string_write(char* string) {
-	for (; string != '\0'; string++) {
-		COMMUNICATION_PIN.print(*string);
+	uint8_t length = strlen(string);
+	uint8_t counter = 0;
+	for (; counter < length; counter++) {
+		Serial.println(*( counter + string ));
+		COMMUNICATION_PIN.print(*( counter + string ));
 	}
 }
 
@@ -89,17 +93,6 @@ void debug_print_string(char* character) {
 }
 
 
-/*!
- @brief A function to send stream of information to serial pin by sending character by character.
- @param pointer to first char of the stream string to be sent
- */
-void stream_data(unsigned char* information) {
-//	unsigned char binary = 0b01111111; // to start streaming the data
-	serial_binary_write(information); // send the starting tag
-//	serial_string_write(information); // send the actual message
-//	binary = 0b01111110;
-//	serial_binary_write(&binary); // send the finishing tag
-}
 
 void serial_switch() {
 #ifdef BLUETOOTH

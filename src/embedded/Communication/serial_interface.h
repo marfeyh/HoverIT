@@ -64,13 +64,6 @@ void debug_write (unsigned char*);
 void debug_print_string (char*);
 
 
-/*!
- @brief A function to send stream of information to serial pin by sending character by character.
- @param pointer to first char of the stream string to be sent
- */
-void stream_data(unsigned char*);
-
-
 void serial_switch(void);
 
 unsigned char check_connection(void);
