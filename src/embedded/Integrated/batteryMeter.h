@@ -10,6 +10,6 @@
 #define _batteryMeter_h
 
 int init_battery_meter(void);
-int setup_battery_meter(void);
+uint16_t setup_battery_meter(void);
 
 #endif
