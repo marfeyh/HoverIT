@@ -15,7 +15,7 @@
 #include "batteryLevel.h"
 
 
-// This function reads the from the analog pin and stores a value between 0-1023
+// This function reads from the analog pin and stores a value between 0-1023
 uint8_t get_sensor_value() {
     uint8_t SENSOR_VALUE = analogRead(SENSOR_PIN);
 //    uint8_t SENSOR_VALUE = 200;
