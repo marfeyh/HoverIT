@@ -17,5 +17,7 @@
 
 void init_leds(void);
 void run_leds(void);
+void display_percentage(int); //added by bruce
+
 
 #endif

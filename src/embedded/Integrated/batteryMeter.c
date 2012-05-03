@@ -13,15 +13,13 @@
 #include "alarm.h"
 #include "fourLedsOn.h"
 
-int currentButton = LOW;
-int lastButton = LOW;
-int percentage = 0;
+//int currentButton = LOW;
+//int lastButton = LOW;
+//int percentage;
 
 int init_battery_meter() {
    // pinMode(0, INPUT);
     
-    /*init the battery check pin*/
-    init_battery_check();
     /* init the leds */
     init_leds();
     /* init the alarm*/
@@ -44,7 +42,9 @@ int setup_battery_meter() {
     
     
 //    /* get the percentage from the battery*/
-     uint8_t percentage = check();
+    uint16_t percentage = check();
+    printf(" ahaper: %d ", percentage);
+
     /* send the percentage to the alarm */
     setup_alarm(percentage);
     /* send the percentage to the leds*/
