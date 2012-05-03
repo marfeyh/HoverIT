@@ -1,3 +1,23 @@
+/*
+ * RuddarControll.cpp
+ * This file is part of Rudder Control
+ *
+ * Copyright (C) 2012 - Epsilon
+ *
+ * Rudder Control is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Rudder Control is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Rudder Control. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * @file RuddarControll.cpp
  * @brief Description: Ruddar Control API for hovercraft. Which provides
@@ -78,7 +98,8 @@ int RuddarControll::setupRuddar()
  * Function which waits for user input and sets servo to desired position
  * @param command The integer indicating the direction of ruddars
  */
-void RuddarControll::controllRuddar(int command)
+
+int RuddarControll::controllRuddar(int command)
 {
   switch (command){
   case CENTER: 
@@ -113,58 +134,65 @@ void RuddarControll::controllRuddar(int command)
     setCurrent();
   }
   delay(500);
+  return 11;
 }
     
 /**
  * setHardLeft sets servos to 30 degree
  */
-void RuddarControll::setHardRight()
+
+int RuddarControll::setHardRight()
 {
   servo_1.write(30);
   servo_2.write(30 + OFFSET_TWO);
+  return 2;
 }
 
 /**
  * setHardRight sets servos to 150 degree
  */
-void RuddarControll::setHardLeft()
+int RuddarControll::setHardLeft()
 {
   servo_1.write(150);
   servo_2.write(150 + OFFSET_TWO);
+  return 3;
 }
 
 /**
  * setCurrent reads current position of servos
  */
-void RuddarControll::setCurrent()
+int RuddarControll::setCurrent()
 {
   servo_1.write(servo_1.read());
   servo_2.write(servo_2.read());
+  return 4;
 }
 
 /**
  * setStraight sets servos to center 90 degree
  */
-void RuddarControll::setStraight()
+int RuddarControll::setStraight()
 {
   servo_1.write(95); 
   servo_2.write(110);
+  return 5;
 }
 
 /** 
  * setBrake sets servos to to oposite directions,
  * this can be used to stop hovercraft quicker
  */
-void RuddarControll::setBrake()
+int RuddarControll::setBrake()
 {
   servo_1.write(180);
   servo_2.write(0 + OFFSET_TWO);
+  return 6;
 }
  
 /**
  * setSoftRight gradually moves servos by 20 degree steps toward right side
  */
-void RuddarControll::setSoftLeft()
+int RuddarControll::setSoftLeft()
 {
   int currentPos = servo_1.read();
   if(currentPos < 150)
@@ -172,18 +200,20 @@ void RuddarControll::setSoftLeft()
       currentPos = currentPos + 15;
       servo_1.write(currentPos); 
       servo_2.write(currentPos + OFFSET_TWO);
+      return 7;
     }
   else  
     {
       servo_1.write(currentPos); 
       servo_2.write(currentPos + OFFSET_TWO); 
+      return 8;
     }
 }
 
 /**
  * setSoftLeft gradually moves servos by 20 degree steps toward left side
  */
-void RuddarControll::setSoftRight()
+int RuddarControll::setSoftRight()
 { 
   int currentPos = servo_1.read();
   if(currentPos > 30)
@@ -191,11 +221,13 @@ void RuddarControll::setSoftRight()
       currentPos = currentPos - 15;
       servo_1.write(currentPos); 
       servo_2.write(currentPos + OFFSET_TWO); 
+      return 9;
     }
   else  
     {
       servo_1.write(currentPos); 
       servo_2.write(currentPos); 
+      return 10;
     }
 }
 

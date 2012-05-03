@@ -26,8 +26,8 @@ MAIN_SRC=
 
 SEARDUINO_PATH = /opt/searduino
 
-USER_C_FLAGS = 
-USER_CXX_FLAGS = 
+USER_C_FLAGS = -g 
+USER_CXX_FLAGS = -g 
 USER_LD_FLAGS =
 
 #
@@ -35,13 +35,11 @@ USER_LD_FLAGS =
 #
 
 ARDUINO=stub
-LIB=bma180stub.so
+SHLIB=bma180stub.so
 USER_C_FLAGS += -I$(SRC_DIR)
 USER_CXX_FLAGS += -I$(SRC_DIR)
 USER_LD_FLAGS += -lcheck
 
-SRC_C:=$(patsubst $(SRC_DIR)%.c, %.check.c, $(SRC_C))
-SRC_CXX:=$(patsubst $(SRC_DIR)%.cpp, %.check.cpp, $(SRC_CXX))
 
 .PHONY: check clean-tests
 

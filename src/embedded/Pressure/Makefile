@@ -11,8 +11,7 @@ SHLIB = example.so
 
 LIB = libpressure.a
 LIB_H = pressure.h
-USER_LIB_INSTALL_PATH = ../lib
-
+USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
