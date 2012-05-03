@@ -10,7 +10,7 @@ ARDUINO = mega2560
 #ARDUINO = uno
 SHLIB = rudder.so
 
-LIB = lib_rudder.a
+LIB = librudder.a
 LIB_H = steering.h RuddarControll.h pin.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
