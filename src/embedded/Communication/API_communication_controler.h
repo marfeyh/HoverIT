@@ -13,7 +13,7 @@
 /*!
  @brief Initializing bluetooth serial pins on Arduino
  */
-void bluetooth_serial_setup();
+void communication_serial_setup();
 
 /*!
  @brief When this function is called, by Scheduler, the bluetooth gets the resources of

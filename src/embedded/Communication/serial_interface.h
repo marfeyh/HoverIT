@@ -12,6 +12,10 @@
 #ifndef SERIAL_INTERFACE_H
 #define SERIAL_INTERFACE_H
 
+#define BLUETOOTH
+//#define WIFI
+//#define GSM
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -65,6 +69,9 @@ void debug_print_string (char*);
  @param pointer to first char of the stream string to be sent
  */
 void stream_data(char*);
+
+
+void serial_switch();
 
 #ifdef __cplusplus
 }
