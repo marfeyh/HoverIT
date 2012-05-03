@@ -47,6 +47,6 @@ int main(void) {
 	delay(2000);
 	increase_hover_auto();
 	delay(2000);
-
+	stop_hover();
 	return 0;
 }
