@@ -1,35 +1,33 @@
-/*	
- * @ Module name:  main.c	
- * @ Description:  Contains the functions that will send a tone to pin 11 (speakers)based on battery level it will generate different frequencies 	
- * @ Author names :Neda Mohammadian	,mahsa mirtalebi
- * @ Release      :23 April 2012	(//first release in 17 april)
- * @ Version      : 2	
+/*!	
+ @file alarm.c
+ @headerfile Arduino.h
+ @headerfile searduino.h
+ @headerfile tonerWrapper.h
+ @headerfile alarm.h
+ @details Contains the functions that will send a tone to pin 11 (speakers)based on battery level it will generate different frequencies
+ @author Mahsa Mirtalebi
+ @author Neda Mohammadian
+ @version 3
  */
+
+
 
 #include <Arduino.h>
 #include <searduino.h>
 #include "toneWrapper.h"
 #include "alarm.h"
 
-int battery_beep_duration;
+int battery_beep_duration=0;
 
-void init_alarm() {
-    setup_battery_level();
+void setup() {
+ setup_battery_level();
 }
 
 void setup_battery_level(){
-    /* for searduino test*/
-    pinMode(11, OUTPUT);
-    battery_beep_duration = 0;
+//  Serial.begin(9600);
+	pinMode(13,OUTPUT);
 }
 
-<<<<<<< HEAD
-void setup_alarm(uint8_t percentage) {
-    loop_battery_level(percentage);
-}
-
-int loop_battery_level(uint8_t Battery){
-=======
 void exec(uint8_t percentage) {
 //	for(;;){
 		loop_battery_level(percentage);
@@ -41,7 +39,6 @@ void exec(uint8_t percentage) {
 
 int loop_battery_level(uint8_t Battery){
 //  int Battery=getBattery();
->>>>>>> d331acbf237bcc0c3e26050f2de0fc8886b6295f
   if(Battery==LOW_BATTERY && battery_beep_duration<LOW_BATTERY_DURATION){
     beep(LOW_BATTERY);
     battery_beep_duration++;
@@ -50,11 +47,16 @@ int loop_battery_level(uint8_t Battery){
     beep(EMPTY_BATTERY);
 	return 0;
   }else{
-    my_noTone(11);
-	return -1;
+      my_noTone(11);
+	  return -1;
   }
 }
 
+/*!
+ @brief this function make sound based on the argument 
+ @param int integer number representing the type of the sound 	
+ @return int integer number representing what kind of sound function made 	
+ */
 int beep(int beep){
   switch(beep){
     case LOW_BATTERY:
@@ -67,10 +69,7 @@ int beep(int beep){
       break;
   }
 }
-<<<<<<< HEAD
-=======
 
 //int getBattery(){     
 //  return 20;
 //}
->>>>>>> d331acbf237bcc0c3e26050f2de0fc8886b6295f
