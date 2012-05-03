@@ -20,8 +20,6 @@
 # SRC_FILES can be set by a calling makefile to set the files of the src folder
 #
 
-UBRR1H=ture
-
 SRC_DIR=../
 SRC_C=
 SRC_CXX=

@@ -173,8 +173,8 @@ unsigned char battery_level(unsigned char message) {
 	return create_battery_level(&message);
 }
 
-unsigned char send_information(char* information) {
-	stream_data(information);
+unsigned char send_information(unsigned char information) {
+	stream_data(&information);
 	return 0;
 }
 
@@ -312,7 +312,7 @@ unsigned char fan_forward_speed_handler(unsigned char command) {
 			 job_ptr->type = MOVEMENT;
 			 putJobInQueue(*job_ptr);
 			 */
-			send_information("amir almasi");
+			send_information(fan_forward_speed(0b00001110));
 			debug_print_string("put Fan Forward increasing Speed in queue\n");
 			break;
 		case DECREASING:

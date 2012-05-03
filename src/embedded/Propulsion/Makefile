@@ -24,6 +24,7 @@ check:
 
 gcovcheck:
 	$(MAKE) gcovcheck -C $(TEST_DIR)
+#	gcov -o $(TEST_DIR) $(SRC_FILES)
 
 gcovbcheck:
 	$(MAKE) gcovbcheck -C $(TEST_DIR)

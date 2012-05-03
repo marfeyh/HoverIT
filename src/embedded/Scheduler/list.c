@@ -1,6 +1,7 @@
 /**
-Author: Dmitry Igoshin
-Linked sorted list implementation
+@file list.c
+@author Dmitry Igoshin
+@brief Linked sorted list implementation
 **/
 #pragma once
 #define NULL ((void *)0); //to be able to work with null pointers
@@ -76,7 +77,7 @@ struct Job pop(struct List * list) {
 	return h;
 }
 
-//Print ou list information
+//Print out list information
 void printList(struct List * list) {
 	struct Node * current;
 	current = list->head;
