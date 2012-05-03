@@ -55,7 +55,7 @@ void init_brake_propulsion(void){
  * @brief: More modifications in offing
  */
 int reverse_prop_motor(int current_hover_speed){
-   if((current_hover_speed + MIN_DUTY_CYCLE ) < 0){
+   if((current_hover_speed + MIN_DUTY_CYCLE ) < 0){ //not yet fanlised on the implementation
    digitalWrite(RelayPin, HIGH);
    delay(SPEED_DELAY_TIME);
    current_hover_speed = -current_hover_speed + MIN_DUTY_CYCLE; //still subject to be changed
