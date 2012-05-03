@@ -1,4 +1,8 @@
 /*
+@copyright This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 @author Yohanes Kuma
 @details This file is ment for controlling the Propulsion fan motor. 
 The code is responsible to controll the speed of the fan for
@@ -28,5 +32,8 @@ int initialise_propulsion();
 int get_speed_level();
 void change_pro_speed(int level);
 void stop_pro_fan();
+<<<<<<< HEAD
 void init_motor();
+=======
+>>>>>>> 1447c79aad91a351d5d0ee7036c063b6da064dc6
 unsigned char get_motor_status();

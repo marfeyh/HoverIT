@@ -10,6 +10,7 @@
 #include <searduino.h>
 
 int main(void){
+  initialise_propulsion();
   increase_propulsion();
   decrease_propulsion();
   increase_propulsion();
