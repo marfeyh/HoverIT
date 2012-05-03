@@ -1,24 +1,22 @@
-TEST_DIR=tests/
+TEST_DIR = tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = rudder
+PROG = distance 
 
 # Add your source files here
-SRC_C= steering.c
-SRC_CXX= RuddarControll.cpp
+SRC_C = coordinate_distance.c destination.c
+SRC_CXX = 
 MAIN_SRC = main.c
-ARDUINO = mega2560
-#ARDUINO = uno
-SHLIB = rudder.so
+ARDUINO = stub
+SHLIB = distance.so
 
-LIB = librudder.a
-LIB_H = steering.h RuddarControll.h pin.h
+LIB = libdistance.a
+LIB_H = coordinate_distance.h destination.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
-# Needs to be modified as well
 check:
 	$(MAKE) check -C $(TEST_DIR)
 
