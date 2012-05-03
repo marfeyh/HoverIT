@@ -14,11 +14,7 @@
 #include <searduino.h>
 #include "batteryLevel.h"
 
-int init_battery_check() {
-    pinMode(SENSOR_PIN, INPUT);
-//    analogReference(EXTERNAL);
-    return 1;
-}
+
 
 uint8_t get_sensor_value() {
     uint8_t SENSOR_VALUE = analogRead(SENSOR_PIN);
