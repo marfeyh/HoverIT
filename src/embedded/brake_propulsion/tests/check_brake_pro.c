@@ -4,6 +4,7 @@
     propulsion fan functions.Apparently, check libraries are 
     used as a tool for the unit testing.For more details, you 
     are obliged to check their manual for more clarifications.
+    The unit testing is still in its nascent face.
  * @author: Xinran He
  * @author: Ezeh prince Anthony Anayo
  * @date:2012-05-02
