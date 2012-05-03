@@ -1,3 +1,23 @@
+/*
+ * RuddarControll.h
+ * This file is part of Rudder Control
+ *
+ * Copyright (C) 2012 - Epsilon
+ *
+ * Rudder Controll is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Rudder Controll is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Rudder Controll. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * @file RuddarControll.h
  * @brief Description: Header file for Ruddar Control API for hovercraft.
@@ -37,16 +57,16 @@ class RuddarControll
 public: 
        RuddarControll();
        int setupRuddar();
-       void controllRuddar(int command);
+       int controllRuddar(int command);
  
-private:
-        void setHardLeft();
-        void setHardRight();
-        void setCurrent();
-        void setStraight();
-        void setBrake();
-        void setSoftRight();
-        void setSoftLeft();
+//private:
+        int setHardLeft();
+        int setHardRight();
+        int setCurrent();
+        int setStraight();
+        int setBrake();
+        int setSoftRight();
+        int setSoftLeft();
 
 };
 

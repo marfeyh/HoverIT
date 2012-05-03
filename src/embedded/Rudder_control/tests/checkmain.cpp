@@ -1,17 +1,16 @@
 /*
- * Author: Paulius Vysniauskas, David Giorgidze.
- * Date: 2012-04-04.
- * Test case main file.
- *
+ * @file checkmain.cpp
+ * @brief: Description: main function for Check tests.
+ * @author: Paulius Vysniauskas, David Giorgidze.
+ * @date: 2012-04-04.
  */
 
 #include <stdlib.h>
 #include "check_RuddarControll.h"
-//#include "check_RuddarControll.cpp"
 
 main(void) {
   int number_failed;
-  Suite *s = calc_suite();
+  Suite *s = rudder_suite();
   SRunner *sr = srunner_create(s);
   srunner_run_all(sr, CK_NORMAL);
   number_failed = srunner_ntests_failed(sr);

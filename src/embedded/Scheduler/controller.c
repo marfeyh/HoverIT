@@ -31,7 +31,8 @@
 #include <job.h>
 #include <Theta-API.h>
 #include <stdlib.h>
-
+#include "calculateSpeed.h"
+#include "pressure.h"
 static struct List *g_taskList;
 
 /**
@@ -64,14 +65,12 @@ void execute_jobs() {
 			int (*task)();
 			task = currentJob.task_p2;
 			(*task)(); //execute the job
-//			free(currentJob);
 		} /* If job_num == 1 */
 
       else if (currentJob.job_num == 2){
          void (*task)(unsigned char);
          task = currentJob.task_p3;
          (*task)(currentJob.arg1); //execute the job
-//		 free(currentJob);
       } /* If job_num == 2 */
 	  
 //	else if(currentJob.job_num == 3){
@@ -93,6 +92,9 @@ void control() {
 	init_list(); // A task list is initialized.
 	while (1) {
 	  check_serial_input();
+	  extern Speed *g_speed_p;
+	  int speed = get_speed(g_speed_p);
+	  check_pressure();
 		// Get gps data
 		// Get hovercraft speed
 		// Get Battery level

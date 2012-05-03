@@ -10,7 +10,7 @@ ARDUINO = mega2560
 SHLIB = hovercraft.so
 
 USER_C_FLAGS = -I ../../../bin/include
-USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder
+USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder -lspeed -lpressure
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 

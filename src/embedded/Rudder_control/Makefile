@@ -7,6 +7,7 @@ SRC_C= steering.c
 SRC_CXX= RuddarControll.cpp
 MAIN_SRC = main.c
 ARDUINO = mega2560
+#ARDUINO = uno
 SHLIB = rudder.so
 
 LIB = librudder.a

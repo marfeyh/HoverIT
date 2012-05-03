@@ -3,6 +3,6 @@
 
 #include <check.h>
 
-Suite * calc_suite(void);
+Suite * rudder_suite(void);
 
 #endif
