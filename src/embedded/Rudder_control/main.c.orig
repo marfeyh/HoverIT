@@ -1,5 +1,6 @@
 /*
- * steering.h
+<<<<<<< HEAD
+ * main.c
  * This file is part of Rudder Control
  *
  * Copyright (C) 2012 - Epsilon
@@ -18,18 +19,26 @@
  * along with Rudder Control. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * @file steering.h
- * @brief Description: Header file for steering module.
- * @author: Paulius Vysniauskas
- * @date: 2012-04-11
+/*
+ * @file main.c
+ * @brief: Description: main function in C, required to initialize
+ * RuddarControll object and begin execution.
+ * @author: Rashid Darwish, David Giorgidze, Zarif Jawad, Paulius Vysniauskas.
+ * @date: 2012-04-04.
+=======
+ * Author: Rashid Darwish, David Giorgidze, Zarif Jawad, Paulius Vysniauskas.
+ * Date: 2012-04-04.
+ * Description: main function in C, required to initialize RuddarControll
+ * object and begin execution.
+ *
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
  */
 
-#ifndef STEERING_H
-#define STEERING_H
+#include "steering.h"
 
-#include "RuddarControll.h"
+int main(void)
+{
+  control_rudder(1);
+  return 0;	
+}
 
-void control_rudder(int);
-
-#endif

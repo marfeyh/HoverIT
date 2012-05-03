@@ -22,14 +22,24 @@
 #
 
 SRC_DIR=../
+<<<<<<< HEAD
 SRC_C= 
 SRC_CXX= check_RuddarControll.cpp
 MAIN_SRC= checkmain.c
+=======
+SRC_C=
+SRC_CXX= checkmain.cpp check_RuddarControll.cpp
+MAIN_SRC=
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 
 SEARDUINO_PATH = /opt/searduino
 
 USER_C_FLAGS = 
+<<<<<<< HEAD
 USER_CXX_FLAGS =
+=======
+USER_CXX_FLAGS = 
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 USER_LD_FLAGS =
 
 #

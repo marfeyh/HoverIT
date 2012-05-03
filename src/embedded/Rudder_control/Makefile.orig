@@ -7,10 +7,16 @@ SRC_C= steering.c
 SRC_CXX= RuddarControll.cpp
 MAIN_SRC = main.c
 ARDUINO = mega2560
+<<<<<<< HEAD
 #ARDUINO = uno
 SHLIB = rudder.so
 
+LIB = lib_rudder.a
+=======
+SHLIB = rudder.so
+
 LIB = librudder.a
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 LIB_H = steering.h RuddarControll.h pin.h
 USER_LIB_INSTALL_PATH = ../../../bin
 

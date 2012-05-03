@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * steering.h
  * This file is part of Rudder Control
@@ -18,6 +19,8 @@
  * along with Rudder Control. If not, see <http://www.gnu.org/licenses/>.
  */
 
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 /**
  * @file steering.h
  * @brief Description: Header file for steering module.

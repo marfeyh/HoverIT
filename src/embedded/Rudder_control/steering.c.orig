@@ -1,5 +1,6 @@
+<<<<<<< HEAD
 /*
- * steering.h
+ * steering.c
  * This file is part of Rudder Control
  *
  * Copyright (C) 2012 - Epsilon
@@ -18,18 +19,27 @@
  * along with Rudder Control. If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 /**
- * @file steering.h
- * @brief Description: Header file for steering module.
+ * @file steering.c
+ * @brief Description: Module, that deals with interaction
+ * between C and C++ code.
  * @author: Paulius Vysniauskas
  * @date: 2012-04-11
  */
 
-#ifndef STEERING_H
-#define STEERING_H
-
+#include "steering.h"
 #include "RuddarControll.h"
 
-void control_rudder(int);
-
-#endif
+/**
+ * The function that can be called from the scheduler and accepts user
+ * input. Communicates with the RuddarControll.cpp module.
+ */
+void control_rudder(int command)
+{
+  void* rc = RuddarControll_construct();
+  RuddarControll_steering(rc, command);
+  RuddarControll_destruct(rc);
+}

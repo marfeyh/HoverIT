@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * RuddarControll.h
  * This file is part of Rudder Control
@@ -18,6 +19,8 @@
  * along with Rudder Controll. If not, see <http://www.gnu.org/licenses/>.
  */
 
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 /**
  * @file RuddarControll.h
  * @brief Description: Header file for Ruddar Control API for hovercraft.
@@ -57,6 +60,7 @@ class RuddarControll
 public: 
        RuddarControll();
        int setupRuddar();
+<<<<<<< HEAD
        int controllRuddar(int command);
  
 //private:
@@ -67,6 +71,18 @@ public:
         int setBrake();
         int setSoftRight();
         int setSoftLeft();
+=======
+       void controllRuddar(int command);
+ 
+private:
+        void setHardLeft();
+        void setHardRight();
+        void setCurrent();
+        void setStraight();
+        void setBrake();
+        void setSoftRight();
+        void setSoftLeft();
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 
 };
 
