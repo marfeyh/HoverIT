@@ -92,7 +92,7 @@ void display_percentage(int value)
 			 if(currentTimer - previousTimer > 500){
 				 previousTimer = currentTimer ;
 				 if (ledState == LOW)
-					 ledState == HIGH;
+					 ledState = HIGH;
 				 else 
 					 ledState == LOW;
 				 
