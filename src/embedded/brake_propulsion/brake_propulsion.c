@@ -45,7 +45,7 @@
 static int hover_speed = 0;
 
 void init_brake_propulsion(void){
-   pinMode(PIN, OUTPUT);
+   pinMode(RelayPin, OUTPUT);
    digitalWrite(PIN, HIGH);
    digitalWrite(PIN, LOW);
    delay(SPEED_DELAY_TIME);
@@ -55,19 +55,19 @@ void init_brake_propulsion(void){
  * @brief: More modifications in offing
  */
 int reverse_prop_motor(int current_hover_speed){
-   if((current_hover_speed + MIN_DUTY_CYCLE ) < 0){
-   digitalWrite(PIN, HIGH);
+   if((current_hover_speed + MIN_DUTY_CYCLE ) < 0){ //not yet fanlised on the implementation
+   digitalWrite(RelayPin, HIGH);
    delay(SPEED_DELAY_TIME);
    current_hover_speed = -current_hover_speed + MIN_DUTY_CYCLE; //still subject to be changed
    return -1;
    }
    else if((current_hover_speed + MIN_DUTY_CYCLE) < MAX_DUTY_CYCLE){
-   digitalwrite(PIN, LOW);
+   digitalwrite(RelayPin, LOW);
    delay(SPEED_DELAY_TIME);
    current_hover_speed = current_hover_speed + MIN_DUTY_CYCLE;
    return 1;
    }
-   analogWrite(PIN, current_hover_speed + MIN_DUTY_CYCLE); //not yet finalised
+   //analogWrite(PIN, current_hover_speed + MIN_DUTY_CYCLE); //not yet finalised
    change_pro_speed(current_hover_speed - 20);
    brake_pro();
    return 0;
