@@ -71,7 +71,9 @@ void debug_print_string (char*);
 void stream_data(char*);
 
 
-void serial_switch();
+void serial_switch(void);
+
+unsigned char check_connection(void);
 
 #ifdef __cplusplus
 }

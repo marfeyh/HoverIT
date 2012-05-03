@@ -25,8 +25,8 @@
  */
 unsigned char serial_read() {
 	// Check serial input if there is anything available
-	if (BLUETOOTH_PIN.available() > 0) {
-		unsigned char input = BLUETOOTH_PIN.read();
+	if (COMMUNICATION_PIN.available() > 0) {
+		unsigned char input = COMMUNICATION_PIN.read();
 		debug_print(&input);
 		return input;
 	} // if there is anything available on serial input
@@ -39,7 +39,7 @@ unsigned char serial_read() {
  */
 void serial_binary_write(unsigned char* binary) {
 	//	printf("Module serial_interface.cpp: function serial_binary_write is working...\n");
-	BLUETOOTH_PIN.write(*binary);
+	COMMUNICATION_PIN.write(*binary);
 	Serial.write(*binary);
 }
 
@@ -49,7 +49,7 @@ void serial_binary_write(unsigned char* binary) {
  */
 void serial_string_write(char* string) {
 	for (; string != '\0'; string++) {
-		BLUETOOTH_PIN.print(*string);
+		COMMUNICATION_PIN.print(*string);
 	}
 }
 
@@ -58,7 +58,7 @@ void serial_string_write(char* string) {
  */
 void serial_setup(void) {
 	MONITORING_PIN.begin(9600);
-	BLUETOOTH_PIN.begin(9600);
+	COMMUNICATION_PIN.begin(9600);
 }
 
 /*!
@@ -66,7 +66,7 @@ void serial_setup(void) {
  @param pointer to unsigned char of first char of the string to be sent
  */
 void debug_print(unsigned char* data) {
-	MONITORING_PIN.print(*data, HEX);
+	MONITORING_PIN.print(*data);
 }
 
 /*!
@@ -94,7 +94,7 @@ void debug_print_string(char* character) {
  @param pointer to first char of the stream string to be sent
  */
 void stream_data(char* information) {
-	unsigned char binary = 0b01111100; //0b11111110; // to start streaming the data
+	unsigned char binary = 'a'; //0b11111110; // to start streaming the data
 	serial_binary_write(&binary); // send the starting tag
 //	char binary2 = 'a';//0b11111110; // to start streaming the data
 //	serial_string_write(&binary2); // send the starting tag
@@ -113,4 +113,8 @@ void serial_switch() {
 #ifdef GSM
 	debug_print_string("Gsm is activated");
 #endif
+}
+
+unsigned char check_connection(){
+	return digitalRead(COMMUNICATION_STATUS_PIN);
 }

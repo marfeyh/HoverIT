@@ -24,6 +24,12 @@
  * ======================================================================
  */
 
+
+unsigned char connection_status(){
+	// For checking the connection status
+	return check_connection();
+}
+
 /*!
  @brief Initializing bluetooth serial pins on Arduino
  */
@@ -38,6 +44,9 @@ void communication_serial_setup() {
  If there is any data available then the data would be parsed.
  */
 void check_serial_input() {
+	unsigned char temp = connection_status();
+	debug_print(&temp);
+//	debug_write(&temp);
 	// result variable shows the available data on serial pin.
 	unsigned char result = 255;
 	do {
