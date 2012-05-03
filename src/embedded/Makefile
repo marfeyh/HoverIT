@@ -28,7 +28,7 @@ check:
 	$(MAKE) check -C Hover
 	$(MAKE) check -C Rudder_control
 	$(MAKE) check -C determine-speed
-	$(MAKE) check -C Pressure
+#	$(MAKE) check -C Pressure
 
 gcovcheck:
 #	$(MAKE) gcovcheck -C Scheduler
@@ -37,7 +37,7 @@ gcovcheck:
 	$(MAKE) gcovcheck -C Hover
 	$(MAKE) gcovcheck -C Rudder_control
 	$(MAKE) gcovcheck -C determine-speed
-	$(MAKE) gcovcheck -C Pressure
+#	$(MAKE) gcovcheck -C Pressure
 	gcovr -x --xml > coverage.xml
 
 memcheck:
@@ -47,7 +47,7 @@ memcheck:
 	$(MAKE) memcheck -C Hover
 	$(MAKE) memcheck -C Rudder_control
 	$(MAKE) memcheck -C determine-speed
-	$(MAKE) memcheck -C Pressure
+#	$(MAKE) memcheck -C Pressure
 
 clean-tests:
 	$(MAKE) clean-tests -C Scheduler
