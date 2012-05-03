@@ -55,18 +55,32 @@ SRC_C = ../message_handler.c
 check: $(PROG)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcovcheck: $(PPROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+gcov: USER_C_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_LD_FLAGS += -lgcov
+gcov: check
 
-gcovbcheck:
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-memcheck: $(PROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+debug: USER_C_FLAGS += -g
+debug: USER_CXX_FLAGS += -g
+debug: check
 
+
+gcovcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
+
+gcovbcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
+
+memcheck: debug
+	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
 
 clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
 
 

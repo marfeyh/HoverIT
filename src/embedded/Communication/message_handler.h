@@ -24,11 +24,11 @@ unsigned char parse_binary(unsigned char*);
  @brief A function to find out message contains increasing and decreasing or not.
  @param pointer to unsigned char of the message which is received
  @return unsigned char containing a number
- 1 if is_increase message
+ 1 if increase or decrease message
  2 if normal setting speed message
  255 if something is wrong
  */
-unsigned char is_increase(unsigned char*);
+unsigned char increase_decrease(unsigned char*);
 
 /*!
  @brief A function to find out about the direction.
@@ -45,7 +45,7 @@ unsigned char get_direction(unsigned char*);
  @return unsigned char containing a number
  return number is in the range of 0 to 7
  */
-unsigned char getValue_fans(unsigned char*);
+unsigned char get_value_fans(unsigned char*);
 
 /*!
  @brief A function to find the type of the message of the received binary

@@ -34,12 +34,27 @@ unsigned char serial_read() {
 }
 
 /*!
+ @brief A function to send stream of information to serial pin by sending character by character.
+ @param pointer to first char of the stream string to be sent
+ */
+void stream_data(char* information){
+	unsigned char binary = 0b01111100;//0b11111110; // to start streaming the data
+	serial_binary_write(&binary); // send the starting tag
+//	char binary2 = 'a';//0b11111110; // to start streaming the data
+//	serial_string_write(&binary2); // send the starting tag
+//	serial_string_write(information); // send the actual message
+//	binary = 0b11111111;
+//	serial_binary_write(&binary); // send the finishing tag
+}
+
+/*!
  @brief A function to send the data to serial pins
  @param pointer to unsigned char of the binary to be sent
  */
 void serial_binary_write(unsigned char* binary) {
 	//	printf("Module serial_interface.cpp: function serial_binary_write is working...\n");
 	BLUETOOTH_PIN.write(*binary);
+	Serial.write(*binary);
 }
 
 /*!

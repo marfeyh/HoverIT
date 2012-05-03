@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 #All the code should be structured as following
 # / src
 # 	| Makefile   
-#	/computer
+#	/embedded
 #		| Makefile <-- You are here
 #		/feature
 #       		| Makefile 
@@ -12,37 +11,53 @@
 #	 			| check_main.c
 
 
-all: *.c *.h
-	gcc -o computer *.c -lbluetooth
+all: 
+	$(MAKE) lib-install -C Scheduler
+	$(MAKE) lib-install -C Communication
+	$(MAKE) lib-install -C Propulsion
+	$(MAKE) lib-install -C Hover
+	$(MAKE) lib-install -C Rudder_control
+	$(MAKE) lib-install -C determine-speed
+	$(MAKE) prog -C Hovercraft
 
-clean:
-	rm -f computer computer.exe *.o
+check:
+#	$(MAKE) check -C Scheduler
+	$(MAKE) check -C Communication
+	$(MAKE) check -C Propulsion
+#	$(MAKE) check -C Hover
+	$(MAKE) check -C Rudder_control
+	$(MAKE) check -C determine-speed
 
+gcovcheck:
+#	$(MAKE) gcovcheck -C Scheduler
+	$(MAKE) gcovcheck -C Communication
+	$(MAKE) gcovcheck -C Propulsion
+#	$(MAKE) gcovcheck -C Hover
+	$(MAKE) gcovcheck -C Rudder_control
+	$(MAKE) gcovcheck -C determine-speed
+	gcovr -x --xml > coverage.xml
 
-# change checkmain.c on both lines to whatever your file is called in "tests" folder
-testsuite.o: ../../tests/check_hc_remote.c
-	gcc -c ../../tests/check_hc_remote.c -o ../../tests/testsuite.o
+memcheck:
+#	$(MAKE) memcheck -C Scheduler
+	$(MAKE) memcheck -C Communication
+	$(MAKE) memcheck -C Propulsion
+#	$(MAKE) memcheck -C Hover
+	$(MAKE) memcheck -C Rudder_control
+	$(MAKE) memcheck -C determine-speed
 
-# change main.o and test.o o both lines to whatever your .c files are called in the "src" folder
-testsuite: UI_PC/main.o UI_PC/test.o testsuite.o
-	gcc UI_PC/bt_client.o UI_PC/hcraft_remote_api.o ../../tests/testsuite.o -o ../../tests/testsuite -lcheck
+clean-tests:
+	$(MAKE) clean-tests -C Scheduler
+	$(MAKE) clean-tests -C Communication
+	$(MAKE) clean-tests -C Propulsion
+	$(MAKE) clean-tests -C Hover
+	$(MAKE) clean-tests -C Rudder_control
+	$(MAKE) clean-tests -C determine-speed
 
-check:	testsuite
-	@echo Running tests...
-	tests/./testsuite
-=======
-## Makefile to run all other make files
-## Reference: Taken from Henrik's example
-##
-
-
-default:
-	@echo "--- Normal compilation ----------------------------------"
-	@echo "make all     produces binary in bin/"
-	@echo " "
-	
-all:
-	cd src && $(MAKE) all
-
-
->>>>>>> 723411e1aab2aca803cd8445a1ac8d1f933f63a1
+clean: clean-tests
+	$(MAKE) clean -C Scheduler
+	$(MAKE) clean -C Communication
+	$(MAKE) clean -C Propulsion
+	$(MAKE) clean -C Hover
+	$(MAKE) clean -C Rudder_control
+	$(MAKE) clean -C Hovercraft
+	$(MAKE) clean -C determine-speed

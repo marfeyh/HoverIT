@@ -12,10 +12,10 @@
 #	 			| check_main.c
 
 computer:
-	cd computer && $(MAKE) 
+	$(MAKE) all -C computer
 
 embedded:
-	cd embedded && $(MAKE) 
+	$(MAKE) all -C embedded
 
 computer-check: 
 	cd computer && $(MAKE) check
