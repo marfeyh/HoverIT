@@ -1,0 +1,41 @@
+TEST_DIR = Tests/
+SEARDUINO_PATH = /opt/searduino
+PROG = hovering
+
+# Add your source files here
+SRC_C = pressure.c
+MAIN_SRC = main.c # When using uno or mega, should be commented
+#ARDUINO = uno # When using stub or mega, should be commented
+#ARDUINO = mega # When using stub or uno, should be commented
+ARDUINO = mega2560
+SHLIB = hovering.so
+
+USER_C_FLAGS=-DSTUB_TEST #When using uno or mega, should be commented
+SRC_C += print_test.c	#When using uno or mega, should be commented
+#SRC_C += audible_test.c # When using stub, should be commented
+ 
+LIB = libpressure.a
+LIB_H = pressure.h
+USER_LIB_INSTALL_PATH = ../../../bin
+
+export SRC_FILES = $(SRC_C)
+
+include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
+
+# Needs to be modified as well
+check:
+	$(MAKE) check -C $(TEST_DIR)
+
+gcovcheck:
+	$(MAKE) gcovcheck -C $(TEST_DIR)
+
+gcovbcheck:
+	$(MAKE) gcovbcheck -C $(TEST_DIR)
+
+memcheck:
+	$(MAKE) memcheck -C $(TEST_DIR)
+
+clean-tests:
+	$(MAKE) clean-tests -C $(TEST_DIR)
+
+.PHONY: check

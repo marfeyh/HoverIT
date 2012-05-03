@@ -1,0 +1,12 @@
+#ifndef CHECK_RUDDARCONTROLL_H
+#define CHECK_RUDDARCONTROLL_H
+
+#include <check.h>
+
+<<<<<<< HEAD
+Suite * rudder_suite(void);
+=======
+Suite * calc_suite(void);
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
+
+#endif

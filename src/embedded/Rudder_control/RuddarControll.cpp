@@ -98,7 +98,11 @@ int RuddarControll::setupRuddar()
  * Function which waits for user input and sets servo to desired position
  * @param command The integer indicating the direction of ruddars
  */
+<<<<<<< HEAD
 int RuddarControll::controllRuddar(int command)
+=======
+void RuddarControll::controllRuddar(int command)
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 {
   switch (command){
   case CENTER: 
@@ -133,64 +137,106 @@ int RuddarControll::controllRuddar(int command)
     setCurrent();
   }
   delay(500);
+<<<<<<< HEAD
   return 11;
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 }
     
 /**
  * setHardLeft sets servos to 30 degree
  */
+<<<<<<< HEAD
 int RuddarControll::setHardRight()
 {
   servo_1.write(30);
   servo_2.write(30 + OFFSET_TWO);
   return 2;
+=======
+void RuddarControll::setHardRight()
+{
+  servo_1.write(30);
+  servo_2.write(30 + OFFSET_TWO);
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 }
 
 /**
  * setHardRight sets servos to 150 degree
  */
+<<<<<<< HEAD
 int RuddarControll::setHardLeft()
 {
   servo_1.write(150);
   servo_2.write(150 + OFFSET_TWO);
   return 3;
+=======
+void RuddarControll::setHardLeft()
+{
+  servo_1.write(150);
+  servo_2.write(150 + OFFSET_TWO);
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 }
 
 /**
  * setCurrent reads current position of servos
  */
+<<<<<<< HEAD
 int RuddarControll::setCurrent()
 {
   servo_1.write(servo_1.read());
   servo_2.write(servo_2.read());
   return 4;
+=======
+void RuddarControll::setCurrent()
+{
+  servo_1.write(servo_1.read());
+  servo_2.write(servo_2.read());
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 }
 
 /**
  * setStraight sets servos to center 90 degree
  */
+<<<<<<< HEAD
 int RuddarControll::setStraight()
 {
   servo_1.write(95); 
   servo_2.write(110);
   return 5;
+=======
+void RuddarControll::setStraight()
+{
+  servo_1.write(95); 
+  servo_2.write(110);
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 }
 
 /** 
  * setBrake sets servos to to oposite directions,
  * this can be used to stop hovercraft quicker
  */
+<<<<<<< HEAD
 int RuddarControll::setBrake()
 {
   servo_1.write(180);
   servo_2.write(0 + OFFSET_TWO);
   return 6;
+=======
+void RuddarControll::setBrake()
+{
+  servo_1.write(180);
+  servo_2.write(0 + OFFSET_TWO);
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 }
  
 /**
  * setSoftRight gradually moves servos by 20 degree steps toward right side
  */
+<<<<<<< HEAD
 int RuddarControll::setSoftLeft()
+=======
+void RuddarControll::setSoftLeft()
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 {
   int currentPos = servo_1.read();
   if(currentPos < 150)
@@ -198,20 +244,30 @@ int RuddarControll::setSoftLeft()
       currentPos = currentPos + 15;
       servo_1.write(currentPos); 
       servo_2.write(currentPos + OFFSET_TWO);
+<<<<<<< HEAD
       return 7;
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
     }
   else  
     {
       servo_1.write(currentPos); 
       servo_2.write(currentPos + OFFSET_TWO); 
+<<<<<<< HEAD
       return 8;
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
     }
 }
 
 /**
  * setSoftLeft gradually moves servos by 20 degree steps toward left side
  */
+<<<<<<< HEAD
 int RuddarControll::setSoftRight()
+=======
+void RuddarControll::setSoftRight()
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
 { 
   int currentPos = servo_1.read();
   if(currentPos > 30)
@@ -219,13 +275,19 @@ int RuddarControll::setSoftRight()
       currentPos = currentPos - 15;
       servo_1.write(currentPos); 
       servo_2.write(currentPos + OFFSET_TWO); 
+<<<<<<< HEAD
       return 9;
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
     }
   else  
     {
       servo_1.write(currentPos); 
       servo_2.write(currentPos); 
+<<<<<<< HEAD
       return 10;
+=======
+>>>>>>> cbcda27570416f2e3fd724a4eeffc190725b86d1
     }
 }
 
