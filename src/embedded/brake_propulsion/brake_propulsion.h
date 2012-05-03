@@ -31,10 +31,9 @@
 
 #ifndef BRAKE_PROPULSION_H
 #define BRAKE_PROPULSION_H
-#define DELAY_SPEED_TIME 2000 milliseconds
+#define MAXSPEED 120
 
-int init_brake_propulsion(void);
-int brake_pro(void);
-int reverse_prop_motor(int current_hover_speed);
+int brake_pro();
+int reverse_prop_motor();
 
 #endif

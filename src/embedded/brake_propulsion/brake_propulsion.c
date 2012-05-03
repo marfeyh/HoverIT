@@ -44,39 +44,25 @@
 
 static int hover_speed = 0;
 
-void init_brake_propulsion(void){
-   pinMode(RelayPin, OUTPUT);
-   digitalWrite(PIN, HIGH);
-   digitalWrite(PIN, LOW);
-   delay(SPEED_DELAY_TIME);
-
-}
 /*!
- * @brief: More modifications in offing
+ * @brief: reverse rotation 
  */
-int reverse_prop_motor(int current_hover_speed){
-   if((current_hover_speed + MIN_DUTY_CYCLE ) < 0){ //not yet fanlised on the implementation
-   digitalWrite(RelayPin, HIGH);
-   delay(SPEED_DELAY_TIME);
-   current_hover_speed = -current_hover_speed + MIN_DUTY_CYCLE; //still subject to be changed
-   return -1;
-   }
-   else if((current_hover_speed + MIN_DUTY_CYCLE) < MAX_DUTY_CYCLE){
-   digitalwrite(RelayPin, LOW);
-   delay(SPEED_DELAY_TIME);
-   current_hover_speed = current_hover_speed + MIN_DUTY_CYCLE;
-   return 1;
-   }
-   //analogWrite(PIN, current_hover_speed + MIN_DUTY_CYCLE); //not yet finalised
-   change_pro_speed(current_hover_speed - 20);
+int reverse_prop_motor(){
+   digitalWrite(RELAYPIN, HIGH);
+   change_pro_speed(MAXSPEED);
    brake_pro();
    return 0;
 }
 
+
+/*!
+ * @brief: get hovercraft speed if the speed is less than
+    10 fan stops
+ */
 int brake_pro(void){
   for(;;){
     hover_speed = get_hover_speed();
-    if(hover_speed < 10){
+    if(hover_speed < 10){ //need test
       stop_pro_fan();
       break;
     }

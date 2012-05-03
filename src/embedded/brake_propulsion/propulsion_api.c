@@ -73,10 +73,14 @@ int set_propulsion_fan(int set_speed){
 @brief stop propulsion fan speed
  */
 int stop_propulsion_fan(){
-  int current_hover_speed = get_speed_level();
+  stop_pro_fan();
+  return 0;
+}
+
+int brake_hovercraft(){
   stop_pro_fan();
   delay(2000);
-  reverse_prop_motor(current_hover_speed);
+  reverse_prop_motor();
   
   return 0;
 }
