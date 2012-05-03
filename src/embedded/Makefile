@@ -24,7 +24,7 @@ check:
 #	$(MAKE) check -C Scheduler
 	$(MAKE) check -C Communication
 	$(MAKE) check -C Propulsion
-#	$(MAKE) check -C Hover
+	$(MAKE) check -C Hover
 	$(MAKE) check -C Rudder_control
 	$(MAKE) check -C determine-speed
 
@@ -32,7 +32,7 @@ gcovcheck:
 #	$(MAKE) gcovcheck -C Scheduler
 	$(MAKE) gcovcheck -C Communication
 	$(MAKE) gcovcheck -C Propulsion
-#	$(MAKE) gcovcheck -C Hover
+	$(MAKE) gcovcheck -C Hover
 	$(MAKE) gcovcheck -C Rudder_control
 	$(MAKE) gcovcheck -C determine-speed
 	gcovr -x --xml > coverage.xml
@@ -41,7 +41,7 @@ memcheck:
 #	$(MAKE) memcheck -C Scheduler
 	$(MAKE) memcheck -C Communication
 	$(MAKE) memcheck -C Propulsion
-#	$(MAKE) memcheck -C Hover
+	$(MAKE) memcheck -C Hover
 	$(MAKE) memcheck -C Rudder_control
 	$(MAKE) memcheck -C determine-speed
 
