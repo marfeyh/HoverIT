@@ -94,7 +94,7 @@ void display_percentage(int value)
 				 if (ledState == LOW)
 					 ledState = HIGH;
 				 else 
-					 ledState == LOW;
+					 ledState = LOW;
 				 
 				 digitalWrite(ledPin1,ledState);
 				 digitalWrite(ledPin2,ledState);
