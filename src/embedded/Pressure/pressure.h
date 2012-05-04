@@ -45,6 +45,6 @@
  *
  * /return    Pressure difference
  */
-unsigned int check_pressure(void);
+unsigned int get_pressure(void);
 
 #endif
