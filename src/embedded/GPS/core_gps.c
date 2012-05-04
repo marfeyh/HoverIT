@@ -95,7 +95,7 @@ char *retrive_data(char* linema, int data_position){
    int i; 
    for (i = 0; i < 6; i++) { 
      if (!(gpsData[i] == gpr[i])) { 
-       return = 1; 
+       return 1; 
      } 
    } 
    return 0;
@@ -108,8 +108,8 @@ char *retrive_data(char* linema, int data_position){
  * of commas in the gps char array. 
  * DONT FORGET TO FREE THE VARIABLE IN WHICH THE RESULT IS STORED!
  */
-int* get_indices(char gpsData[]) {
-  int *indices = calloc(13, sizeof(int));
+int *get_indices(char gpsData[]) {
+  int *indices = calloc(14, sizeof(int));
   if (indices != NULL) {
     int i;
     int j = 0;

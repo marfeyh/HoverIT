@@ -32,6 +32,7 @@
 #include <Theta-API.h>
 #include <stdlib.h>
 #include "calculateSpeed.h"
+#include "pressure.h"
 static struct List *g_taskList;
 
 /**
@@ -93,6 +94,7 @@ void control() {
 	  check_serial_input();
 	  extern Speed *g_speed_p;
 	  int speed = get_speed(g_speed_p);
+	  check_pressure();
 		// Get gps data
 		// Get hovercraft speed
 		// Get Battery level

@@ -1,4 +1,3 @@
-#Modified by Dmitry Igoshin
 TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
 PROG = Scheduler

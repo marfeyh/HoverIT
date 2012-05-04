@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#define M_PI 3.14159
-
 #include "gps.h"
 
 
@@ -71,7 +69,7 @@ double get_distance_mi(struct position p1, struct position p2) {
 
 /* Parses decimal degrees to radians */
 double degrees_to_radians(double d) { 
-   return (d/180*M_PI); 
+  return (d/180)*M_PI; 
 }
   
 /* ADD COMMENT: GOKUL */

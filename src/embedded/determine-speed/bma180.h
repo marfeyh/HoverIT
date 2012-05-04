@@ -11,9 +11,9 @@
 extern "C" {
 #endif
 
-void bma180_initialize(void);
-float getXAccel(float);
-float calcXBias(void);
+void Bma180Initialize(void);
+float GetXAccel(float);
+float CalcXBias(void);
 
 
 #if defined __cplusplus

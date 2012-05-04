@@ -24,9 +24,9 @@ Speed* create_speed(void) {
     return NULL;
   }
 
-  bma_initialize();
+  Bma180Initialize();
 
-  struct_adress -> bias = calcXBias();
+  struct_adress -> bias = CalcXBias();
   struct_adress -> speed = 0;
   struct_adress -> time = millis();
 }
@@ -39,7 +39,7 @@ void calculate_speed(Speed* st_speed){
   time = millis();
   deltaTime = time - st_speed->time;
   
-  st_speed->speed += getXAccel(st_speed->bias) * deltaTime;
+  st_speed->speed += GetXAccel(st_speed->bias) * deltaTime;
   st_speed->time = time;
 
 } 
