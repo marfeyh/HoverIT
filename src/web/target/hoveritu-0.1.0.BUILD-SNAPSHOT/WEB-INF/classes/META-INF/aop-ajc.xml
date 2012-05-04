@@ -1,0 +1,13 @@
+<aspectj>
+<aspects>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_ToString"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_Json"/>
+<aspect name="com.hoveritu.web.HovercraftStateController_Roo_Controller_Json"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_JavaBean"/>
+<aspect name="com.hoveritu.web.HovercraftStateController_Roo_Controller"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_Entity"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_Configurable"/>
+<aspect name="com.hoveritu.web.ApplicationConversionServiceFactoryBean_Roo_ConversionService"/>
+</aspects>
+</aspectj>
+

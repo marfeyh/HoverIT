@@ -1,0 +1,21 @@
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-04-29 13:39:17
+project --topLevelPackage com.hoveritu --projectName hoveritu --java 6
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log closed at 2012-04-29 13:39:19
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-04-29 13:39:40
+hint
+persistence setup --provider HIBERNATE --database MYSQL 
+entity --class com.hoveritu.domain.HovercraftState
+field number --fieldName Speed --type int
+web mvc setup
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-04-29 17:52:25
+json add --class com.hoveritu.domain.HovercraftState
+json all
+// [failed] web mvc controller --class com.hoveritu.domain.HovercraftState
+controller all --package com.hoveritu.web
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-04-29 21:47:38
+focus --class com.hoveritu.domain.HovercraftState
+field number --fieldName BatteryLevel --type double
+field number --fieldName Pressure --type double
+test integration
+quit
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log closed at 2012-04-30 02:28:49
