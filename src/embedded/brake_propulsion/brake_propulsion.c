@@ -56,8 +56,8 @@ int reverse_prop_motor(){
 
 
 /*!
- * @brief: get hovercraft speed if the speed is less than
-    10 fan stops
+ * @brief: get hovercraft speed. If the speed is less than
+ * 10, the the propulsion fan is stopped.
  */
 int brake_pro(void){
   for(;;){
