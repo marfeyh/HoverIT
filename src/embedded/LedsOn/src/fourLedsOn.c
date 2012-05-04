@@ -11,6 +11,9 @@
 #include<searduino.h>
 #include "fourLedsOn.h"
 
+int ledState = LOW;
+unsigned long previousTimer = 0;
+
 
 /*
  @brief The initial state of this funtion. In this state  
@@ -47,7 +50,7 @@ void init_leds(void)
 void display_percentage(int value)
 
 {
-	unsigned long previousTimer = 0;
+	
 	unsigned long currentTimer = millis();
 	
 	// percentage of the battery life is between 100 and 81, four leds are on
@@ -92,9 +95,9 @@ void display_percentage(int value)
 			 if(currentTimer - previousTimer > 500){
 				 previousTimer = currentTimer ;
 				 if (ledState == LOW)
-					 ledState == HIGH;
+					 ledState = HIGH;
 				 else 
-					 ledState == LOW;
+					 ledState = LOW;
 				 
 				 digitalWrite(ledPin1,ledState);
 				 digitalWrite(ledPin2,ledState);

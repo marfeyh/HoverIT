@@ -13,9 +13,11 @@
 #define ledPin2  4
 #define ledPin3  7
 #define ledPin4  8
-#define ledState LOW
+
 
 void init_leds(void);
 void run_leds(void);
+void display_percentage(int); //added by bruce
+
 
 #endif

@@ -1,4 +1,4 @@
-TEST_DIR=../tests/
+TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
 PROG = leds
 

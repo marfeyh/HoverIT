@@ -16,20 +16,31 @@
 
 
 // This function reads from the analog pin and stores a value between 0-1023
-uint8_t get_sensor_value() {
+/*
+ * uint8_t changed to uint16_t by Bruce
+ */
+uint16_t get_sensor_value() { 
+    analogReference(EXTERNAL);
     uint8_t SENSOR_VALUE = analogRead(SENSOR_PIN);
-//    uint8_t SENSOR_VALUE = 200;
+//    uint16_t SENSOR_VALUE = 500;
     return SENSOR_VALUE;
 }
+
 // This function is run in main and returns the sensor_value that we read in get_sensor_value() function.
-uint8_t check() {
+/*
+ * uint8_t changed to uint16_t by Bruce
+ */
+uint16_t check() {
 
 //		const static uint8_t SENSOR_PIN = 19;
-    uint8_t SENSOR_VALUE = 0;
+    uint16_t SENSOR_VALUE = 0;
 
     /* value from 0 to 1023 */
     SENSOR_VALUE = get_sensor_value(); 
-    return (SENSOR_VALUE / 2.56);
+    
+    uint16_t percentage = SENSOR_VALUE / 10.24; // changed by bruce
+//    printf(" per: %d ", percentage);
+    return percentage;
 //		  if (SENSOR_VALUE >  0 && SENSOR_VALUE < 204.7){
 //              return 20;
 //              //1Volt Remaining

@@ -11,8 +11,11 @@
 #define BATTERY_LEVEL_H
 #define SENSOR_PIN 5
 
-uint8_t check(void);
-uint8_t get_sensor_value(void);
+/*
+ * uint8_t changed to uint16_t by Bruce
+ */
+uint16_t check(void);
+uint16_t get_sensor_value(void);
 int init_battery_check(void);
 
 #endif
