@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, WiFiActivity!</string>
+    <string name="app_name">WiFi</string>
+    <string name="ip_address">IP Address</string>
+    <string name="port">Port</string>
+    <string name="connect">connect</string>
+    <string name="ip">IP</string>
+    <string name="edittext">EditText</string>
+    <string name="connect_wifi_title">WiFi Connection</string>
+    <string name="discard">Discard</string>
+    <string name="connect_wifi_message">Would you like to connect to wifi?</string>
+
+</resources>
