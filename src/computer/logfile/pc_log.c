@@ -28,7 +28,7 @@ char *g_file = "log.txt";
  */
 void init_log_file(){	
 	
-	p = fopen(g_file, "a");
+	g_ptr = fopen(g_file, "a");
 	if (g_ptr == NULL) printf("Error in opening a file..",g_file); /* if opening file failed, print error info */
 }
 
@@ -55,10 +55,10 @@ void delet_log_file(){
 /*!
  @brief A function is called to get the currently local time.
  @param void
- @return a pointer to char, which contains 
+ @return A pointer to char, which contains 
  */
 char* get_time(){
-	char str[100];	/*string to contain time */
+	char *str = malloc(sizeof(char*));	/*string to contain time */
 	time_t the_time;
     struct tm *tp;
     the_time = time(NULL);
@@ -66,27 +66,29 @@ char* get_time(){
 	sprintf(str, "%2.2d-%2.2d-%2.2d %2.2d:%2.2d:%2.2d", tp->tm_year+1900, 
 	tp->tm_mon+1, tp->tm_mday, tp->tm_hour, tp->tm_min, tp->tm_sec);  /* convert tiime into string formate */
 	//printf("Time: %s \n", str);
-	return str;	
+	return str;
+
+	free(str);	
 }
 
 /*!
  @brief A function is called to write one line of string in .txt file.
- @param a pointer to char, which contains one line of log information.
+ @param A pointer to char, which contains one line of log information.
  @return void
  */
 void log_file_writer(char *buf){
 	size_t len = 0;
   	len = strlen(buf);
-	fwrite(buf, len, 1, p);      /*wirte one line in file*/
+	fwrite(buf, len, 1, g_ptr);      /*wirte one line in file*/
 	//printf("\n Written Successfuly in the file.\n");
 
 }
 
 /*!
  @brief A function is externally called to send a log message to .txt file.
- @param a pointer to char, which contains tag
- @param a pointer to char, which contains message
- @param a pointer to char, which contains function name
+ @param A pointer to char, which contains tag
+ @param A pointer to char, which contains message
+ @param A pointer to char, which contains function name
  @return void
  */
 

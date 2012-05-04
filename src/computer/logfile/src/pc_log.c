@@ -59,7 +59,7 @@ void delet_log_file(){
  @return a pointer to char, which contains 
  */
 char* get_time(){
-	char str[100];	/*string to contain time */
+	char *str = malloc(sizeof(char*));	/*string to contain time */
 	time_t the_time;
     struct tm *tp;
     the_time = time(NULL);
@@ -68,6 +68,7 @@ char* get_time(){
 	tp->tm_mon+1, tp->tm_mday, tp->tm_hour, tp->tm_min, tp->tm_sec);  /* convert tiime into string formate */
 	//printf("Time: %s \n", str);
 	return str;	
+	free(str);
 }
 
 /*!
@@ -99,5 +100,7 @@ void log_to_file(char *tag, char *module, char *function, char *message){
 	sprintf(temp,"%s, %s, %s, %s, %s  \n",get_time(),log.tag, log.module, log.function, log.info);	/*constaract the strings*/	
 	file_writer(temp); /* wirte one line in file*/
 }
+
+
 
 
