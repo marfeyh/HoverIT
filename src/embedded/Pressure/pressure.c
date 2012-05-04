@@ -80,7 +80,7 @@
  * /attention Pin numbers should be changed in the header file pins.h
  * /brief     Function for getting pressure from the physical sensors
  */
-unsigned int check_pressure() {
+unsigned int get_pressure() {
 
   float inside_pressure_pa = 0;  /*!< Pressure in Pa inside of the skirt */
   float outside_pressure_pa = 0; /*!< Pressure in Pa outside of the skirt */
