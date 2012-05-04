@@ -1,5 +1,5 @@
 /* @Author - Markus Feyh 
-   @Description: Sets the pins for pressure sensing
+ * @Description: Sets the pins for pressure sensing
  *  \copyright	Copyright (C) 2012  Kappa@HoverIT
  *
  *  This program is free software: you can redistribute it and/or modify
