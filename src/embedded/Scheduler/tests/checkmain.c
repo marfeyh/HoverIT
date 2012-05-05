@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <check.h>
 #include "fangzhou_test.c"
-#include "mozhan_tests.c"
-#include "pop_test.c"
+//#include "mozhan_tests.c"
+//#include "pop_test.c"
 #include "testPop.c"
 #include "YuZhao_test.c"
 #include "priority_test_johan.c"
