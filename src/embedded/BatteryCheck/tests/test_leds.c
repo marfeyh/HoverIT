@@ -33,156 +33,199 @@ void teardown (void) {
 
 /* 
  Id/Title: tc-01 tests if the voltage of the batery be 818.5
- Purpose: tests if the voltage of the battery is 818.5 there should be four leds on.
- Prerequisites: leds be connected, battery be connected to the arduino.
- Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Purpose: tests if the voltage of the battery is 818.5 it should return value 100
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 100
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
  Failures: 0, Errors: 0
  */
 
 
  START_TEST(test_loop_full) {
   
-	 seasim_set_generic_input(19 , 818.5, INPUT);
+	 seasim_set_generic_input(5 , 818.5, INPUT);
   check();
-	 uint8_t value;
+	 uint16_t value;
 	 fail_unless(value == 100);
  
 
 }END_TEST
 
 
+
 /* 
- Id/Title: tc-03 tests if the voltage of the batery be 1000
- Purpose: tests if the voltage of the battery is 1000 there should be four leds on.
- Prerequisites: leds be connected, battery be connected to the arduino.
- Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Id/Title: tc-02 tests if the voltage of the batery be 1000
+ Purpose: tests if the voltage of the battery is 1000 it should return value 100
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 100
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
  Failures: 0, Errors: 0
  */
 
-/*
+
 START_TEST(test_loop_full2) {
-  init_leds();
-	seasim_set_generic_input(19 , 1000, INPUT);
+  
+	seasim_set_generic_input(5 , 1000, INPUT);
   check();
+	unit16_t value;
 
  
-	fail_unless(digitalRead(ledPin1) == HIGH);
-	fail_unless(digitalRead(ledPin2) == HIGH);
-    fail_unless(digitalRead(ledPin3) == HIGH);
-    fail_unless(digitalRead(ledPin4) == HIGH);
-
+	fail_unless(value == 100);
+	
 }END_TEST
 
+
 /* 
- Id/Title: tc-04 tests if the voltage of the batery be 818.3
- Purpose: tests if the voltage of the battery is 818.3 there should be three leds on.
- Prerequisites: leds be connected, battery be connected to the arduino.
- Expected results: Ledpins 2,3and 4 be in HIGH position and ledpin 1 LOW
- Pass/Fail criteria: when check is run response is 100%: Checks: 11,
+ Id/Title: tc-03 tests if the voltage of the batery be 818.3
+ Purpose: tests if the voltage of the battery is 818.3 it should return value 80
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 80
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
  Failures: 0, Errors: 0
  */
 
 
-/*
 START_TEST(test_loop_half1) {
-  init_leds();
-	 seasim_set_generic_input(19 , 818.3, INPUT);
-  check();
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == HIGH);
-    fail_unless(digitalRead(ledPin3) == HIGH);
-    fail_unless(digitalRead(ledPin4) == HIGH);
+	
+	seasim_set_generic_input(5 , 818.3, INPUT);
+	check();
+	unit16_t value;
+	
+	
+	fail_unless(value == 80);
+	
 
 }END_TEST
 
+/* 
+ Id/Title: tc-04 tests if the voltage of the batery be 613.9
+ Purpose: tests if the voltage of the battery is 613.9 it should return value 80
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 80
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
+ Failures: 0, Errors: 0
+ */
 
-/*
 START_TEST(test_loop_half2) {
-  init_leds();
-  check();
+	seasim_set_generic_input(5 , 613.9, INPUT);
+	check();
+	unit16_t value;
+	fail_unless(value == 80);
 
- int  SENSOR_VALUE = 613.9;
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == HIGH);
-    fail_unless(digitalRead(ledPin3) == HIGH);
-    fail_unless(digitalRead(ledPin4) == HIGH);
 
 }END_TEST
+
+
+/* 
+ Id/Title: tc-05 tests if the voltage of the batery be 613.8
+ Purpose: tests if the voltage of the battery is 613.8 it should return value 60
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 60
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
+ Failures: 0, Errors: 0
+ */
 
 START_TEST(test_loop_lesshalf1) {
-  init_leds();
+ seasim_set_generic_input(5, 613.8, INPUT);
   check();
 
- int  SENSOR_VALUE = 613.8;
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == LOW);
-    fail_unless(digitalRead(ledPin3) == HIGH);
-    fail_unless(digitalRead(ledPin4) == HIGH);
+	unit16_t value;
+	fail_unless(value == 60);
 
 }END_TEST
+
+
+/* 
+ Id/Title: tc-06 tests if the voltage of the batery be 409.3
+ Purpose: tests if the voltage of the battery is 409.3 it should return value 60
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 60
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
+ Failures: 0, Errors: 0
+ */
 
 START_TEST(test_loop_lesshalf2) {
-  init_leds();
+  seasim_set_generic_input(5 , 409.3, INPUT);
   check();
 
-  int SENSOR_VALUE = 409.3;
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == LOW);
-    fail_unless(digitalRead(ledPin3) == HIGH);
-    fail_unless(digitalRead(ledPin4) == HIGH);
+	unit16_t value;
+	fail_unless(value == 60);
 
 }END_TEST
+
+/* 
+ Id/Title: tc-07 tests if the voltage of the batery be 409.2
+ Purpose: tests if the voltage of the battery is 409.2 it should return value 40
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 40
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
+ Failures: 0, Errors: 0
+ */
 
 START_TEST(test_loop_halfempty1) {
-  init_leds();
+  seasim_set_generic_input(5, 409.2, INPUT);
   check();
 
-  int  SENSOR_VALUE = 409.2;
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == LOW);
-    fail_unless(digitalRead(ledPin3) == LOW);
-    fail_unless(digitalRead(ledPin4) == HIGH);
+	unit16_t value;
+	fail_unless(value == 40);
 
 }END_TEST
+
+/* 
+ Id/Title: tc-08 tests if the voltage of the batery be 204.7
+ Purpose: tests if the voltage of the battery is 204.7 it should return value 40
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 40
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
+ Failures: 0, Errors: 0
+ */
 
 START_TEST(test_loop_halfempty2) {
-  init_leds();
+  seasim_set_generic_input(5 , 204.7, INPUT);
   check();
 
- int SENSOR_VALUE = 204.7;
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == LOW);
-    fail_unless(digitalRead(ledPin3) == LOW);
-    fail_unless(digitalRead(ledPin4) == HIGH);
+	unit16_t value;
+	fail_unless(value == 40);
 
 }END_TEST
+
+
+/* 
+ Id/Title: tc-09 tests if the voltage of the batery be 204.6
+ Purpose: tests if the voltage of the battery is 204.6 it should return value 20
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 20
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
+ Failures: 0, Errors: 0
+ */
 
 START_TEST(test_loop_empty1) {
-  init_leds();
+  seasim_set_generic_input(5 , 204.6, INPUT);
 
-  int SENSOR_VALUE = 204.6;
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == LOW);
-    fail_unless(digitalRead(ledPin3) == LOW);
-    fail_unless(digitalRead(ledPin4) == LOW);
+	unit16_t value;
+	fail_unless(value == 20);
 
 }END_TEST
+
+/* 
+ Id/Title: tc-10 tests if the voltage of the batery be 1
+ Purpose: tests if the voltage of the battery is 1 it should return value 20
+ Prerequisites: Battery be connected to the arduino.
+ Expected results: Return value 20
+ Pass/Fail criteria: when check is run response is 100%: Checks: 10,
+ Failures: 0, Errors: 0
+ */
 
 START_TEST(test_loop_empty2) {
-  init_leds();
+  seasim_set_generic_input(5 , 1, INPUT);
   check();
 
- int SENSOR_VALUE = 1;
-	fail_unless(digitalRead(ledPin1) == LOW);
-	fail_unless(digitalRead(ledPin2) == LOW);
-    fail_unless(digitalRead(ledPin3) == LOW);
-    fail_unless(digitalRead(ledPin4) == LOW);
+	unit16_t value;
+	fail_unless(value == 20);
 
 }END_TEST
 
- */
+ 
 
 
 Suite * leds_suite(void) {
