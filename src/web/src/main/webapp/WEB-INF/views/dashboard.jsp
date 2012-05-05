@@ -1,9 +1,7 @@
 <!--
  File: control-panel.html 
  Author: Mozhan Soltani
- Date: 01-05-2012
- Copyright 2012 Mozhan Soltani,
- The program is distributed under the terms of the GNU General Public License.
+ Date: 05-05-2012
  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,152 +9,12 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns = "http://www.w3.org/1999/xhtml">
  <head>
   <title>Hovercraft Web Interface</title>
-  <style type="text/css">
-   body
-	{
-	  margin:0;
-      padding:0;
-	}
-   .container
-	{
-	  position:relative;
-      width:100%;
-    }
-   .logo
-    {
-      position:absolute;
-	  margin:10px;
-      left:470px;
-    }
-   .left_text1
-    {
-      position:absolute;
-	  top:120px;
-	  left:90px;
-	  margin:0px;
-    }
-   .left_text2
-    {
-      position:absolute;
-	  top:150px;
-	  left:90px;
-	  margin:0px;
-    }
-   .left_text3
-    {
-      position:absolute;
-	  top:200px;
-	  left:90px;
-	  margin:0px;
-    }
-   .left_text4
-    {
-      position:absolute;
-	  top:370px;
-	  left:90px;
-      width:200px;
-	  margin:0px;
-    }
-   .left_box1
-	{
-	  position:absolute;
-	  top:240px;
-      left:90px;
-      padding:30px;
-      border:5px solid black;
-      margin:0px;
-	}
-   .left_box2
-	{
-	  position:absolute;
-	  top:410px;
-      left:90px;
-      padding:34px;
-      border:5px solid black;
-      margin:0px;
-	}
-	.increase_button
-    {
-      position:absolute;
-	  top:70px;
-      left:5%;
-	  margin:20px;
-    }
-   .decrease_button
-    {
-      position:absolute;
-	  top:120px;
-      left:5%;
-	  margin:20px;
-    } 
-   .right_text1
-    {
-      position:absolute;
-	  top: 240px;
-	  right:160px;
-    }
-   .right_box1
-	{
-	  position:absolute;
-	  top:280px;
-      right:125px;
-      padding:10px;
-      border:5px solid black;
-	  margin:0px;
-	}
-   .Q_button
-    {
-      position:absolute;
-	  top:440px;
-      right:230px;
-    } 
-   .W_button
-    {
-      position:absolute;
-	  top:440px;
-      right:170px;
-    } 
-   .E_button
-    {
-      position:absolute;
-	  top:440px;
-      right:110px;
-    } 
-   .A_button
-    {
-      position:absolute;
-	  top:484px;
-      right:230px;
-    }
-   .S_button
-    {
-      position:absolute;
-	  top:484px;
-      right:170px;
-    }
-   .D_button
-    {
-      position:absolute;
-	  top:484px;
-      right:110px;
-    }
-   .break_button
-    {
-      position:absolute;
-	  top:535px;
-      right:105px;
-	  border:0px;
-	  padding:0px;
-	  margin:0px;
-    }
-  </style>
   <script type="text/javascript">
-  
-  
-   function displayInc()
+    function displayInc()
    {
     alert("You have clicked on the Increase button!");
    }
@@ -200,115 +58,126 @@
    {
     alert("You have clicked on the Break button!");
    }
-   
   </script>
  </head>
-
  <body>
-  <div class="container">
-   <div class="logo">
-    <img border="0" src="Hover3.png" alt="HoverIT logo"
-		 width="350" height="280" />
-   </div>
-   <div class="left_text1">
-    <p> 
-      <font size="5" face="Times New Roman" color="black">
-       <b>Battery Level:</b> 	
-      </font>
-    </p> 
-   </div>
-   <div class="left_text2">   
+  <div id="container" style="width:100%;height:100%;background-color:#FFFFFF;">
+   <div id="leftSide" style="width:25%;height:100%;background-color:#FFFFFF;float:left;">
+    <div id="leftSide-up1" style="width:30%;height:30%;background-color:#FFFFFF;float:left;">   
+    </div> <!--leftSide-up1--> 
+	<div id="leftSide-up2" style="width:60%;height:30%;background-color:#FFFFFF;float:left;"> 
+     <div id="left_texts">
+      <p> 
+       <font size="4.5" face="calibri" color="black">
+	    <br />
+		<br />
+		<br />
+		<br />
+        <b>Battery Level:</b>	
+       </font>
+      </p> 
+	  <p> 
+       <font size="4.5" face="calibri" color="black">  
+        <b>Pressure Level:</b>	
+       </font>
+      </p>
+     </div>	
+    </div> <!--leftSide-up2--> 
+	<div id="leftSide-mid1" style="width:30%;height:30%;background-color:#FFFFFF;float:left;">   
+    </div> <!--leftSide-mid1-->
+	<div id="leftSide-mid2" style="width:60%;height:30%;background-color:#FFFFFF;float:left;">
 	<p> 
-      <font size="5" face="Times New Roman" color="black">
-	   <b>Pressure Level:</b>
-      </font>
-    </p> 
-   </div>
-   <div class="left_text3">
-    <p class="serif"> 
-      <font size="4.5" face="Times New Roman" color="black">
-       <b>GPS Information:</b> 
-      </font>
-    </p> 
-   </div>
-   <div class="left_box1" >
-    <p class="serif"> 
-     <font size="4.5" face="Times New Roman" color="white">
-      <b>GPS informa</b> 
+     <font size="4.5" face="calibri" color="black">  
+      <b>GPS Information:</b>	
      </font>
     </p>
-   </div> 
-   <div class="left_text4">
-    <p class="serif"> 
-     <font size="4.5" face="Times New Roman" color="black">
-      <b>Hovercraft Speed:</b> 
-     </font>
-    </p> 
-   </div>
-   <div class="left_box2">
-  
-    <font size="4.5" face="Times New Roman" color="black">
-      <b>Current Speed: ...</b> 
-    </font>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-	<div class="increase_button">
-     <img border="0" src="increasespeed.png" onclick = "displayInc()"
-      	  alt="Increase Button"  width="150" height="35" />
+    <div id="left_box1" style="width:90%;height:60%;border:2px solid black;" >
+    </div> 	
+	</div> <!--leftSide-mid2-->
+	<div id="leftSide-down1" style="width:30%;height:30%;background-color:#FFFFFF;float:left;">   
+    </div> <!--leftSide-down1-->
+	<div id="leftSide-down2" style="width:60%;height:35%;background-color:#FFFFFF;float:left;">
+	 <p> 
+      <font size="4.5" face="calibri" color="black">  
+       <b>Hovercarft Speed:</b>	
+      </font>
+     </p>
+     <div id="left_box2" style="width:100%;height:80%;border:2px solid black;text-align:center;" >
+	  <br />
+	  <font size="4.5" face="calibri" color="black" >
+       <b>Current Speed: ...</b> 
+      </font>
+	  <br />
+	  <div id="increase_button" style= "padding:6%;">
+       <img border="0" src="increasespeed.png" onclick = "displayInc()"
+      	  alt="Increase Button"  width="130" height="35" />
+	  </div>
+	  <div id="decrease_button">
+       <img border="0" src="decreasespeed.png" onclick = "displayDec()"
+     	  alt="Increase Button"  width="130" height="35" />
+	  </div>
+     </div> 	
+	</div> <!--leftSide-down2-->
+   </div> <!--leftSide--> 
+   <div id="center" style="width:57%;height:100%;background-color:#FFFFFF;float:left;">
+    <div id="free_space" style="width:100%;height:25%;background-color:#FFFFFF;float:left;">
 	</div>
-	<div class="decrease_button">
-     <img border="0" src="decreasespeed.png" onclick = "displayDec()"
-     	  alt="Increase Button"  width="150" height="35" />
+	<div id="logo" style="background-color:#FFFFFF;">
+    <img border="0" src="Propeller_3_white.gif" alt="HoverIT logo"
+		 width="750" height="250" />
+    </div>
+   </div> <!--center-->
+   <div id="rightSide" style="width:15%;height:100%;background-color:#FFFFFF;float:left;">
+    <div id="free_space2" style="width:100%;height:35%;background-color:#FFFFFF;float:left;">
 	</div>
-   </div> 
-   <div class="right_text1">
-    <p> 
-      <font size="4.5" face="Times New Roman" color="black">
+    <div id="right_text1">
+     <p> 
+      <font size="4.5" face="calibri" color="black">
        <b>Current Status:</b> 
       </font>
-    </p> 
-   </div>
-   <div class="right_box1">
-    <font size="4.5" face="Times New Roman" color="black">
-	 <br /> 
+     </p> 
+    </div>
+	<div id="rightSide-mid" style="width:100%;height:15%;background-color:#FFFFFF;float:left;">
+	<div id="right_box1" style="border:2px solid black; width:90%; height:70%;text-align:center;">
+     <font size="4.5" face="calibri" color="black">
+	  <br /> 
       <b> Going forward ...</b>
-    </font>
-   </div>	
-   
-   <!-- Control buttons -->
-   <div class="Q_button" >
-     <img border="0" src="qbutton.png" onclick = "displayQ()" 
+     </font>
+    </div>
+	</div> <!--rightSide-mid-->
+	<div id="rightSide-down" style="width:100%;height:32%;background-color:#FFFFFF;float:left;">
+	 <div id="free_space3" style="width:100%;height:25%;background-color:#FFFFFF;float:left;">
+	 </div>
+	 <div id="Q_button" style="padding:2%;float:left;">
+      <img border="0" src="qbutton.png" onclick = "displayQ()" 
 	      alt="Q Button"  width="50" height="35" />
-   </div>
-   <div class="W_button">
-     <img border="0" src="wbutton.png" onclick = "displayW()" 
+     </div>
+	 <div id="W_button" style="padding:2%;float:left;">
+      <img border="0" src="wbutton.png" onclick = "displayW()" 
 	      alt="W Button"  width="50" height="35" />
-   </div>
-   <div class="E_button">
-     <img border="0" src="ebutton.png" onclick = "displayE()"  
+     </div>
+	 <div id="E_button" style="padding:2%;float:left;">
+      <img border="0" src="ebutton.png" onclick = "displayE()" 
 	      alt="E Button"  width="50" height="35" />
-   </div>
-   <div class="A_button">
-     <img border="0" src="abutton.png" onclick = "displayA()"  
+     </div>
+	 <div id="A_button" style="padding:2%;float:left;">
+      <img border="0" src="abutton.png" onclick = "displayA()" 
 	      alt="A Button"  width="50" height="35" />
-   </div>
-   <div class="S_button">
-     <img border="0" src="sbutton.png" onclick = "displayS()"  
+     </div>
+	 <div id="S_button" style="padding:2%;float:left;">
+      <img border="0" src="sbutton.png" onclick = "displayS()" 
 	      alt="S Button"  width="50" height="35" />
-   </div>
-   <div class="D_button">
-     <img border="0" src="dbutton.png" onclick = "displayD()"  
+     </div>
+	 <div id="D_button" style="padding:2%;float:left;">
+      <img border="0" src="dbutton.png" onclick = "displayD()" 
 	      alt="D Button"  width="50" height="35" />
-   </div>
-   <div class="break_button">
-     <img border="0" src="breakbutton.png" onclick = "displayBreak()"  
-	      alt="break Button"  width="175" height ="42" />
-   </div>
-	
-  </div> 
+     </div>
+	 <div id="break_button" style="padding:2%;float:left;">
+      <img border="0" src="breakbutton.png" onclick = "displayBreak()"  
+	      alt="break Button"  width="168" height ="38" />
+     </div>
+	</div> <!--right side-down-->
+   </div> <!--right side-->
+  </div> <!--container--> 
  </body>
-</html>    
+</html>   
