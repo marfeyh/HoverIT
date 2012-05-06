@@ -10,6 +10,9 @@
 #include <Arduino.h>
 #include <searduino.h>
 #include "percentage.h"
+#include "batteryLevel.h"
+#include "alarm.h"
+#include "fourLedsOn.h"
 
 /* 
  * Variable where the percentage will be stored
@@ -44,6 +47,9 @@ int getFirstBatteryLevel()
 	} else
 	{
 		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN1)) / 180 * 100));
+    		int percentage1 = check();
+    		setup_alarm(percentage1);
+    		display_percentage(percentage1);
 		return PERCENTAGE;
 	}
 }
@@ -59,6 +65,9 @@ int getSecondBatteryLevel()
 	} else
 	{
 		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180 * 100));
+    		int percentage2 = check();
+    		setup_alarm(percentage2);
+    		display_percentage(percentage2);
 		return PERCENTAGE;
 	}
 }
@@ -74,6 +83,9 @@ int getThirdBatteryLevel()
 	} else
 	{
 		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180 * 100));
+    		int percentage3 = check();
+    		setup_alarm(percentage3);
+    		display_percentage(percentage3);
 		return PERCENTAGE;
 	}
 }

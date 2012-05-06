@@ -1,7 +1,7 @@
 /*
  * @ Module name  :main.c
  * @ Description  :
- * @ Author names :Denir Leric
+ * @ Author names :Denir Leric. Integrated by Kuhan and Aran (Incomplete)
  * @ Release      :04 May 2012
  * @ Version      :1
  * @ Refrences    :Arduino.cc, sandklef.com

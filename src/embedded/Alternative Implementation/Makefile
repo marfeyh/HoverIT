@@ -1,14 +1,15 @@
-TEST_DIR=../tests/
+TEST_DIR=tests
 SEARDUINO_PATH = /opt/searduino
-PROG = percentage
-# Add your source files here
-SRC_C= percentage.c
-SRC_CXX=
-MAIN_SRC = main.c
-ARDUINO = uno
-SHLIB = percentage.so
+PROG = batterymeter
 
-LIB = libpercentage.a
+# Add your source files here
+SRC_C= alarm.c batteryLevel.c batteryMeter.c fourLedsOn.c percentage.c
+SRC_CXX= toneWrapper.cpp
+MAIN_SRC = main.c
+ARDUINO = stub
+SHLIB = leds.so
+
+LIB = libleds.a
 LIB_H =
 USER_LIB_INSTALL_PATH = ../../../bin
 
