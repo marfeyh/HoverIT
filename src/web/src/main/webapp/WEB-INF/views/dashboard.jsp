@@ -193,7 +193,7 @@
       <p> 
 		<br />
 		<br />
-        <b>Battery Level:</b>	
+        <b>Battery Level4:</b>	
       </p> 
 	  <p> 
         <b>Pressure Level:</b>	

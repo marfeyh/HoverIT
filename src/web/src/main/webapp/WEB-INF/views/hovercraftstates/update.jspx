@@ -6,5 +6,7 @@
         <field:input field="Speed" id="c_com_hoveritu_domain_HovercraftState_Speed" z="tkRFEFx5rQkp5QawutqZZZ6bBvI="/>
         <field:input field="BatteryLevel" id="c_com_hoveritu_domain_HovercraftState_BatteryLevel" z="PPkJYMX5ZNDLkFXQCLNRh8mX0qA="/>
         <field:input field="Pressure" id="c_com_hoveritu_domain_HovercraftState_Pressure" z="64DagY7OagY+lCjhOg9nF+s7HjM="/>
+        <field:input field="latitude" id="c_com_hoveritu_domain_HovercraftState_latitude" z="hr15LM8HH9mCCcO3EBo4lAmnhqE="/>
+        <field:input field="longitude" id="c_com_hoveritu_domain_HovercraftState_longitude" z="RlmY0Q/HgnIHs8a/PQftKsPY+5k="/>
     </form:update>
 </div>

@@ -7,6 +7,8 @@
             <table:column id="c_com_hoveritu_domain_HovercraftState_Speed" property="speed" z="qv2NZR/Hj4uPG+BT8g0l0BmEEeE="/>
             <table:column id="c_com_hoveritu_domain_HovercraftState_BatteryLevel" property="batteryLevel" z="ShLSXalXoOQ2MFEpSxuTob8eF1Q="/>
             <table:column id="c_com_hoveritu_domain_HovercraftState_Pressure" property="pressure" z="ffrqjy+0tZ/0EUYPp3M0i0Rpvt8="/>
+            <table:column id="c_com_hoveritu_domain_HovercraftState_latitude" property="latitude" z="bAtpVmkxcyE5uu527yFcAPEco/w="/>
+            <table:column id="c_com_hoveritu_domain_HovercraftState_longitude" property="longitude" z="P7ktaTYw9g10UyDduBFc0rKIzjI="/>
         </table:table>
     </page:list>
 </div>

@@ -4,6 +4,7 @@
 package com.hoveritu.domain;
 
 import com.hoveritu.domain.HovercraftState;
+import com.hoveritu.domain.HovercraftStateDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,6 +25,8 @@ privileged aspect HovercraftStateDataOnDemand_Roo_DataOnDemand {
     public HovercraftState HovercraftStateDataOnDemand.getNewTransientHovercraftState(int index) {
         HovercraftState obj = new HovercraftState();
         setBatteryLevel(obj, index);
+        setLatitude(obj, index);
+        setLongitude(obj, index);
         setPressure(obj, index);
         setSpeed(obj, index);
         return obj;
@@ -32,6 +35,16 @@ privileged aspect HovercraftStateDataOnDemand_Roo_DataOnDemand {
     public void HovercraftStateDataOnDemand.setBatteryLevel(HovercraftState obj, int index) {
         double BatteryLevel = new Integer(index).doubleValue();
         obj.setBatteryLevel(BatteryLevel);
+    }
+    
+    public void HovercraftStateDataOnDemand.setLatitude(HovercraftState obj, int index) {
+        double latitude = new Integer(index).doubleValue();
+        obj.setLatitude(latitude);
+    }
+    
+    public void HovercraftStateDataOnDemand.setLongitude(HovercraftState obj, int index) {
+        double longitude = new Integer(index).doubleValue();
+        obj.setLongitude(longitude);
     }
     
     public void HovercraftStateDataOnDemand.setPressure(HovercraftState obj, int index) {
@@ -46,16 +59,22 @@ privileged aspect HovercraftStateDataOnDemand_Roo_DataOnDemand {
     
     public HovercraftState HovercraftStateDataOnDemand.getSpecificHovercraftState(int index) {
         init();
-        if (index < 0) index = 0;
-        if (index > (data.size() - 1)) index = data.size() - 1;
+        if (index < 0) {
+            index = 0;
+        }
+        if (index > (data.size() - 1)) {
+            index = data.size() - 1;
+        }
         HovercraftState obj = data.get(index);
-        return HovercraftState.findHovercraftState(obj.getId());
+        Long id = obj.getId();
+        return HovercraftState.findHovercraftState(id);
     }
     
     public HovercraftState HovercraftStateDataOnDemand.getRandomHovercraftState() {
         init();
         HovercraftState obj = data.get(rnd.nextInt(data.size()));
-        return HovercraftState.findHovercraftState(obj.getId());
+        Long id = obj.getId();
+        return HovercraftState.findHovercraftState(id);
     }
     
     public boolean HovercraftStateDataOnDemand.modifyHovercraftState(HovercraftState obj) {
@@ -63,21 +82,25 @@ privileged aspect HovercraftStateDataOnDemand_Roo_DataOnDemand {
     }
     
     public void HovercraftStateDataOnDemand.init() {
-        data = HovercraftState.findHovercraftStateEntries(0, 10);
-        if (data == null) throw new IllegalStateException("Find entries implementation for 'HovercraftState' illegally returned null");
+        int from = 0;
+        int to = 10;
+        data = HovercraftState.findHovercraftStateEntries(from, to);
+        if (data == null) {
+            throw new IllegalStateException("Find entries implementation for 'HovercraftState' illegally returned null");
+        }
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<com.hoveritu.domain.HovercraftState>();
+        data = new ArrayList<HovercraftState>();
         for (int i = 0; i < 10; i++) {
             HovercraftState obj = getNewTransientHovercraftState(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {
                 StringBuilder msg = new StringBuilder();
-                for (Iterator<ConstraintViolation<?>> it = e.getConstraintViolations().iterator(); it.hasNext();) {
-                    ConstraintViolation<?> cv = it.next();
+                for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
+                    ConstraintViolation<?> cv = iter.next();
                     msg.append("[").append(cv.getConstraintDescriptor()).append(":").append(cv.getMessage()).append("=").append(cv.getInvalidValue()).append("]");
                 }
                 throw new RuntimeException(msg.toString(), e);

@@ -3,7 +3,11 @@
 
 package com.hoveritu.domain;
 
+import com.hoveritu.domain.HovercraftState;
 import com.hoveritu.domain.HovercraftStateDataOnDemand;
+import com.hoveritu.domain.HovercraftStateIntegrationTest;
+import java.util.List;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,7 @@ privileged aspect HovercraftStateIntegrationTest_Roo_IntegrationTest {
     
     declare @type: HovercraftStateIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
-    declare @type: HovercraftStateIntegrationTest: @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext.xml");
+    declare @type: HovercraftStateIntegrationTest: @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext*.xml");
     
     declare @type: HovercraftStateIntegrationTest: @Transactional;
     
@@ -24,92 +28,94 @@ privileged aspect HovercraftStateIntegrationTest_Roo_IntegrationTest {
     
     @Test
     public void HovercraftStateIntegrationTest.testCountHovercraftStates() {
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
-        long count = com.hoveritu.domain.HovercraftState.countHovercraftStates();
-        org.junit.Assert.assertTrue("Counter for 'HovercraftState' incorrectly reported there were no entries", count > 0);
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
+        long count = HovercraftState.countHovercraftStates();
+        Assert.assertTrue("Counter for 'HovercraftState' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
     public void HovercraftStateIntegrationTest.testFindHovercraftState() {
-        com.hoveritu.domain.HovercraftState obj = dod.getRandomHovercraftState();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
-        java.lang.Long id = obj.getId();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
-        obj = com.hoveritu.domain.HovercraftState.findHovercraftState(id);
-        org.junit.Assert.assertNotNull("Find method for 'HovercraftState' illegally returned null for id '" + id + "'", obj);
-        org.junit.Assert.assertEquals("Find method for 'HovercraftState' returned the incorrect identifier", id, obj.getId());
+        HovercraftState obj = dod.getRandomHovercraftState();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
+        Long id = obj.getId();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
+        obj = HovercraftState.findHovercraftState(id);
+        Assert.assertNotNull("Find method for 'HovercraftState' illegally returned null for id '" + id + "'", obj);
+        Assert.assertEquals("Find method for 'HovercraftState' returned the incorrect identifier", id, obj.getId());
     }
     
     @Test
     public void HovercraftStateIntegrationTest.testFindAllHovercraftStates() {
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
-        long count = com.hoveritu.domain.HovercraftState.countHovercraftStates();
-        org.junit.Assert.assertTrue("Too expensive to perform a find all test for 'HovercraftState', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        java.util.List<com.hoveritu.domain.HovercraftState> result = com.hoveritu.domain.HovercraftState.findAllHovercraftStates();
-        org.junit.Assert.assertNotNull("Find all method for 'HovercraftState' illegally returned null", result);
-        org.junit.Assert.assertTrue("Find all method for 'HovercraftState' failed to return any data", result.size() > 0);
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
+        long count = HovercraftState.countHovercraftStates();
+        Assert.assertTrue("Too expensive to perform a find all test for 'HovercraftState', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
+        List<HovercraftState> result = HovercraftState.findAllHovercraftStates();
+        Assert.assertNotNull("Find all method for 'HovercraftState' illegally returned null", result);
+        Assert.assertTrue("Find all method for 'HovercraftState' failed to return any data", result.size() > 0);
     }
     
     @Test
     public void HovercraftStateIntegrationTest.testFindHovercraftStateEntries() {
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
-        long count = com.hoveritu.domain.HovercraftState.countHovercraftStates();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
+        long count = HovercraftState.countHovercraftStates();
         if (count > 20) count = 20;
-        java.util.List<com.hoveritu.domain.HovercraftState> result = com.hoveritu.domain.HovercraftState.findHovercraftStateEntries(0, (int) count);
-        org.junit.Assert.assertNotNull("Find entries method for 'HovercraftState' illegally returned null", result);
-        org.junit.Assert.assertEquals("Find entries method for 'HovercraftState' returned an incorrect number of entries", count, result.size());
+        int firstResult = 0;
+        int maxResults = (int) count;
+        List<HovercraftState> result = HovercraftState.findHovercraftStateEntries(firstResult, maxResults);
+        Assert.assertNotNull("Find entries method for 'HovercraftState' illegally returned null", result);
+        Assert.assertEquals("Find entries method for 'HovercraftState' returned an incorrect number of entries", count, result.size());
     }
     
     @Test
     public void HovercraftStateIntegrationTest.testFlush() {
-        com.hoveritu.domain.HovercraftState obj = dod.getRandomHovercraftState();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
-        java.lang.Long id = obj.getId();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
-        obj = com.hoveritu.domain.HovercraftState.findHovercraftState(id);
-        org.junit.Assert.assertNotNull("Find method for 'HovercraftState' illegally returned null for id '" + id + "'", obj);
+        HovercraftState obj = dod.getRandomHovercraftState();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
+        Long id = obj.getId();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
+        obj = HovercraftState.findHovercraftState(id);
+        Assert.assertNotNull("Find method for 'HovercraftState' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyHovercraftState(obj);
-        java.lang.Integer currentVersion = obj.getVersion();
+        Integer currentVersion = obj.getVersion();
         obj.flush();
-        org.junit.Assert.assertTrue("Version for 'HovercraftState' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'HovercraftState' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void HovercraftStateIntegrationTest.testMerge() {
-        com.hoveritu.domain.HovercraftState obj = dod.getRandomHovercraftState();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
-        java.lang.Long id = obj.getId();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
-        obj = com.hoveritu.domain.HovercraftState.findHovercraftState(id);
+    public void HovercraftStateIntegrationTest.testMergeUpdate() {
+        HovercraftState obj = dod.getRandomHovercraftState();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
+        Long id = obj.getId();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
+        obj = HovercraftState.findHovercraftState(id);
         boolean modified =  dod.modifyHovercraftState(obj);
-        java.lang.Integer currentVersion = obj.getVersion();
-        com.hoveritu.domain.HovercraftState merged =  obj.merge();
+        Integer currentVersion = obj.getVersion();
+        HovercraftState merged = obj.merge();
         obj.flush();
-        org.junit.Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
-        org.junit.Assert.assertTrue("Version for 'HovercraftState' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
+        Assert.assertTrue("Version for 'HovercraftState' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void HovercraftStateIntegrationTest.testPersist() {
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
-        com.hoveritu.domain.HovercraftState obj = dod.getNewTransientHovercraftState(Integer.MAX_VALUE);
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide a new transient entity", obj);
-        org.junit.Assert.assertNull("Expected 'HovercraftState' identifier to be null", obj.getId());
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", dod.getRandomHovercraftState());
+        HovercraftState obj = dod.getNewTransientHovercraftState(Integer.MAX_VALUE);
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide a new transient entity", obj);
+        Assert.assertNull("Expected 'HovercraftState' identifier to be null", obj.getId());
         obj.persist();
         obj.flush();
-        org.junit.Assert.assertNotNull("Expected 'HovercraftState' identifier to no longer be null", obj.getId());
+        Assert.assertNotNull("Expected 'HovercraftState' identifier to no longer be null", obj.getId());
     }
     
     @Test
     public void HovercraftStateIntegrationTest.testRemove() {
-        com.hoveritu.domain.HovercraftState obj = dod.getRandomHovercraftState();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
-        java.lang.Long id = obj.getId();
-        org.junit.Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
-        obj = com.hoveritu.domain.HovercraftState.findHovercraftState(id);
+        HovercraftState obj = dod.getRandomHovercraftState();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to initialize correctly", obj);
+        Long id = obj.getId();
+        Assert.assertNotNull("Data on demand for 'HovercraftState' failed to provide an identifier", id);
+        obj = HovercraftState.findHovercraftState(id);
         obj.remove();
         obj.flush();
-        org.junit.Assert.assertNull("Failed to remove 'HovercraftState' with identifier '" + id + "'", com.hoveritu.domain.HovercraftState.findHovercraftState(id));
+        Assert.assertNull("Failed to remove 'HovercraftState' with identifier '" + id + "'", HovercraftState.findHovercraftState(id));
     }
     
 }

@@ -3,6 +3,8 @@
 
 package com.hoveritu.domain;
 
+import com.hoveritu.domain.HovercraftState;
+
 privileged aspect HovercraftState_Roo_JavaBean {
     
     public int HovercraftState.getSpeed() {
@@ -27,6 +29,22 @@ privileged aspect HovercraftState_Roo_JavaBean {
     
     public void HovercraftState.setPressure(double Pressure) {
         this.Pressure = Pressure;
+    }
+    
+    public double HovercraftState.getLatitude() {
+        return this.latitude;
+    }
+    
+    public void HovercraftState.setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+    
+    public double HovercraftState.getLongitude() {
+        return this.longitude;
+    }
+    
+    public void HovercraftState.setLongitude(double longitude) {
+        this.longitude = longitude;
     }
     
 }
