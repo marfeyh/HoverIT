@@ -36,7 +36,4 @@ struct position *get_position(char[]);
 
 char* retrive_data(char[],int);
 
-/* Parses decimal degrees to radians */
-double d2r(double);
-
 #endif
