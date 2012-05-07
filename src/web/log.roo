@@ -41,3 +41,4 @@ field number --fieldName Speed --type int
 field number --fieldName BatteryLevel --type double
 field number --fieldName Pressure --type double
 json all 
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-07 15:36:20

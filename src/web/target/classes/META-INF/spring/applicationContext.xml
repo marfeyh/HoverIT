@@ -81,5 +81,5 @@
             </props>
         </property>
     </bean>
-    <bean class="com.hoveritu.security.Init" id="init"/>
+    
 </beans>
