@@ -10,7 +10,9 @@ import org.springframework.mail.MailSender;
 import com.hoveritu.domain.User;
 import com.hoveritu.util.EmailUtil;
 import com.hoveritu.util.RandomUtil;
-
+/*
+ * @author Sebastian
+ */
 @Scope("singleton")
 public class Init {
 	

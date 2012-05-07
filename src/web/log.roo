@@ -42,3 +42,6 @@ field number --fieldName BatteryLevel --type double
 field number --fieldName Pressure --type double
 json all 
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-07 15:36:20
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-07 16:42:58
+// [failed] test integration --entity ~.domain.User
+test integration --entity ~.domain.User --permitReservedWords 

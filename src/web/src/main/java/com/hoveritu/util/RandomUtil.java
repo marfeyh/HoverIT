@@ -1,4 +1,7 @@
 package com.hoveritu.util;
+/*
+ * @author Sebastian & internet
+ */
 import static java.lang.Math.round;
 import static java.lang.Math.random;
 import static java.lang.Math.pow;
