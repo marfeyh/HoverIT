@@ -3,14 +3,18 @@
 
 package com.hoveritu.domain;
 
-import com.hoveritu.domain.HovercraftState;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import java.lang.String;
 
 privileged aspect HovercraftState_Roo_ToString {
     
     public String HovercraftState.toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+        StringBuilder sb = new StringBuilder();
+        sb.append("BatteryLevel: ").append(getBatteryLevel()).append(", ");
+        sb.append("Id: ").append(getId()).append(", ");
+        sb.append("Pressure: ").append(getPressure()).append(", ");
+        sb.append("Speed: ").append(getSpeed()).append(", ");
+        sb.append("Version: ").append(getVersion());
+        return sb.toString();
     }
     
 }
