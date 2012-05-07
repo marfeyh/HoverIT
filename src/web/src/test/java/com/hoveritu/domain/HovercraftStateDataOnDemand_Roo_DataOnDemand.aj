@@ -25,8 +25,6 @@ privileged aspect HovercraftStateDataOnDemand_Roo_DataOnDemand {
     public HovercraftState HovercraftStateDataOnDemand.getNewTransientHovercraftState(int index) {
         HovercraftState obj = new HovercraftState();
         setBatteryLevel(obj, index);
-        setLatitude(obj, index);
-        setLongitude(obj, index);
         setPressure(obj, index);
         setSpeed(obj, index);
         return obj;
@@ -35,16 +33,6 @@ privileged aspect HovercraftStateDataOnDemand_Roo_DataOnDemand {
     public void HovercraftStateDataOnDemand.setBatteryLevel(HovercraftState obj, int index) {
         double BatteryLevel = new Integer(index).doubleValue();
         obj.setBatteryLevel(BatteryLevel);
-    }
-    
-    public void HovercraftStateDataOnDemand.setLatitude(HovercraftState obj, int index) {
-        double latitude = new Integer(index).doubleValue();
-        obj.setLatitude(latitude);
-    }
-    
-    public void HovercraftStateDataOnDemand.setLongitude(HovercraftState obj, int index) {
-        double longitude = new Integer(index).doubleValue();
-        obj.setLongitude(longitude);
     }
     
     public void HovercraftStateDataOnDemand.setPressure(HovercraftState obj, int index) {

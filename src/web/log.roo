@@ -35,3 +35,9 @@ focus --class com.hoveritu.domain.User
 finder list
 finder add --finderName findUsersByEmailEquals
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-07 14:57:30
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-07 15:29:00
+entity jpa --class com.hoveritu.domain.HovercraftState
+field number --fieldName Speed --type int
+field number --fieldName BatteryLevel --type double
+field number --fieldName Pressure --type double
+json all 

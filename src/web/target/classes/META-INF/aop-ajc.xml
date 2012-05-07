@@ -1,0 +1,18 @@
+<aspectj>
+<aspects>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_ToString"/>
+<aspect name="com.hoveritu.domain.User_Roo_Configurable"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_Configurable"/>
+<aspect name="com.hoveritu.domain.User_Roo_Jpa_Entity"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_Json"/>
+<aspect name="com.hoveritu.domain.User_Roo_Json"/>
+<aspect name="com.hoveritu.domain.User_Roo_Finder"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_JavaBean"/>
+<aspect name="com.hoveritu.domain.User_Roo_JavaBean"/>
+<aspect name="com.hoveritu.domain.HovercraftState_Roo_Jpa_Entity"/>
+<aspect name="com.hoveritu.domain.User_Roo_ToString"/>
+<aspect name="com.hoveritu.domain.User_Roo_Jpa_ActiveRecord"/>
+</aspects>
+</aspectj>
+
