@@ -3,7 +3,6 @@
  *  \details Header file for pressure.c
  *  \author  Rob Bruinsma
  *  \author  Anna Orazova
- *  \author  Markus Feyh
  *  \version 2.1
  *  \date    2012/05/02
  *  \copyright	Copyright (C) 2012  Kappa@HoverIT
@@ -26,24 +25,9 @@
 #define PRESSURE_H
 
 /*!
- * /brief     Function for getting the inner pressure sensor's value
- *  
- * /return    Inside pressure in kPa
- */
-//float get_pressure_inner(void); Not currently in use
-
-/*!
- * /brief     Function for getting the outer pressure sensor's value
- *  
- * /return    Outer pressure in kPa
- */
-
-//float get_pressure_outer(void); Not currently in use
-
-/*!
- * /brief     Function to get pressure values and calculates the difference
+ * \brief     Function to get pressure values and calculates the difference
  *
- * /return    Pressure difference
+ * \return    Pressure difference
  */
 unsigned int get_pressure(void);
 
