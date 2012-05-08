@@ -39,16 +39,20 @@ int main(void)
     init_battery_meter();
 	
 //	int FIRST_BATTERY = 1;
-//	int SECOND_BATTERY = 2;
+//	int SECOND_BATTERY = 2; //old code by denir
 //	int THIRD_BATTERY = 3;
-	int binMsg = 0;
+	int binMsg1 = 0;
+//    int binMsg2 = 0;
+//    int binMsg3 = 0; //TODO
 	
 	for(;;)
 	{
 //		testPercentage = getPercentage(FIRST_BATTERY);
-//		testPercentage = getPercentage(SECOND_BATTERY);
+//		testPercentage = getPercentage(SECOND_BATTERY); //old code by denir
 //		testPercentage = getPercentage(THIRD_BATTERY);
-        binMsg = get_battery_meter();
-	}
+        binMsg1 = get_battery_level(1);
+//	    binMsg2 = get_battery_level(2);
+//      binMsg3 = get_battery_level(3); //TODO
+    }
 	return 0;
 }

@@ -15,6 +15,9 @@
 #include "alarm.h"
 #include "fourLedsOn.h"
 
+/*
+ * initialize all 
+ */
 int init_battery_meter() {    
     /* init the leds */
     init_leds();
@@ -23,7 +26,10 @@ int init_battery_meter() {
     return 0;
 }
 
-uint8_t translateLevel(uint16_t percentage) {
+/*
+ * The battery level goes from level 1(0x0) to 16(0xE). This function taks input of 0 - 100, and gives output of a binary message
+ */
+uint8_t translate_level(uint16_t percentage) {
     if (percentage == 0) {
         return 0x0;
     } else if (percentage < 7) {
@@ -59,33 +65,48 @@ uint8_t translateLevel(uint16_t percentage) {
     }
 }
 
-uint16_t makeMsg(percentage) {
-    uint16_t msg = 0x50 + translateLevel(percentage);
+/*
+ * This function takes the battery number and percentage as input, and returns a binary message according to the protocol as output
+ */
+uint8_t make_msg(batteryNumber, percentage) {
+    uint8_t msg = 0;
+    switch (batteryNumber) {
+        case 1:
+            msg = FIRST_BATTERY_ID + translate_level(percentage);
+            break;
+        case 2:
+            msg = SECOND_BATTERY_ID + translate_level(percentage);
+            break;
+        case 3:
+            msg = THIRD_BATTERY_ID + translate_level(percentage);
+            break;
+        default:
+            break;
+    }    
     return msg;
 }
 
-uint16_t get_battery_meter() {    
+/*
+ * This functions will be called by the Scheduler. It takes the battery number as input, and returns a binary message as output
+ */
+uint8_t get_battery_level(int batteryNumber) {    
     /* get the percentage from the battery*/
-//    uint16_t percentage = check(); //old
+//    uint16_t percentage = check(); //old code
 
-    uint16_t percentage1 = getPercentage(FIRST_BATTERY);
-    uint16_t percentage2 = getPercentage(SECOND_BATTERY);
-    uint16_t percentage3 = getPercentage(THIRD_BATTERY);
+    uint16_t percentage = getPercentage(batteryNumber);
     
     /* send the percentage to the alarm */
     //TODO, two new batteries added 
-    setup_alarm(percentage1);
+    setup_alarm(percentage);
     /* send the percentage to the leds*/
     //TODO, two new batteries added 
-    display_percentage(percentage1);
+    display_percentage(percentage);
     
     /* the new bin msg protocol needs to be negotiated with Scheduler*/
     //TODO
-    uint16_t binMsg1 = makeMsg(percentage1);
-//    uint16_t binMsg2 = makeMsg(percentage2);
-//    uint16_t binMsg3 = makeMsg(percentage3);
+    uint8_t binMsg = make_msg(batteryNumber, percentage);
     
-    return binMsg1;
+    return binMsg;
 }
 
 
