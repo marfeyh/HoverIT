@@ -4,7 +4,7 @@
  *  \author  Rob Bruinsma
  *  \author  Anna Orazova
  *  \version 1.1
- *  \date    2012/05/02
+ *  \date    2012/05/07
  *  \copyright	Copyright (C) 2012  Kappa@HoverIT
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -51,31 +51,30 @@
 #include "pins.h"
 
 /*!
- * /attention Pin numbers should be changed in the header file pins.h 
- * /brief     Test case for checking positive values
+ * \attention Pin numbers should be changed in the header file pins.h 
+ * \brief     Test case for checking positive values
  */
 START_TEST (test_positive_values) {
   unsigned int in = 1023; /*!< Value for inside pin */
   unsigned int out = 0;   /*!< Value for outside pin */
 
-  seasim_set_input(PRESSURE_PIN_0, in, INPUT);    /*!< Sets value to the pin */
+  seasim_set_generic_input(PRESSURE_PIN_0, in, INPUT);    /*!< Sets value to the pin */
 
   for(out = 0; out < 1023; out++) {
 
-    seasim_set_input(PRESSURE_PIN_1, out, INPUT); /*!< Sets value to the pin */
-    check_pressure();
+    seasim_set_generic_input(PRESSURE_PIN_1, out, INPUT); /*!< Sets value to the pin */
 
     /*!
      * Test case will pass if return from get_pressure() is bigger then 0.
      */
     
-    fail_unless(get_pressure_difference() > 0);
+    fail_unless(get_pressure() > 0);
   }
 }END_TEST
 
 /*!
- * /attention Pin numbers should be changed! 
- * /brief     Test case for checking negative values
+ * \attention Pin numbers should be changed! 
+ * \brief     Test case for checking negative values
  */
 START_TEST (test_negative_values) {
   int in = 0;   /*!< Value for inside pin */
@@ -86,17 +85,16 @@ START_TEST (test_negative_values) {
   for(out = 0; out <= 1023; out++) {
 
     seasim_set_generic_input(PRESSURE_PIN_1, out, INPUT); /*!< Sets value to the pin */
-    check_pressure();
     /*!
      * Test case will pass if return from get_pressure() is equal to 0.
      */
-    fail_unless(get_pressure_difference() == 0);
+    fail_unless(get_pressure() == 0);
   }
 }END_TEST
 
 /*!
- * /attention Pin numbers should be changed! 
- * /brief     Test case for checking all possible pairs of values
+ * \attention Pin numbers should be changed! 
+ * \brief     Test case for checking all possible pairs of values
  */
 START_TEST (test_all_values) {
   int in = 0;   /*!< Value for inside pin */
@@ -109,11 +107,10 @@ START_TEST (test_all_values) {
     for(out = 0; out <= 1023;out++) {
 
       seasim_set_generic_input(PRESSURE_PIN_1, out, INPUT); /*!< Sets value to the pin */
-      check_pressure();
       /*!
        * Test case will pass if return from get_pressure() is more or equal 0.
        */
-      fail_unless(get_pressure_difference() >= 0);
+      fail_unless(get_pressure() >= 0);
     }
   }
 }END_TEST
@@ -129,6 +126,7 @@ Suite* pressure_test(void) {
   tcase_add_test(tc1,test_positive_values);
   tcase_add_test(tc2,test_negative_values);
   tcase_add_test(tc3,test_all_values);
+  tcase_set_timeout(tc3, 70);
   suite_add_tcase(s, tc1);
   suite_add_tcase(s, tc2);
   suite_add_tcase(s, tc3);
