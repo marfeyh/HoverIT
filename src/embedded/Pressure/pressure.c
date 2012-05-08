@@ -36,40 +36,6 @@
  */
 #include "pins.h"
 
-/*!
- * Functionality for getting the inner or outer pressure seperately
- * are commented out. They have no use in the current implementation.
- */
-//static float pressure_inner;
-//static float pressure_outer;
-
-
-/*
- * ======================================================================
- * API functions
- * ======================================================================
- */
-
-/*!
- * /brief     Function for getting the inner pressure sensor's value
- *  
- * /return    Inside pressure in kPa
- */
-
-/*unsigned int get_pressure_inner() {
-  return pressure_inner;
-}*/
-
-/*!
- * /brief     Function for getting the outer pressure sensor's value
- *  
- * /return    Outer pressure in kPa
- */
-
-/*unsigned int get_pressure_outer() {
-  return pressure_outer;
-}*/
-
 /*
  * ===========================================================
  * Internal  functions
@@ -77,16 +43,15 @@
  */
 
 /*!
- * /attention Pin numbers should be changed in the header file pins.h
- * /brief     Function for getting pressure from the physical sensors
+ * \attention Pin numbers should be changed in the header file pins.h
+ * \brief     Function for getting pressure from the physical sensors
  */
 unsigned int get_pressure() {
 
   float inside_pressure_pa = 0;  /*!< Pressure in Pa inside of the skirt */
   float outside_pressure_pa = 0; /*!< Pressure in Pa outside of the skirt */
   float pressure_diff_pa = 0;    /*!< Pressure difference in Pa */
-  unsigned int max_value = 65535;
-  unsigned int result = 0;
+  unsigned int max_value = 65535;/*!< Maximum value of unsigned int on Arduino */
 
   /*!
    * Takes output of analog port 0 and converts it into Pa.
@@ -94,15 +59,13 @@ unsigned int get_pressure() {
    */
   inside_pressure_pa =
 	((float) analogRead(PRESSURE_PIN_0)/1023+0.04)/0.000004; 
-  //pressure_inner = inside_pressure_pa / 1000;
 
   /*!
    * Takes output of analog port 1 and converts it into Pa.
    * /attention The analog port number MUST be changed!
    */
   outside_pressure_pa =
-	((float) analogRead(PRESSURE_PIN_1)/1023+0.04)/0.000004; 
-  //pressure_outer = outside_pressure_pa / 1000;
+	((float) analogRead(PRESSURE_PIN_1)/1023+0.04)/0.000004;
   
   /*!
    * Calculation for getting pressure difference in Pa.
