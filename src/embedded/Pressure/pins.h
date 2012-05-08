@@ -1,5 +1,9 @@
-/* @Author - Markus Feyh 
- * @Description: Sets the pins for pressure sensing
+/*  
+ *  \file    pins.h
+ *  \brief   Header file setting the pins numbers
+ *  \author  Markus Feyh
+ *  \version 1.0
+ *  \date    2012/05/07
  *  \copyright	Copyright (C) 2012  Kappa@HoverIT
  *
  *  This program is free software: you can redistribute it and/or modify
