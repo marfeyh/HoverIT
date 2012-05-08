@@ -49,6 +49,13 @@ static int hover_speed = 0;
  */
 int reverse_prop_motor(){
    digitalWrite(RELAYPIN, HIGH);
+   delay(2000);
+   analogWrite(PIN, 100);
+   delay(2000);
+   digitalWrite(RELAYPIN, LOW);
+   delay(2000);
+   analogWrite(PIN, 100);
+   delay(2000);
    change_pro_speed(MAXSPEED);
    brake_pro();
    return 0;
