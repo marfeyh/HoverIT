@@ -1,23 +1,21 @@
 /**
-   Author: Johan Wikström Schützer
+   @author: Johan Wikström Schützer
    Test case for priority bases algorithm.
    Tests if the jobs are sorted by priority.
 **/
 
 #include <check.h>
 #include <stdlib.h>
-#include "../../job.h"
-#include "../../jobpriority.h"
-#include "../../jobtype.h"
-#include "../../list.h"
-//#include "../../src/loc_struct.h"
-//#include "../../src/job_queue.h"
+#include "../job.h"
+#include "../jobpriority.h"
+#include "../jobtype.h"
+#include "../list.h"
 
 /*
  * Change these values for different test cases.
  */
 #define nTests 20
-#define givenPrios {LOW, HIGH, LOW, HIGH, RIGHT_NOW, MEDIUM, RIGHT_NOW, HIGH, LOW, RIGHT_NOW, RIGHT_NOW, MEDIUM, MEDIUM, HIGH, MEDIUM, LOW, RIGHT_NOW, HIGH, HIGH, LOW}
+#define givenPrios {PRIO_LOW, PRIO_HIGH, PRIO_LOW, PRIO_HIGH, PRIO_RIGHT_NOW, PRIO_MEDIUM, PRIO_RIGHT_NOW, PRIO_HIGH, PRIO_LOW, PRIO_RIGHT_NOW, PRIO_RIGHT_NOW, PRIO_MEDIUM, PRIO_MEDIUM, PRIO_HIGH, PRIO_MEDIUM, PRIO_LOW, PRIO_RIGHT_NOW, PRIO_HIGH, PRIO_HIGH, PRIO_LOW}
 
 /*
  * Prototype of the funtion to the tested.
@@ -45,7 +43,7 @@ void putJobInQueueTest(struct Job job, struct List *list) {
 }
 
 /* Test case */
-START_TEST(new_test) {
+START_TEST(testPriorityBasedSorting) {
   
   /* Setup list and prios list for the test */
   int i;
@@ -86,24 +84,4 @@ START_TEST(new_test) {
 
 }END_TEST
 
-
-/* /\* Test suite *\/ */
-/* Suite * new_suite(void) { */
-/*   Suite *s = suite_create("New Suite"); */
-/*   TCase *tc = tcase_create("New Test Case"); */
-/*   tcase_add_test(tc, new_test); */
-/*   suite_add_tcase(s,tc); */
-/*   return s; */
-/*  } */
-
-/* /\* Main function for this test *\/ */
-/* int main(void) { */
-/*   int number_failed; */
-/*   Suite *s = new_suite(); */
-/*   SRunner *sr = srunner_create(s); */
-/*   srunner_run_all(sr,CK_NORMAL); */
-/*   number_failed = srunner_ntests_failed(sr); */
-/*   srunner_free(sr); */
-/*   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE; */
-/* }  */
 

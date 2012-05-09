@@ -28,8 +28,7 @@
 #include "../jobtype.h"
 #include "../jobpriority.h"
 #include "../list.h"
-//#include "../../src/loc_struct.h"
-//#include "../../src/job_queue.h"
+
 
 /**
  Purpose: to test the addJob function and printList functio.
@@ -47,7 +46,7 @@
 static struct List *taskList;
 
 
-START_TEST (fangzhou_test){
+START_TEST (testTaskOrderForTwoTasks){
 
 
 		taskList = (struct List *)  calloc( 1, sizeof(struct List) );
