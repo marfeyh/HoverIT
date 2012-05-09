@@ -11,8 +11,9 @@
 #include<searduino.h>
 #include "fourLedsOn.h"
 
-uint8_t ledState = LOW; /******bruce added*****/
-unsigned long previousTimer = 0; /*****bruce added*****/
+int ledState = LOW  ;
+unsigned long previousTimer = 0;
+
 
 /*
  @brief The initial state of this funtion. In this state  
@@ -49,9 +50,10 @@ void init_leds(void)
 void display_percentage(int value)
 
 {
+	
 	unsigned long currentTimer = millis();
-    /***********this line was moved to line: 15 by bruce **********/
-
+	
+	
 	// percentage of the battery life is between 100 and 81, four leds are on
 	if(value <= 100 && value > 80)
     {
@@ -59,8 +61,6 @@ void display_percentage(int value)
        digitalWrite(ledPin2,HIGH);
        digitalWrite(ledPin3,HIGH);
        digitalWrite(ledPin4,HIGH);
-//        printf("\n***100 - 80\n");
-
     }
 	
 	// percentage of the battery life is between 80 and 61, three leds are on
@@ -70,8 +70,6 @@ void display_percentage(int value)
        digitalWrite(ledPin2,HIGH);
        digitalWrite(ledPin3,HIGH);
        digitalWrite(ledPin4,HIGH);
-//    printf("\n***80 - 60\n");
-
     }
 	
 	// percentage of the battery life is between 60 and 41, two leds are on
@@ -89,7 +87,7 @@ void display_percentage(int value)
 	  digitalWrite(ledPin2,LOW);
 	  digitalWrite(ledPin3,LOW);
 	  digitalWrite(ledPin4,HIGH);
-	  printf("\n***40 - 20\n");
+	  
   }
 	
 	// percentage of the battery life is between 20 and 1, four leds are blinking
@@ -129,7 +127,7 @@ void display_percentage(int value)
 
 void run_leds(void)
 {
-	int value;
-	display_percentage(value);
+	int value = 2;
+	display_percentage(2);
 	
 }
