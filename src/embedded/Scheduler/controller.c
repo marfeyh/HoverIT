@@ -92,11 +92,12 @@ void control() {
 	init_list(); // A task list is initialized.
 	while (1) {
 	  check_serial_input();
+	  execute_jobs();
 	  extern Speed *g_speed_p;
-	  int speed = get_speed(g_speed_p);
+	  int speed = get_speed(g_speed_p); // Get hovercraft speed
 	  check_pressure();
 		// Get gps data
-		// Get hovercraft speed
+		
 		// Get Battery level
 		// Get Sonar data
 		// Get Pressure
