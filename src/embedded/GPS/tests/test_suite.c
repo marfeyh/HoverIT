@@ -1,7 +1,18 @@
 
+/**
+ * \file 		test_suite.c
+ * \date 		09-05-2012
+ * \version 	0.1 
+ * \author 		Fangzhou Cao          
+ * \attention 	Sections added/modified are as follow:
+ * 		        none
+ */
+
 
 #include <stdlib.h>
 #include <check.h>
+#include "../gps.h"
+
 #include "test_case_1_GPS.c"
 #include "test_case_2_GPS.c"
 #include "test_case_3_GPS.c"
