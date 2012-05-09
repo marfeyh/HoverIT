@@ -3,6 +3,7 @@
 
 package com.hoveritu.domain;
 
+import com.hoveritu.domain.HovercraftStateDataOnDemand;
 import org.springframework.beans.factory.annotation.Configurable;
 
 privileged aspect HovercraftStateDataOnDemand_Roo_Configurable {

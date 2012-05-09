@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: vincent
 Build-Jdk: 1.6.0_23
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Built-By: Sebastian
+Build-Jdk: 1.6.0_23
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> a90f937b019fcd8576785b514a0b63110c747d28
