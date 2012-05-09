@@ -1,11 +1,28 @@
-/*
- * @ Module name:  fourLedsOn.c
- * @ Description:  Contains the functions that turns on four leds to show how much battery left
- * @ Author names :Nahid Vafaie , Jody Swartz
- * @ Release      :25 April 2012
- * @ Version      : 3
- * @ Refrences    : Arduino.cc, sandklef.com
+/*!
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+ 
+ This program is distodributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public
+ License along with this program. If not, see
+ <http://www.gnu.org/licenses/gpl-3.0.html>.
  */
+/*!
+ @file fourLedsOn.c
+ @details Contains the functions that turns on four leds to show how much battery left
+ @authors Nahid Vafaie
+ @version 4 May 9 2012
+ @note this is a note about this module (optional)
+ @todo if anything should be further developed on this module (optional)
+ */
+
+
 
 #include <Arduino.h>
 #include<searduino.h>
@@ -92,7 +109,9 @@ void display_percentage(int value)
 	// percentage of the battery life is between 20 and 1, four leds are blinking
   else if (value <= 20 && value > 0)
          {
-			 if(currentTimer - previousTimer > 500){
+			 printf("CurrentTimer: %d", currentTimer);
+			 printf("PreviousTimer: %d", previousTimer);
+			 if(currentTimer - previousTimer > 300){
 				 previousTimer = currentTimer ;
 				 if (ledState == LOW)
 					 ledState = HIGH;
@@ -104,7 +123,10 @@ void display_percentage(int value)
 				 digitalWrite(ledPin3,ledState);
 				 digitalWrite(ledPin4,ledState);
 
+			 } else {
+				 printf("Test");
 			 }
+
 		 }
 	
 	// percentage of the battery life is 0 , all four leds are off
