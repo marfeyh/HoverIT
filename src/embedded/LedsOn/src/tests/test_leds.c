@@ -29,7 +29,7 @@ void teardown (void) {
  Purpose: tests if all the leds initially work and turn on
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -48,7 +48,7 @@ START_TEST(test_init) {
  Purpose: tests when battery percentage is 100 then all the leds should be on
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -68,7 +68,7 @@ START_TEST(test_init) {
  Purpose: tests when battery percentage is 81 then all the leds should be on
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -88,7 +88,7 @@ START_TEST(test_loop_full2) {
  Purpose: tests when battery percentage is 80 then leds 2, 3, 4 should be on and led 1 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -108,7 +108,7 @@ START_TEST(test_loop_half1) {
  Purpose: tests when battery percentage is 61 then leds 2, 3, 4 should be on and led 1 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -128,7 +128,7 @@ START_TEST(test_loop_half2) {
  Purpose: tests when battery percentage is 60 then leds 3, 4 should be on and leds 1,2 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -148,7 +148,7 @@ START_TEST(test_loop_lesshalf1) {
  Purpose: tests when battery percentage is 41 then leds 3, 4 should be on and leds 1,2 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -168,7 +168,7 @@ START_TEST(test_loop_lesshalf2) {
  Purpose: tests when battery percentage is 40 then led 4 should be on and leds 1,2,3 should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -187,7 +187,7 @@ START_TEST(test_loop_halfempty1) {
  Id/Title: tc-07 tests leds condition on 21 percentage
  Purpose: tests when battery percentage is 21 then led 4 should be on and leds 1,2,3 should be off Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 START_TEST(test_loop_halfempty2) {
@@ -206,7 +206,7 @@ START_TEST(test_loop_halfempty2) {
  Purpose: tests when battery percentage is 20 then all the leds should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -227,7 +227,7 @@ START_TEST(test_loop_empty1) {
  Purpose: tests when battery percentage is 1 then all the leds should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -247,7 +247,7 @@ START_TEST(test_loop_empty2) {
  Purpose: tests when battery percentage is 0 then all the leds should be off
  Prerequisites: leds be connected
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -267,7 +267,7 @@ START_TEST(test_loop_fullempty) {
  Purpose: tests when battery percentage is 1, currentTimer minus previous Timer is greater than 500, then currentTimer should
  be equal to previousTimer;
  Expected results: currentTimer equals to previousTimer
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -292,7 +292,7 @@ START_TEST(test_loop_timer) {
  Purpose: tests when battery percentage is 1, currentTimer minus previous Timer is greater than 500, then if 
  the ledState is LOW, the state should change to HIGH and the leds should be in HIGH position
  Expected results: All the ledpins be in HIGH position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
@@ -322,7 +322,7 @@ START_TEST(test_loop_ledState1) {
  Purpose: tests when battery percentage is 1, currentTimer minus previous Timer is greater than 500, then if 
  the ledState is LOW, the state should change to HIGH and the leds should be in LOW position.
  Expected results: All the ledpins be in LOW position
- Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Pass/Fail criteria: when check is run response is 100%: Checks: 15,
  Failures: 0, Errors: 0
  */
 
