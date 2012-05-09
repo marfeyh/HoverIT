@@ -1,9 +1,9 @@
 /**
- * @file 		test_case_11_gps.c
- * @date 		20-04-2012
- * @version 	0.1 
- * @author 		Sebastian Hansson         
- * @attention 	Sections added/modified are as follow:
+ * \file 		test_case_11_GPS.c
+ * \date 		20-04-2012
+ * \version 	0.1 
+ * \author 		Sebastian Hansson         
+ * \attention 	Sections added/modified are as follow:
  * 				- The test cases, test suites and the main funtion were added. */
 
 #include <check.h>
