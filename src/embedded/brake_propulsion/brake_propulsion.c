@@ -48,11 +48,11 @@ static int hover_speed = 0;
  * @brief: reverse rotation 
  */
 int reverse_prop_motor(){
-   digitalWrite(RELAYPIN, HIGH);
+   digitalWrite(RelayPin, HIGH);
    delay(2000);
    analogWrite(PIN, 100);
    delay(2000);
-   digitalWrite(RELAYPIN, LOW);
+   digitalWrite(RelayPin, LOW);
    delay(2000);
    analogWrite(PIN, 100);
    delay(2000);
