@@ -1,11 +1,27 @@
-/*
- * @ Module name  :percentage.c
- * @ Description  :Gets what battery it should calculate the percentage of and then does it
- * @ Author names :Denir Leric
- * @ Release      :04 May 2012
- * @ Version      :1
- * @ Refrences    :Arduino.cc, sandklef.com
- */
+/*!
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distodributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public
+License along with this program. If not, see
+<http://www.gnu.org/licenses/gpl-3.0.html>.
+*/
+
+/*!
+@file percentage.c
+@details This module reads from analogpin and calculates the precentage left 
+@authors Denir
+@version 1.1
+@note 
+@todo 
+*/
 
 #include <Arduino.h>
 #include <searduino.h>
@@ -14,14 +30,14 @@
 #include "alarm.h"
 #include "fourLedsOn.h"
 
-/* 
- * Variable where the percentage will be stored
- */
 int PERCENTAGE;
 
-/*
- * This method is called from the scheduler and checks which battery should be calculated.
- */
+/*!
+@brief This function checks for what battery the percentage should be calculated for
+@see http://hoveritu.com/ (optional - if any additonal info is required)
+@param[in] batteryNo This argument is a identifier for what battery should be calculated
+@return 0 to 100 if success
+*/
 int getPercentage(int batteryNo)
 {
 	if(1 == batteryNo)
@@ -36,9 +52,11 @@ int getPercentage(int batteryNo)
 	}
 }
 
-/*
- * This function calculates the battery level for the first battery.
- */
+/*!
+@brief This function calculates the battery level for the first battery
+@see http://hoveritu.com/ (optional - if any additonal info is required)
+@return 0 to 100 if success
+*/
 int getFirstBatteryLevel()
 {
 	if(analogRead(BATTERY_PIN1) < 843)
@@ -55,9 +73,11 @@ int getFirstBatteryLevel()
 	}
 }
 
-/*
- * This function calculates the battery level for the second battery.
- */
+/*!
+@brief This function calculates the battery level for the second battery
+@see http://hoveritu.com/ (optional - if any additonal info is required)
+@return 0 to 100 if success
+*/
 int getSecondBatteryLevel()
 {
 	if(analogRead(BATTERY_PIN2) < 843)
@@ -75,9 +95,11 @@ int getSecondBatteryLevel()
 	}
 }
 
-/*
- * This function calculates the battery level for the third battery.
- */
+/*!
+@brief This function calculates the battery level for the third battery
+@see http://hoveritu.com/ (optional - if any additonal info is required)
+@return 0 to 100 if success
+*/
 int getThirdBatteryLevel()
 {
 	if(analogRead(BATTERY_PIN3) < 843)
