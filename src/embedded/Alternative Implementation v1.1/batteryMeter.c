@@ -1,11 +1,29 @@
-/*
- * @ Module name:  batteryMeter.c
- * @ Description:  the API of the battery meter
- * @ Author names : Bruce Yinhe
- * @ Release      : 26 April 2012
- * @ Version      : 2
- * @ Refrences    : 
+/*!
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+ 
+ This program is distodributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public
+ License along with this program. If not, see
+ <http://www.gnu.org/licenses/gpl-3.0.html>.
  */
+
+/*!
+ @file batteryMeter.c
+ @details the API of the battery meter
+ @authors Bruce Yinhe
+ @version 2, 26 Arpil 2012
+ @note this is a note about this module (optional)
+ @todo if anything should be further developed on this module (optional)
+*/
+
+
 
 #include <Arduino.h>
 #include <searduino.h>
@@ -15,9 +33,12 @@
 #include "alarm.h"
 #include "fourLedsOn.h"
 
-/*
- * initialize all 
- */
+
+/*!
+ @brief initialize all
+
+*/
+
 int init_battery_meter() {    
     /* init the leds */
     init_leds();
@@ -26,9 +47,13 @@ int init_battery_meter() {
     return 0;
 }
 
-/*
- * The battery level goes from level 1(0x0) to 16(0xE). This function taks input of 0 - 100, and gives output of a binary message
- */
+/*!
+ @brief The battery level goes from level 1 (0x0) to 16 (0xE). This function takes input of 0 -100 and gives output of a binay message
+ @param[in] 
+ @param[in] 
+ @return binary 
+*/
+
 uint8_t translate_level(uint16_t percentage) {
     if (percentage == 0) {
         return 0x0;
@@ -65,6 +90,12 @@ uint8_t translate_level(uint16_t percentage) {
     }
 }
 
+/*!
+ @brief This function takes the battery number and percentage as input, and returns a binary message according to the protocol as output
+ @param[in] battery number
+ @param[in] percentage
+ @return binary message
+*/
 /*
  * This function takes the battery number and percentage as input, and returns a binary message according to the protocol as output
  */
@@ -86,9 +117,13 @@ uint8_t make_msg(batteryNumber, percentage) {
     return msg;
 }
 
-/*
- * This functions will be called by the Scheduler. It takes the battery number as input, and returns a binary message as output
- */
+/*!
+ @brief This function will be called by the Scheduler. It takes the battery number as input, and returns a binary message as output.
+ @param[in] batteryNumber
+ @return binary message
+*/
+
+
 uint8_t get_battery_level(int batteryNumber) {    
     /* get the percentage from the battery*/
 //    uint16_t percentage = check(); //old code
