@@ -5,7 +5,7 @@
 @author: Xinran He & Khatereh Khosravianarab
 @version 0.1
 */
-#define MAXSPEED 122
+#define MAXSPEED 120
 #define PERSPEED 40
 
 /*!
@@ -48,5 +48,5 @@ int stop_propulsion_fan();
 @param integer between 0 and 122
 @returns -1 for error or current fan speed
 */
-int set_propulsion_fan();
+int set_propulsion_fan(int speed);
 int brake_hovercraft();

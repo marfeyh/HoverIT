@@ -13,12 +13,12 @@
 #include <propulsion.h>
 #include <propulsion_api.h>
 #include <brake_propulsion.h>
+#include <Arduino.h>
 
 /*!
 @brief initialise propulsion fan
  */
-int start_propulsion_fan()
-{
+int start_propulsion_fan(){
   initialise_propulsion();
   return 0;
 }
@@ -77,10 +77,13 @@ int stop_propulsion_fan(){
   return 0;
 }
 
+/*!
+@brief stop propulsion fan speed by using brake
+ */
 int brake_hovercraft(){
-  stop_pro_fan();
-  delay(2000);
-  reverse_prop_motor();
+stop_propulsion_fan();
+delay(1500);
+reverse_prop_motor();
   
   return 0;
 }
