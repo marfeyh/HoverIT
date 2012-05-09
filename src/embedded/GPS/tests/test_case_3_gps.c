@@ -12,7 +12,7 @@
 int* get_indices(char gpsData[]);
 
 
-START_TEST(null_data_test) {
+START_TEST(test_case_3_1) {
    int sample_list[14] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
    unsigned char flag = 1;
   
@@ -23,7 +23,7 @@ START_TEST(null_data_test) {
 }END_TEST
 
 
-START_TEST(correct_data_test) {
+START_TEST(test_case_3_2) {
    int sample_list[14] = {6,13,22,24,34,36,38,41,45,51,53,58,60,61};
    unsigned char flag = 1;
   
@@ -34,7 +34,7 @@ START_TEST(correct_data_test) {
    fail_if(0 == flag, "The function \"get_indices\" failed when correct gps data was passed to it." ); 
 }END_TEST 
 
-START_TEST(boundary_data_test) {
+START_TEST(test_case_3_3) {
    int sample_list[9] = {0,4,8,0,0,0,0,0,0};
    unsigned char flag = 1;
   
@@ -46,7 +46,7 @@ START_TEST(boundary_data_test) {
    fail_if(0 == flag, "The function \"get_indices\" failed when data with boundary commas was passed to it." ); 
 }END_TEST 
 
-START_TEST(noComma_data_test) {
+START_TEST(test_case_3_4) {
    int sample_list[6] = {0,0,0,0,0,0};
    unsigned char flag = 1;
   
@@ -60,6 +60,8 @@ START_TEST(noComma_data_test) {
 /**
   Test suite for the four above test cases.
  */
+ 
+ /*
 Suite * dataTC_suite(void) {
   Suite *test_suite = suite_create("dataTC Suite");
   TCase *test_case = tcase_create ("test cases");
@@ -75,6 +77,7 @@ Suite * dataTC_suite(void) {
 /**
  * Main function to execute the test cases
  */
+ /*
 int main(void) {
   int number_failed;
   Suite *s = dataTC_suite();
@@ -85,4 +88,4 @@ int main(void) {
   srunner_free(sr);
   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 } 
-  
+  */

@@ -1,5 +1,5 @@
 /**
- * \file 		check_command_test003.c
+ * \file 		test_case_11_GPS.c
  * \date 		20-04-2012
  * \version 	0.1 
  * \author 		Sebastian Hansson         
@@ -12,23 +12,25 @@
 #include <math.h>
 
 /**
- * Purpose: To compare the first 6 letters of two string and see if they are the same. 
+ * Purpose: To compare the first 6 letters of two string and see if they are the same but this time with empty strings.
  * Preparation: 
- *	 Two strings that is not the same prepared to be used with check_command.
- * Expected outcome: 1 should be returned.
+ *	 Two empty strings is prepared to be used with check_command.
+ * Expected outcome: 0 should be returned.
  */
 
 int check_command(char *, char *);
 
-  char string[] = "svejsan";
-  char string2[] = "hejsan";
+  char string[] = "";
+  char string2[] = "";
   unsigned char result;
 
-START_TEST(check_command_test) {
+START_TEST(test_case_11) {
   /* fail criteria, test check_command with the strings provided*/
-    fail_if(check_command(string, string2) != 1);
+    fail_if(check_command(string, string2) != 0);
   
 }END_TEST
+
+/*
  Suite * new_suite(void) {
    Suite *p = suite_create("New Suite");
    TCase *tc_p = tcase_create("New Test check_command_test");
@@ -47,3 +49,4 @@ int main(void) {
    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 } 
 
+*/

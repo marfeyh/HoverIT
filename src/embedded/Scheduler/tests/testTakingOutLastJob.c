@@ -21,12 +21,11 @@
 
 #include <check.h>
 #include <stdlib.h>
-#include "../../job.h"
-#include "../../jobpriority.h"
-#include "../../jobtype.h"
-#include "../../list.h"
-//#include "../../src/loc_struct.h"
-//#include "../../src/job_queue.h"
+#include "../job.h"
+#include "../jobpriority.h"
+#include "../jobtype.h"
+#include "../list.h"
+
 
 /**
  * Purpose: The jobs should be added according to their priorities not by the order they where added.
@@ -39,7 +38,7 @@ void addJob(struct Job, struct List*);
 struct Job  pop(struct List*);
 
 
-START_TEST(pop_test) {
+START_TEST( testTakingOutLastJob) {
 
   /*Jobs are prepared.*/
   struct Job job1;
@@ -47,10 +46,10 @@ START_TEST(pop_test) {
   struct Job job3;
   struct Job job4;
 
-    job1.prio = LOW;
-    job2.prio = HIGH;
-    job3.prio = MEDIUM;
-    job4.prio = RIGHT_NOW;
+    job1.prio = PRIO_LOW;
+    job2.prio = PRIO_HIGH;
+    job3.prio = PRIO_MEDIUM;
+    job4.prio = PRIO_RIGHT_NOW;
     struct List * taskList = (struct List *) calloc(1, sizeof(struct List) );
     if (taskList == NULL) {
       exit(-1);
@@ -70,22 +69,4 @@ START_TEST(pop_test) {
   
 }END_TEST
 
- /*Commented by Gokul*/
-/* Suite * new_suite(void) { */
-/*   Suite *p = suite_create("New Suite"); */
-/*   TCase *tc_p = tcase_create("New Test pop Case"); */
-/*   tcase_add_test(tc_p, pop_test); */
-/*   suite_add_tcase(p,tc_p); */
-/*   return p; */
-/* } */
-
-/* int main(void) { */
-/*   int number_failed; */
-/*   Suite *p = new_suite(); */
-/*   SRunner *sr_p = srunner_create(p); */
-/*   srunner_run_all(sr_p,CK_NORMAL); */
-/*   number_failed = srunner_ntests_failed(sr_p); */
-/*   srunner_free(sr_p); */
-/*   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE; */
-/* }  */
 
