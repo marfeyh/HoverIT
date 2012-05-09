@@ -1,9 +1,9 @@
 /**
- * \file 		check_command_test003.c
- * \date 		20-04-2012
- * \version 	0.1 
- * \author 		Sebastian Hansson         
- * \attention 	Sections added/modified are as follow:
+ * @file 		test_case_11_gps.c
+ * @date 		20-04-2012
+ * @version 	0.1 
+ * @author 		Sebastian Hansson         
+ * @attention 	Sections added/modified are as follow:
  * 				- The test cases, test suites and the main funtion were added. */
 
 #include <check.h>
@@ -14,19 +14,19 @@
 /**
  * Purpose: To compare the first 6 letters of two string and see if they are the same. 
  * Preparation: 
- *	 Two strings that is not the same prepared to be used with check_command.
- * Expected outcome: 1 should be returned.
+ *	 Two strings is prepared to be used with check_command.
+ * Expected outcome: 0 should be returned.
  */
 
 int check_command(char *, char *);
 
-  char string[] = "svejsan";
-  char string2[] = "hejsan";
+  char string[] = "hej";
+  char string2[] = "hej";
   unsigned char result;
 
 START_TEST(check_command_test) {
   /* fail criteria, test check_command with the strings provided*/
-    fail_if(check_command(string, string2) != 1);
+    fail_if(check_command(string, string2) != 0);
   
 }END_TEST
  Suite * new_suite(void) {
