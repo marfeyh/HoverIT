@@ -18,7 +18,7 @@
  * Expected outcome: The function should return 0.
  */
 
-START_TEST(GPRMC_test1) {
+START_TEST(test_case_1_1) {
   int ret = is_GPRMC("$GPRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_unless( ret ==0);
 }END_TEST /* test case GPRMC_test1 */
@@ -29,7 +29,7 @@ START_TEST(GPRMC_test1) {
  * Expected outcome: The function should return 1.
  */
 
-START_TEST(GPRMC_test2) {
+START_TEST(test_case_1_2) {
   int ret = is_GPRMC("GPRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_if( ret != 1	, "The function is_GPRMC does not distinguish between \"$GPRMC\" and \"GPRMC\"!");
 }END_TEST /* test case GPRMC_test2 */
@@ -40,7 +40,7 @@ START_TEST(GPRMC_test2) {
  * Expected outcome: The function should return 1.
  */
 
-START_TEST(GPRMC_test3) {
+START_TEST(test_case_1_3) {
   int ret = is_GPRMC("$GPRM,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_if( ret != 1	, "The function is_GPRMC does not distinguish between \"$GPRMC\" and \"$GPRM\"!");
 }END_TEST /* test case GPRMC_test3 */
@@ -51,7 +51,7 @@ START_TEST(GPRMC_test3) {
  * Expected outcome: The function should return 1.
  */
 
-START_TEST(GPRMC_test4) {
+START_TEST(test_case_1_4) {
   int ret = is_GPRMC("$PRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_if( ret != 1	, "The function is_GPRMC does not distinguish between \"$GPRMC\" and \"$PRMC\"!");
 }END_TEST /* test case GPRMC_test4 */
@@ -62,7 +62,7 @@ START_TEST(GPRMC_test4) {
  * Expected outcome: The function should return 1.
  */
 
-START_TEST(GPRMC_test5) {
+START_TEST(test_case_1_5) {
   int ret = is_GPRMC("$G,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_if( ret != 1	, "The function is_GPRMC does not distinguish between \"$GPRMC\" and \"$G\"!");
 }END_TEST /* test case GPRMC_test5 */
@@ -73,7 +73,7 @@ START_TEST(GPRMC_test5) {
  * Expected outcome: The function should return 1.
  */
 
-START_TEST(GPRMC_test6) {
+START_TEST(test_case_1_6) {
   int ret = is_GPRMC("$,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_if( ret != 1	, "The function is_GPRMC does not distinguish between \"$GPRMC\" and \"$\"!");
 }END_TEST /* test case GPRMC_test6 */
@@ -84,7 +84,7 @@ START_TEST(GPRMC_test6) {
  * Expected outcome: The function should return 1.
  */
 
-START_TEST(GPRMC_test7) {
+START_TEST(test_case_1_7) {
   int ret = is_GPRMC(",123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_if( ret != 1	, "The function is_GPRMC does not distinguish between \"$GPRMC\" and \"\"!");
 }END_TEST /* test case GPRMC_test7 */
@@ -95,7 +95,7 @@ START_TEST(GPRMC_test7) {
  * Expected outcome: The function should return 1.
  */
 
-START_TEST(GPRMC_test8) {
+START_TEST(test_case_1_8) {
   int ret = is_GPRMC("123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A");
   fail_if( ret != 1	, "The function is_GPRMC does not distinguish between \"$GPRMC\" and \"123519\"!");
 }END_TEST /* test case GPRMC_test8 */
@@ -104,13 +104,12 @@ START_TEST(GPRMC_test8) {
  * Returns a gprmc suite pointer containing the 8 defined test cases above.
  */
 
-Suite * gprmc_suite(void) {
+/*
+ Suite * gprmc_suite(void) {
 
   Suite *suite = suite_create("GPRMC Suite");
-  /* A limit for the test cases is created*/
-  TCase *tc_limits = tcase_create ("Test case limits");
+  TCase *tc_limits = tcase_create ("Test case limits"); 
   
-  /* Test cases are added to the limit */
   tcase_add_test (tc_limits, GPRMC_test1);
   tcase_add_test (tc_limits, GPRMC_test2);
   tcase_add_test (tc_limits, GPRMC_test3);
@@ -120,14 +119,10 @@ Suite * gprmc_suite(void) {
   tcase_add_test (tc_limits, GPRMC_test7);
   tcase_add_test (tc_limits, GPRMC_test8);
   
-  /* The limit is aggregated to the GPRMC suite */
   suite_add_tcase (suite, tc_limits);
   return suite;
-}/* end of gpgga_suite */
 
-/**
- * The main function to run the test cases through creating a SRunner.
- */
+
 int main(void) {
   // will be used to get the number of the failed test cases.
   int failed_num;
@@ -141,5 +136,5 @@ int main(void) {
   failed_num = srunner_ntests_failed(gprmc_sr); 
   srunner_free(gprmc_sr);
   return (failed_num == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-} /* end of main */
-  
+} 
+  */
