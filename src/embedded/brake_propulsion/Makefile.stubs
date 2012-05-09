@@ -1,20 +1,17 @@
-TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = brake_pro
 
 # Add your source files here
-SRC_C= propulsion.c propulsion_api.c brake_propulsion.c hover_speed_stub.c
+SRC_C = hover_speed_stub.c
 SRC_CXX= 
-MAIN_SRC = main.c
-ARDUINO = stub
-#ARDUINO = uno
-SHLIB = brake_pro.so
+MAIN_SRC =
+ARDUINO = uno
+SHLIB =
 
-LIB = libpropulsion.a
-LIB_H = propulsion.h pin.h propulsion_api.h brake_propulsion.h hover_speed_stub.c
-USER_LIB_INSTALL_PATH = ../../../bin
+LIB = libpressure_stub.a
+LIB_H = hover_speed_stub.h
+USER_LIB_INSTALL_PATH = ./stub/
 
-export SRC_FILES= $(SRC_C) $(SRC_CXX)
+export SRC_FILES = $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
