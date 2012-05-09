@@ -2,8 +2,8 @@
  * @ Module name:  checkmain.c
  * @ Description:  Contains the functions that tests the leds be on and off
  * @ Author names : Nahid Vafaie
- * @ Release      : 20 April 2012
- * @ Version      : 2
+ * @ Release      : 8 May 2012
+ * @ Version      : 3
  * @ Refrences    : Arduino.cc, sandklef.com, Check manual
  */
 
@@ -262,6 +262,94 @@ START_TEST(test_loop_fullempty) {
 	
 }END_TEST
 
+/* 
+ Id/Title: tc-10 tests leds condition on 1 percentage
+ Purpose: tests when battery percentage is 1, currentTimer minus previous Timer is greater than 500, then currentTimer should
+ be equal to previousTimer;
+ Expected results: currentTimer equals to previousTimer
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Failures: 0, Errors: 0
+ */
+
+START_TEST(test_loop_timer) {
+	init_leds();
+	
+	display_percentage(1);
+	unsigned long currentTimer= 1200;
+	unsigned long previousTimer= 600;
+	
+	if (currentTimer - previousTimer > 500 )
+		
+		previousTimer = currentTimer;
+	 
+	fail_unless(previousTimer == 1200);
+	
+	
+}END_TEST
+
+/* 
+ Id/Title: tc-11 tests leds condition on 1 percentage
+ Purpose: tests when battery percentage is 1, currentTimer minus previous Timer is greater than 500, then if 
+ the ledState is LOW, the state should change to HIGH and the leds should be in HIGH position
+ Expected results: All the ledpins be in HIGH position
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Failures: 0, Errors: 0
+ */
+
+START_TEST(test_loop_ledState1) {
+	init_leds();
+	
+	display_percentage(1);
+	
+	int ledState = LOW;
+	
+	if(ledState == LOW)
+		ledState = HIGH;
+	else {
+		ledState = LOW;
+	}
+	
+	
+	fail_unless(digitalRead(ledPin1) == ledState);
+	fail_unless(digitalRead(ledPin2) == ledState);
+    fail_unless(digitalRead(ledPin3) == ledState);
+    fail_unless(digitalRead(ledPin4) == ledState);
+	
+}END_TEST
+
+/* 
+ Id/Title: tc-12 tests leds condition on 1 percentage
+ Purpose: tests when battery percentage is 1, currentTimer minus previous Timer is greater than 500, then if 
+ the ledState is LOW, the state should change to HIGH and the leds should be in LOW position.
+ Expected results: All the ledpins be in LOW position
+ Pass/Fail criteria: when check is run response is 100%: Checks: 12,
+ Failures: 0, Errors: 0
+ */
+
+START_TEST(test_loop_ledState2) {
+	//init_leds();
+	
+	display_percentage(1);
+	
+	int ledState = HIGH;
+	
+	if(ledState == LOW)
+		ledState = HIGH;
+	else {
+		ledState = LOW;
+	}
+
+	
+	fail_unless(digitalRead(ledPin1) == LOW);
+	fail_unless(digitalRead(ledPin2) == ledState);
+    fail_unless(digitalRead(ledPin3) == ledState);
+    fail_unless(digitalRead(ledPin4) == ledState);
+	
+}END_TEST
+
+
+
+
 
 
 Suite * leds_suite(void) {
@@ -281,6 +369,9 @@ Suite * leds_suite(void) {
   tcase_add_test(tc,test_loop_empty1);
   tcase_add_test(tc,test_loop_empty2);
   tcase_add_test(tc,test_loop_fullempty);
+  tcase_add_test(tc,test_loop_timer);
+  tcase_add_test(tc,test_loop_ledState1);
+  tcase_add_test(tc,test_loop_ledState2);
   tcase_set_timeout(tc,0);
   suite_add_tcase(s,tc);
   return s;
