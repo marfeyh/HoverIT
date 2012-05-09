@@ -12,7 +12,7 @@ Speed *g_speed_p;
 
 int main(void) {
   init();
-  bluetooth_serial_setup();
+  communication_serial_setup();
   start_propulsion_fan();
   start_hover();
   control_rudder(0);

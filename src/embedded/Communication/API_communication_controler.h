@@ -13,7 +13,7 @@
 /*!
  @brief Initializing bluetooth serial pins on Arduino
  */
-void bluetooth_serial_setup();
+void communication_serial_setup();
 
 /*!
  @brief When this function is called, by Scheduler, the bluetooth gets the resources of
@@ -76,5 +76,7 @@ unsigned char hovercraft_pressure(unsigned char message);
 unsigned char battery_level(unsigned char message);
 
 
-unsigned char send_information (char* information);
+unsigned char stream_information (char* information);
+
+unsigned char connection_status();
 #endif /* API_BLUETOOTH_CONTROLER_H_ */

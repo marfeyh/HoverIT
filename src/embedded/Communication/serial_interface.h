@@ -12,6 +12,10 @@
 #ifndef SERIAL_INTERFACE_H
 #define SERIAL_INTERFACE_H
 
+#define BLUETOOTH
+//#define WIFI
+//#define GSM
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -60,11 +64,9 @@ void debug_write (unsigned char*);
 void debug_print_string (char*);
 
 
-/*!
- @brief A function to send stream of information to serial pin by sending character by character.
- @param pointer to first char of the stream string to be sent
- */
-void stream_data(char*);
+void serial_switch(void);
+
+unsigned char check_connection(void);
 
 #ifdef __cplusplus
 }

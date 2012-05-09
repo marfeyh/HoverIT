@@ -24,11 +24,17 @@
  * ======================================================================
  */
 
+unsigned char connection_status() {
+	// For checking the connection status
+	return check_connection();
+}
+
 /*!
  @brief Initializing bluetooth serial pins on Arduino
  */
-void bluetooth_serial_setup() {
+void communication_serial_setup() {
 	serial_setup();
+	serial_switch();
 }
 
 /*!
@@ -37,6 +43,10 @@ void bluetooth_serial_setup() {
  If there is any data available then the data would be parsed.
  */
 void check_serial_input() {
+	unsigned char temp = connection_status();
+	debug_print(&temp);
+	stream_information("Amir");
+//	debug_write(&temp);
 	// result variable shows the available data on serial pin.
 	unsigned char result = 255;
 	do {
@@ -79,6 +89,124 @@ void check_serial_input() {
 	return;
 }
 
+/*!
+ @brief The function creates fan forward speed message.
+ message argument is followed by hovercraft protocol available on wiki
+ @see http://hoveritu.com/projects/semb2012/wiki
+ @param unsigned char of the value to be sent to pc
+ @return unsigned char containing value and message type
+ */
+unsigned char fan_forward_speed(unsigned char message) {
+	debug_print_string("fan_forward_speed called\n");
+
+	// instead of return send_serial_binary should be called
+	return create_fan_forward_speed(&message);
+}
+
+/*!
+ @brief The function creates fan hovering speed message.
+ message argument is followed by hovercraft protocol available on wiki
+ @see http://hoveritu.com/projects/semb2012/wiki
+ @param unsigned char of the value to be sent to pc
+ @return unsigned char containing value and message type
+ */
+unsigned char fan_hovering_speed(unsigned char message) {
+	debug_print_string("fan_hovering_speed called\n");
+
+	// instead of return send_serial_binary should be called
+	return create_fan_hovering_speed(&message);
+}
+
+/*!
+ @brief The function creates ruder direction message.
+ message argument is followed by hovercraft protocol available on wiki
+ @see http://hoveritu.com/projects/semb2012/wiki
+ @param unsigned char of the value to be sent to pc
+ @return unsigned char containing value and message type
+ */
+unsigned char ruder_direction(unsigned char message) {
+	debug_print_string("ruder_direction called\n");
+
+	// instead of return send_serial_binary should be called
+	return create_ruder_direction(&message);
+}
+
+/*!
+ @brief The function creates hovercraft speed (measured by sensor) message.
+ message argument is followed by hovercraft protocol available on wiki
+ @see http://hoveritu.com/projects/semb2012/wiki
+ @param unsigned char of the value to be sent to pc
+ @return unsigned char containing value and message type
+ */
+unsigned char hovercraft_speed(unsigned char message) {
+	debug_print_string("hovercraft_speed called\n");
+
+	// instead of return send_serial_binary should be called
+	return create_hovercraft_speed(&message);
+}
+
+/*!
+ @brief The function creates hovercraft pressure (measured by sensor) message.
+ message argument is followed by hovercraft protocol available on wiki
+ @see http://hoveritu.com/projects/semb2012/wiki
+ @param unsigned char of the value to be sent to pc
+ @return unsigned char containing value and message type
+ */
+unsigned char hovercraft_pressure(unsigned char message) {
+	debug_print_string("hovercraft_pressure called\n");
+
+	// instead of return send_serial_binary should be called
+	return create_hovercraft_pressure(&message);
+}
+
+/*!
+ @brief The function creates hovercraft battery level message.
+ message argument is followed by hovercraft protocol available on wiki
+ @see http://hoveritu.com/projects/semb2012/wiki
+ @param unsigned char of the value to be sent to pc
+ @return unsigned char containing value and message type
+ */
+unsigned char battery_level(unsigned char message) {
+	debug_print_string("battery_level called\n");
+
+	// instead of return send_serial_binary should be called
+	return create_battery_level(&message);
+}
+
+/*!
+ @brief A function to send stream of information to serial pin by sending character by character.
+ @param pointer to first char of the stream string to be sent
+ */
+unsigned char stream_information(char* information) {
+	unsigned char tag = 0b01111110;
+	send_serial_binary(&tag); // start streaming and send the starting tag
+	send_serial_string(information); // send the actual message
+	tag = 0b01111110;
+	send_serial_binary(&tag); // send the finishing tag
+	return 0;
+}
+
+/*
+ * ===========================================================
+ * Internal  functions
+ * ===========================================================
+ */
+
+/*!
+ @brief The function sends string to the serial to show on monitoring on arduino
+ @param pointer to char of the string
+ */
+void send_serial_string(char* string) {
+	serial_string_write(string);
+}
+
+/*!
+ @brief The function sends unsigned char which is binary to the serial to show on monitoring on arduino
+ @param pointer to char of the string
+ */
+void send_serial_binary(unsigned char* binary) {
+	serial_binary_write(binary);
+}
 
 unsigned char ruder_direction_handler(unsigned char command) {
 	unsigned char res_direction = get_direction(&command); // To get the direction
@@ -188,7 +316,6 @@ unsigned char fan_forward_speed_handler(unsigned char command) {
 			 job_ptr->type = MOVEMENT;
 			 putJobInQueue(*job_ptr);
 			 */
-			send_information("amir almasi");
 			debug_print_string("put Fan Forward increasing Speed in queue\n");
 			break;
 		case DECREASING:
@@ -228,115 +355,4 @@ unsigned char fan_forward_speed_handler(unsigned char command) {
 		debug_print_string("put exact Forward speed value\n");
 	} // The message was exact fan forwarding speed value
 	return 0;
-}
-
-/*!
- @brief The function creates fan forward speed message.
- message argument is followed by hovercraft protocol available on wiki
- @see http://hoveritu.com/projects/semb2012/wiki
- @param unsigned char of the value to be sent to pc
- @return unsigned char containing value and message type
- */
-unsigned char fan_forward_speed(unsigned char message) {
-	debug_print_string("fan_forward_speed called\n");
-
-	// instead of return send_serial_binary should be called
-	return create_fan_forward_speed(&message);
-}
-
-/*!
- @brief The function creates fan hovering speed message.
- message argument is followed by hovercraft protocol available on wiki
- @see http://hoveritu.com/projects/semb2012/wiki
- @param unsigned char of the value to be sent to pc
- @return unsigned char containing value and message type
- */
-unsigned char fan_hovering_speed(unsigned char message) {
-	debug_print_string("fan_hovering_speed called\n");
-
-	// instead of return send_serial_binary should be called
-	return create_fan_hovering_speed(&message);
-}
-
-/*!
- @brief The function creates ruder direction message.
- message argument is followed by hovercraft protocol available on wiki
- @see http://hoveritu.com/projects/semb2012/wiki
- @param unsigned char of the value to be sent to pc
- @return unsigned char containing value and message type
- */
-unsigned char ruder_direction(unsigned char message) {
-	debug_print_string("ruder_direction called\n");
-
-	// instead of return send_serial_binary should be called
-	return create_ruder_direction(&message);
-}
-
-/*!
- @brief The function creates hovercraft speed (measured by sensor) message.
- message argument is followed by hovercraft protocol available on wiki
- @see http://hoveritu.com/projects/semb2012/wiki
- @param unsigned char of the value to be sent to pc
- @return unsigned char containing value and message type
- */
-unsigned char hovercraft_speed(unsigned char message) {
-	debug_print_string("hovercraft_speed called\n");
-
-	// instead of return send_serial_binary should be called
-	return create_hovercraft_speed(&message);
-}
-
-/*!
- @brief The function creates hovercraft pressure (measured by sensor) message.
- message argument is followed by hovercraft protocol available on wiki
- @see http://hoveritu.com/projects/semb2012/wiki
- @param unsigned char of the value to be sent to pc
- @return unsigned char containing value and message type
- */
-unsigned char hovercraft_pressure(unsigned char message) {
-	debug_print_string("hovercraft_pressure called\n");
-
-	// instead of return send_serial_binary should be called
-	return create_hovercraft_pressure(&message);
-}
-
-/*!
- @brief The function creates hovercraft battery level message.
- message argument is followed by hovercraft protocol available on wiki
- @see http://hoveritu.com/projects/semb2012/wiki
- @param unsigned char of the value to be sent to pc
- @return unsigned char containing value and message type
- */
-unsigned char battery_level(unsigned char message) {
-	debug_print_string("battery_level called\n");
-
-	// instead of return send_serial_binary should be called
-	return create_battery_level(&message);
-}
-
-unsigned char send_information(char* information) {
-	stream_data(information);
-	return 0;
-}
-
-/*
- * ===========================================================
- * Internal  functions
- * ===========================================================
- */
-
-/*!
- @brief The function sends string to the serial to show on monitoring on arduino
- @param pointer to char of the string
- */
-void send_serial_string(char* string) {
-	serial_string_write(string);
-}
-
-/*!
- @brief The function sends unsigned char which is binary to the serial to show on monitoring on arduino
- @param pointer to char of the string
- */
-void send_serial_binary(unsigned char* binary) {
-	serial_binary_write(binary);
 }

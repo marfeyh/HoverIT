@@ -28,7 +28,7 @@
 int main(int argc, char** argv) {
 	init(); // init of the arduino
 	pinMode(13, OUTPUT); // This is for testing to simulate small scheduler
-	bluetooth_serial_setup();
+	communication_serial_setup();
 	//        start_propulsion_fan();
 	//        start_hover();
 	//        control_rudder(0);

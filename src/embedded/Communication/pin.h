@@ -10,6 +10,7 @@
 #define PIN_H_
 
 #define MONITORING_PIN Serial // RX0 and TX0 is in used
-#define BLUETOOTH_PIN Serial1 // RX1 and TX1 is in used
+#define COMMUNICATION_PIN Serial1 // RX1 and TX1 is in used
+#define COMMUNICATION_STATUS_PIN 8 // For the connection status
 
 #endif /* PIN_H_ */
