@@ -23,7 +23,7 @@
 **/
 
 
-START_TEST(GPS_test_1) {
+START_TEST(test_case_2_1) {
 
 	char gpsData1[] = "$GPGSV";
         char gpsData2[] = "$GPGSA";
@@ -51,7 +51,7 @@ START_TEST(GPS_test_1) {
 **/
 
 
-START_TEST(GPS_test_2) {
+START_TEST(test_case_2_2) {
 
         char gpsData3[] = "$I_LOVE_POLAR_BEAR";
         int resultGPGSV;
@@ -66,7 +66,7 @@ START_TEST(GPS_test_2) {
 
 }END_TEST
 
-
+/*
 Suite * new_suite(void) { 
 
    Suite *suite = suite_create("GPS_test_suite");	 
@@ -87,4 +87,4 @@ Suite * new_suite(void) {
    srunner_free(suiter); 
    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE; 
  }  
-
+*/

@@ -3,6 +3,8 @@
 
 package com.hoveritu.domain;
 
+import com.hoveritu.domain.HovercraftState;
+
 privileged aspect HovercraftState_Roo_JavaBean {
     
     public int HovercraftState.getSpeed() {

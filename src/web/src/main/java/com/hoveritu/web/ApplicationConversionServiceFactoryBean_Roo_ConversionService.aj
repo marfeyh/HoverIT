@@ -4,26 +4,48 @@
 package com.hoveritu.web;
 
 import com.hoveritu.domain.HovercraftState;
-import java.lang.String;
+import com.hoveritu.web.ApplicationConversionServiceFactoryBean;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
+    declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<HovercraftState, String> ApplicationConversionServiceFactoryBean.getHovercraftStateToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.hoveritu.domain.HovercraftState, java.lang.String>() {
+            public String convert(HovercraftState hovercraftState) {
+                return new StringBuilder().append(hovercraftState.getSpeed()).append(" ").append(hovercraftState.getBatteryLevel()).append(" ").append(hovercraftState.getPressure()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, HovercraftState> ApplicationConversionServiceFactoryBean.getIdToHovercraftStateConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.hoveritu.domain.HovercraftState>() {
+            public com.hoveritu.domain.HovercraftState convert(java.lang.Long id) {
+                return HovercraftState.findHovercraftState(id);
+            }
+        };
+    }
+    
+    public Converter<String, HovercraftState> ApplicationConversionServiceFactoryBean.getStringToHovercraftStateConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.hoveritu.domain.HovercraftState>() {
+            public com.hoveritu.domain.HovercraftState convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), HovercraftState.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
-        registry.addConverter(new HovercraftStateConverter());
+        registry.addConverter(getHovercraftStateToStringConverter());
+        registry.addConverter(getIdToHovercraftStateConverter());
+        registry.addConverter(getStringToHovercraftStateConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {
         super.afterPropertiesSet();
         installLabelConverters(getObject());
-    }
-    
-    static class com.hoveritu.web.ApplicationConversionServiceFactoryBean.HovercraftStateConverter implements Converter<HovercraftState, String> {
-        public String convert(HovercraftState hovercraftState) {
-            return new StringBuilder().append(hovercraftState.getSpeed()).append(" ").append(hovercraftState.getBatteryLevel()).append(" ").append(hovercraftState.getPressure()).toString();
-        }
-        
     }
     
 }

@@ -3,10 +3,11 @@ SEARDUINO_PATH = /opt/searduino
 PROG = Scheduler
 
 # Add your source files here
-SRC_C= controller.c list.c
+SRC_C=  list.c
 SRC_CXX= 
 MAIN_SRC = 
-ARDUINO = mega2560
+#ARDUINO = uno
+ARDUINO = stub
 SHLIB = scheduler.so
 
 LIB = libscheduler.a

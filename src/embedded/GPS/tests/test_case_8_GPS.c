@@ -1,78 +1,51 @@
-
 /**
  * \file 		test_case_8_GPS.c
- * \date 		23-04-2012
+ * \date 		20-04-2012
  * \version 	0.1 
- * \author 		Fangzhou Cao          
+ * \author 		Sebastian Hansson         
  * \attention 	Sections added/modified are as follow:
- * 		 none
- */
-
+ * 				- The test cases, test suites and the main funtion were added. */
 
 #include <check.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include "gps.h"
-
-#define LINEMA 300
+#include <math.h>
 
 /**
- *ID:8
- *Purpose: to test get_time(char*) and get_position(char*).
- *Preparation: Get fake GPS data from GPS simulator.
- *Action: pass the fake GPS data to those two functions and check the return values.
- *Expected outcome: time != NULL, position != NULL.
+ * Purpose: To compare the first 6 letters of two string and see if they are the same. 
+ * Preparation: 
+ *	 Two strings is prepared to be used with check_command.
+ * Expected outcome: 0 should be returned.
+ */
+  int check_command(char *, char *);
+
+  char string[] = "hejsan";
+  char string2[] = "hejsan";
+  unsigned char result;
+
+START_TEST(test_case_8) {
+  /* fail criteria, test check_command with the strings provided*/
+
+    fail_if(check_command(string, string2) != 0);
   
-**/
-
-
-
-
-START_TEST(GPS_test_1) {
-
-char* linema;
-char* time;
-struct position* position;
-
-linema  = malloc(LINEMA*sizeof(char));
-linema = read_rmc_data(); 
-
-
-time = get_time(linema);
-printf("TIME: %s\n", time);
-
-position = get_position(linema);
-printf("POSITION: %f, %f, %c, %c\n", position->longitude, position->latitude, position->ns, position->ew);
-        
-fail_if(time == NULL,"time is null");
-fail_if(position == NULL," position is null");
-
-
-free(time);
-free(position);      
-
-
-
 }END_TEST
 
-
-Suite * new_suite(void) { 
-
-   Suite *suite = suite_create("GPS_test_suite");	 
-   TCase *tcase = tcase_create("GPS_test_case_8"); 
-   tcase_add_test(tcase, GPS_test_1); 
-   suite_add_tcase(suite,tcase); 
-   return suite; 
+/*
+ Suite * new_suite(void) {
+   Suite *p = suite_create("New Suite");
+   TCase *tc_p = tcase_create("New Test check_command_test");
+   tcase_add_test(tc_p, check_command_test);
+   suite_add_tcase(p,tc_p);
+   return p; 
  } 
 
-
- int main(void) { 
-
+int main(void) { 
    int number_failed; 
-   Suite *suite = new_suite(); 
-   SRunner *suiter = srunner_create(suite); 
-   srunner_run_all(suiter,CK_NORMAL); 
-   number_failed = srunner_ntests_failed(suiter); 
-   srunner_free(suiter); 
-   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE; 
- }  
+   Suite *p = new_suite();
+   SRunner *sr_p = srunner_create(p);
+   srunner_run_all(sr_p,CK_NORMAL);
+   number_failed = srunner_ntests_failed(sr_p);
+   srunner_free(sr_p);
+   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+} 
+*/
