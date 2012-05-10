@@ -22,7 +22,7 @@ double get_distance_km(struct position p1, struct position p2) {
    double a = acos(sin(degrees_to_radians(p1.latitude))*sin(degrees_to_radians(p2.latitude)); 
    double b = cos(degrees_to_radians(p1.latitude))*cos(degrees_to_radians(p2.latitude));
    double c = cos(degrees_to_radians(p2.longitude-p1.longitude));
-   return (a+b*c)*RADIUS_KM;
+   return ((a+b)*c)*RADIUS_KM;
 } 
 
  /*  
@@ -33,7 +33,7 @@ double get_distance_mi(struct position p1, struct position p2) {
    double a = acos(sin(degrees_to_radians(p1.latitude))*sin(degrees_to_radians(p2.latitude)); 
    double b = cos(degrees_to_radians(p1.latitude))*cos(degrees_to_radians(p2.latitude));
    double c = cos(degrees_to_radians(p2.longitude-p1.longitude));
-   return (a+b*c)*RADIUS_MI; 
+   return ((a+b)*c)*RADIUS_MI; 
 }
 
 

@@ -90,30 +90,17 @@ char *read_rmc_data(){
 /**
  * For documentation refer to header file gps.h
 */
-char *retrive_data(char* linema, int data_position){
-  char *value = calloc(1,20*sizeof(char));
+char *retrive_data(char *linema, int data_position){
+  char *value = calloc(20,sizeof(char));
   if (value != NULL) {
-    int cont = 0;
-    int indices[13];
-    int i;
-    //int *indices = get_indices(linema);
-    for (i=0;i<LINEMA;i++){
-      if (linema[i]==','){    // check for the position of the  "," separator
-	indices[cont]=i;
-	cont++;
-      }
-      if (linema[i]=='*'){    // ... and the "*"
-	indices[12]=i;
-	cont++;
-      }
-    }
+    int *indices = get_indices(linema);
     int li = 0;
     int j;
     for (j=indices[data_position];j<(indices[data_position+1]-1);j++){
       value[li] = linema[j+1]; 
       li++;
     }
-    //free(indices);
+    free(indices);
     free(linema);
     return value;
   }
@@ -146,10 +133,10 @@ char *retrive_data(char* linema, int data_position){
 of commas in the gps char array.
 */
 int *get_indices(char gpsData[]) {
-  int *indices = calloc(14, sizeof(int));
+  int *indices = calloc(15, sizeof(int));
   if (indices != NULL) {
     int i;
-    int j = 0;
+    unsigned char j = 0;
     for (i = 0; i < LINEMA; i++) {
       if (gpsData[i] == ',') {
 	indices[j] = i;
