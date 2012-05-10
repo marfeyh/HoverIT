@@ -11,7 +11,7 @@ ARDUINO = stub
 SHLIB = brake_pro.so
 
 LIB = libpropulsion.a
-LIB_H = propulsion.h pin.h propulsion_api.h brake_propulsion.h hover_speed_stub.c
+LIB_H = propulsion.h pin.h propulsion_api.h brake_propulsion.h 
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)

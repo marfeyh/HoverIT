@@ -83,7 +83,7 @@ int stop_propulsion_fan(){
 int brake_hovercraft(){
 stop_propulsion_fan();
 delay(1500);
-//reverse_prop_motor();
+reverse_prop_motor();
   
   return 0;
 }

@@ -6,14 +6,12 @@
 #include <pin.h>
 #include <searduino.h>
 
-
 /*!
- * @brief: get hovercraft speed. If the speed is less than
- * 10, then the propulsion fan is stopped.
+ * @brief: reverse rotation 
  */
-int brake_pro(void){
+int reverse_prop_motor(){
    int hover_speed = 0;
-   digitalWrite(RELAYPIN,LOW);
+   digitalWrite(RELAYPIN,HIGH);
    set_propulsion_fan(MAXSPEED);
   for(;;){
     hover_speed = get_hover_speed();
@@ -21,7 +19,7 @@ int brake_pro(void){
       stop_propulsion_fan();
       break;
     }
-   delay(1000);
+  // delay(1000);
    }
    return 0;
 }
@@ -32,6 +30,6 @@ int initialize_relay(){
 #endif
    /* sets PIN as output pin */
    pinMode(RELAYPIN, OUTPUT);
-   digitalWrite(RELAYPIN, HIGH);
+  // digitalWrite(RELAYPIN, HIGH);
    return 0;
 }

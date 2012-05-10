@@ -180,9 +180,9 @@ START_TEST(test_maximum_speed) {
 
  /* PROPULSION UNIT TESTS */
 START_TEST(test_brake_hovercraft){
+  initialise_propulsion();
   initialize_relay();
-  reverse_prop_motor();
-  fail_unless(digitalRead(RELAYPIN) == LOW);
+  fail_unless(reverse_prop_motor() == 0);
 }END_TEST
 
 
