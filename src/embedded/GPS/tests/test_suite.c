@@ -1,4 +1,3 @@
-
 /**
  * \file 		test_suite.c
  * \date 		09-05-2012
@@ -7,7 +6,18 @@
  * \attention 	Sections added/modified are as follow:
  * 		        none
  */
+/**
+ * \file 		test_suite.c
+ * \date 		10-05-2012
+ * \version 	0.2 
+ * \author 		Gokul S. Evuri          
+ * \attention 	Sections added/modified are as follow:
+ * 		      define gaurd __testingGPS__  
+ */
 
+#ifndef __testingGPS__
+#define __testingGPS__
+#endif
 
 #include <stdlib.h>
 #include <check.h>
