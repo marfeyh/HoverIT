@@ -3,15 +3,15 @@ SEARDUINO_PATH = /opt/searduino
 PROG = Scheduler
 
 # Add your source files here
-SRC_C=  list.c
+SRC_C=  list.c controller.c
 SRC_CXX= 
 MAIN_SRC = 
 #ARDUINO = uno
-ARDUINO = stub
+ARDUINO = mega2560
 SHLIB = scheduler.so
 
 LIB = libscheduler.a
-LIB_H = job.h jobpriority.h jobtype.h list.h Theta-API.h
+LIB_H = Theta-API.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
