@@ -154,4 +154,6 @@ struct position *get_position();
  */
 char* retrive_data(char* data,int position);
 
+int *get_indices(char *gpsData);
+
 #endif
