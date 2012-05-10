@@ -21,7 +21,7 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
  *  @details   This module is used to operate on basic GPS data.
  *  @details   It provides a data returning function which reads byte data from a serial port.
  *  @author    Gokul S. Evuri
- *  @author    Johan
+ *  @author    Johan Wikström Schützer
  *  @version   0.3
  *  @date      2012-04-10
  *  @pre       It is adviced to connect the GPS device to the embedded system.
@@ -50,9 +50,13 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
 */
 #define WAITING_LOOP_VALUE 56
 
-/**
- * For documentation refer to header file gps.h
-*/
+/*!
+ * @brief A function to read data from a serial connection to return a pointer to that, if incomming data is a valid $GPRMC tagged NMEA data.
+ * @details The functions tries to get data from serial connection for WAITING_LOOP_VALUE times, if no data received a null will be returnes
+ * @warning Serial read baud rate should match the GPS device connected to the avr.
+ * @warning Function should be used carefully, in other case this might lead to a memory leakage
+ * @return character pointer
+ */
 char *read_rmc_data(){  
   char *linema  = malloc(LINEMA*sizeof(char));
   if (linema != NULL) {
@@ -64,7 +68,7 @@ char *read_rmc_data(){
 #ifdef __testingGPS__
       buffer = serial_read();
 #else 
-      buffer = Serial.read();
+      buffer = Serial.read():
 #endif
       if (buffer != -1){
 	if(buffer == 13 || buffer == '\n'){ 
@@ -87,9 +91,15 @@ char *read_rmc_data(){
 }/*end read_data(Char *array)*/
   
   
-/**
- * For documentation refer to header file gps.h
-*/
+/*!
+ * @brief A function taking two arguments of data and position and returning a character pointer to the data specified.
+ * @details int value and data {0,UTC_Time},{2,Latitude},{3,Orientiation_N/S},{4,longitude},{5,Orientation_E/W}
+ * @param data   the char pointer to a return value from 'read_rmc_data'
+ * @param position   a integer value to specify s position in a array
+ * @see read_rmc_data()
+ * @warning Function should be used carefully, in other case this might lead to a memory leakage
+ * @return struct position
+ */
 char *retrive_data(char *linema, int data_position){
   char *value = calloc(20,sizeof(char));
   if (value != NULL) {

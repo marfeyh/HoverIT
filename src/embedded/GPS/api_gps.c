@@ -72,25 +72,39 @@ int is_GPGSA(char gpsData[]) {
 }
   
 
-/**
- * For documentation refer to header file gps.h
-*/
+/*!
+ * @brief A function taking a argument of data and returning a character pointer to the time of UTC when the data is read.
+ * @param data   the char pointer to a return value from 'read_rmc_data'
+ * @see retrive_data()
+ * @see read_rmc_data()
+ * @warning Function should be used carefully, in other case this might lead to a memory leakage
+ * @return character pointer
+ */
 char *get_time(char *data){
 
   return retrive_data(data, 0);
 }
 
-/**
- * For documentation refer to header file gps.h
-*/
+/*!
+ * @brief A function taking a argument of data and returning a struct position.
+ * @see retrive_data()
+ * @see read_rmc_data()
+ * @warning Function should be used carefully, in other case this might lead to a memory leakage
+ * @return struct position
+ */
 struct position *get_position(){
   char *data = read_rmc_data(); 
   return get_positionA(data);
 }
 
-/**
- * For documentation refer to header file gps.h
-*/
+/*!
+ * @brief A function taking a argument of data and returning a struct position.
+ * @param data   the char pointer to a return value from 'read_rmc_data'
+ * @see retrive_data()
+ * @see read_rmc_data()
+ * @warning Function should be used carefully, in other case this might lead to a memory leakage
+ * @return struct position
+ */
 struct position *get_positionA(char *data){
   struct position *pos =(struct position *) calloc(1,sizeof(struct position));
   if (pos != NULL) {
