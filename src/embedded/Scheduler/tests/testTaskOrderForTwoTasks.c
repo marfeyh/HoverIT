@@ -63,7 +63,7 @@ START_TEST (testTaskOrderForTwoTasks){
 		job2.type=DEMO;
 		addJob(job2,taskList);
 
-		 printList(taskList);
+		//printList(taskList);
 
 		fail_if(taskList->head->value.prio < taskList->head->next->value.prio,"Wrong priorities");
 
