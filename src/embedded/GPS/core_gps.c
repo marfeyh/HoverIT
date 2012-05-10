@@ -64,7 +64,7 @@ char *read_rmc_data(){
 #ifdef __testingGPS__
       buffer = serial_read();
 #else 
-      buffer = Serial.read():
+      buffer = Serial.read();
 #endif
       if (buffer != -1){
 	if(buffer == 13 || buffer == '\n'){ 
