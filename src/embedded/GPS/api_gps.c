@@ -1,15 +1,15 @@
 /* $Id: api_gps.c WP21 20120410 $ */
 /*! 
- *  \brief     A module for GPS api functions.
- *  \details   This module has all the functions needed to retrive data from a gps device(Model: Ref Doc GPS DOCUMENTATION).
- *  \author    Johan
- *  \author    Gokul S. Evuri
- *  \version   0.3
- *  \date      2012-04-10
- *  \pre       It is adviced to connect the GPS device to the embedded system.
- *  \bug       Do not have any known bugs.
- *  \warning   Improper use of the the function might cause memory leaks in the system.
- *  \copyright GNU Public License.
+ *  @brief     A module for GPS api functions.
+ *  @details   This module has all the functions needed to retrive data from a gps device(Model: Ref Doc GPS DOCUMENTATION).
+ *  @author    Johan
+ *  @author    Gokul S. Evuri
+ *  @version   0.3
+ *  @date      2012-04-10
+ *  @pre       It is adviced to connect the GPS device to the embedded system.
+ *  @bug       Do not have any known bugs.
+ *  @warning   Improper use of the the function might cause memory leaks in the system.
+ *  @copyright GNU Public License.
  */
 
 #include <stdlib.h>

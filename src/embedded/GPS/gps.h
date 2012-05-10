@@ -1,13 +1,13 @@
 /* $Id: gps.h WP21 20120410 $ */
 /*! 
- *  \brief     A common header fie for GPS modules.
- *  \details   This module contains forward declarations of standard functions, identifiers, variables of GPS modules.
- *  \author    Johan
- *  \author    Gokul S. Evuri
- *  \version   0.3
- *  \date      2012-04-10
- *  \bug       Do not have any known bugs.
- *  \copyright GNU Public License.
+ *  @brief     A common header fie for GPS modules.
+ *  @details   This module contains forward declarations of standard functions, identifiers, variables of GPS modules.
+ *  @author    Johan
+ *  @author    Gokul S. Evuri
+ *  @version   0.3
+ *  @date      2012-04-10
+ *  @bug       Do not have any known bugs.
+ *  @copyright GNU Public License.
  */
 
 /**
@@ -18,7 +18,7 @@
  **/
 
 /*!
-  \def __posi_gps
+  @def __posi_gps
 */
 #if !defined __posi_gps
 #define __posi_gps

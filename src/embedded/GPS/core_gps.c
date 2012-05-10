@@ -1,16 +1,16 @@
 /* $Id: core_gps.c WP21 20120410 $ */
 /*! 
- *  \brief     A module for GPS core functions.
- *  \details   This module is used to operate on basic GPS data.
- *  \details   It provides a data returning function which reads byte data from a serial port.
- *  \author    Gokul S. Evuri
- *  \author    Johan
- *  \version   0.3
- *  \date      2012-04-10
- *  \pre       It is adviced to connect the GPS device to the embedded system.
- *  \bug       Do not have any known bugs.
- *  \warning   Improper use of the the function might cause memory leaks in the system.
- *  \copyright GNU Public License.
+ *  @brief     A module for GPS core functions.
+ *  @details   This module is used to operate on basic GPS data.
+ *  @details   It provides a data returning function which reads byte data from a serial port.
+ *  @author    Gokul S. Evuri
+ *  @author    Johan
+ *  @version   0.3
+ *  @date      2012-04-10
+ *  @pre       It is adviced to connect the GPS device to the embedded system.
+ *  @bug       Do not have any known bugs.
+ *  @warning   Improper use of the the function might cause memory leaks in the system.
+ *  @copyright GNU Public License.
  */
 
 #include <stdio.h>
@@ -24,12 +24,12 @@
 #endif
 
 /*!
-  \def LINEMA 300
+  @def LINEMA 300
 */
 #define LINEMA 300
 
 /*!
-  \def WAITING_LOOP_VALUE 56
+  @def WAITING_LOOP_VALUE 56
 */
 #define WAITING_LOOP_VALUE 56
 
