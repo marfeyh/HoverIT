@@ -3,8 +3,8 @@
  * \date 		09-05-2012
  * \version 	0.1 
  * \author 		Fangzhou Cao          
- * \attention 	Sections added/modified are as follow:
- * 		        none
+ * \attention 	write the test suite to collect GPS test cases
+ * 		        
  */
 /**
  * \file 		test_suite.c
