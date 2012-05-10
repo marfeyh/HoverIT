@@ -26,7 +26,7 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*! @struct position
- *  @brief This structure represents a global position using latitude, latitude and orientation towards 'both the poles / equater'.
+ *  @brief This structure represents a global position using latitude, latitude and orientation towards 'both the poles / equater'. This is a copy of the struct position in the gps.h header file, it's here simply for compilation purposes
  *  @var position::longitude 
  *  Member 'longitude' contains longitude value of the position
  *  @var foreignstruct::latitude 
