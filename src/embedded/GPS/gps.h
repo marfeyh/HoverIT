@@ -19,7 +19,7 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
 /*! 
  *  @brief     A common header fie for GPS modules.
  *  @details   This module contains forward declarations of standard functions, identifiers, variables of GPS modules.
- *  @author    Johan
+ *  @author    Johan Wikström Schützer
  *  @author    Gokul S. Evuri
  *  @version   0.3
  *  @date      2012-04-10

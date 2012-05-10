@@ -19,7 +19,7 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
 /*! 
  *  @brief     A module for GPS api functions.
  *  @details   This module has all the functions needed to retrive data from a gps device(Model: Ref Doc GPS DOCUMENTATION).
- *  @author    Johan
+ *  @author    Johan Wikström Schützer
  *  @author    Gokul S. Evuri
  *  @version   0.3
  *  @date      2012-04-10
