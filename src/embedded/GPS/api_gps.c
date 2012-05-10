@@ -1,3 +1,20 @@
+/*! 
+This file is part of Hoveritu.
+
+Hoveritu is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Hoveritu is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /* $Id: api_gps.c WP21 20120410 $ */
 /*! 
  *  @brief     A module for GPS api functions.
@@ -18,34 +35,38 @@
 
 #include "gps.h"
 
-/* 
- * Author: Johan 
- * returns 0 if the given data starts with "$GPRMC", 1 if not 
- */
+/*!
+@brief Checks if the given gps raw data starts with "$GPRMC"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPRMC(char gpsData[]) {
   return check_command(gpsData, "$GPRMC");
 }
 
-/* 
- * Author: Johan
- * returns 0 if the given data starts with "$GPGGA", 1 if not 
- */
+/*!
+@brief Checks if the given gps raw data starts with "$GPGGA"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPGGA(char gpsData[]) {
   return check_command(gpsData, "$GPGGA");
 }
 
-/* 
- * Author: Johan 
- * returns 0 if the given data starts with "$GPGSV", 1 if not 
- */
+/*!
+@brief Checks if the given gps raw data starts with "$GPGSV"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPGSV(char gpsData[]) {
   return check_command(gpsData, "$GPGSV");
 }
 
-/* 
- * Author: Johan
- * returns 0 if the given data starts with "$GPGSA", 1 if not 
- */
+/*!
+@brief Checks if the given gps raw data starts with "$GPGSA"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPGSA(char gpsData[]) {
   return check_command(gpsData, "$GPGSA");
 }

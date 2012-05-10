@@ -1,3 +1,20 @@
+/*! 
+This file is part of Hoveritu.
+
+Hoveritu is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Hoveritu is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /* $Id: core_gps.c WP21 20120410 $ */
 /*! 
  *  @brief     A module for GPS core functions.
@@ -79,6 +96,7 @@ char *retrive_data(char* linema, int data_position){
     int cont = 0;
     int indices[13];
     int i;
+    //int *indices = get_indices(linema);
     for (i=0;i<LINEMA;i++){
       if (linema[i]==','){    // check for the position of the  "," separator
 	indices[cont]=i;
@@ -95,6 +113,7 @@ char *retrive_data(char* linema, int data_position){
       value[li] = linema[j+1]; 
       li++;
     }
+    //free(indices);
     free(linema);
     return value;
   }
@@ -103,12 +122,12 @@ char *retrive_data(char* linema, int data_position){
 }
 
 
-/* 
- * Author: Johan
- * function used by the others to avoid duplicated code.
- * Iterates through both arrays and checks if the first 6 characters
- * are the same. Returns 0 if they are the same, 1 if not.
- */ 
+/*!
+@brief This function is used by the others to avoid duplicated code. Iterates through both arrays and checks if the first 6 characters are the same.
+@param [in] gpsData The raw gps data character array
+@param [in] gpr The gps command to be checked (GPRMC for example)
+@return 0 if they are the same, 1 if not.
+*/ 
  int check_command(char gpsData[], char gpr[]) {  
    int i; 
    for (i = 0; i < 6; i++) { 
@@ -120,12 +139,12 @@ char *retrive_data(char* linema, int data_position){
  } 
 
 
-/* 
- * Author: Johan 
- * returns a pointer to an array of 13 integers, containing the indices
- * of commas in the gps char array. 
- * DONT FORGET TO FREE THE VARIABLE IN WHICH THE RESULT IS STORED!
- */
+/*!
+@brief Gets the indices of commas and the asterisk in the gps char array. DONT FORGET TO FREE THE VARIABLE IN WHICH THE RESULT IS STORED!
+@param [in] gpsData The raw gps data char array
+@return A pointer to an array of 14 integers, containing the indices
+of commas in the gps char array.
+*/
 int *get_indices(char gpsData[]) {
   int *indices = calloc(14, sizeof(int));
   if (indices != NULL) {
@@ -134,6 +153,10 @@ int *get_indices(char gpsData[]) {
     for (i = 0; i < LINEMA; i++) {
       if (gpsData[i] == ',') {
 	indices[j] = i;
+	j++;
+      }
+      if (gpsData[i]=='*') {
+	indices[j]=i;
 	j++;
       }
     }

@@ -1,3 +1,20 @@
+/*! 
+This file is part of Hoveritu.
+
+Hoveritu is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Hoveritu is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /* $Id: gps.h WP21 20120410 $ */
 /*! 
  *  @brief     A common header fie for GPS modules.
@@ -49,20 +66,41 @@ struct position {
   /*@}*/
 };
 
+/*!
+@brief This function is used by the others to avoid duplicated code. Iterates through both arrays and checks if the first 6 characters are the same.
+@param [in] gpsData The raw gps data character array
+@param [in] gpr The gps command to be checked (GPRMC for example)
+@return 0 if they are the same, 1 if not.
+*/
 int check_command(char[],char[]);
 
-/* returns 0 if the given data starts with "$GPRMC", 1 if not */
+/*!
+@brief Checks if the given gps raw data starts with "$GPRMC"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPRMC(char[]);
 
-/* returns 0 if the given data starts with "$GPGGA", 1 if not */
+/*!
+@brief Checks if the given gps raw data starts with "$GPGGA"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPGGA(char[]);
 
-/* returns 0 if the given data starts with "$GPGSV", 1 if not */
+/*!
+@brief Checks if the given gps raw data starts with "$GPGSV"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPGSV(char[]);
 
-/* returns 0 if the given data starts with "$GPGSA", 1 if not */
+/*!
+@brief Checks if the given gps raw data starts with "$GPGSA"
+@param [in] gpsData The raw gps data char array
+@return 0 if true, 1 if false 
+*/
 int is_GPGSA(char[]);
-
 
 /*!
  * @brief A function to read data from a serial connection to return a pointer to that, if incomming data is a valid $GPRMC tagged NMEA data.
