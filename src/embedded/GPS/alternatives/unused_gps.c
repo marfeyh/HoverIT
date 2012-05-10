@@ -49,7 +49,7 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
  * @return double
  */
 double get_distance_km(struct position *p1, struct position *p2) {
-   double a = acos(sin(degrees_to_radians(p1->latitude))*sin(degrees_to_radians(p2->latitude)); 
+  double a = acos(sin(degrees_to_radians(p1->latitude))*sin(degrees_to_radians(p2->latitude))); 
    double b = cos(degrees_to_radians(p1->latitude))*cos(degrees_to_radians(p2->latitude));
    double c = cos(degrees_to_radians(p2->longitude-p1->longitude));
    return ((a+b)*c)*RADIUS_KM;
@@ -64,7 +64,7 @@ double get_distance_km(struct position *p1, struct position *p2) {
  * @return double
  */
 double get_distance_mi(struct position *p1, struct position *p2) {
-   double a = acos(sin(degrees_to_radians(p1->latitude))*sin(degrees_to_radians(p2->latitude)); 
+  double a = acos(sin(degrees_to_radians(p1->latitude))*sin(degrees_to_radians(p2->latitude))); 
    double b = cos(degrees_to_radians(p1->latitude))*cos(degrees_to_radians(p2->latitude));
    double c = cos(degrees_to_radians(p2->longitude-p1->longitude));
    return ((a+b)*c)*RADIUS_MI; 
@@ -72,6 +72,7 @@ double get_distance_mi(struct position *p1, struct position *p2) {
 
 /*!
  * @brief Parses decimal degrees to radians
+ * @param [in] d the degree to convert to radian
  * @return double
  */
 double degrees_to_radians(double d) { 
