@@ -25,6 +25,32 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
  *  @copyright GNU Public License.
  */
 
+/*! @struct position
+ *  @brief This structure represents a global position using latitude, latitude and orientation towards 'both the poles / equater'.
+ *  @var position::longitude 
+ *  Member 'longitude' contains longitude value of the position
+ *  @var foreignstruct::latitude 
+ *  Member 'latitude' contains latitude value of the position
+ *  @var foreignstruct::ns 
+ *  Member 'ns' contains orientiation value of the position
+ *  @var foreignstruct::ew 
+ *  Member 'ew' contains orientiation value of the position
+ */
+struct position {
+  /*@{*/
+  float longitude; /**< the  longitude value */
+  float latitude; /**< the latitude value */
+  /*@}*/ 
+  
+  /**
+   * @name orientation
+   */
+  /*@{*/
+  char ns;
+  char ew;
+  /*@}*/
+};
+
 /*!
  * @brief Calculates the distance between the two given points in kilometers
  * @param [in] p1 pointer to the first position of type struct position
@@ -33,7 +59,7 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
  * @warning The result might be inaccurate (faulty by up to ~50 metres)
  * @return double
  */
-double get_distance_km(struct position p1, struct position p2);
+double get_distance_km(struct position *p1, struct position *p2);
 
 /*!
  * @brief Calculates the distance between the two given points in miles
@@ -43,11 +69,11 @@ double get_distance_km(struct position p1, struct position p2);
  * @warning The result might be inaccurate (faulty by up to ~50 metres)
  * @return double
  */
-double get_distance_mi(struct position p1, struct position p2);
+double get_distance_mi(struct position *p1, struct position *p2);
 
 /*!
  * @brief Parses decimal degrees to radians
  * @param [in] d the degree to convert to radian
  * @return double
  */
-double d2r(double);
+double degrees_to_radians(double d);
