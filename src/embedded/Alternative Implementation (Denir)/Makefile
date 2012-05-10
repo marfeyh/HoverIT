@@ -1,11 +1,11 @@
-TEST_DIR=../tests/
+TEST_DIR=./tests/
 SEARDUINO_PATH = /opt/searduino
 PROG = percentage
 # Add your source files here
 SRC_C= percentage.c
 SRC_CXX=
 MAIN_SRC = main.c
-ARDUINO = uno
+ARDUINO = stub
 SHLIB = percentage.so
 
 LIB = libpercentage.a

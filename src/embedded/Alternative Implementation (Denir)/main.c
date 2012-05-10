@@ -1,39 +1,42 @@
-/*
- * @ Module name  :main.c
- * @ Description  :
- * @ Author names :Denir Leric
- * @ Release      :04 May 2012
- * @ Version      :1
- * @ Refrences    :Arduino.cc, sandklef.com
- */
+/*!
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
-/* EXTRA NOTES: 
- * This is not anything finished. This is just an alternative implementation based on what
- * Rashid told us (Denir, Bruce and Nahid).
- *
- * code is based on that:
- *
- * 0 % = 843 in analogRead
- * 100 % = 1023 in analogRead
- *
- * aswell as that we will calculate battery level for three batteries and return
- * the value of them to the scheduler and they can send it to the andriod UI to display it
- * or whatever.
- */
+This program is distodributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public
+License along with this program. If not, see
+<http://www.gnu.org/licenses/gpl-3.0.html>.
+*/
+
+/*!
+@file main.c
+@details This module is the main 
+@authors Denir
+@version 0.9
+@note Not yet finishied
+@todo test it and integrate it
+*/
+
+
 
 #include <Arduino.h>
 #include <searduino.h>
 #include "percentage.h"
 
-/*
- * This main function simulates the scheduler.
- * The scheduler calls getPercentage with an argument that is 1, 2 or 3.
- * Based on what argument they call they will get back the percentage of the first, second or third battery.
- * All variables in here at the moment are test variables.
- */
+
+/*!
+@brief This function is the main that initiate everything
+@see http://hoveritu.com/ (optional - if any additonal info is required)
+@return 0 on success
+*/
 int main(void)
 {
-
 	init();
 	
 	int FIRST_BATTERY = 1;
@@ -43,9 +46,12 @@ int main(void)
 	
 	for(;;)
 	{
+		digitalWrite(13, HIGH);
 		testPercentage = getPercentage(FIRST_BATTERY);
 		testPercentage = getPercentage(SECOND_BATTERY);
 		testPercentage = getPercentage(THIRD_BATTERY);
+		delay(1000);
+		digitalWrite(13, LOW);
 	}
 	return 0;
 }
