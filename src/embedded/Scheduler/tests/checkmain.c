@@ -7,6 +7,8 @@
 
 #include <stdlib.h>
 #include <check.h>
+#include "../Theta-API.h"
+
 #include "testTaskOrderForTwoTasks.c"
 #include "testEmptyList.c"
 #include "testPriorityBasedSorting.c"
