@@ -1,12 +1,16 @@
-/*
-  AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
-  DATA :2012-04-05
-  DESCRIPTION: This file is the unit tests for the propulsion 
-               and propulsion API functions. 
-               check libraries are used as a tool for the unit tests. 
-               check their manual for details.
-  http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
+/*!
+ @file check_propulsion.c
+ @author Yohanes Kuma
+ @author Xinran He
+ @author Khatereh Khosravianarab
+ @author Ezeh Prince Anthony Anayo
+ @brief This file is the unit tests for the propulsion and propulsion
+  API functions.Check libraries are used as a tool for the unit tests. 
+  check their manual for details.
+ @date 2012-04-05
+ @reference http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
 */
+
 #include <check.h>
 #include <propulsion.h>
 #include <propulsion_api.h>
