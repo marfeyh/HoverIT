@@ -72,6 +72,7 @@ double get_distance_mi(struct position *p1, struct position *p2) {
 
 /*!
  * @brief Parses decimal degrees to radians
+ * @param [in] d the degree to convert to radian
  * @return double
  */
 double degrees_to_radians(double d) { 
