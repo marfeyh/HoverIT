@@ -1,3 +1,4 @@
+#add by fangzhou cao for testing
 TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
 PROG = GPS

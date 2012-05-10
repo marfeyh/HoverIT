@@ -23,7 +23,7 @@
 SRC_DIR=../
 SRC_C= 
 SRC_CXX=
-MAIN_SRC= test_suite_temp.c
+MAIN_SRC= test_suite.c
 
 SEARDUINO_PATH = /opt/searduino
 

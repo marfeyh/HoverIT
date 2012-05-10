@@ -40,7 +40,7 @@ START_TEST(test_case_5) {
     
         printf("linema: %s", linema);
     
-        fail_unless(linema[0] == '8' && linema[1] == 'G' && linema[2] == 'P' && linema[3] == 'R' && linema[4] == 'M' && linema[5] == 'C', "Wrong data format."); 
+        fail_unless(linema[0] == '$' && linema[1] == 'G' && linema[2] == 'P' && linema[3] == 'R' && linema[4] == 'M' && linema[5] == 'C', "Wrong data format."); 
         free(linema);
  
 
