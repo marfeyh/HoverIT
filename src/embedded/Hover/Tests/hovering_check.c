@@ -269,12 +269,13 @@ Suite * hovering_suite(void) {
 	TCase *tc_without_fixture = tcase_create("Core without fixture");
 	tcase_add_checked_fixture(tc_with_fixture, setup, teardown);
 
+
+        tcase_add_test(tc_without_fixture, test_negative);
+	tcase_add_test(tc_without_fixture, test_positive);
+	tcase_add_test(tc_without_fixture, test_equal);
+	tcase_add_test(tc_without_fixture, test_random);
 	tcase_add_test(tc_without_fixture, test_initialize);
 	tcase_add_test(tc_with_fixture, test_pin_program);  
-	tcase_add_test(tc_without_fixture, test_random);
-	tcase_add_test(tc_without_fixture, test_positive);
-	tcase_add_test(tc_without_fixture, test_negative);
-	tcase_add_test(tc_without_fixture, test_equal);
 
 	suite_add_tcase(s, tc_with_fixture);  
 	suite_add_tcase(s, tc_without_fixture);

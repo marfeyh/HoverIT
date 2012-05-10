@@ -31,12 +31,15 @@
 */
 
 #include <stdio.h>
-#include "pressure.h"
+#include <pressure.h>
 #include <hovering_motor.h> 
 #include "pressure_check.h"
+#include "hovering_control.h"
+#include "pin.h"
 #define PROPER_GAP 50
 #define MAX_GAP_RANGE 60
 #define MIN_GAP_RANGE 40
+#define AUTO_GAP 10
 
 
 /*!
@@ -57,14 +60,20 @@ int start_sensor_reading() {
 	 integer 0 if no adjustment needs to be made
 */
 int handle_pressure(int gap) {
+
+  printf("Gap is %d", gap);
   
   if (gap > MAX_GAP_RANGE) {
-    increase(10);   /* function from hovering_motor.c to increase fan speed */
+    hover_change(increase, USING_PIN, TEST_PIN, AUTO_GAP);   
+   /* function from hovering_motor.c to increase fan speed */
+    printf("Speed is increased");
     return 1;
   }
  
   if (gap < MIN_GAP_RANGE) {
-    decrease(10);   /* function from hovering_motor.c to decrease fan speed */
+    hover_change(decrease, USING_PIN, TEST_PIN, AUTO_GAP);
+    /* function from hovering_motor.c to decrease fan speed */
+    printf("Speed is decreased");
     return -1;
   }
   return 0;

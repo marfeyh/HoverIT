@@ -3,6 +3,6 @@
 
 void setup(void);
 void teardown(void);
-Suite* brake_pro_suite(void);
+Suite* propulsion_suite(void);
 
 #endif
