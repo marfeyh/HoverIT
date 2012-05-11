@@ -16,6 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  ****************************************************************************/
+ 
+/*! 
+ @file main.c
+ @headerfile propulsion.h
+ @headerfile propulsion_api.h
+ @headerfile brake_propulsion.h
+ @headerfile Arduino.h
+ @headerfile searduino.h
+ @brief This module is the main function for braḱing the hovercraft
+ @author Ezeh Prince Anthony Anayo
+ @author Xinran He
+ @date 2012- 05 - 10
+ @version 3.0
+ @refrence Arduino.cc
+ @refrence sandklef.com
+ @refrence hoveritu.com
+ @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @refrence Turnigy_Plush_and_Sentry_ESC user manual
+ @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
+ @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+*/
 
 #include <propulsion.h>
 #include <propulsion_api.h>
