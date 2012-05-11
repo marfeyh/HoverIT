@@ -47,4 +47,4 @@ int main(void) {
    srunner_free(sr_p);
    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 } 
-/*
+*/
