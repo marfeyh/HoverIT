@@ -22,7 +22,7 @@ all:
 	$(MAKE) prog -C Hovercraft
 
 check:
-#	$(MAKE) check -C Scheduler
+	$(MAKE) check -C Scheduler
 	$(MAKE) check -C Communication
 	$(MAKE) check -C Propulsion
 	$(MAKE) check -C Hover
@@ -31,7 +31,7 @@ check:
 #	$(MAKE) check -C Pressure
 
 gcovcheck:
-#	$(MAKE) gcovcheck -C Scheduler
+	$(MAKE) gcovcheck -C Scheduler
 	$(MAKE) gcovcheck -C Communication
 	$(MAKE) gcovcheck -C Propulsion
 	$(MAKE) gcovcheck -C Hover
@@ -41,7 +41,7 @@ gcovcheck:
 	gcovr -x --xml > coverage.xml
 
 memcheck:
-#	$(MAKE) memcheck -C Scheduler
+	$(MAKE) memcheck -C Scheduler
 	$(MAKE) memcheck -C Communication
 	$(MAKE) memcheck -C Propulsion
 	$(MAKE) memcheck -C Hover

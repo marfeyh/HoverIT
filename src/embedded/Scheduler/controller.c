@@ -96,7 +96,7 @@ void control() {
 //	  int speed = get_speed(g_speed_p);
 //	  check_pressure();
 		// Get gps data
-		// Get hovercraft speed
+		
 		// Get Battery level
 		// Get Sonar data
 		// Get Pressure

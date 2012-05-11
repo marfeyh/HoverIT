@@ -1,13 +1,27 @@
+/** 
+ *  \file			core_gps.c	
+ *	\details		This module is used to operate on basic GPS data.
+ *				        It provides a data returning function which reads byte data from a serial port.
+ *	\date			10-04-2012 
+ *	\version		0.1
+ *	\authors 		Gokul & Johan 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
-
+#ifdef __testingGPS__
 #include "./tests/GPS_Simulator/emulator_GPS.h"
+#endif
 #include "gps.h"
 
 #define LINEMA 300
 #define WAITING_LOOP_VALUE 56
 
-/* ADD COMMENT: GOKUL */  
+/** 
+ * \brief      Gets an instance of Job struct and adds it to the g_taskList.
+ * \param      job  The job that is to be added to the g_taskList.
+ * \attention  This function is replaced here from its original module,"main.c". 
+ */
 char *read_rmc_data(){  
   char *linema  = malloc(LINEMA*sizeof(char));
   if (linema != NULL) {
@@ -16,8 +30,11 @@ char *read_rmc_data(){
     int index = 0;
     int death_counter = 1;
     while(boolean==1 && death_counter<WAITING_LOOP_VALUE){ 
-      /*    buffer = Serial.read();*/
+#ifdef __testingGPS__
       buffer = serial_read(); /*TESTING*/
+#else 
+      buffer = Serial.read():
+#endif
       if (buffer != -1){
 	if(buffer == 13 || buffer == '\n'){ 
 	  index = 0;
@@ -40,7 +57,7 @@ char *read_rmc_data(){
   
   
   /* ADD COMMENT: GOKUL */
-char *retrive_data(char* linema, int k){
+char *retrive_data(char* linema, int data_position){
   char *value = calloc(1,20*sizeof(char));
   if (value != NULL) {
     int cont = 0;
@@ -58,7 +75,7 @@ char *retrive_data(char* linema, int k){
     }
     int li = 0;
     int j;
-    for (j=indices[k];j<(indices[k+1]-1);j++){
+    for (j=indices[data_position];j<(indices[data_position+1]-1);j++){
       value[li] = linema[j+1]; 
       li++;
     }

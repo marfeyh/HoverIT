@@ -11,6 +11,7 @@ import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.mock.web.MockServletConfig;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextLoader;
+import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.test.context.support.AbstractContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
@@ -107,5 +108,12 @@ public class MockWebApplicationContextLoader extends AbstractContextLoader {
         protected String getResourceSuffix() {
                 return "-context.xml";
         }
+
+		@Override
+		public ApplicationContext loadContext(MergedContextConfiguration arg0)
+				throws Exception {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 }

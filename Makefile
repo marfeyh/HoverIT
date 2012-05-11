@@ -5,6 +5,9 @@ all:
 embedded:
 	$(MAKE) all -C src/embedded
 
+embedded-upload:
+	$(MAKE) upload -C src/embedded/Hovercraft
+
 embedded-check:
 	$(MAKE) check -C src/embedded
 
