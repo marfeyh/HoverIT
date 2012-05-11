@@ -16,7 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  ****************************************************************************/
- 
+/*!
+ @file brake_propulsion.c
+ @headerfile brake_propulsion.h
+ @headerfile hover_speed_stub.h
+ @headerfile propulsion_api.h
+ @headerfile Arduino.h
+ @headerfile pin.h
+ @headerfile searduino.h
+ @brief This module contains the functions for the main reversal of the 
+  propulsion fan motor in order to brake the hovercraft
+ @author Ezeh Prince Anthony Anayo
+ @author Xinran He
+ @date 2012- 05 - 10
+ @version 3.0
+ @refrence Arduino.cc
+ @refrence sandklef.com
+ @refrence hoveritu.com
+ @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @refrence Turnigy_Plush_and_Sentry_ESC user manual
+ @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
+ @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+*/
  
 #include <brake_propulsion.h>
 #include <hover_speed_stub.h>
