@@ -17,6 +17,7 @@
  *
  ****************************************************************************/
 /*!
+
  @file brake_propulsion.c
  @headerfile brake_propulsion.h
  @headerfile hover_speed_stub.h
@@ -47,7 +48,8 @@
 #include <searduino.h>
 
 /*!
- * @brief: reverse rotation 
+ *@brief Function that reverses the direction of the rotation of 
+   the propulsion fan direction using relaypin 
  */
 int reverse_prop_motor(){
    int hover_speed = 0;
@@ -64,6 +66,9 @@ int reverse_prop_motor(){
    return 0;
 }
 
+/*!
+ *@brief Function that initializes the relaypin
+ */
 int initialize_relay(){
 #if !defined(GLOBAL_MAIN)
    init();
