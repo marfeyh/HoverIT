@@ -3,7 +3,7 @@
  * \date 		09-05-2012
  * \version 	0.1 
  * \author 		Fangzhou Cao          
- * \attention 	write the test suite to collect GPS test cases
+ * \attention 	write this test suite to collect GPS test cases
  * 		        
  */
 /**
