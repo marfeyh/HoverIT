@@ -6,7 +6,7 @@ PROG = Alarm
 SRC_C= alarm.c
 SRC_CXX= toneWrapper.cpp
 MAIN_SRC = main.c
-ARDUINO = due
+ARDUINO = stub
 SHLIB = 
 
 LIB = 

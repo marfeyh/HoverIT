@@ -39,9 +39,9 @@ unsigned char motor_status = 0;
 int initialise_propulsion()
 {
   /* initialises the searduino init */
-#if !defined(GLOBAL_MAIN)
-   init();
-#endif
+//#if !defined(GLOBAL_MAIN)
+//   init();
+//#endif
    /* sets PIN as output pin */
   pinMode(PIN, OUTPUT);
   /* sets motor to Initializing state */

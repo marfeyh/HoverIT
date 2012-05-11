@@ -14,4 +14,4 @@
 /* Define pin */
 
 #define USING_PIN 10
-#define TEST_PIN 9
+#define TEST_PIN 7
