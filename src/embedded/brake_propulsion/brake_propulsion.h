@@ -16,7 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  ****************************************************************************/
- 
+
+/*!
+ @file brake_propulsion.h
+ @brief This module is the headerfile for hovering_control.c
+ @author Ezeh Prince Anthony Anayo
+ @author Xinran He
+ @date 10 May 2012
+ @version 3.0
+ @reference Arduino.cc
+ @reference sandklef.com
+ @reference hoveritu.com
+ @reference dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @reference Turnigy_Plush_and_Sentry_ESC user manual
+ @reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
+ @reference for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+ */ 
  
 #ifndef BRAKE_PROPULSION_H
 #define BRAKE_PROPULSION_H
