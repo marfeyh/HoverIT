@@ -16,6 +16,8 @@
 
 #include <propulsion.h>
 #include <propulsion_api.h>
+#include <brake_propulsion.h>
+#include <Arduino.h>
 
 /*!
 @brief initialise propulsion fan
@@ -98,4 +100,15 @@ int get_propulsion_level(){
     return 20;
   }
   return -1;
+}
+
+/*!
+@brief stop propulsion fan speed by using brake
+ */
+int brake_hovercraft(){
+stop_propulsion_fan();
+delay(1500);
+reverse_prop_motor();
+  
+  return 0;
 }
