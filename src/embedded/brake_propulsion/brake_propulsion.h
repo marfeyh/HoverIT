@@ -36,7 +36,19 @@
 #ifndef BRAKE_PROPULSION_H
 #define BRAKE_PROPULSION_H
 
+/*!
+ @brief Function to reverse the hovercraft brake and automate the rotation of 
+  the propulsion fan via using digitalWrite
+ @param takes no parameter
+ @returns 0
+*/
 int reverse_prop_motor();
+
+/*!
+ @brief Function to initialize the relay pin as output
+ @param takes no parameter
+ @return 0
+*/
 int initialize_relay();
 
 #endif
