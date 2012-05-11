@@ -12,7 +12,7 @@
 #include <check.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "gps.h"
+#include "../gps.h"
 
 #define LINEMA 300
 
@@ -32,26 +32,24 @@ START_TEST(test_case_6) {
 
 char* linema;
 char* time;
-struct position* position;
+struct position* posi;
 
-linema  = malloc(LINEMA*sizeof(char));
+linema  = malloc(LINEMA*sizeof(char)); 
 linema = read_rmc_data(); 
-
 
 time = get_time(linema);
 printf("TIME: %s\n", time);
 
-position = get_position(linema);
-printf("POSITION: %f, %f, %c, %c\n", position->longitude, position->latitude, position->ns, position->ew);
+posi = get_position(linema);
+printf("POSITION: %f, %f, %c, %c\n", posi->longitude, posi->latitude, posi->ns, posi->ew);
         
 fail_if(time == NULL,"time is null");
-fail_if(position == NULL," position is null");
+fail_if(posi == NULL," position is null");
 
 
-free(time);
-free(position);      
-
-
+//free(time);
+//free(posi);      
+//free(linema);
 
 }END_TEST
 

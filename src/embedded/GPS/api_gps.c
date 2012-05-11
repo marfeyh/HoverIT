@@ -110,16 +110,16 @@ struct position *get_positionA(char *data){
   if (pos != NULL) {
     char *temp1 = retrive_data (data,4);
     pos->longitude = atof(temp1);
-    free(temp1);
+    //    free(temp1);
     temp1 = retrive_data (data,2);
     pos->latitude = atof(temp1);
-    free(temp1);
+    //    free(temp1);
     temp1 = retrive_data(data,3);
     pos->ns = *temp1;
-    free(temp1);
+    //    free(temp1);
     temp1 = retrive_data(data,5);
     pos->ew = *temp1;
-    free(temp1);
+    //    free(temp1);
     return pos;
   }
   return NULL;

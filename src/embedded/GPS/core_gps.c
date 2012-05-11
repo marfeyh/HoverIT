@@ -110,11 +110,11 @@ char *retrive_data(char *linema, int data_position){
       value[li] = linema[j+1]; 
       li++;
     }
-    free(indices);
-    free(linema);
+    //    free(indices);
+    //    free(linema);
     return value;
   }
-  free(linema);
+  //  free(linema);
   return NULL;
 }
 
