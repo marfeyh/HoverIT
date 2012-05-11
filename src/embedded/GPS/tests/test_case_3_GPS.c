@@ -73,10 +73,12 @@ Suite * dataTC_suite(void) {
   suite_add_tcase(test_suite,test_case);
   return test_suite;
 }
+ */
 
 /**
  * Main function to execute the test cases
  */
+
  /*
 int main(void) {
   int number_failed;
