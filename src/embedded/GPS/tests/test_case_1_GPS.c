@@ -10,7 +10,7 @@
 
 #include <check.h>
 #include <stdlib.h>
-#include "gps.h"
+#include "../gps.h"
 
 /**
  * Purpose: To check if a correct GPRMC data is recognized when it is passed to the function "is_GPRMC". 

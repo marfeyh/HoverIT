@@ -1,9 +1,9 @@
 /**
- * \file 		test_case_10_GPS.c
- * \date 		20-04-2012
- * \version 	0.1 
- * \author 		Sebastian Hansson         
- * \attention 	Sections added/modified are as follow:
+ * @file 		test_case_10_gps.c
+ * @date 		20-04-2012
+ * @version 	0.1 
+ * @author 		Sebastian Hansson         
+ * @attention 	Sections added/modified are as follow:
  * 				- The test cases, test suites and the main funtion were added. */
 
 #include <check.h>
@@ -20,16 +20,15 @@
 
 int check_command(char *, char *);
 
-  char string[] = "svejsan";
-  char string2[] = "hejsan";
+  char string5[] = "svejsan";
+  char string6[] = "hejsan";
   unsigned char result;
 
 START_TEST(test_case_10) {
   /* fail criteria, test check_command with the strings provided*/
-    fail_if(check_command(string, string2) != 1);
+    fail_if(check_command(string5, string6) != 1);
   
 }END_TEST
-
 /*
  Suite * new_suite(void) {
    Suite *p = suite_create("New Suite");
@@ -48,5 +47,4 @@ int main(void) {
    srunner_free(sr_p);
    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 } 
-
 */

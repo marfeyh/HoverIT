@@ -14,19 +14,19 @@
 /**
  * Purpose: To compare the first 6 letters of two string and see if they are the same. 
  * Preparation: 
- *	 Two strings is prepared to be used with check_command.
- * Expected outcome: 0 should be returned.
+ *	 Two strings that is not the same prepared to be used with check_command.
+ * Expected outcome: 1 should be returned.
  */
-  int check_command(char *, char *);
 
-  char string[] = "hejsan";
+int check_command(char *, char *);
+
+  char string[] = "svejsan";
   char string2[] = "hejsan";
   unsigned char result;
 
 START_TEST(test_case_8) {
   /* fail criteria, test check_command with the strings provided*/
-
-    fail_if(check_command(string, string2) != 0);
+    fail_if(check_command(string, string2) != 1);
   
 }END_TEST
 
@@ -48,4 +48,5 @@ int main(void) {
    srunner_free(sr_p);
    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 } 
+
 */
