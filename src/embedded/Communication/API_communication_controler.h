@@ -64,7 +64,7 @@ unsigned char hovercraft_speed(unsigned char message);
  @param unsigned char of the value to be sent to pc
  @return unsigned char containing value and message type
  */
-unsigned char hovercraft_pressure(unsigned char message);
+unsigned char hovercraft_pressure(unsigned int message);
 
 /*!
  @brief The function creates hovercraft battery level message.

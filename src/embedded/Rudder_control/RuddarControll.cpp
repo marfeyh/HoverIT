@@ -32,7 +32,6 @@
 #include <Arduino.h>
 #include <searduino.h>
 #include "RuddarControll.h"
-#include <serial_interface.h>
 
 //#define OFFSET_ONE 0 /**< Defining offset value for servo motor 1 */
 #define OFFSET_TWO 15 /**< Defining offset value for servo motor 2 */
@@ -54,7 +53,6 @@ RuddarControll::RuddarControll()
  */
 extern "C" void* RuddarControll_construct(void)
 {
-	debug_print_string("here");
   RuddarControll *rc = new RuddarControll();
   return (void*) rc;
 }

@@ -144,8 +144,10 @@ unsigned char hovercraft_speed(unsigned char message) {
  @param unsigned char of the value to be sent to pc
  @return unsigned char containing value and message type
  */
-unsigned char hovercraft_pressure(unsigned char message) {
-	debug_print_string("hovercraft_pressure called\n");
+unsigned char hovercraft_pressure(unsigned int message) {
+	debug_print2(message);
+	debug_print_string("pressure\n");
+//	debug_write(message);
 
 	// instead of return send_serial_binary should be called
 	return create_hovercraft_pressure(&message);

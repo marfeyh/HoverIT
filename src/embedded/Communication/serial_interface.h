@@ -51,6 +51,8 @@ void serial_setup (void);
  */
 void debug_print (unsigned char*);
 
+void debug_print2(unsigned int* data);
+
 /*!
  @brief A function to send data to serial for the use monitoring IN BINARY
  @param pointer to unsigned char of first char of the string to be sent

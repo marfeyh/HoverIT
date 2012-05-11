@@ -12,7 +12,7 @@
 #if STUB
    #define #include <time.h>
 #endif
-#include <pressure.h>
+#include <pressure_stub.h>
 
 /*!
 @brief Generates a fake random air pressure inside the hovercraft skirt

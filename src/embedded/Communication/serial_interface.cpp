@@ -72,6 +72,9 @@ void serial_setup(void) {
 void debug_print(unsigned char* data) {
 	MONITORING_PIN.print(*data);
 }
+void debug_print2(unsigned int* data) {
+	MONITORING_PIN.print(*data);
+}
 
 /*!
  @brief A function to send data to serial for the use monitoring IN BINARY
