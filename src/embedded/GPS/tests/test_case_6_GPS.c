@@ -33,8 +33,7 @@ START_TEST(test_case_6) {
 char* linema;
 char* time;
 struct position* posi;
-
-linema  = malloc(LINEMA*sizeof(char)); 
+ 
 linema = read_rmc_data(); 
 
 time = get_time(linema);
@@ -47,10 +46,12 @@ fail_if(time == NULL,"time is null");
 fail_if(posi == NULL," position is null");
 
 
-//free(time);
-//free(posi);      
-//free(linema);
-
+free(time);
+ time = NULL;
+free(posi);      
+ posi = NULL;
+free(linema);
+ linema = NULL;
 }END_TEST
 
 /*
