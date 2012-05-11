@@ -26,7 +26,7 @@ int check_command(char *, char *);
 
 START_TEST(test_case_11) {
   /* fail criteria, test check_command with the strings provided*/
-    fail_if(check_command(string7, string8) != 0);
+    fail_if(check_command(string7, string8) != 1);
   
 }END_TEST
 /*
