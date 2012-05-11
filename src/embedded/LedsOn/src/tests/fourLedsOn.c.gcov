@@ -1,0 +1,137 @@
+        -:    0:Source:../fourLedsOn.c
+        -:    0:Graph:fourLedsOn.gcno
+        -:    0:Data:fourLedsOn.gcda
+        -:    0:Runs:13
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * @ Module name:  fourLedsOn.c
+        -:    3: * @ Description:  Contains the functions that turns on four leds to show how much battery left
+        -:    4: * @ Author names :Nahid Vafaie , Jody Swartz
+        -:    5: * @ Release      :25 April 2012
+        -:    6: * @ Version      : 3
+        -:    7: * @ Refrences    : Arduino.cc, sandklef.com
+        -:    8: */
+        -:    9:
+        -:   10:#include <Arduino.h>
+        -:   11:#include<searduino.h>
+        -:   12:#include "fourLedsOn.h"
+        -:   13:
+        -:   14:int ledState = LOW;
+        -:   15:unsigned long previousTimer = 0;
+        -:   16:
+        -:   17:
+        -:   18:/*
+        -:   19: @brief The initial state of this funtion. In this state  
+        -:   20: pinsMode are set to OUTPUT and all the four ledping shoyuld
+        -:   21: be in HIGH state.
+        -:   22: @param takes no parameters
+        -:   23: @returns nothing
+        -:   24: */
+        -:   25:
+        -:   26:void init_leds(void)
+       12:   27:{
+        -:   28:
+       12:   29: pinMode(ledPin1, OUTPUT);
+       12:   30:  pinMode(ledPin2, OUTPUT);
+       12:   31:  pinMode(ledPin3, OUTPUT);
+       12:   32:  pinMode(ledPin4, OUTPUT);
+       12:   33:  digitalWrite(ledPin1,HIGH);
+       12:   34:  digitalWrite(ledPin2,HIGH);
+       12:   35:  digitalWrite(ledPin3,HIGH);
+       12:   36:  digitalWrite(ledPin4,HIGH);
+        -:   37:  
+        -:   38:
+       12:   39:}
+        -:   40:
+        -:   41:
+        -:   42:
+        -:   43:/*
+        -:   44: @brief This function is specifying limits of the values to
+        -:   45: make the leds on and off accordingly.
+        -:   46: @param The value which is the percentage of the battery life
+        -:   47: @returns nothing
+        -:   48: */
+        -:   49:
+        -:   50:void display_percentage(int value)
+        -:   51:
+       11:   52:{
+        -:   53:	
+       11:   54:	unsigned long currentTimer = millis();
+        -:   55:	
+        -:   56:	// percentage of the battery life is between 100 and 81, four leds are on
+       13:   57:	if(value <= 100 && value > 80)
+        -:   58:    {
+        2:   59:       digitalWrite(ledPin1,HIGH);
+        2:   60:       digitalWrite(ledPin2,HIGH);
+        2:   61:       digitalWrite(ledPin3,HIGH);
+        2:   62:       digitalWrite(ledPin4,HIGH);
+        -:   63:    }
+        -:   64:	
+        -:   65:	// percentage of the battery life is between 80 and 61, three leds are on
+       11:   66:  else if (value <= 80 && value > 60 )
+        -:   67:    {
+        2:   68:       digitalWrite(ledPin1,LOW);
+        2:   69:       digitalWrite(ledPin2,HIGH);
+        2:   70:       digitalWrite(ledPin3,HIGH);
+        2:   71:       digitalWrite(ledPin4,HIGH);
+        -:   72:    }
+        -:   73:	
+        -:   74:	// percentage of the battery life is between 60 and 41, two leds are on
+        9:   75:  else if (value <= 60 && value > 40 )
+        -:   76:    {
+        2:   77:      digitalWrite(ledPin1,LOW);
+        2:   78:       digitalWrite(ledPin2,LOW);
+        2:   79:       digitalWrite(ledPin3,HIGH);
+        2:   80:       digitalWrite(ledPin4,HIGH);
+        -:   81:    }
+        -:   82:	// percentage of the battery life is between 40 and 21, one led are on
+        7:   83:  else if (value <= 40 && value > 20 )
+        -:   84:  {
+        2:   85:      digitalWrite(ledPin1,LOW);
+        2:   86:	  digitalWrite(ledPin2,LOW);
+        2:   87:	  digitalWrite(ledPin3,LOW);
+        2:   88:	  digitalWrite(ledPin4,HIGH);
+        -:   89:	  
+        -:   90:  }
+        -:   91:	
+        -:   92:	// percentage of the battery life is between 20 and 1, four leds are blinking
+        5:   93:  else if (value <= 20 && value > 0)
+        -:   94:         {
+        2:   95:			 if(currentTimer - previousTimer > 500){
+    #####:   96:				 previousTimer = currentTimer ;
+    #####:   97:				 if (ledState == LOW)
+    #####:   98:					 ledState = HIGH;
+        -:   99:				 else 
+    #####:  100:					 ledState = LOW;
+        -:  101:				 
+    #####:  102:				 digitalWrite(ledPin1,ledState);
+    #####:  103:				 digitalWrite(ledPin2,ledState);
+    #####:  104:				 digitalWrite(ledPin3,ledState);
+    #####:  105:				 digitalWrite(ledPin4,ledState);
+        -:  106:
+        -:  107:			 }
+        -:  108:		 }
+        -:  109:	
+        -:  110:	// percentage of the battery life is 0 , all four leds are off
+        1:  111:	else if ( value == 0)
+        -:  112:	{
+        1:  113:		digitalWrite(ledPin1,LOW);
+        1:  114:		digitalWrite(ledPin2,LOW);
+        1:  115:		digitalWrite(ledPin3,LOW);
+        1:  116:		digitalWrite(ledPin4,LOW);
+        -:  117:	
+        -:  118:	}
+        -:  119:	
+       11:  120:}
+        -:  121:	
+        -:  122:/*
+        -:  123: @brief This function is calling disply_percentage that will be 
+        -:  124: the loop part in main file.
+        -:  125: */
+        -:  126:
+        -:  127:void run_leds(void)
+    #####:  128:{
+        -:  129:	int value;
+    #####:  130:	display_percentage(value);
+        -:  131:	
+    #####:  132:}
