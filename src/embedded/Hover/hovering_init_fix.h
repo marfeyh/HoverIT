@@ -40,7 +40,7 @@
 	
 	/* Defines */
 	#define HIGHEST_LEVEL 254
-	#define LOWEST_LEVEL 143
+	#define LOWEST_LEVEL 155
 	#define STOP_LEVEL 120
 
 	/* Function prototype */

@@ -44,8 +44,8 @@ void communication_serial_setup() {
  */
 void check_serial_input() {
 	unsigned char temp = connection_status();
-	debug_print(&temp);
-	stream_information("Amir");
+//	debug_print(&temp);
+//	stream_information("Amir");
 //	debug_write(&temp);
 	// result variable shows the available data on serial pin.
 	unsigned char result = 255;
@@ -55,14 +55,6 @@ void check_serial_input() {
 			// variable message_type shows the message received
 			unsigned char message_type = parse_binary(result);
 			if (message_type != 255) {
-				int (*func_ptr)(); // declaration of pointer to function
-				struct Job* job_ptr = (struct Job*) malloc(
-						sizeof(struct Job) * 1); // declaration of pointer to job struct
-				if (job_ptr == NULL) {
-					debug_print_string("Unable to get memory\n");
-					// we should call log_error in here
-					return;
-				} // if there was no memory to be allocated
 				switch (message_type) { // call the API functions based on message type
 				case FAN_FORWARD_SPEED:
 					/* message type is 0000 */
@@ -209,36 +201,50 @@ void send_serial_binary(unsigned char* binary) {
 }
 
 unsigned char ruder_direction_handler(unsigned char command) {
+	int (*func_ptr)(); // declaration of pointer to function
+	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
+	if (job_ptr == NULL) {
+		debug_print_string("Unable to get memory\n");
+		// we should call log_error in here
+		return 255;
+	} // if there was no memory to be allocated
 	unsigned char res_direction = get_direction(&command); // To get the direction
 	switch (res_direction) {
 	case STRAIGHT:
 		/* value is 0000 */
-		//						 control_rudder(STRAIGHT);
+//		func_ptr = control_rudder;
+//		job_ptr->task_p3 = func_ptr;
+//		job_ptr->arg1 = STRAIGHT;
+//		job_ptr->job_num = 2;
+//		job_ptr->prio = PRIO_HIGH;
+//		job_ptr->type = MOVEMENT;
+//		putJobInQueue(*job_ptr);
+		control_rudder(STRAIGHT);
 		debug_print_string("STRAIGHT\n");
 		break;
 	case HARD_LEFT:
 		/* value is 0001 */
-		//						 control_rudder(HARD_LEFT);
+		control_rudder(HARD_LEFT);
 		debug_print_string("HARD_LEFT\n");
 		break;
 	case HARD_RIGHT:
 		/* value is 0010 */
-		//						 control_rudder(HARD_RIGHT);
+		control_rudder(HARD_RIGHT);
 		debug_print_string("HARD_RIGHT\n");
 		break;
 	case SOFT_RIGHT:
 		/* value is 0011 */
-		//						 control_rudder(SOFT_RIGHT);
+		control_rudder(SOFT_RIGHT);
 		debug_print_string("SOFT_RIGHT\n");
 		break;
 	case SOFT_LEFT:
 		/* value is 0100 */
-		//						 control_rudder(SOFT_LEFT);
+		control_rudder(SOFT_LEFT);
 		debug_print_string("SOFT_LEFT\n");
 		break;
 	case BRAKE:
 		/* value is 0101 */
-		//						 control_rudder(BRAKE);
+		control_rudder(BRAKE);
 		debug_print_string("BRAKE\n");
 		break;
 	default:
@@ -249,31 +255,34 @@ unsigned char ruder_direction_handler(unsigned char command) {
 }
 
 unsigned char fan_hovering_speed_handler(unsigned char command) {
+	int (*func_ptr)(); // declaration of pointer to function
+	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
+	if (job_ptr == NULL) {
+		debug_print_string("Unable to get memory\n");
+		// we should call log_error in here
+		return 255;
+	} // if there was no memory to be allocated
 	if (increase_decrease(&command) == 1) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(&command); // check the last bits
 		switch (res_value) {
 		case INCREASING:
 			/* value was 00011000 */
-			/**
-			 func_ptr = increase_hover_auto;
-			 job_ptr->task_p2 = func_ptr;
-			 job_ptr->job_num = 1;
-			 job_ptr->prio = PRIO_HIGH;
-			 job_ptr->type = MOVEMENT;
-			 putJobInQueue(*job_ptr);
-			 */
+			func_ptr = increase_hover_auto;
+			job_ptr->task_p2 = func_ptr;
+			job_ptr->job_num = 1;
+			job_ptr->prio = PRIO_HIGH;
+			job_ptr->type = MOVEMENT;
+			putJobInQueue(*job_ptr);
 			debug_print_string("put Fan Hovering increasing \n");
 			break;
 		case DECREASING:
 			/* value was 00011001 */
-			/**
-			 func_ptr = decrease_hover_auto;
-			 job_ptr->task_p2 = func_ptr;
-			 job_ptr->job_num = 1;
-			 job_ptr->prio = PRIO_HIGH;
-			 job_ptr->type = MOVEMENT;
-			 putJobInQueue(*job_ptr);
-			 */
+			func_ptr = decrease_hover_auto;
+			job_ptr->task_p2 = func_ptr;
+			job_ptr->job_num = 1;
+			job_ptr->prio = PRIO_HIGH;
+			job_ptr->type = MOVEMENT;
+			putJobInQueue(*job_ptr);
 			debug_print_string("put Fan Hovering decreasing\n");
 			break;
 		default:
@@ -303,31 +312,34 @@ unsigned char fan_hovering_speed_handler(unsigned char command) {
 }
 
 unsigned char fan_forward_speed_handler(unsigned char command) {
+	int (*func_ptr)(); // declaration of pointer to function
+	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
+	if (job_ptr == NULL) {
+		debug_print_string("Unable to get memory\n");
+		// we should call log_error in here
+		return 255;
+	} // if there was no memory to be allocated
 	if (1 == increase_decrease(&command)) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(&command); // check the last bits
 		switch (res_value) {
 		case INCREASING:
 			/* value was 00001000 */
-			/**
-			 func_ptr = increase_propulsion;
-			 job_ptr->task_p2 = func_ptr;
-			 job_ptr->job_num = 1;
-			 job_ptr->prio = PRIO_HIGH;
-			 job_ptr->type = MOVEMENT;
-			 putJobInQueue(*job_ptr);
-			 */
+			func_ptr = increase_propulsion;
+			job_ptr->task_p2 = func_ptr;
+			job_ptr->job_num = 1;
+			job_ptr->prio = PRIO_HIGH;
+			job_ptr->type = MOVEMENT;
+			putJobInQueue(*job_ptr);
 			debug_print_string("put Fan Forward increasing Speed in queue\n");
 			break;
 		case DECREASING:
 			/* value was 00001001 */
-			/**
-			 func_ptr = decrease_propulsion;
-			 job_ptr->task_p2 = func_ptr;
-			 job_ptr->job_num = 1;
-			 job_ptr->prio = PRIO_HIGH;
-			 job_ptr->type = MOVEMENT;
-			 putJobInQueue(*job_ptr);
-			 */
+			func_ptr = decrease_propulsion;
+			job_ptr->task_p2 = func_ptr;
+			job_ptr->job_num = 1;
+			job_ptr->prio = PRIO_HIGH;
+			job_ptr->type = MOVEMENT;
+			putJobInQueue(*job_ptr);
 			debug_print_string("put Fan Forward decreasing Speed in queue\n");
 			break;
 		default:
@@ -341,6 +353,8 @@ unsigned char fan_forward_speed_handler(unsigned char command) {
 		case STOP:
 			/* value was 00000000 */
 			// Call the stop api function of fan forward
+			set_propulsion_fan(0);
+			control_rudder(STRAIGHT);
 			debug_print_string("put Fan Forward STOP in queue\n");
 			break;
 		case TURBO:

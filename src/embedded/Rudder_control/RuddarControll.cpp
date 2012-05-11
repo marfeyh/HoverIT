@@ -32,6 +32,7 @@
 #include <Arduino.h>
 #include <searduino.h>
 #include "RuddarControll.h"
+#include <serial_interface.h>
 
 //#define OFFSET_ONE 0 /**< Defining offset value for servo motor 1 */
 #define OFFSET_TWO 15 /**< Defining offset value for servo motor 2 */
@@ -53,6 +54,7 @@ RuddarControll::RuddarControll()
  */
 extern "C" void* RuddarControll_construct(void)
 {
+	debug_print_string("here");
   RuddarControll *rc = new RuddarControll();
   return (void*) rc;
 }
@@ -76,6 +78,7 @@ extern "C" void RuddarControll_destruct(void *obj)
  */
 extern "C" void RuddarControll_steering(void *obj, int command)
 {
+
   RuddarControll *rc = (RuddarControll*) obj;
   rc->setupRuddar();
   rc->controllRuddar(command);
@@ -104,17 +107,17 @@ int RuddarControll::controllRuddar(int command)
   switch (command){
   case CENTER: 
     setStraight();
-    delay(500);
+//    delay(500);
     break;
 	
   case HARDLEFT:
     setHardLeft();
-    delay(500);
+//    delay(500);
     break;
 	
   case HARDRIGHT:
     setHardRight();
-    delay(500);
+//    delay(500);
     break;
 
   case SOFTRIGHT:
@@ -127,13 +130,13 @@ int RuddarControll::controllRuddar(int command)
 
   case BRAKE:
     setBrake();
-    delay(500);
+//    delay(500);
     break;
 
   default: 
     setCurrent();
   }
-  delay(500);
+//  delay(500);
   return 11;
 }
     
