@@ -46,7 +46,7 @@ int getPercentage(int batteryNo)
 	} else if(2 == batteryNo)
 	{
 		return getSecondBatteryLevel();
-	} else if(2 == batteryNo)
+	} else if(3 == batteryNo)
 	{
 		return getThirdBatteryLevel();
 	}
@@ -64,7 +64,7 @@ int getFirstBatteryLevel()
 		return 0;
 	} else
 	{
-		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN1)) / 180 * 100));
+		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN1)) / 180.00 * 100));
 //    		int percentage1 = check();
 //    		setup_alarm(percentage1);
 //    		display_percentage(percentage1); 
@@ -85,7 +85,7 @@ int getSecondBatteryLevel()
 		return 0;
 	} else
 	{
-		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180 * 100));
+		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180.00 * 100));
 //    		int percentage2 = check();
 //    		setup_alarm(percentage2);
 //    		display_percentage(percentage2);
@@ -107,7 +107,7 @@ int getThirdBatteryLevel()
 		return 0;
 	} else
 	{
-		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180 * 100));
+		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180.00 * 100));
 //    		int percentage3 = check();
 //    		setup_alarm(percentage3);
 //    		display_percentage(percentage3);
