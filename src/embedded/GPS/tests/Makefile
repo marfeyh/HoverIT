@@ -21,9 +21,9 @@
 #
 
 SRC_DIR=../
-SRC_C= check_command_test001.c, check_command_test002.c, check_command_test003.c, check_command_test004.c, test_case_2_GPS.c, test_case_7_GPS.c,test_case_8_GPS.c, testcases-002.1-002.2.c, test_get_distance_km.c
+SRC_C= 
 SRC_CXX=
-MAIN_SRC= test_all.c
+MAIN_SRC= test_suite.c
 
 SEARDUINO_PATH = /opt/searduino
 
