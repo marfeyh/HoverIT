@@ -30,11 +30,11 @@
 
 START_TEST(test_case_6) {
 
+char* linema;
+char* time;
+struct position* posi;
 
-char *linema = read_rmc_data();
-
-struct position *posi;
- 
+linema = read_rmc_data();
 posi = get_positionA(linema);
 
 
@@ -43,7 +43,7 @@ fail_unless(posi->latitude == 8960.000000," position is wrong");
 fail_unless(posi->ns == 'N'," position is wrong");
 fail_unless(posi->ew == 'E'," position is wrong");
 
-
+        
 
 }END_TEST
 
