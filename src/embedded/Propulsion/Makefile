@@ -6,12 +6,12 @@ PROG = propulsion
 SRC_C= propulsion.c propulsion_api.c brake_propulsion.c hover_speed_stub.c
 SRC_CXX= 
 MAIN_SRC = main.c
-ARDUINO = stub
-#ARDUINO = mega2560
+#ARDUINO = stub
+ARDUINO = mega2560
 SHLIB = propulsion.so
 
 LIB = libpropulsion.a
-LIB_H = propulsion.h pin.h propulsion_api.h brake_propulsion.h
+LIB_H = propulsion.h pin.h propulsion_api.h brake_propulsion.h hover_speed_stub.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)

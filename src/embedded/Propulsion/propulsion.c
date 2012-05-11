@@ -23,7 +23,7 @@ information.
   @brief The level of the speed. it is dependent on the type 
   of Microcontroller used and the PWM level available.  
 */
-static uint8_t speed_level = 0;
+static int speed_level = 0;
 
 /*!
   @brief There are three states: stopped, initialising, 
@@ -40,15 +40,7 @@ unsigned char motor_status = 0;
 */
 int initialise_propulsion()
 {
-<<<<<<< HEAD
-  /* initialises the searduino init */
-//#if !defined(GLOBAL_MAIN)
-//   init();
-//#endif
-   /* sets PIN as output pin */
-=======
   /* sets PIN as output pin */
->>>>>>> 39dbc6ce1950dda719e74d8789bf832f67638fed
   pinMode(PIN, OUTPUT);
   /* sets motor to Initializing state */
   motor_status = 1;
@@ -101,7 +93,7 @@ unsigned char manage_motor(){
    int since the levels is not guarented to be a maximum 1 byte. 
    @return the current propelsion speed level
 */
-uint8_t get_speed_level() {
+int get_speed_level() {
   return speed_level;
 }
 

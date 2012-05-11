@@ -32,7 +32,7 @@ information.
 
 unsigned char manage_motor();
 int initialise_propulsion();
-uint8_t get_speed_level();
+int get_speed_level();
 void change_pro_speed(int level);
 void stop_pro_fan();
 unsigned char get_motor_status();
