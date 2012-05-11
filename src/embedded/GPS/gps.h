@@ -40,6 +40,11 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
 #if !defined __posi_gps
 #define __posi_gps
 
+/*!
+  @def SERIAL_BAUD_RATE 57600
+*/
+#define SERIAL_BAUD_RATE 57600
+
 /*! @struct position
  *  @brief This structure represents a global position using latitude, latitude and orientation towards 'both the poles / equater'.
  *  @var position::longitude 
@@ -154,6 +159,12 @@ struct position *get_position();
  */
 char* retrive_data(char* data,int position);
 
+/*!
+@brief Gets the indices of commas and the asterisk in the gps char array. DONT FORGET TO FREE THE VARIABLE IN WHICH THE RESULT IS STORED!
+@param [in] gpsData The raw gps data char array
+@return A pointer to an array of 14 integers, containing the indices
+of commas in the gps char array.
+*/
 int *get_indices(char *gpsData);
 
 #endif
