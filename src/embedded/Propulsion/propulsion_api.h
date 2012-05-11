@@ -1,12 +1,16 @@
 /*!
+@copyright This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 @file propulsion_api.h
 @brief This file contains the functions for controlling 
        the propulsion fan speed
 @author: Xinran He & Khatereh Khosravianarab
 @version 0.1
 */
-#define MAXSPEED 122
-#define PERSPEED 40
+#define MAXSPEED 120
+#define PERSPEED 6
 
 /*!
 @brief Funtion to initialise propulsion fan
@@ -45,7 +49,15 @@ int stop_propulsion_fan();
 
 /*!
 @brief Function to set propulsion fan speed
-@param integer between 0 and 122
+@param integer between 0 and 120
 @returns -1 for error or current fan speed
 */
 int set_propulsion_fan(int set_speed);
+
+/*!
+
+@brief Function to brake hovercraft by reverse motor
+@param takes no parameters
+@returns 0
+*/
+int brake_hovercraft();

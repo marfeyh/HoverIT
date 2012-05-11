@@ -17,18 +17,20 @@ PROG = hovering
 SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
 	hover_api.c pressure_check.c
 MAIN_SRC = main.c
+
 #ARDUINO = stub
-ARDUINO = mega2560
+#ARDUINO = mega2560
+ARDUINO = uno
+
 SHLIB = hovering.so
 
 LIB = libhovering.a
 LIB_H = hover_api.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
-USER_C_FLAGS=-DSTUB_TEST #When using uno or mega, should be commented
-SRC_C += print_test.c	#When using uno or mega, should be commented
-#SRC_C += audible_test.c # When using stub, should be commented
- 
+#SRC_C += print_test.c	# When using uno or mega, should be commented
+SRC_C += audible_test.c # When using stub, should be commented
+#USER_C_FLAGS=-DSTUB_TEST # When using uno or mega, should be commented 
 USER_C_FLAGS=-Istub/include
 USER_LD_FLAGS=-Lstub/lib/$(BOARD) -lpressure_stub
 

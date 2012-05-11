@@ -1,4 +1,8 @@
 /*
+@copyright This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 @author Yohanes Kuma
 @details This file is ment for controlling the Propulsion fan motor. 
 The code is responsible to controll the speed of the fan for
@@ -10,13 +14,16 @@ information.
 @date 2012-04-05
 */
 
+#include <searduino.h>
+
+
 /* maximum duty cycle for Pulse width modulation **/
 #define MAX_DUTY_CYCLE 254
 /* Minimum duty cycle for Pulse width modulation **/
 #define MIN_DUTY_CYCLE 132
 /* 
    The maximum level of the speed. it is dependent on the type 
-   of Microcontroller used and the range of duty cycles for PWM 
+   of Microcontroller used and the range of duty cycles for PWM 	
    which can rotate the Motor 
 */
 #define MAX_SPEED_LEVEL 122
@@ -25,8 +32,7 @@ information.
 
 unsigned char manage_motor();
 int initialise_propulsion();
-int get_speed_level();
+uint8_t get_speed_level();
 void change_pro_speed(int level);
 void stop_pro_fan();
-void init_motor();
 unsigned char get_motor_status();

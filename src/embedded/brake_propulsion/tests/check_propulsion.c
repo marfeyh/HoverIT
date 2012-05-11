@@ -1,23 +1,24 @@
-/*
-<<<<<<< HEAD
-  AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
-  DATA :2012-04-05
-  DESCRIPTION: This file is the unit tests for the propulsion 
-               and propulsion API functions. 
-               check libraries are used as a tool for the unit tests. 
-               check their manual for details.
-  http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
-=======
-AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
-DATA :2012-04-05
-DESCRIPTION: This file is the unit tests for the propulsion and propulsion API
-functions. check libraries are used as a tool for the unit tests. check their manual for details.
-http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
->>>>>>> df8ba53262ab796fb8b6e02a7cf0a614b2f65128
+/*!
+ @file check_propulsion.c
+ @author Yohanes Kuma
+ @author Xinran He
+ @author Khatereh Khosravianarab
+ @author Ezeh Prince Anthony Anayo
+ @brief This file is the unit tests for the propulsion and propulsion
+  API functions.Check libraries are used as a tool for the unit tests. 
+  check their manual for details.
+ @date 2012-04-05
+ @reference http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
 */
+
 #include <check.h>
 #include <propulsion.h>
 #include <propulsion_api.h>
+#include <brake_propulsion.h>
+#include <pin.h>
+#include <Arduino.h>
+#include <searduino.h>
+
 
 void setup(void){
   //nothing for the moment
@@ -39,7 +40,7 @@ void teardown(void){
    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
-START_TEST(Test_Pro){
+START_TEST(test_Pro){
   fail_if(increase_propulsion() != PERSPEED, "Expected 40");
   fail_if(increase_propulsion() != PERSPEED * 2 , "Expected 80");
   fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 120");
@@ -108,7 +109,7 @@ START_TEST(test_stop){
    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
-START_TEST(Test_set_speed){
+START_TEST(test_set_speed){
   fail_if(set_propulsion_fan(30) != 30,"Expected 30");
   fail_if(set_propulsion_fan(50) != 50,"Expected 50");
   fail_if(set_propulsion_fan(-40) != -1,"Expected -40");
@@ -117,9 +118,8 @@ START_TEST(Test_set_speed){
  /* END OF PROPULSION API UNIT TESTS */
 
 
-/* PROPULSION UNIT TESTS */
+ /* PROPULSION UNIT TESTS */
 
-<<<<<<< HEAD
  /* id: Y1
     purpose: tests init() function of searduino and setting PIN as output and
     the initialising/preparation state of the propulsion
@@ -137,41 +137,12 @@ START_TEST(test_init) {
                    2. the propulsion is in another state
     expected results: 0 will be returned
  */
-=======
-/* id: 
-   purpose: tests init() function of searduino and setting PIN as output
-   prerequisites: none
-   expected results: 0 will be returned
-*/
-START_TEST(test_init) {
-  fail_unless((initialise_propulsion() == 0),NULL);
- 
-}END_TEST
-
-/* id: 
-   purpose: tests the initialising/preparation state of the propulsion
-   prerequisites: the searduino init() function is called
-   expected results: 0 will be returned
-*/
-START_TEST(test_prepare_motor) {
-  init_motor();  
-  fail_unless((manage_motor() == 0),NULL);
-}END_TEST
-
-/* id: 
-   purpose: tests the stopped state of the propulsion
-   prerequisites: 1. the searduino init() function is called
-                  2. the propulsion is in another state
-   expected results: 0 will be returned
-*/
->>>>>>> df8ba53262ab796fb8b6e02a7cf0a614b2f65128
 START_TEST(test_stop_motor) {
   initialise_propulsion(); 
   stop_pro_fan();
   fail_unless((manage_motor() == 1),NULL);
 }END_TEST
 
-<<<<<<< HEAD
  /* id: Y3
     purpose: tests the boundary speed level of the propulsion
     prerequisites: 1. the searduino init() function is called
@@ -182,18 +153,6 @@ START_TEST(test_stop_motor) {
  	 	     2. 1 is returned from get_speed_level() showing the speed
 		        is now at level 1(Minimum boundary)
  */
-=======
-/* id: 
-   purpose: tests the boundary speed level of the propulsion
-   prerequisites: 1. the searduino init() function is called
-                  2. the propulsion is aleardy initialized
-		  3. a speed level of 1 is declared
-   expected results:1. 2 will be returned from the manage_motor() function
-                       showing the propulsion is now in rotating state
-		    2. 1 is returned from get_speed_level() showing the speed
-		       is now at level 1(Minimum boundary)
-*/
->>>>>>> df8ba53262ab796fb8b6e02a7cf0a614b2f65128
 START_TEST(test_minimum_speed) {
   int level = 1;
   initialise_propulsion();
@@ -202,7 +161,6 @@ START_TEST(test_minimum_speed) {
   fail_unless((get_speed_level() == 1),NULL);  
 }END_TEST
 
-<<<<<<< HEAD
  /* id: Y4
     purpose: tests the boundary speed level of the propulsion
     prerequisites: 1. the searduino init() function is called
@@ -214,19 +172,6 @@ START_TEST(test_minimum_speed) {
 		        showing the speed is now at level MAX_SPEED_LEVEL
 		        (Maximum boundary)
  */
-=======
-/* id: 
-   purpose: tests the boundary speed level of the propulsion
-   prerequisites: 1. the searduino init() function is called
-                  2. the propulsion is aleardy initialized
-		  3. a speed level of MAX_SPEED_LEVEL is declared
-   expected results:1. 2 will be returned from the manage_motor() function
-                       showing the propulsion is now in rotating state
-		    2. MAX_SPEED_LEVEL is returned from get_speed_level()
-		       showing the speed is now at level MAX_SPEED_LEVEL
-		       (Maximum boundary)
-*/
->>>>>>> df8ba53262ab796fb8b6e02a7cf0a614b2f65128
 START_TEST(test_maximum_speed) {
   int level = MAX_SPEED_LEVEL;
   initialise_propulsion();
@@ -234,21 +179,27 @@ START_TEST(test_maximum_speed) {
   fail_unless((manage_motor() == 2),NULL);
   fail_unless((get_speed_level() == MAX_SPEED_LEVEL),NULL);  
 }END_TEST
-<<<<<<< HEAD
  /* END OF PROPULSION UNIT TESTS*/
 
+
+ /* PROPULSION UNIT TESTS */
+START_TEST(test_brake_hovercraft){
+  initialise_propulsion();
+  initialize_relay();
+  fail_unless(reverse_prop_motor() == 0);
+}END_TEST
+
+
+START_TEST(test_initialize_relay){
+fail_unless((initialize_relay() == 0), NULL);
+ 
+}END_TEST
+
+ /* END OF PROPULSION UNIT TESTS*/
 
  /* Creates test suit for check. see check manual for details
     http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
  */
-=======
-/* END OF PROPULSION UNIT TESTS*/
-
-
-/* Creates test suit for check. see check manual for details
-    http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
-*/
->>>>>>> df8ba53262ab796fb8b6e02a7cf0a614b2f65128
 Suite * propulsion_suite(void) {
   Suite *s = suite_create("Propulsion_fan");
   TCase *tc = tcase_create("Core");
@@ -257,11 +208,13 @@ Suite * propulsion_suite(void) {
   tcase_add_test(tc, test_stop_motor);
   tcase_add_test(tc, test_minimum_speed);
   tcase_add_test(tc, test_maximum_speed);
-  tcase_add_test(tc, Test_Pro);
+  tcase_add_test(tc, test_Pro);
   tcase_add_test(tc, test_dec);
   tcase_add_test(tc, test_fanlevel);
   tcase_add_test(tc, test_stop);
-  tcase_add_test(tc, Test_set_speed);
+  tcase_add_test(tc, test_set_speed);
+  tcase_add_test(tc, test_brake_hovercraft);
+  tcase_add_test(tc, test_initialize_relay);
   suite_add_tcase(s, tc);
   return s;
 }
