@@ -1,13 +1,23 @@
-
 /**
  * \file 		test_suite.c
  * \date 		09-05-2012
  * \version 	0.1 
  * \author 		Fangzhou Cao          
+ * \attention 	write the test suite to collect GPS test cases
+ * 		        
+ */
+/**
+ * \file 		test_suite.c
+ * \date 		10-05-2012
+ * \version 	0.2 
+ * \author 		Gokul S. Evuri          
  * \attention 	Sections added/modified are as follow:
- * 		        none
+ * 		      define gaurd __testingGPS__  
  */
 
+#ifndef __testingGPS__
+#define __testingGPS__
+#endif
 
 #include <stdlib.h>
 #include <check.h>
@@ -16,7 +26,7 @@
 #include "test_case_1_GPS.c"
 #include "test_case_2_GPS.c"
 #include "test_case_3_GPS.c"
-#include "test_case_4_GPS.c"
+/*#include "test_case_4_GPS.c" */
 #include "test_case_5_GPS.c"
 #include "test_case_6_GPS.c"
 #include "test_case_7_GPS.c"
@@ -32,7 +42,7 @@ Suite * test_suite(void){
 	TCase *tc1=tcase_create("test case 1");
 	TCase *tc2=tcase_create("test case 2");
 	TCase *tc3=tcase_create("test case 3");
-	TCase *tc4=tcase_create("test case 4");
+/*	TCase *tc4=tcase_create("test case 4"); */
 	TCase *tc5=tcase_create("test case 5");
 	TCase *tc6=tcase_create("test case 6");
 	TCase *tc7=tcase_create("test case 7");
@@ -59,7 +69,7 @@ Suite * test_suite(void){
 	tcase_add_test(tc3, test_case_3_3);
 	tcase_add_test(tc3, test_case_3_4);
 
-	tcase_add_test(tc4, test_case_4);
+/*	tcase_add_test(tc4, test_case_4); */
 	
 	tcase_add_test(tc5, test_case_5);
 	
@@ -85,7 +95,7 @@ Suite * test_suite(void){
 	suite_add_tcase(s,tc1);
 	suite_add_tcase(s,tc2);
 	suite_add_tcase(s,tc3);
-	suite_add_tcase(s,tc4);
+/*	suite_add_tcase(s,tc4); */
 	suite_add_tcase(s,tc5);
 	suite_add_tcase(s,tc6);
 	suite_add_tcase(s,tc7);

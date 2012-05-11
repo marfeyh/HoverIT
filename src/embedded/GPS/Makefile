@@ -1,55 +1,38 @@
+#add by fangzhou cao for testing
+TEST_DIR=tests/
+SEARDUINO_PATH = /opt/searduino
+PROG = GPS
 
-#       Searduino
-#
-#  Copyright (C) 2011, 2012 Henrik Sandklef      
-#                                                                   
-# This program is free software; you can redistribute it and/or     
-# modify it under the terms of the GNU General Public License       
-# as published by the Free Software Foundation; either version 3    
-# of the License, or any later version.                             
-#                                                                   
-#                                                                   
-# This program is distributed in the hope that it will be useful,   
-# but WITHOUT ANY WARRANTY; without even the implied warranty of    
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     
-# GNU General Public License for more details.                      
-#                                                                   
-# You should have received a copy of the GNU General Public License 
-# along with this program; if not, write to the Free Software       
-# Foundation, Inc., 51 Franklin Street, Boston,            
-# MA  02110-1301, USA.                                              
-#
-#
-
-
-SRC_C=api_gps.c core_gps.c
-SRC_CXX=
-# use this for uno
-MAIN_SRC=./tests/test_all.c
-ARDUINO=stub
+# Add your source files here
+SRC_C=  api_gps.c core_gps.c GPS_Stub/Serial_read.c
+SRC_CXX= 
+MAIN_SRC = 
 #ARDUINO = uno
+ARDUINO = stub
+SHLIB = GPS.so
 
-# define PROG to make a stad alone program
-# PROG=henrik
+LIB = libGPS.a
+LIB_H = gps.h
+USER_LIB_INSTALL_PATH = ../../../bin
 
-# defnie SHLIB to create a lib for simulator
-SHLIB=gpstest.so
-
-SEARDUINO_PATH=/opt/searduino
-
-check: $(SHLIB)
+export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
-check-upload:
-	BOARD=due
-	make upload
+# Needs to be modified as well
+check:
+	$(MAKE) check -C $(TEST_DIR)
 
-install:
-	echo nothing to do in install
+gcovcheck:
+	$(MAKE) gcovcheck -C $(TEST_DIR)
 
-distdir:
-	echo nothing to do in dist
+gcovbcheck:
+	$(MAKE) gcovbcheck -C $(TEST_DIR)
 
-all:
-	echo nothing to do for all
+memcheck:
+	$(MAKE) memcheck -C $(TEST_DIR)
+
+clean-tests:
+	$(MAKE) clean-tests -C $(TEST_DIR)
+
+.PHONY: check
