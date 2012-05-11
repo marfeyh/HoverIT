@@ -97,31 +97,5 @@ struct position *get_position(){
   return get_positionA(data);
 }
 
-/*!
- * @brief A function taking a argument of data and returning a struct position.
- * @param[in] data   the char pointer to a return value from 'read_rmc_data'
- * @see retrive_data()
- * @see read_rmc_data()
- * @warning Function should be used carefully, in other case this might lead to a memory leakage
- * @return struct position
- */
-struct position *get_positionA(char *data){
-  struct position *pos =(struct position *) calloc(1,sizeof(struct position));
-  if (pos != NULL) {
-    char *temp1 = retrive_data (data,4);
-    pos->longitude = atof(temp1);
-    //    free(temp1);
-    temp1 = retrive_data (data,2);
-    pos->latitude = atof(temp1);
-    //    free(temp1);
-    temp1 = retrive_data(data,3);
-    pos->ns = *temp1;
-    //    free(temp1);
-    temp1 = retrive_data(data,5);
-    pos->ew = *temp1;
-    //    free(temp1);
-    return pos;
-  }
-  return NULL;
-}
+
 

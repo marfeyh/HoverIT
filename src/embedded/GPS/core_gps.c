@@ -47,9 +47,9 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
 #define LINEMA 300
 
 /*!
-  @def WAITING_LOOP_VALUE 56
+  @def WAITING_LOOP_VALUE 576
 */
-#define WAITING_LOOP_VALUE 56
+#define WAITING_LOOP_VALUE 576
 
 /*!
  * @brief A function to read data from a serial connection to return a pointer to that, if incomming data is a valid $GPRMC tagged NMEA data.
@@ -123,7 +123,8 @@ char *retrive_data(char *linema, int data_position){
 @param [in] gpsData The raw gps data character array
 @param [in] gpr The gps command to be checked (GPRMC for example)
 @return 0 if they are the same, 1 if not.
-*/ 
+*/
+
  int check_command(char gpsData[], char gpr[]) {  
    int i; 
    for (i = 0; i < 6; i++) { 
@@ -141,6 +142,7 @@ char *retrive_data(char *linema, int data_position){
 @return A pointer to an array of 14 integers, containing the indices
 of commas in the gps char array.
 */
+
 int *get_indices(char gpsData[]) {
   int *indices = calloc(15, sizeof(int));
   if (indices != NULL) {
@@ -157,6 +159,35 @@ int *get_indices(char gpsData[]) {
       }
     }
     return indices;
+  }
+  return NULL;
+}
+
+
+/*!
+ * @brief A function taking a argument of data and returning a struct position.
+ * @param[in] data   the char pointer to a return value from 'read_rmc_data'
+ * @see retrive_data()
+ * @see read_rmc_data()
+ * @warning Function should be used carefully, in other case this might lead to a memory leakage
+ * @return struct position
+ */
+struct position *get_positionA(char *data){
+  struct position *pos =(struct position *) calloc(1,sizeof(struct position));
+  if (pos != NULL) {
+    char *temp1 = retrive_data (data,4);
+    pos->longitude = atof(temp1);
+    //    free(temp1);
+    temp1 = retrive_data (data,2);
+    pos->latitude = atof(temp1);
+    //    free(temp1);
+    temp1 = retrive_data(data,3);
+    pos->ns = *temp1;
+    //    free(temp1);
+    temp1 = retrive_data(data,5);
+    pos->ew = *temp1;
+    //    free(temp1);
+    return pos;
   }
   return NULL;
 }
