@@ -18,7 +18,7 @@
 
 /**
  *ID:6
- *Purpose: to test get_time(char*) and get_position(char*).
+ *Purpose: to test get_time(char*) and get_positionA(char*).
  *Preparation: Get fake GPS data from GPS simulator.
  *Action: pass the fake GPS data to those two functions and check the return values.
  *Expected outcome: time != NULL, position != NULL.
@@ -34,24 +34,19 @@ char* linema;
 char* time;
 struct position* posi;
  
-linema = read_rmc_data(); 
+linema = "$GPRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A";
 
 time = get_time(linema);
 printf("TIME: %s\n", time);
 
-posi = get_position(linema);
+posi = get_positionA(linema);
 printf("POSITION: %f, %f, %c, %c\n", posi->longitude, posi->latitude, posi->ns, posi->ew);
         
-fail_if(time == NULL,"time is null");
-fail_if(posi == NULL," position is null");
-
-
-free(time);
- time = NULL;
-free(posi);      
- posi = NULL;
-free(linema);
- linema = NULL;
+fail_unless(time == "123519","time is wrong");
+fail_unless(posi-> longitude == "01131.000"," position is wrong");
+fail_unless(posi-> Latitude == "4807.038"," position is wrong");
+fail_unless(posi-> ns == "N"," position is wrong");
+fail_unless(posi-> ew == "E"," position is wrong");
 }END_TEST
 
 /*

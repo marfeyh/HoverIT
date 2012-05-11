@@ -32,16 +32,11 @@
 START_TEST(test_case_5) {
 
 	char* linema;
-     
-        linema  = malloc(LINEMA*sizeof(char));
 
-        linema = read_rmc_data(); 
+        linema = read_rmc_data();
           
     
-        printf("linema: %s", linema);
-    
         fail_unless(linema[0] == '$' && linema[1] == 'G' && linema[2] == 'P' && linema[3] == 'R' && linema[4] == 'M' && linema[5] == 'C', "Wrong data format."); 
-        free(linema);
  
 
 }END_TEST
