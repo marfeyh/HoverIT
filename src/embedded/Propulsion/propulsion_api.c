@@ -32,7 +32,7 @@ int start_propulsion_fan()
 @brief increase propulsion fan speed
  */
 int increase_propulsion(){
-  int speed = get_speed_level();
+  uint8_t speed = get_speed_level();
   if( speed >= MAXSPEED ){
     change_pro_speed(PERSPEED * 20);
     return PERSPEED * 20;
@@ -48,7 +48,7 @@ int increase_propulsion(){
 @brief decrease propulsion fan speed
  */
 int decrease_propulsion(){
-  int speed = get_speed_level();
+  uint8_t speed = get_speed_level();
   if( speed <= PERSPEED ){
     change_pro_speed(PERSPEED);
     return speed;
@@ -86,7 +86,7 @@ int stop_propulsion_fan(){
 @brief specify the propulsion fan level
  */
 int get_propulsion_level(){
-  int speed = get_speed_level();
+  uint8_t speed = get_speed_level();
   if( speed == 0 ){
     return 0;
   }

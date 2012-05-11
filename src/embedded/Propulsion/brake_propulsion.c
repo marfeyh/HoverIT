@@ -70,9 +70,6 @@ int reverse_prop_motor(){
  *@brief Function that initializes the relaypin
  */
 int initialize_relay(){
-#if !defined(GLOBAL_MAIN)
-   init();
-#endif
    /* sets PIN as output pin */
    pinMode(RELAYPIN, OUTPUT);
   // digitalWrite(RELAYPIN, HIGH);

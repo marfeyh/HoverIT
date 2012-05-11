@@ -19,15 +19,13 @@ information.
 #include <propulsion.h>
 #include <pin.h>
 
-/*
+/*!
   @brief The level of the speed. it is dependent on the type 
-  of Microcontroller used and the PWM level available. 
-  The type is int since the levels is not guarented to 
-  be a maximum 1 byte. 
+  of Microcontroller used and the PWM level available.  
 */
-static int speed_level = 0;
+static uint8_t speed_level = 0;
 
-/*
+/*!
   @brief There are three states: stopped, initialising, 
   and rotating. This is the control to switch between states. 
   0 is stopped state, 1 is init state and 2 is the active 
@@ -35,26 +33,22 @@ static int speed_level = 0;
 */
 unsigned char motor_status = 0;
 
-/* 
+/*! 
    @brief initialises the searduino init() function, 
    sets the pin as output Pin and changes the propulsion fan
    to initialising state 
 */
 int initialise_propulsion()
 {
-  /* initialises the searduino init */
-#if !defined(GLOBAL_MAIN)
-   init();
-#endif
-   /* sets PIN as output pin */
+  /* sets PIN as output pin */
   pinMode(PIN, OUTPUT);
   /* sets motor to Initializing state */
-  motor_status = 0;
+  motor_status = 1;
   manage_motor();
   return 0;
 }
 
-/*
+/*!
   @details manages the moter speed. The motor will rotate 
   with PWM duty cycle from 132(MIN_DUTY_CYCLE) till 
   254(MAX_DUTY_CYCLE). with currunt implementation with Arduino 
@@ -93,17 +87,17 @@ unsigned char manage_motor(){
     }
   return motor_status;
 }
-/* 
+/*!
    @brief The level of the speed is dependent on the type of 
    Microcontroller used and the PWM level available. The type is 
    int since the levels is not guarented to be a maximum 1 byte. 
    @return the current propelsion speed level
 */
-int get_speed_level() {
+uint8_t get_speed_level() {
   return speed_level;
 }
 
-/* 
+/*!
    @details changes propelsion fan speed to the level given. 
    if the fan is in stopped state it will change it back to rotating 
    state (provided the level given is gerater than zero)
@@ -130,7 +124,7 @@ void change_pro_speed(int level) {
   manage_motor();
 }
 
-/*
+/*!
 @brief changes the propelsion fan to stopped state
 */
 void stop_pro_fan() {
@@ -138,7 +132,7 @@ void stop_pro_fan() {
   manage_motor();
 }
 
-/*
+/*!
 @brief returns the current state of the motor
 @returns 0 is stopped state, 1 is init state, 
  2 is the active or rotating state
@@ -146,3 +140,4 @@ void stop_pro_fan() {
 unsigned char get_motor_status() {
   return motor_status;
 }
+

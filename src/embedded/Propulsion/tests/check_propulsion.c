@@ -1,11 +1,9 @@
-/*
-  AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
-  DATA :2012-04-05
-  DESCRIPTION: This file is the unit tests for the propulsion 
-               and propulsion API functions. 
-               check libraries are used as a tool for the unit tests. 
-               check their manual for details.
-  http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
+/*!
+AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
+DATA :2012-04-05
+DESCRIPTION: This file is the unit tests for the propulsion and propulsion API
+functions. check libraries are used as a tool for the unit tests. check their manual for details.
+http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
 */
 #include <check.h>
 #include <propulsion.h>
@@ -28,20 +26,14 @@ void teardown(void){
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan speed should keep the 
                      highest level without any errors
-   Pass/Fail criteria: when check is run response is 100%: Checks: 1,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
-START_TEST(test_Pro){
-  fail_if(increase_propulsion() != PERSPEED, "Expected 6");
-  increase_propulsion(); increase_propulsion(); increase_propulsion();
-  increase_propulsion(); increase_propulsion(); increase_propulsion();
-  fail_if(increase_propulsion() != PERSPEED * 8, "Expected 48");
-  increase_propulsion(); increase_propulsion(); increase_propulsion();
-  increase_propulsion(); increase_propulsion(); increase_propulsion();
-  increase_propulsion(); increase_propulsion(); increase_propulsion();
-  increase_propulsion(); increase_propulsion(); increase_propulsion();
-  increase_propulsion(); increase_propulsion(); increase_propulsion();
-  fail_if(increase_propulsion() != PERSPEED * 20, "Expected 120 ");
+START_TEST(Test_Pro){
+  fail_if(increase_propulsion() != PERSPEED, "Expected 40");
+  fail_if(increase_propulsion() != PERSPEED * 2 , "Expected 80");
+  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 120");
+  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 120");
 }END_TEST
 
 /* 
@@ -49,18 +41,18 @@ START_TEST(test_Pro){
    Purpose: test if user keep decreasing propulsion fan
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan speed should stop without errors
-   Pass/Fail criteria: when check is run response is 100%: Checks: 2,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_dec){
   increase_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED, "Expected 6");
+  fail_if(decrease_propulsion() != PERSPEED, "Expected 40");
   increase_propulsion();
   increase_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED * 2 , "Expected 12");
+  fail_if(decrease_propulsion() != PERSPEED * 2 , "Expected 80");
   decrease_propulsion();
   decrease_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED, "Expected 6.");
+  fail_if(decrease_propulsion() != PERSPEED, "Expected 40.");
 }END_TEST
 
 /* 
@@ -68,7 +60,7 @@ START_TEST(test_dec){
    Purpose: test if user can get right propulsion fan speed level
    Prerequisites: initialize propulsion fan
    Expected results: return right current fan speed level
-   Pass/Fail criteria: when check is run response is 100%: Checks: 3,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_fanlevel){
@@ -86,7 +78,7 @@ START_TEST(test_fanlevel){
    Purpose: test if the propulsion fan is stoped normally
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan stop
-   Pass/Fail criteria: when check is run response is 100%: Checks: 4,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_stop){
@@ -106,30 +98,16 @@ START_TEST(test_stop){
    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
-START_TEST(test_set_speed){
+START_TEST(Test_set_speed){
   fail_if(set_propulsion_fan(30) != 30,"Expected 30");
   fail_if(set_propulsion_fan(50) != 50,"Expected 50");
   fail_if(set_propulsion_fan(-40) != -1,"Expected -40");
   fail_if(set_propulsion_fan(500) != -1,"Expected 500");
 }END_TEST
-
-
-/* 
-   Id/Title: XK6/test initialize propulsion fan
-   Purpose: propulsion fan should be init before starting propulsion fan
-   Prerequisites: NULL
-   Expected results: propulsion fan should be initialized and return 0
-   Pass/Fail criteria: when check is run response is 100%: Checks: 6,
-                       Failures: 0, Errors: 0
-*/
-START_TEST(test_init_propulsion){
-  fail_if(start_propulsion_fan() != 0, "Expected 0 to init propulsion");
-}END_TEST
-
  /* END OF PROPULSION API UNIT TESTS */
 
 
- /* PROPULSION UNIT TESTS */
+/* PROPULSION UNIT TESTS */
 
  /* id: Y1
     purpose: tests init() function of searduino and setting PIN as output and
@@ -139,7 +117,7 @@ START_TEST(test_init_propulsion){
  */
 START_TEST(test_init) {
   fail_unless((initialise_propulsion() == 0),NULL);
-  fail_unless((manage_motor() == 0),NULL);
+  fail_unless((manage_motor() == 1),NULL);
 }END_TEST
 
  /* id: Y2
@@ -164,6 +142,7 @@ START_TEST(test_stop_motor) {
  	 	     2. 1 is returned from get_speed_level() showing the speed
 		        is now at level 1(Minimum boundary)
  */
+
 START_TEST(test_minimum_speed) {
   int level = 1;
   initialise_propulsion();
@@ -183,6 +162,7 @@ START_TEST(test_minimum_speed) {
 		        showing the speed is now at level MAX_SPEED_LEVEL
 		        (Maximum boundary)
  */
+
 START_TEST(test_maximum_speed) {
   int level = MAX_SPEED_LEVEL;
   initialise_propulsion();
@@ -190,12 +170,14 @@ START_TEST(test_maximum_speed) {
   fail_unless((manage_motor() == 2),NULL);
   fail_unless((get_speed_level() == MAX_SPEED_LEVEL),NULL);  
 }END_TEST
- /* END OF PROPULSION UNIT TESTS*/
+
+/* END OF PROPULSION UNIT TESTS*/
 
 
- /* Creates test suit for check. see check manual for details
+/* Creates test suit for check. see check manual for details
     http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
- */
+*/
+
 Suite * propulsion_suite(void) {
   Suite *s = suite_create("Propulsion_fan");
   TCase *tc = tcase_create("Core");
@@ -204,12 +186,11 @@ Suite * propulsion_suite(void) {
   tcase_add_test(tc, test_stop_motor);
   tcase_add_test(tc, test_minimum_speed);
   tcase_add_test(tc, test_maximum_speed);
-  tcase_add_test(tc, test_Pro);
+  tcase_add_test(tc, Test_Pro);
   tcase_add_test(tc, test_dec);
   tcase_add_test(tc, test_fanlevel);
   tcase_add_test(tc, test_stop);
-  tcase_add_test(tc, test_set_speed);
-  tcase_add_test(tc, test_init_propulsion);
+  tcase_add_test(tc, Test_set_speed);
   suite_add_tcase(s, tc);
   return s;
 }
