@@ -12,11 +12,11 @@
 	#define LOW_BATTERY 20
 	#define LOW_BATTERY_DURATION 20
 	
-	void setup(void);
-	void exec(void);
+	void init_alarm(void);
+	void setup_alarm(uint8_t);
 	int beep(int);
-	int getBattery(void);
+//	int getBattery(void);
 	void setup_battery_level(void);
-	int loop_battery_level(void);
-	
+	int loop_battery_level(uint8_t);
+
 #endif

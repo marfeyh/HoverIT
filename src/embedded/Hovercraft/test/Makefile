@@ -7,7 +7,7 @@
 # or first in the SRC_C variable
 #
 # SRC_DIR should be the path to the source files
-# SRC_C & SRC_CXX should contain the .c & .cpp files for the source and test
+# SRC_C & SRC_CXX should contain the .c & .cpp files for test
 # MAIN_SRC should contain maximum one file, the one that holds the main
 #	function for the tests
 # SEARDUINO_PATH should as always be the path to the searduino installation
@@ -54,17 +54,32 @@ check: $(PROG)
 	@echo $(OBJ_C) $(OBJ_CXX)
 	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-gcovcheck: $(PPROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+gcov: USER_C_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_CXX_FLAGS += -fprofile-arcs -ftest-coverage
+gcov: USER_LD_FLAGS += -lgcov
+gcov: check
 
-gcovbcheck:
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
 
-memcheck: $(PROG)
-	export LD_LIBRARY_PATH=$(SEARDUINO_PATH)/lib && ./$(PROG)
+debug: USER_C_FLAGS += -g
+debug: USER_CXX_FLAGS += -g
+debug: check
 
+
+
+gcovcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
+
+gcovbcheck: gcov
+	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
+
+memcheck: debug
+	valgrind --leak-check=full --xml-file=leakcheck.xml ./$(PROG)
 
 clean-tests: clean
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno $(PROG)
+
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
