@@ -27,7 +27,7 @@ MAIN_SRC= test_suite.c
 
 SEARDUINO_PATH = /opt/searduino
 
-USER_C_FLAGS =
+USER_C_FLAGS =  -D__testingGPS__
 USER_CXX_FLAGS =
 USER_LD_FLAGS = 
 
