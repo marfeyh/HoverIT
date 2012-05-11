@@ -74,7 +74,7 @@ int is_GPGSA(char gpsData[]) {
 
 /*!
  * @brief A function taking a argument of data and returning a character pointer to the time of UTC when the data is read.
- * @param data   the char pointer to a return value from 'read_rmc_data'
+ * @param[in] data   the char pointer to a return value from 'read_rmc_data'
  * @see retrive_data()
  * @see read_rmc_data()
  * @warning Function should be used carefully, in other case this might lead to a memory leakage
@@ -99,7 +99,7 @@ struct position *get_position(){
 
 /*!
  * @brief A function taking a argument of data and returning a struct position.
- * @param data   the char pointer to a return value from 'read_rmc_data'
+ * @param[in] data   the char pointer to a return value from 'read_rmc_data'
  * @see retrive_data()
  * @see read_rmc_data()
  * @warning Function should be used carefully, in other case this might lead to a memory leakage

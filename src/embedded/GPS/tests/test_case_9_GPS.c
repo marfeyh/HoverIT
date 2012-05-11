@@ -12,21 +12,21 @@
 #include <math.h>
 
 /**
- * Purpose: To compare the first 6 letters of two string and see if they are the same. 
+ * Purpose: To compare the first 6 letters of two string and see if they are the same but this time with empty strings.
  * Preparation: 
- *	 Two strings is prepared to be used with check_command.
+ *	 Two empty strings is prepared to be used with check_command.
  * Expected outcome: 0 should be returned.
  */
 
 int check_command(char *, char *);
 
-  char string[] = "hej";
-  char string2[] = "hej";
+  char string3[] = "";
+  char string4[] = "";
   unsigned char result;
 
 START_TEST(test_case_9) {
   /* fail criteria, test check_command with the strings provided*/
-    fail_if(check_command(string, string2) != 0);
+    fail_if(check_command(string3, string4) != 0);
   
 }END_TEST
 
