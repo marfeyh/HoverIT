@@ -7,7 +7,7 @@ SRC_C=  list.c
 SRC_CXX= 
 MAIN_SRC = 
 #ARDUINO = uno
-ARDUINO = stub
+ARDUINO = mega2560
 SHLIB = scheduler.so
 
 LIB = libscheduler.a
