@@ -33,6 +33,7 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <stdlib.h>
 #include "gps.h"
+#include "setup.h"
 
 #ifdef stub
 #include "./tests/GPS_Stub/emulator_GPS.h"
@@ -65,11 +66,11 @@ char *read_rmc_data(){
     int index = 0;
     int death_counter = 1;
     while(boolean==1 && death_counter<WAITING_LOOP_VALUE){ 
-/*#ifdef __testingGPS__ */
+#ifdef __testingGPS__ 
       buffer = serial_read();
-/*#else */
-  /*   buffer = Serial.read(); */
-/* #endif */
+#else 
+      buffer = Serial.read(); 
+#endif
       if (buffer != -1){
 	if(buffer == 13 || buffer == '\n'){ 
 	  index = 0;
