@@ -48,12 +48,8 @@
 #include <searduino.h>
 
 /*!
- *@brief Function is responsible for reversing the direction of the rotation 
-   of the propulsion fan using PCB relay with a predefined relaypin. The relay
-   pin is set as high.The propulsion fan is set with the max speed after which
-   the current speed value is checked against predefined speed value. If it is
-   less than 10, then we stop the propulsion fan after enabling the motor to 
-   rotate bidirectionally.
+ *@brief Function is responsible for reversing the direction of the rotation
+  of the propulsion fan. 
  */
 int reverse_prop_motor(){
    int hover_speed = 0;
