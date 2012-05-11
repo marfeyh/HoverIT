@@ -1,6 +1,7 @@
-TEST_DIR=./tests/
+TEST_DIR=tests
 SEARDUINO_PATH = /opt/searduino
-PROG = percentage
+PROG = batterymeter
+
 # Add your source files here
 SRC_C= percentage.c
 SRC_CXX=
