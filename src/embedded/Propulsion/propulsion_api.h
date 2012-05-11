@@ -9,8 +9,8 @@ by the Free Software Foundation, either version 3 of the License, or
 @author: Xinran He & Khatereh Khosravianarab
 @version 0.1
 */
-#define MAXSPEED 122
-#define PERSPEED 40
+#define MAXSPEED 120
+#define PERSPEED 6
 
 /*!
 @brief Funtion to initialise propulsion fan
