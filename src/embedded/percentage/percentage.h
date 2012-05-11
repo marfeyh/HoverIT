@@ -15,12 +15,12 @@ License along with this program. If not, see
 */
 
 /*!
-@file percentage.c
+@file percentage.h
 @details This module is the header file for percentage.c 
 @authors Denir
-@version 0.9
+@version 1.1
 @note 
-@todo test it and integrate it
+@todo
 */
 
 #ifndef PERCENTAGE_H

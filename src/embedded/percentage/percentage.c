@@ -18,17 +18,16 @@ License along with this program. If not, see
 @file percentage.c
 @details This module reads from analogpin and calculates the precentage left 
 @authors Denir
-@version 0.9
+@version 1.1
 @note 
-@todo test it and integrate it
+@todo 
 */
 
 #include <Arduino.h>
 #include <searduino.h>
 #include "percentage.h"
 
-
-
+int PERCENTAGE;
 
 /*!
 @brief This function checks for what battery the percentage should be calculated for
@@ -44,7 +43,7 @@ int getPercentage(int batteryNo)
 	} else if(2 == batteryNo)
 	{
 		return getSecondBatteryLevel();
-	} else if(2 == batteryNo)
+	} else if(3 == batteryNo)
 	{
 		return getThirdBatteryLevel();
 	}
@@ -62,7 +61,11 @@ int getFirstBatteryLevel()
 		return 0;
 	} else
 	{
-		int PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN1)) / 180 * 100));
+		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN1)) / 180.00 * 100));
+//    		int percentage1 = check();
+//    		setup_alarm(percentage1);
+//    		display_percentage(percentage1); 
+        /* these are done in BatteryMeter.c - bruce */
 		return PERCENTAGE;
 	}
 }
@@ -79,7 +82,12 @@ int getSecondBatteryLevel()
 		return 0;
 	} else
 	{
-		int PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180 * 100));
+		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180.00 * 100));
+//    		int percentage2 = check();
+//    		setup_alarm(percentage2);
+//    		display_percentage(percentage2);
+        /* these are done in BatteryMeter.c - bruce */
+
 		return PERCENTAGE;
 	}
 }
@@ -96,7 +104,12 @@ int getThirdBatteryLevel()
 		return 0;
 	} else
 	{
-		int PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180 * 100));
+		PERCENTAGE = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180.00 * 100));
+//    		int percentage3 = check();
+//    		setup_alarm(percentage3);
+//    		display_percentage(percentage3);
+        /* these are done in BatteryMeter.c - bruce */
+
 		return PERCENTAGE;
 	}
 }
