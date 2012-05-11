@@ -1,4 +1,4 @@
-/*! 
+/*!
 This file is part of Hoveritu.
 
 Hoveritu is free software: you can redistribute it and/or modify
@@ -35,8 +35,8 @@ along with Hoveritu.  If not, see <http://www.gnu.org/licenses/>.
 #include "gps.h"
 #include "setup.h"
 
-#ifdef stub
-#include "./tests/GPS_Stub/emulator_GPS.h"
+#ifdef __testingGPS__
+#include "./GPS_Stub/Serial_read.h"
 #else
 #include "searduino.h"
 #endif
@@ -111,11 +111,9 @@ char *retrive_data(char *linema, int data_position){
       value[li] = linema[j+1]; 
       li++;
     }
-    //    free(indices);
-    //    free(linema);
+    free(indices);
     return value;
   }
-  //  free(linema);
   return NULL;
 }
 
