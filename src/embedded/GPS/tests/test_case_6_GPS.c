@@ -33,8 +33,7 @@ START_TEST(test_case_6) {
 char* linema;
 char* time;
 struct position* posi;
- 
-linema = "$GPRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A";
+ linema = read_rmc_data();
 
 time = get_time(linema);
 printf("TIME: %s\n", time);
@@ -42,11 +41,11 @@ printf("TIME: %s\n", time);
 posi = get_positionA(linema);
 printf("POSITION: %f, %f, %c, %c\n", posi->longitude, posi->latitude, posi->ns, posi->ew);
         
-fail_unless(time == "123519","time is wrong");
-fail_unless(posi-> longitude == "01131.000"," position is wrong");
-fail_unless(posi-> Latitude == "4807.038"," position is wrong");
-fail_unless(posi-> ns == "N"," position is wrong");
-fail_unless(posi-> ew == "E"," position is wrong");
+fail_unless(time == 123519,"time is wrong");
+fail_unless(posi->longitude == 01131.000," position is wrong");
+fail_unless(posi->latitude == 4807.038," position is wrong");
+fail_unless(posi->ns == 'N'," position is wrong");
+fail_unless(posi->ew == 'E'," position is wrong");
 }END_TEST
 
 /*

@@ -35,7 +35,7 @@
  #include "test_case_3_GPS.c" 
 /*#include "test_case_4_GPS.c" */
  #include "test_case_5_GPS.c" 
-//#include "test_case_6_GPS.c"
+#include "test_case_6_GPS.c"
  #include "test_case_7_GPS.c" 
  #include "test_case_8_GPS.c" 
  #include "test_case_9_GPS.c" 
@@ -51,7 +51,7 @@ Suite * test_suite(void){
 	TCase *tc3=tcase_create("test case 3");
 /* 	TCase *tc4=tcase_create("test case 4"); */
 	TCase *tc5=tcase_create("test case 5"); 
-	//	TCase *tc6=tcase_create("test case 6");
+	TCase *tc6=tcase_create("test case 6");
 	TCase *tc7=tcase_create("test case 7"); 
 	TCase *tc8=tcase_create("test case 8"); 
 	TCase *tc9=tcase_create("test case 9"); 
@@ -80,7 +80,7 @@ Suite * test_suite(void){
 	
  	tcase_add_test(tc5, test_case_5); 
 	
-	//	tcase_add_test(tc6, test_case_6);
+	tcase_add_test(tc6, test_case_6);
 
 	 tcase_add_test(tc7, test_case_7_1); 
 	 tcase_add_test(tc7, test_case_7_2); 
@@ -106,7 +106,7 @@ Suite * test_suite(void){
 	suite_add_tcase(s,tc3); 
 /* 	suite_add_tcase(s,tc4);  */
  	suite_add_tcase(s,tc5); 
-	//	suite_add_tcase(s,tc6);
+	suite_add_tcase(s,tc6);
 	 suite_add_tcase(s,tc7); 
 	 suite_add_tcase(s,tc8); 
 	 suite_add_tcase(s,tc9); 
