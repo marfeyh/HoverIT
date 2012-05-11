@@ -1,0 +1,75 @@
+\hypertarget{four_leds_on_8c}{\section{four\-Leds\-On.\-c File Reference}
+\label{four_leds_on_8c}\index{four\-Leds\-On.\-c@{four\-Leds\-On.\-c}}
+}
+{\ttfamily \#include $<$Arduino.\-h$>$}\\*
+{\ttfamily \#include $<$searduino.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}four\-Leds\-On.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{four_leds_on_8c_a43c125246b7277ba81b556c927774345}{init\-\_\-leds} (void)
+\item 
+void \hyperlink{four_leds_on_8c_a13c7ae10f74656614b9469161dca76dd}{display\-\_\-percentage} (int value)
+\item 
+void \hyperlink{four_leds_on_8c_aed8025995a6b9b618571973c0033c395}{run\-\_\-leds} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{four_leds_on_8c_a6bca96572a37f9b51ccae0fa72f57aba}{led\-State} = L\-O\-W
+\item 
+unsigned long \hyperlink{four_leds_on_8c_a39e0523390523572c0792bc50f1d5913}{previous\-Timer} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This program is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distodributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/gpl-3.0.html}{\tt http\-://www.\-gnu.\-org/licenses/gpl-\/3.\-0.\-html}.
+
+Contains the functions that turns on four leds to show how much battery left \begin{DoxyAuthor}{Authors}
+Nahid Vafaie 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+4 May 9 2012 
+\end{DoxyVersion}
+\begin{DoxyNote}{Note}
+this is a note about this module (optional) 
+\end{DoxyNote}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]if anything should be further developed on this module (optional) \end{DoxyRefDesc}
+
+
+\subsection{Function Documentation}
+\hypertarget{four_leds_on_8c_a13c7ae10f74656614b9469161dca76dd}{\index{four\-Leds\-On.\-c@{four\-Leds\-On.\-c}!display\-\_\-percentage@{display\-\_\-percentage}}
+\index{display\-\_\-percentage@{display\-\_\-percentage}!fourLedsOn.c@{four\-Leds\-On.\-c}}
+\subsubsection[{display\-\_\-percentage}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf display\-\_\-percentage} (
+\begin{DoxyParamCaption}
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}}\label{four_leds_on_8c_a13c7ae10f74656614b9469161dca76dd}
+\hypertarget{four_leds_on_8c_a43c125246b7277ba81b556c927774345}{\index{four\-Leds\-On.\-c@{four\-Leds\-On.\-c}!init\-\_\-leds@{init\-\_\-leds}}
+\index{init\-\_\-leds@{init\-\_\-leds}!fourLedsOn.c@{four\-Leds\-On.\-c}}
+\subsubsection[{init\-\_\-leds}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf init\-\_\-leds} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{four_leds_on_8c_a43c125246b7277ba81b556c927774345}
+\hypertarget{four_leds_on_8c_aed8025995a6b9b618571973c0033c395}{\index{four\-Leds\-On.\-c@{four\-Leds\-On.\-c}!run\-\_\-leds@{run\-\_\-leds}}
+\index{run\-\_\-leds@{run\-\_\-leds}!fourLedsOn.c@{four\-Leds\-On.\-c}}
+\subsubsection[{run\-\_\-leds}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf run\-\_\-leds} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{four_leds_on_8c_aed8025995a6b9b618571973c0033c395}
+
+
+\subsection{Variable Documentation}
+\hypertarget{four_leds_on_8c_a6bca96572a37f9b51ccae0fa72f57aba}{\index{four\-Leds\-On.\-c@{four\-Leds\-On.\-c}!led\-State@{led\-State}}
+\index{led\-State@{led\-State}!fourLedsOn.c@{four\-Leds\-On.\-c}}
+\subsubsection[{led\-State}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf led\-State} = L\-O\-W}}\label{four_leds_on_8c_a6bca96572a37f9b51ccae0fa72f57aba}
+\hypertarget{four_leds_on_8c_a39e0523390523572c0792bc50f1d5913}{\index{four\-Leds\-On.\-c@{four\-Leds\-On.\-c}!previous\-Timer@{previous\-Timer}}
+\index{previous\-Timer@{previous\-Timer}!fourLedsOn.c@{four\-Leds\-On.\-c}}
+\subsubsection[{previous\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long {\bf previous\-Timer} = 0}}\label{four_leds_on_8c_a39e0523390523572c0792bc50f1d5913}
