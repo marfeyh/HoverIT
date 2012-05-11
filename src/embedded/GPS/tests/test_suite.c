@@ -17,6 +17,7 @@
 
 #ifndef __testingGPS__
 #define __testingGPS__
+#define stub
 #endif
 
 #include <stdlib.h>

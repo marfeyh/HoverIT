@@ -94,8 +94,8 @@ char *read_rmc_data(){
 /*!
  * @brief A function taking two arguments of data and position and returning a character pointer to the data specified.
  * @details int value and data {0,UTC_Time},{2,Latitude},{3,Orientiation_N/S},{4,longitude},{5,Orientation_E/W}
- * @param data   the char pointer to a return value from 'read_rmc_data'
- * @param position   a integer value to specify s position in a array
+ * @param[in] data   the char pointer to a return value from 'read_rmc_data'
+ * @param[in] position   a integer value to specify s position in a array
  * @see read_rmc_data()
  * @warning Function should be used carefully, in other case this might lead to a memory leakage
  * @return struct position
