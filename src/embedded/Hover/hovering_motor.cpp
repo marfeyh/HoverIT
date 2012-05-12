@@ -1,14 +1,42 @@
-/*
- * @ Module name:  hovering_motor.cpp
- * @ Description:  Contains the functions that
- *   control the hovering fan speed.
+
+/***************************************************************************
+ * Copyright (C) 2012  Eva-Lisa Kedborn                     
+ * 		       Jing Liu
+ *		       Seyed Ehsan Mohajerani
+ *		       Navid Amiriarshad	
  *
- * @ Author names : Seyed Ehsan Mohajerani, Navid Amiriarshad
- * @ Release      : 20 March 2012
- * @ Version      : 1.0
- * @ References    : Arduino.cc, sandklef.com
- * dreamincode.net/forums/topic/34861-functions-stored-in-structure
- * Turnigy_Plush_and_Sentry_ESC user manual
+ * This program is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ ****************************************************************************/
+
+/*!
+ @file hovering_motor.cpp
+ @brief Contains the functions that
+ control the hovering fan speed.
+ @author Seyed Ehsan Mohajerani, 
+ @authorNavid Amiriarshad
+ @version 0.9
+ @release 20 March 2012
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
  */
 
 /* Includes */

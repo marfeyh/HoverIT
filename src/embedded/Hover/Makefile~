@@ -21,23 +21,16 @@
 #****************************************************************************
 
 #
-# @file Main Makefile
-# @brief Compiles the files and test files for control hovering fan
-# @author Eva-Lisa Kedborn 
-# @author Jing Liu 
-# @author Seyed Ehsan Mohajerani
-# @author Navid Amiriarshad
-# @date 9 April 2012
-# @version 0.9
-# @see Arduino.cc
-# @see sandklef.com
-# @see hoveritu.com
-# @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
-# @see Turnigy_Plush_and_Sentry_ESC user manual
-# @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
-# .html
-# @see reference for commenting stack.nl/~dimitri/doxygen/commands
-# .html#cmdparam
+# @Module name:  Main Makefile
+# @Description:  Compiles the files and test files for control hovering fan
+# @Author Eva-Lisa Kedborn 
+# @Author Jing Liu 
+# @Author Seyed Ehsan Mohajerani
+# @Author Navid Amiriarshad
+# @Release      : 9 April 2012
+# @Version      : 1
+# @Refrences    : Arduino.cc, sandklef.com, Check manual
+#
 
 TEST_DIR = Tests/
 SEARDUINO_PATH = /opt/searduino
