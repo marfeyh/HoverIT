@@ -22,11 +22,11 @@
 
 /*!
  @file hovering_check.c
+ @brief Contains the functions that check the hovering control files.
  @author Eva-Lisa Kedborn
  @author Jing Liu
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
- @brief Contains the functions that check the hovering control files.
  @version 0.4
  @date 2012-04-09
  @see Arduino.cc
@@ -43,7 +43,7 @@
 #include <Arduino.h>
 #include <searduino.h>
 #include <check.h>
-#include <pin.h> 
+#include <pin.h>
 #include <stdlib.h> 
 #include "../pressure_check.h"
 #include "../pressure.h"
