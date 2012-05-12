@@ -1,15 +1,21 @@
-/*	
- * @ Module name:  main.c	
- * @ Description:  Contains the functions that will send a tone to pin 11 (speakers)based on battery level it will generate different frequencies 	
- * @ Author names :Neda Mohammadian	,mahsa mirtalebi
- * @ Release      :23 April 2012	(//first release in 17 april)
- * @ Version      : 2	
+/*!	
+ @file alarm.c
+ @headerfile Arduino.h
+ @headerfile searduino.h
+ @headerfile tonerWrapper.h
+ @headerfile alarm.h
+ @details Contains the functions that will send a tone to pin 11 (speakers)based on battery level it will generate different frequencies
+ @author Mahsa Mirtalebi
+ @author Neda Mohammadian
+ @version 3
  */
+
+
 
 #include <Arduino.h>
 #include <searduino.h>
-#include <toneWrapper.h>
-#include <alarm.h>
+#include "toneWrapper.h"
+#include "alarm.h"
 
 int battery_beep_duration=0;
 
@@ -22,17 +28,17 @@ void setup_battery_level(){
 	pinMode(13,OUTPUT);
 }
 
-void exec() {
-	for(;;){
-		loop_battery_level();
+void exec(uint8_t percentage) {
+//	for(;;){
+		loop_battery_level(percentage);
 		//digitalRead(13) ? digitalWrite(13,LOW) : digitalWrite(13,HIGH);
 		// Delay will be removed in integrated version
-		delay(100);
-	}
+//		delay(100);
+//	}
 }
 
-int loop_battery_level(){
-  int Battery=getBattery();
+int loop_battery_level(uint8_t Battery){
+//  int Battery=getBattery();
   if(Battery==LOW_BATTERY && battery_beep_duration<LOW_BATTERY_DURATION){
     beep(LOW_BATTERY);
     battery_beep_duration++;
@@ -46,7 +52,11 @@ int loop_battery_level(){
   }
 }
 
-
+/*!
+ @brief this function make sound based on the argument 
+ @param int integer number representing the type of the sound 	
+ @return int integer number representing what kind of sound function made 	
+ */
 int beep(int beep){
   switch(beep){
     case LOW_BATTERY:
@@ -60,6 +70,6 @@ int beep(int beep){
   }
 }
 
-int getBattery(){     
-  return 20;
-}
+//int getBattery(){     
+//  return 20;
+//}

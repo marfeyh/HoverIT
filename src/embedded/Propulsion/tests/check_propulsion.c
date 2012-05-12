@@ -1,15 +1,22 @@
-/*
-  AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
-  DATA :2012-04-05
-  DESCRIPTION: This file is the unit tests for the propulsion 
-               and propulsion API functions. 
-               check libraries are used as a tool for the unit tests. 
-               check their manual for details.
-  http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
+/*!
+ @file check_propulsion.c
+ @author Yohanes Kuma
+ @author Xinran He
+ @author Khatereh Khosravianarab
+ @author Ezeh Prince Anthony Anayo
+ @brief This file is the unit tests for the propulsion and propulsion
+  API functions.Check libraries are used as a tool for the unit tests. 
+  check their manual for details.
+ @date 2012-04-05
+ @reference http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
 */
 #include <check.h>
 #include <propulsion.h>
 #include <propulsion_api.h>
+#include <brake_propulsion.h>
+#include <pin.h>
+#include <Arduino.h>
+#include <searduino.h>
 
 void setup(void){
   //nothing for the moment
@@ -129,7 +136,8 @@ START_TEST(test_init_propulsion){
  /* END OF PROPULSION API UNIT TESTS */
 
 
- /* PROPULSION UNIT TESTS */
+
+/* PROPULSION UNIT TESTS */
 
  /* id: Y1
     purpose: tests init() function of searduino and setting PIN as output and
@@ -139,7 +147,7 @@ START_TEST(test_init_propulsion){
  */
 START_TEST(test_init) {
   fail_unless((initialise_propulsion() == 0),NULL);
-  fail_unless((manage_motor() == 0),NULL);
+  fail_unless((manage_motor() == 1),NULL);
 }END_TEST
 
  /* id: Y2
@@ -164,6 +172,7 @@ START_TEST(test_stop_motor) {
  	 	     2. 1 is returned from get_speed_level() showing the speed
 		        is now at level 1(Minimum boundary)
  */
+
 START_TEST(test_minimum_speed) {
   int level = 1;
   initialise_propulsion();
@@ -183,6 +192,7 @@ START_TEST(test_minimum_speed) {
 		        showing the speed is now at level MAX_SPEED_LEVEL
 		        (Maximum boundary)
  */
+
 START_TEST(test_maximum_speed) {
   int level = MAX_SPEED_LEVEL;
   initialise_propulsion();
@@ -190,12 +200,46 @@ START_TEST(test_maximum_speed) {
   fail_unless((manage_motor() == 2),NULL);
   fail_unless((get_speed_level() == MAX_SPEED_LEVEL),NULL);  
 }END_TEST
- /* END OF PROPULSION UNIT TESTS*/
+
+/* END OF PROPULSION UNIT TESTS*/
+
+/* BRAKE PROPULSION UNIT TESTS */
+
+/* 
+   Id/Title: XA1/test brake hovercraft
+   Purpose: test if the hovercraft would be stopped immediately once 
+            stop command is received
+   Prerequisites: initialize realy
+   Expected results: propulsion motor reverse retation, return 0
+   Pass/Fail criteria: when check is run response is 100%: Checks: 1,
+                       Failures: 0, Errors: 0
+*/
+START_TEST(test_brake_hovercraft){
+  initialise_propulsion();
+  initialize_relay();
+  fail_unless(reverse_prop_motor() == 0);
+}END_TEST
 
 
- /* Creates test suit for check. see check manual for details
+/* 
+   Id/Title: XA2/test initialize relay
+   Purpose: test if the realy is initialized before starting hovercraft
+   Prerequisites: NULL
+   Expected results: propulsion motor reverse retation, return 0
+   Pass/Fail criteria: when check is run response is 100%: Checks: 1,
+                       Failures: 0, Errors: 0
+*/
+START_TEST(test_initialize_relay){
+  fail_unless((initialize_relay() == 0), NULL); 
+}END_TEST
+
+ /* END OF BRAKE PROPULSION UNIT TESTS*/
+
+
+/* Creates test suit for check. see check manual for details
     http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
- */
+*/
+
 Suite * propulsion_suite(void) {
   Suite *s = suite_create("Propulsion_fan");
   TCase *tc = tcase_create("Core");
@@ -209,7 +253,8 @@ Suite * propulsion_suite(void) {
   tcase_add_test(tc, test_fanlevel);
   tcase_add_test(tc, test_stop);
   tcase_add_test(tc, test_set_speed);
-  tcase_add_test(tc, test_init_propulsion);
+  tcase_add_test(tc, test_brake_hovercraft);
+  tcase_add_test(tc, test_initialize_relay);
   suite_add_tcase(s, tc);
   return s;
 }

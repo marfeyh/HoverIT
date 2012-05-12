@@ -1,6 +1,6 @@
 DOXYFILE_ENCODING      = UTF-8
 INPUT		       = src
-FILE_PATTERNS	       = *.c *.cpp *.h
+FILE_PATTERNS	       = *.c *.cpp *.h .java
 RECURSIVE	       = YES
 OUTPUT_DIRECTORY       = /var/doc/dit168v12/doxygen/
 PROJECT_NAME           = HoverIT

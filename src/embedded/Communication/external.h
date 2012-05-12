@@ -41,4 +41,6 @@ extern int autocontrol(); /* let the fan speed be cotrolled by pressure  sensor 
 // Rudder Direction
 extern void control_rudder(int);
 
+extern int set_propulsion_fan(int);
+
 #endif

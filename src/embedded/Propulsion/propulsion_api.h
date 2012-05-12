@@ -49,7 +49,15 @@ int stop_propulsion_fan();
 
 /*!
 @brief Function to set propulsion fan speed
-@param integer between 0 and 122
+@param integer between 0 and 120
 @returns -1 for error or current fan speed
 */
 int set_propulsion_fan(int set_speed);
+
+/*!
+
+@brief Function to brake hovercraft by reverse motor
+@param takes no parameters
+@returns 0
+*/
+int brake_hovercraft();

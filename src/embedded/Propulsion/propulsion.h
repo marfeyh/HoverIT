@@ -14,13 +14,16 @@ information.
 @date 2012-04-05
 */
 
+#include <searduino.h>
+
+
 /* maximum duty cycle for Pulse width modulation **/
 #define MAX_DUTY_CYCLE 254
 /* Minimum duty cycle for Pulse width modulation **/
 #define MIN_DUTY_CYCLE 132
 /* 
    The maximum level of the speed. it is dependent on the type 
-   of Microcontroller used and the range of duty cycles for PWM 
+   of Microcontroller used and the range of duty cycles for PWM 	
    which can rotate the Motor 
 */
 #define MAX_SPEED_LEVEL 122
@@ -32,8 +35,4 @@ int initialise_propulsion();
 int get_speed_level();
 void change_pro_speed(int level);
 void stop_pro_fan();
-<<<<<<< HEAD
-void init_motor();
-=======
->>>>>>> 1447c79aad91a351d5d0ee7036c063b6da064dc6
 unsigned char get_motor_status();
