@@ -1,12 +1,16 @@
 /*!
+@copyright This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 @file propulsion_api.h
 @brief This file contains the functions for controlling 
        the propulsion fan speed
 @author: Xinran He & Khatereh Khosravianarab
 @version 0.1
 */
-#define MAXSPEED 122
-#define PERSPEED 40
+#define MAXSPEED 120
+#define PERSPEED 6
 
 /*!
 @brief Funtion to initialise propulsion fan

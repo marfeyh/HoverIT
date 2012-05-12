@@ -28,14 +28,20 @@ void teardown(void){
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan speed should keep the 
                      highest level without any errors
-   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 1,
                        Failures: 0, Errors: 0
 */
-START_TEST(Test_Pro){
-  fail_if(increase_propulsion() != PERSPEED, "Expected 40");
-  fail_if(increase_propulsion() != PERSPEED * 2 , "Expected 80");
-  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 120");
-  fail_if(increase_propulsion() != PERSPEED * 3 , "Expected 120");
+START_TEST(test_Pro){
+  fail_if(increase_propulsion() != PERSPEED, "Expected 6");
+  increase_propulsion(); increase_propulsion(); increase_propulsion();
+  increase_propulsion(); increase_propulsion(); increase_propulsion();
+  fail_if(increase_propulsion() != PERSPEED * 8, "Expected 48");
+  increase_propulsion(); increase_propulsion(); increase_propulsion();
+  increase_propulsion(); increase_propulsion(); increase_propulsion();
+  increase_propulsion(); increase_propulsion(); increase_propulsion();
+  increase_propulsion(); increase_propulsion(); increase_propulsion();
+  increase_propulsion(); increase_propulsion(); increase_propulsion();
+  fail_if(increase_propulsion() != PERSPEED * 20, "Expected 120 ");
 }END_TEST
 
 /* 
@@ -43,18 +49,18 @@ START_TEST(Test_Pro){
    Purpose: test if user keep decreasing propulsion fan
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan speed should stop without errors
-   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 2,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_dec){
   increase_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED, "Expected 40");
+  fail_if(decrease_propulsion() != PERSPEED, "Expected 6");
   increase_propulsion();
   increase_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED * 2 , "Expected 80");
+  fail_if(decrease_propulsion() != PERSPEED * 2 , "Expected 12");
   decrease_propulsion();
   decrease_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED, "Expected 40.");
+  fail_if(decrease_propulsion() != PERSPEED, "Expected 6.");
 }END_TEST
 
 /* 
@@ -62,7 +68,7 @@ START_TEST(test_dec){
    Purpose: test if user can get right propulsion fan speed level
    Prerequisites: initialize propulsion fan
    Expected results: return right current fan speed level
-   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 3,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_fanlevel){
@@ -80,7 +86,7 @@ START_TEST(test_fanlevel){
    Purpose: test if the propulsion fan is stoped normally
    Prerequisites: initialize propulsion fan
    Expected results: propulsion fan stop
-   Pass/Fail criteria: when check is run response is 100%: Checks: 5,
+   Pass/Fail criteria: when check is run response is 100%: Checks: 4,
                        Failures: 0, Errors: 0
 */
 START_TEST(test_stop){
@@ -100,12 +106,26 @@ START_TEST(test_stop){
    Pass/Fail criteria: when check is run response is 100%: Checks: 5,
                        Failures: 0, Errors: 0
 */
-START_TEST(Test_set_speed){
+START_TEST(test_set_speed){
   fail_if(set_propulsion_fan(30) != 30,"Expected 30");
   fail_if(set_propulsion_fan(50) != 50,"Expected 50");
   fail_if(set_propulsion_fan(-40) != -1,"Expected -40");
   fail_if(set_propulsion_fan(500) != -1,"Expected 500");
 }END_TEST
+
+
+/* 
+   Id/Title: XK6/test initialize propulsion fan
+   Purpose: propulsion fan should be init before starting propulsion fan
+   Prerequisites: NULL
+   Expected results: propulsion fan should be initialized and return 0
+   Pass/Fail criteria: when check is run response is 100%: Checks: 6,
+                       Failures: 0, Errors: 0
+*/
+START_TEST(test_init_propulsion){
+  fail_if(start_propulsion_fan() != 0, "Expected 0 to init propulsion");
+}END_TEST
+
  /* END OF PROPULSION API UNIT TESTS */
 
 
@@ -184,11 +204,12 @@ Suite * propulsion_suite(void) {
   tcase_add_test(tc, test_stop_motor);
   tcase_add_test(tc, test_minimum_speed);
   tcase_add_test(tc, test_maximum_speed);
-  tcase_add_test(tc, Test_Pro);
+  tcase_add_test(tc, test_Pro);
   tcase_add_test(tc, test_dec);
   tcase_add_test(tc, test_fanlevel);
   tcase_add_test(tc, test_stop);
-  tcase_add_test(tc, Test_set_speed);
+  tcase_add_test(tc, test_set_speed);
+  tcase_add_test(tc, test_init_propulsion);
   suite_add_tcase(s, tc);
   return s;
 }

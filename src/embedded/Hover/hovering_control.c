@@ -56,10 +56,11 @@ int start(int using_pin, int test_pin) {
 	/* Set the level to 100 or Start the hovering motor*/
 	if (throttle_stick_level < THROTTLE_STICK_BOTTOM_LEVEL){
 		throttle_stick_bottom(using_pin, test_pin);
-	}
+	} else {
 	/* Test code */
 	test_start (test_pin);
 	return 0;
+	}
 }
 
 /* Set the level to 100 or start the motor \

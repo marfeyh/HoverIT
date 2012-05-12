@@ -1,4 +1,8 @@
 /*!
+  @copyright This program is free software: you can redistribute it and/or
+  modify it under the terms of the GNU General Public License as published
+  by the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
   @file propulsion_api.c 
   @headerfile propulsion.h
   @headerfile propulsion_api.h
@@ -27,9 +31,9 @@ int start_propulsion_fan()
  */
 int increase_propulsion(){
   int speed = get_speed_level();
-  if( speed >= MAXSPEED - 3 ){
-    change_pro_speed(PERSPEED*3);
-    return PERSPEED * 3;
+  if( speed >= MAXSPEED ){
+    change_pro_speed(PERSPEED * 20);
+    return PERSPEED * 20;
   }
   else if( speed < MAXSPEED ){
     change_pro_speed(speed + PERSPEED);
@@ -43,11 +47,11 @@ int increase_propulsion(){
  */
 int decrease_propulsion(){
   int speed = get_speed_level();
-  if( speed == 40 ){
+  if( speed <= PERSPEED ){
     change_pro_speed(PERSPEED);
     return speed;
   }
-  else if( speed > 40 ){
+  else if( speed > PERSPEED ){
     change_pro_speed(speed - PERSPEED);
     return speed - PERSPEED;
   }
@@ -58,7 +62,7 @@ int decrease_propulsion(){
 @brief set a specific speed number
  */
 int set_propulsion_fan(int set_speed){
-  if( set_speed < 0 || set_speed > 122 ){
+  if( set_speed < 0 || set_speed > 120 ){
      stop_pro_fan();
      return -1;
   }
@@ -87,11 +91,11 @@ int get_propulsion_level(){
   else if( speed > 0 && speed <= PERSPEED ){
     return 1;
   }
-  else if( speed > PERSPEED && speed <= PERSPEED * 2 ){
-    return 2;
+  else if( speed > PERSPEED && speed < PERSPEED * 20 ){
+     return speed / PERSPEED;
   }
-  else if( speed > PERSPEED *2 ){
-    return 3;
+  else if( speed >= PERSPEED * 20 ){
+    return 20;
   }
   return -1;
 }

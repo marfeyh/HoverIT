@@ -4,7 +4,7 @@ SEARDUINO_PATH = /opt/searduino
 SRC_C = pressure_stub.c
 SRC_CXX= 
 MAIN_SRC =
-ARDUINO = stub
+ARDUINO = uno
 SHLIB =
 
 LIB = libpressure_stub.a
