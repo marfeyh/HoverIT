@@ -60,9 +60,9 @@ int test_start (int test_pin) {
 	silence_time = 50;
 	loop_number = 8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, BEEP);
+		digitalWrite (test_pin, HIGH);
 		delay (beep_time);
-		analogWrite (test_pin, SILENCE);
+		digitalWrite (test_pin, LOW);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);
@@ -134,9 +134,9 @@ int test_analogwrite (int test_pin){
 	silence_time = 50;
 	loop_number = 2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, BEEP);
+		digitalWrite (test_pin, HIGH);
 		delay (beep_time);
-		analogWrite (test_pin, SILENCE);
+		digitalWrite (test_pin, LOW);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);

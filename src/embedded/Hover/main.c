@@ -38,10 +38,9 @@ rest of the project
 @returns integer 0 if successful
 */
 int main(void) {
-
         init();
 	start_hover();
-	hover_min();
+	hover_min();	
 	delay(1000);
 	hover_max();
 	delay(2000);
