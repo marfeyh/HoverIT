@@ -36,4 +36,4 @@
 
 
 #define USING_PIN 10
-#define TEST_PIN 7
+#define TEST_PIN 9
