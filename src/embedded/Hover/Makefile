@@ -49,11 +49,11 @@ SRC_C = hovering_motor.c hovering_control.c hovering_init_fix.c \
 MAIN_SRC = main.c
 
 #When using uno or mega,following line should be commented
-ARDUINO = stub
+#ARDUINO = stub
 #When using stub or mega,following line should be commented 
 #ARDUINO = uno
 #When using uno or mega,following line should be commented
-#ARDUINO = mega2560
+ARDUINO = mega2560
 
 SHLIB = hovering.so
 
