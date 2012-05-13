@@ -65,15 +65,14 @@ int pin_program (int using_pin, int test_pin, int level) {
 	return 0;
 }
 
-
 /* This function prevents the motor from stop (Check boundary values) */
 int check_and_fix_level (int using_pin,int test_pin, \
-int throttle_stick_level){
-	if (throttle_stick_level < LOWEST_LEVEL){
+int g_throttle_stick_level){
+	if (g_throttle_stick_level < LOWEST_LEVEL){
 		test_Too_low (test_pin);
 		normal (using_pin, test_pin);
 	}
-	if (throttle_stick_level > HIGHEST_LEVEL){
+	if (g_throttle_stick_level > HIGHEST_LEVEL){
 		test_Too_high (test_pin);		
 		turbo (using_pin, test_pin);
 	}
@@ -83,28 +82,33 @@ int throttle_stick_level){
 /* This function prevents the motor from stop (Check boundary values)
 and also prevent increase to function when the motor is stopped */
 int check_and_fix_level_increase (int using_pin, int test_pin, \
-int throttle_stick_level, int level){
-	//if (throttle_stick_level < LOWEST_LEVEL){
+int g_throttle_stick_level, int level){
+	//if (g_throttle_stick_level < LOWEST_LEVEL){
 	//	test_Too_low (test_pin);
-	//	return throttle_stick_level;
+	//	return g_throttle_stick_level;
 //	}else 
-	if (throttle_stick_level > HIGHEST_LEVEL){
-			test_Too_high (test_pin);		
-			turbo (using_pin, test_pin);
-			return throttle_stick_level;	
+	if (g_throttle_stick_level + level > HIGHEST_LEVEL){
+		test_Too_high (test_pin);		
+		turbo (using_pin, test_pin);	
+		return g_throttle_stick_level;	
 	}else {
-		return throttle_stick_level + level;}
+		return g_throttle_stick_level + level;
+	}
 }
 
 
 /* This function prevents the motor from stop (Check boundary values)
 and also prevent decrease to function when the motor is stopped */
 int check_and_fix_level_decrease (int using_pin,int test_pin, \
-int throttle_stick_level,int level){
+int g_throttle_stick_level,int level){
 	/* If the motor is stopped then nothing should be done */
-	if (throttle_stick_level < LOWEST_LEVEL){		
+	if (g_throttle_stick_level < LOWEST_LEVEL || \
+	   g_throttle_stick_level-level < LOWEST_LEVEL){		
 		test_Too_low (test_pin);
-		return throttle_stick_level;
+		return g_throttle_stick_level;
+	} else {
+		set_fixed_level (using_pin, test_pin, \
+		g_throttle_stick_level-level);
+		return g_throttle_stick_level;
 	}
-	return throttle_stick_level - level;
 }

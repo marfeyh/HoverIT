@@ -51,9 +51,13 @@
 int main(void) {
         init();
 	start_hover();
+	delay(2000);
 	hover_min();	
 	delay(1000);
 	hover_max();
+	delay(2000);
+//	hover_min();	
+	decrease_hover_auto();
 	delay(2000);
 	increase_hover_auto();
 	delay(2000);

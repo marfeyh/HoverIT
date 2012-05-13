@@ -58,7 +58,7 @@ int hover_func (int (*func)(int,int), int using_pin, int test_pin){
 /* Fucntion that gets arguments for change the speed of motor */
 int hover_change (int (*climb_decesnd)(int, int, int), int using_pin, \
 int test_pin, int level){
-	climb_decesnd(using_pin, test_pin, level);
+	climb_decesnd (using_pin, test_pin, level);
 	return 0;
 }
 
