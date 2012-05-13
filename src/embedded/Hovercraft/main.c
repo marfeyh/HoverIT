@@ -6,7 +6,7 @@
 #include <hover_api.h>
 #include <hovercraft_pin.h>
 #include <steering.h>
-#include "calculateSpeed.h"
+//#include "calculateSpeed.h"
 
 //Speed *g_speed_p;
 

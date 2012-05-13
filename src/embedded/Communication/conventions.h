@@ -56,7 +56,5 @@
  * @pre
  * @warning
  * @copyright
- * @note
  * @headerfile
- * @file
  */

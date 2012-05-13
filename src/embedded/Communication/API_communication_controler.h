@@ -10,6 +10,8 @@
 #ifndef API_BLUETOOTH_CONTROLER_H_
 #define API_BLUETOOTH_CONTROLER_H_
 
+unsigned char connection_status();
+
 /*!
  @brief Initializing bluetooth serial pins on Arduino
  */
@@ -78,5 +80,4 @@ unsigned char battery_level(unsigned char message);
 
 unsigned char stream_information (char* information);
 
-unsigned char connection_status();
 #endif /* API_BLUETOOTH_CONTROLER_H_ */

@@ -26,7 +26,7 @@ extern "C" {
  @return unsigned char containing the binary message
  return 255 if there was nothing availble
  */
-unsigned char serial_read(void);
+unsigned char serial_read();
 
 /*!
  @brief A function to send the data to serial pins

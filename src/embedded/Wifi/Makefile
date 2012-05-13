@@ -1,16 +1,22 @@
 TEST_DIR=test/
 SEARDUINO_PATH = /opt/searduino
-PROG = Hovercraft
+PROG = Wifi
 
 # Add your source files here
-SRC_C= 
-SRC_CXX= 
+SRC_C=
+SRC_CXX= wifi_wrapper.cpp
+USER_C_FLAGS=-I/opt/searduino/3pp/include
+USER_CXX_FLAGS=-I/opt/searduino/3pp/include
+USER_LD_FLAGS=-L/opt/searduino/3pp/lib/$(BOARD) -lwifly
+simulate:
+	$(SEARDUINO_PATH)/bin/searduino-stream-sim --arduino-code ./$(SHLIB)
 MAIN_SRC = main.c
 ARDUINO = mega2560
-SHLIB = hovercraft.so
+SHLIB = bluetooth.so
 
-USER_C_FLAGS = -I ../../../bin/include
-USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder -lpressure
+LIB = libwifi.a
+LIB_H = wifi_wrapper.h
+USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 

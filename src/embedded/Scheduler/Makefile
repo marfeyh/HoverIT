@@ -14,6 +14,9 @@ LIB = libscheduler.a
 LIB_H = Theta-API.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
+USER_C_FLAGS=-Istub/include
+USER_LD_FLAGS=-Lstub/lib/$(BOARD) -lstub
+
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
