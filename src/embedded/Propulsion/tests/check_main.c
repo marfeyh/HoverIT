@@ -1,9 +1,15 @@
-/*
-AUTHORS: Yohanes Kuma, Xinran He, Khatereh Khosravianarab
-DATA :2012-04-05
-DESCRIPTION: The main function for the unit tests of the propulsion and
-propulsion API functions. 
+/*!
+ @file check_propulsion.c
+ @author Yohanes Kuma
+ @author Xinran He
+ @author Khatereh Khosravianarab
+ @author Ezeh Prince Anthony Anayo
+ @brief This file is main function for unit testing propulsion, propulsion
+  API and brake propulsion functions.
+ @date 2012-05-10
+ @reference http://check.sourceforge.net/doc/check_html/index.html#SEC_Top
 */
+
 #include <stdlib.h>
 #include <check.h>
 #include "check_propulsion.h"

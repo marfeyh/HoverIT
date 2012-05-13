@@ -23,15 +23,17 @@
  @brief This module is headerfile for audible_test.c and print_test.c
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
+ @version 0.9
  @date 20 April 2012
- @version 1.0
- @refrence Arduino.cc
- @refrence sandklef.com
- @refrence hoveritu.com
- @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
- @refrence Turnigy_Plush_and_Sentry_ESC user manual
- @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
- @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
  */
 
 #if !defined PRINT_AUDIBLE_TEST_H
@@ -53,3 +55,4 @@
 		#endif
 	int silent_delay(int test_pin);
 	#endif
+

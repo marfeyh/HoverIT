@@ -22,18 +22,20 @@
  @file audible_test.c
  @headerfile print_audible_test.h
  @brief This module contain the functions for audible test when using 
-	Arduino.
+ Arduino.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
+ @version 0.9
  @date 20 April 2012
- @version 1.0
- @refrence Arduino.cc
- @refrence sandklef.com
- @refrence hoveritu.com
- @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
- @refrence Turnigy_Plush_and_Sentry_ESC user manual
- @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
- @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
  */
 
 #include <Arduino.h>
@@ -60,9 +62,9 @@ int test_start (int test_pin) {
 	silence_time = 50;
 	loop_number = 8;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, BEEP);
+		digitalWrite (test_pin, HIGH);
 		delay (beep_time);
-		analogWrite (test_pin, SILENCE);
+		digitalWrite (test_pin, LOW);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);
@@ -134,9 +136,9 @@ int test_analogwrite (int test_pin){
 	silence_time = 50;
 	loop_number = 2;
 	for (loop_count = 0; loop_count < loop_number; loop_count++){
-		analogWrite (test_pin, BEEP);
+		digitalWrite (test_pin, HIGH);
 		delay (beep_time);
-		analogWrite (test_pin, SILENCE);
+		digitalWrite (test_pin, LOW);
 		delay (silence_time);
 	}
 	silent_delay(test_pin);

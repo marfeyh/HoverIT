@@ -1,3 +1,4 @@
+
 /***************************************************************************
  * Copyright (C) 2012  Eva-Lisa Kedborn
  *                     Jing Liu
@@ -18,13 +19,23 @@
  ****************************************************************************/
 
 /*!
-@file main.c
-@author Eva-Lisa Kedborn
-@author Jing Liu
-@date 2012-03-19
-@brief Main function to run the hover code separately from the
-rest of the project
-*/
+ @file main.c
+ @brief Main function to run the hover code separately from the
+ rest of the project
+ @author Eva-Lisa Kedborn
+ @author Jing Liu
+ @version 0.9
+ @date 2012-03-19
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
+ */
 
 #include "Arduino.h"
 #include <hover_api.h>
@@ -38,12 +49,15 @@ rest of the project
 @returns integer 0 if successful
 */
 int main(void) {
-
         init();
 	start_hover();
-	hover_min();
+	delay(2000);
+	hover_min();	
 	delay(1000);
 	hover_max();
+	delay(2000);
+//	hover_min();	
+	decrease_hover_auto();
 	delay(2000);
 	increase_hover_auto();
 	delay(2000);
