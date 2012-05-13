@@ -17,7 +17,7 @@ all:
 	$(MAKE) lib-install -C Propulsion
 	$(MAKE) lib-install -C Hover
 	$(MAKE) lib-install -C Rudder_control
-	$(MAKE) lib-install -C determine-speed
+#	$(MAKE) lib-install -C determine-speed
 	$(MAKE) lib-install -C Pressure
 	$(MAKE) prog -C Hovercraft
 
@@ -27,7 +27,7 @@ check:
 	$(MAKE) check -C Propulsion
 	$(MAKE) check -C Hover
 	$(MAKE) check -C Rudder_control
-	$(MAKE) check -C determine-speed
+#	$(MAKE) check -C determine-speed
 #	$(MAKE) check -C Pressure
 
 gcovcheck:
@@ -36,7 +36,7 @@ gcovcheck:
 	$(MAKE) gcovcheck -C Propulsion
 	$(MAKE) gcovcheck -C Hover
 	$(MAKE) gcovcheck -C Rudder_control
-	$(MAKE) gcovcheck -C determine-speed
+#	$(MAKE) gcovcheck -C determine-speed
 #	$(MAKE) gcovcheck -C Pressure
 	gcovr -x --xml > coverage.xml
 
@@ -46,7 +46,7 @@ memcheck:
 	$(MAKE) memcheck -C Propulsion
 	$(MAKE) memcheck -C Hover
 	$(MAKE) memcheck -C Rudder_control
-	$(MAKE) memcheck -C determine-speed
+#	$(MAKE) memcheck -C determine-speed
 #	$(MAKE) memcheck -C Pressure
 
 clean-tests:
@@ -55,7 +55,7 @@ clean-tests:
 	$(MAKE) clean-tests -C Propulsion
 	$(MAKE) clean-tests -C Hover
 	$(MAKE) clean-tests -C Rudder_control
-	$(MAKE) clean-tests -C determine-speed
+#	$(MAKE) clean-tests -C determine-speed
 	$(MAKE) clean-tests -C Pressure
 
 clean: clean-tests
@@ -65,5 +65,5 @@ clean: clean-tests
 	$(MAKE) clean -C Hover
 	$(MAKE) clean -C Rudder_control
 	$(MAKE) clean -C Hovercraft
-	$(MAKE) clean -C determine-speed
+#	$(MAKE) clean -C determine-speed
 	$(MAKE) clean -C Pressure
