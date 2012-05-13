@@ -70,10 +70,10 @@ int start(int using_pin, int test_pin) {
 
 /* Set the level to 100 or start the motor \
 if the motor has not been started (The minimum acceptable value for ESC) */
-int throttle_stick_bottom(int using_pin, int test_pin) {
+int throttle_stick_bottom (int using_pin, int test_pin) {
 	g_throttle_stick_level = THROTTLE_STICK_BOTTOM_LEVEL;
-	set_level(using_pin, test_pin, g_throttle_stick_level);
-	delay(1000);
+	set_level (using_pin, test_pin, g_throttle_stick_level);
+	delay (1000);
 	/* Test code */
 	#if defined STUB_TEST
 		test_throttle_Stick_is_bottom (test_pin);
@@ -84,7 +84,7 @@ int throttle_stick_bottom(int using_pin, int test_pin) {
 /* Set the level to 143 or set the motor to lowest rotating speed */
 int normal (int using_pin,int test_pin){
 	g_throttle_stick_level = LOWEST_LEVEL;
-	set_level(using_pin, test_pin, g_throttle_stick_level);
+	set_level (using_pin, test_pin, g_throttle_stick_level);
 	/* Test code */
 	test_normal (test_pin);
 	return 0;
@@ -93,7 +93,7 @@ int normal (int using_pin,int test_pin){
 /* Set the level to 254 or set the motor to highest rotating speed */
 int turbo (int using_pin,int test_pin){
 	g_throttle_stick_level = HIGHEST_LEVEL;
-	set_level(using_pin, test_pin, g_throttle_stick_level);
+	set_level (using_pin, test_pin, g_throttle_stick_level);
 	/* Test code */
 	test_turbo (test_pin);
 	return 0;
@@ -102,7 +102,7 @@ int turbo (int using_pin,int test_pin){
 /* Set the level to 120 or stop the motor */
 int stop (int using_pin, int test_pin){
 	g_throttle_stick_level = STOP_LEVEL;
-	set_level(using_pin, test_pin, g_throttle_stick_level);
+	set_level (using_pin, test_pin, g_throttle_stick_level);
 	/* Test code */
 	test_stop (test_pin);
 	return 0;

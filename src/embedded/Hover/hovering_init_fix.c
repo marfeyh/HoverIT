@@ -69,14 +69,16 @@ int pin_program (int using_pin, int test_pin, int level) {
 int check_and_fix_level (int using_pin,int test_pin, \
 int g_throttle_stick_level){
 	if (g_throttle_stick_level < LOWEST_LEVEL){
-		test_Too_low (test_pin);
 		normal (using_pin, test_pin);
-	}
-	if (g_throttle_stick_level > HIGHEST_LEVEL){
-		test_Too_high (test_pin);		
+		test_Too_low (test_pin);
+		return 0;
+	}else if (g_throttle_stick_level > HIGHEST_LEVEL){		
 		turbo (using_pin, test_pin);
+		test_Too_high (test_pin);
+		return 0;
+	}else {
+		return 0;
 	}
-	return 0;
 }
 
 /* This function prevents the motor from stop (Check boundary values)
