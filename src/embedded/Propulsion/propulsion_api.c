@@ -24,6 +24,7 @@
  */
 int start_propulsion_fan()
 {
+	initialize_relay();
   initialise_propulsion();
   return 0;
 }

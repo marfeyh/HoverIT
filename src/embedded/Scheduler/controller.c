@@ -94,7 +94,9 @@ void control() {
 		check_serial_input();
 //	  extern Speed *g_speed_p;
 //	  int speed = get_speed(g_speed_p);
-		hovercraft_pressure(get_pressure());
+
+		//comment in here
+//		hovercraft_pressure(get_pressure());
 		// Get gps data
 		
 		// Get Battery level

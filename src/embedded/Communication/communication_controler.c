@@ -398,6 +398,9 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			/* value was 00000000 */
 			// Call the stop api function of fan forward
 			set_propulsion_fan(0);
+			decrease_hover_auto();
+			decrease_hover_auto();
+//			brake_hovercraft();
 			control_rudder(STRAIGHT);
 			debug_print_string("put Fan Forward STOP in queue\n");
 			return STOP;
