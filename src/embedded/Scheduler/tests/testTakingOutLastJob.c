@@ -1,5 +1,5 @@
 /**
- * \file 	      pop_test-005.c
+ * \file 	      testTakingOutLastJob.c
  * \date 		25-03-2012
  * \version 	0.1 
  * \author 		Sebastian Hansson          

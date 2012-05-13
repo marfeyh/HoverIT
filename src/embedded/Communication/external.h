@@ -43,4 +43,8 @@ extern void control_rudder(int);
 
 extern int set_propulsion_fan(int);
 
+// Wifi
+//extern int wifi_begin(void);
+//extern unsigned char wifi_read(void);
+
 #endif

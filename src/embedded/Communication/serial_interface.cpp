@@ -11,10 +11,10 @@
  @author Retta Shiferaw
  @version 0.2
  */
+#include <serial_interface.h>
 #include <Arduino.h>
 #include <searduino.h>
 #include <HardwareSerial.h>
-#include <serial_interface.h>
 #include <pin.h>
 #include <string.h>
 
@@ -23,8 +23,12 @@
  and it should check if there is anything available or not
  @return unsigned char containing the binary message
  return 255 if there was nothing availble
+ return 254 if the bluetooth connection is established and nothing available on serial
  */
 unsigned char serial_read() {
+//	unsigned char temp = check_connection();
+//	debug_print(&temp);
+//	if (1 == check_connection()) {
 	// Check serial input if there is anything available
 	if (COMMUNICATION_PIN.available() > 0) {
 		unsigned char input = COMMUNICATION_PIN.read();
@@ -32,6 +36,8 @@ unsigned char serial_read() {
 		return input;
 	} // if there is anything available on serial input
 	return 255;
+//	}
+//	return 254;
 }
 
 /*!
@@ -52,8 +58,8 @@ void serial_string_write(char* string) {
 	uint8_t length = strlen(string);
 	uint8_t counter = 0;
 	for (; counter < length; counter++) {
-		Serial.println(*( counter + string ));
-		COMMUNICATION_PIN.print(*( counter + string ));
+		Serial.println(*(counter + string));
+		COMMUNICATION_PIN.print(*(counter + string));
 	}
 }
 
@@ -63,6 +69,7 @@ void serial_string_write(char* string) {
 void serial_setup(void) {
 	MONITORING_PIN.begin(9600);
 	COMMUNICATION_PIN.begin(9600);
+	pinMode(COMMUNICATION_STATUS_PIN, INPUT);
 }
 
 /*!
@@ -75,6 +82,9 @@ void debug_print(unsigned char* data) {
 void debug_print2(unsigned int* data) {
 	MONITORING_PIN.print(*data);
 }
+void debug_print3(int data) {
+	Serial.print(data);
+}
 
 /*!
  @brief A function to send data to serial for the use monitoring IN BINARY
@@ -86,7 +96,7 @@ void debug_write(unsigned char* data) {
 
 /*!
  @brief A function to send string to serial pin character by character
- @param pointer to first char of the string to be sent
+ @param pointer to first charCOMMUNICATION_STATUS_PIN of the string to be sent
  */
 void debug_print_string(char* character) {
 	for (; *character != '\0'; character++) {
@@ -94,8 +104,6 @@ void debug_print_string(char* character) {
 	}
 	MONITORING_PIN.print("\n");
 }
-
-
 
 void serial_switch() {
 #ifdef BLUETOOTH
@@ -109,6 +117,6 @@ void serial_switch() {
 #endif
 }
 
-unsigned char check_connection(){
+unsigned char check_connection() {
 	return digitalRead(COMMUNICATION_STATUS_PIN);
 }

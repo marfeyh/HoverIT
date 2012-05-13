@@ -28,7 +28,7 @@
  */
 #include <Arduino.h>
 #include <stdio.h>
-#include<serial_interface.h>
+#include <serial_interface.h>
 
 
 /*!
@@ -60,8 +60,8 @@ unsigned int get_pressure() {
    */
   inside_pressure_pa =
 	((float) analogRead(PRESSURE_PIN_0)/1023+0.04)/0.000004;
-  debug_print2(analogRead(PRESSURE_PIN_0));
-  debug_print_string("e\n");
+  debug_print3(analogRead(PRESSURE_PIN_0));
+  debug_print_string("P\n");
 
   /*!
    * Takes output of analog port 1 and converts it into Pa.
@@ -69,15 +69,13 @@ unsigned int get_pressure() {
    */
   outside_pressure_pa =
 	((float) analogRead(PRESSURE_PIN_1)/1023+0.04)/0.000004;
-  debug_print2(analogRead(PRESSURE_PIN_1));
-  debug_print_string("e\n");
+  debug_print3(analogRead(PRESSURE_PIN_1));
+  debug_print_string("Q\n");
   
   /*!
    * Calculation for getting pressure difference in Pa.
    */
   pressure_diff_pa = inside_pressure_pa - outside_pressure_pa;
-  debug_print2((unsigned int)pressure_diff_pa);
-  debug_print_string("e\n");
   
   /*!
    * Preventing overflow. Any value higher then max_value isn't relevant.

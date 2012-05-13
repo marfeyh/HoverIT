@@ -19,7 +19,7 @@
  @return unsigned char containing a number
  */
 unsigned char parse_binary(unsigned char* message) {
-	return find_message(&message);
+	return find_message(message);
 }
 
 /*!

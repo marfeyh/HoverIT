@@ -22,18 +22,20 @@
  @file hovering_init_fix.c
  @headerfile hovering_init_fix.h
  @brief This module contains the functions that initialize the hovering 
-	motor and fix any wrong value which is being sent to hovering motor.
+ motor and fix any wrong value which is being sent to hovering motor.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
+ @version 0.9
  @date 20 March 2012
- @version 1.0
- @refrence Arduino.cc
- @refrence sandklef.com
- @refrence hoveritu.com
- @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
- @refrence Turnigy_Plush_and_Sentry_ESC user manual
- @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
- @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
  */
 
 /* Includes */
@@ -51,7 +53,7 @@ int initialize (int using_pin, int test_pin){
 	pinMode (test_pin, OUTPUT);
 	pinMode (using_pin, OUTPUT);
 	hover_func (start, using_pin, test_pin);
-//	delay (1000);
+	delay (1000);
 	return 0;
 }
 
@@ -63,46 +65,52 @@ int pin_program (int using_pin, int test_pin, int level) {
 	return 0;
 }
 
-
 /* This function prevents the motor from stop (Check boundary values) */
 int check_and_fix_level (int using_pin,int test_pin, \
-int throttle_stick_level){
-	if (throttle_stick_level < LOWEST_LEVEL){
-		test_Too_low (test_pin);
+int g_throttle_stick_level){
+	if (g_throttle_stick_level < LOWEST_LEVEL){
 		normal (using_pin, test_pin);
-	}
-	if (throttle_stick_level > HIGHEST_LEVEL){
-		test_Too_high (test_pin);		
+		test_Too_low (test_pin);
+		return 0;
+	}else if (g_throttle_stick_level > HIGHEST_LEVEL){		
 		turbo (using_pin, test_pin);
+		test_Too_high (test_pin);
+		return 0;
+	}else {
+		return 0;
 	}
-	return 0;
 }
 
 /* This function prevents the motor from stop (Check boundary values)
 and also prevent increase to function when the motor is stopped */
 int check_and_fix_level_increase (int using_pin, int test_pin, \
-int throttle_stick_level, int level){
-	//if (throttle_stick_level < LOWEST_LEVEL){
+int g_throttle_stick_level, int level){
+	//if (g_throttle_stick_level < LOWEST_LEVEL){
 	//	test_Too_low (test_pin);
-	//	return throttle_stick_level;
+	//	return g_throttle_stick_level;
 //	}else 
-	if (throttle_stick_level > HIGHEST_LEVEL){
-			test_Too_high (test_pin);		
-			turbo (using_pin, test_pin);
-			return throttle_stick_level;	
+	if (g_throttle_stick_level + level > HIGHEST_LEVEL){
+		test_Too_high (test_pin);		
+		turbo (using_pin, test_pin);	
+		return g_throttle_stick_level;	
 	}else {
-		return throttle_stick_level + level;}
+		return g_throttle_stick_level + level;
+	}
 }
 
 
 /* This function prevents the motor from stop (Check boundary values)
 and also prevent decrease to function when the motor is stopped */
 int check_and_fix_level_decrease (int using_pin,int test_pin, \
-int throttle_stick_level,int level){
+int g_throttle_stick_level,int level){
 	/* If the motor is stopped then nothing should be done */
-	if (throttle_stick_level < LOWEST_LEVEL){		
+	if (g_throttle_stick_level < LOWEST_LEVEL || \
+	   g_throttle_stick_level-level < LOWEST_LEVEL){		
 		test_Too_low (test_pin);
-		return throttle_stick_level;
+		return g_throttle_stick_level;
+	} else {
+		set_fixed_level (using_pin, test_pin, \
+		g_throttle_stick_level-level);
+		return g_throttle_stick_level;
 	}
-	return throttle_stick_level - level;
 }

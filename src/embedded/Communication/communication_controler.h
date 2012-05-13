@@ -20,11 +20,11 @@ void send_serial_string(char* string);
  @param pointer to unsigned character which keeps the address of unsigned character.
  */
 void send_serial_binary(unsigned char* binary);
-
-
-unsigned char ruder_direction_handler(unsigned char command);
-
-unsigned char fan_hovering_speed_handler(unsigned char command);
-unsigned char fan_forward_speed_handler(unsigned char command);
+unsigned char check_bluetooth(unsigned char*);
+unsigned char check_wifi(unsigned char*);
+unsigned char parse_input(unsigned char* result);
+unsigned char ruder_direction_handler(unsigned char* command);
+unsigned char fan_hovering_speed_handler(unsigned char* command);
+unsigned char fan_forward_speed_handler(unsigned char* command);
 
 #endif /* BLUETOOTH_CONTROLER_H_ */

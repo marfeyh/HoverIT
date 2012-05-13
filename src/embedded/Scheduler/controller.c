@@ -31,7 +31,7 @@
 #include <job.h>
 #include <Theta-API.h>
 #include <stdlib.h>
-#include "calculateSpeed.h"
+//#include "calculateSpeed.h"
 #include "pressure.h"
 static struct List *g_taskList;
 

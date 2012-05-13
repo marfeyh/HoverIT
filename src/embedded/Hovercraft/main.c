@@ -6,7 +6,7 @@
 #include <hover_api.h>
 #include <hovercraft_pin.h>
 #include <steering.h>
-#include "calculateSpeed.h"
+//#include "calculateSpeed.h"
 
 //Speed *g_speed_p;
 
@@ -16,6 +16,8 @@ int main(void) {
 	start_propulsion_fan();
 	start_hover();
 	control_rudder(0);
+	pinMode(0,INPUT);
+	pinMode(1,INPUT);
 	//  g_speed_p = create_speed();
 
 	for (;;) {
