@@ -1,9 +1,9 @@
 
 /***************************************************************************
- * Copyright (C) 2012  Eva-Lisa Kedborn                     
+ * Copyright (C) 2012  Eva-Lisa Kedborn
  * 		       Jing Liu
  *		       Seyed Ehsan Mohajerani
- *		       Navid Amiriarshad	
+ *		       Navid Amiriarshad
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as published
