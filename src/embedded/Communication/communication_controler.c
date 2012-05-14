@@ -408,6 +408,8 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 		case TURBO:
 			/* value was 00000111 */
 			// Call the turbo api function of fan forward
+			set_propulsion_fan(120);
+			hover_max();
 			debug_print_string("put Fan Forward TURBO in queue\n");
 			return TURBO;
 			break;
