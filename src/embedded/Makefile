@@ -19,6 +19,7 @@ all:
 	$(MAKE) lib-install -C Rudder_control
 #	$(MAKE) lib-install -C determine-speed
 	$(MAKE) lib-install -C Pressure
+	$(MAKE) lib-install -C 3pp
 	$(MAKE) prog -C Hovercraft
 
 check:
@@ -67,3 +68,4 @@ clean: clean-tests
 	$(MAKE) clean -C Hovercraft
 #	$(MAKE) clean -C determine-speed
 	$(MAKE) clean -C Pressure
+	$(MAKE) clean -C 3pp
