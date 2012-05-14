@@ -1,28 +1,27 @@
-/*
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as
-published by the Free Software Foundation, either version 3 of the
-License, or (at your option) any later version.
+#
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as
+#published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 
-This program is distodributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+# This program is distodributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public
-License along with this program. If not, see
-<http://www.gnu.org/licenses/gpl-3.0.html>.
-*/
+# You should have received a copy of the GNU General Public
+# License along with this program. If not, see
+# <http://www.gnu.org/licenses/gpl-3.0.html>.
+# 
 
-/*!
-@file Makefile
-@details Makefile for building the embedded part of the project. When a workpackage is ready for integration 
-a new line should be added to this makefile, also the makefile of the Hovercraft workpackage should be modified 
-to include the static library.
-@authors Peter Myllykoski
-@version 0.1 (optional)
-*/
-
+# 
+# @file Makefile
+# @details Makefile for building the embedded part of the project. When a workpackage is ready for integration 
+# a new line should be added to this makefile, also the makefile of the Hovercraft workpackage should be modified 
+# to include the static library.
+# @authors Peter Myllykoski
+# @version 0.1 (optional)
+# 
 #All the code should be structured as following
 # / src
 # 	| Makefile   
