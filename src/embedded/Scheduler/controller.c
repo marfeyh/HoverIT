@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include "calculateSpeed.h"
 #include "pressure.h"
+#include "battery_meter.h"
 static struct List *g_taskList;
 
 /**
@@ -96,6 +97,8 @@ void control() {
 	  calculate_speed(g_speed_p);
 	  int speed = get_speed(g_speed_p);
 	  hovercraft_speed(speed);
+
+	  battery_level(get_battery_level(FIRST_BATTERY));
 
 		//comment in here
 //		hovercraft_pressure(get_pressure());

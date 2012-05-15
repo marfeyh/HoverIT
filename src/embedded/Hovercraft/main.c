@@ -7,6 +7,8 @@
 #include <hovercraft_pin.h>
 #include <steering.h>
 #include <calculateSpeed.h>
+#include <battery_meter.h>
+
 
 Speed *g_speed_p;
 
@@ -19,6 +21,7 @@ int main(void) {
 	pinMode(0, INPUT);
 	pinMode(1, INPUT);
 	g_speed_p = create_speed();
+	init_battery_meter();
 
 	for (;;) {
 		control();

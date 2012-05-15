@@ -1,16 +1,17 @@
-TEST_DIR=test/
+TEST_DIR=tests
 SEARDUINO_PATH = /opt/searduino
-PROG = Hovercraft
+PROG = batterymeter
 
 # Add your source files here
-SRC_C= 
-SRC_CXX= 
+SRC_C= alarm.c battery_meter.c four_leds.c percentage.c
+SRC_CXX= toneWrapper.cpp
 MAIN_SRC = main.c
 ARDUINO = mega2560
-SHLIB = hovercraft.so
+SHLIB = leds.so
 
-USER_C_FLAGS = -I ../../../bin/include
-USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L ../../../3pp/bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder -lpressure -lwifly -lspeed -lleds
+LIB = libleds.a
+LIB_H =
+USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 

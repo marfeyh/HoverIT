@@ -144,6 +144,7 @@ unsigned char hovercraft_pressure(unsigned int message) {
  @return unsigned char containing value and message type
  */
 unsigned char battery_level(unsigned char message) {
+	debug_print(&message);
 	debug_print_string("battery_level called\n");
 
 	// instead of return send_serial_binary should be called

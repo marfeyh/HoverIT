@@ -20,6 +20,7 @@ all:
 	$(MAKE) lib-install -C determine-speed
 	$(MAKE) lib-install -C Pressure
 	$(MAKE) lib-install -C 3pp
+	$(MAKE) lib-install -C BatteryMeter
 	$(MAKE) prog -C Hovercraft
 
 check:
@@ -29,6 +30,7 @@ check:
 	$(MAKE) check -C Hover
 	$(MAKE) check -C Rudder_control
 	$(MAKE) check -C determine-speed
+	$(MAKE) check -C BatteryMeter
 #	$(MAKE) check -C Pressure
 
 gcovcheck:
@@ -38,6 +40,7 @@ gcovcheck:
 	$(MAKE) gcovcheck -C Hover
 	$(MAKE) gcovcheck -C Rudder_control
 	$(MAKE) gcovcheck -C determine-speed
+	$(MAKE) gcovcheck -C BatteryMeter
 #	$(MAKE) gcovcheck -C Pressure
 	gcovr -x --xml > coverage.xml
 
@@ -48,6 +51,7 @@ memcheck:
 	$(MAKE) memcheck -C Hover
 	$(MAKE) memcheck -C Rudder_control
 	$(MAKE) memcheck -C determine-speed
+	$(MAKE) memcheck -C BatteryMeter
 #	$(MAKE) memcheck -C Pressure
 
 clean-tests:
@@ -58,6 +62,7 @@ clean-tests:
 	$(MAKE) clean-tests -C Rudder_control
 	$(MAKE) clean-tests -C determine-speed
 	$(MAKE) clean-tests -C Pressure
+	$(MAKE) clean-tests -C BatteryMeter
 
 clean: clean-tests
 	$(MAKE) clean -C Scheduler
@@ -69,3 +74,4 @@ clean: clean-tests
 	$(MAKE) clean -C determine-speed
 	$(MAKE) clean -C Pressure
 	$(MAKE) clean -C 3pp
+	$(MAKE) clean -C BatteryMeter
