@@ -1,22 +1,26 @@
+#
+# Author: Viktor Green
+#
+
 TEST_DIR=test/
 SEARDUINO_PATH = /opt/searduino
-PROG = Hovercraft
+PROG = 
 
 # Add your source files here
-SRC_C= 
-SRC_CXX= 
-MAIN_SRC = main.c
+SRC_C= calculateSpeed.c
+SRC_CXX= bma180.cpp
+MAIN_SRC =
 ARDUINO = mega2560
-SHLIB = hovercraft.so
+SHLIB =
 
-USER_C_FLAGS = -I ../../../bin/include
-USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L ../../../3pp/bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder -lpressure -lwifly -lspeed
+LIB = libspeed.a
+LIB_H = calculateSpeed.h
+USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
-# Needs to be modified as well
 check:
 	$(MAKE) check -C $(TEST_DIR)
 

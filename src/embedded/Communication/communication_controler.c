@@ -110,11 +110,14 @@ unsigned char ruder_direction(unsigned char message) {
  @param unsigned char of the value to be sent to pc
  @return unsigned char containing value and message type
  */
-unsigned char hovercraft_speed(unsigned char message) {
+unsigned char hovercraft_speed(int message) {
+	send_serial_binary_speed(&message);
+	debug_print3(message);
 	debug_print_string("hovercraft_speed called\n");
 
 	// instead of return send_serial_binary should be called
-	return create_hovercraft_speed(&message);
+//	return create_hovercraft_speed(&message);
+	return 255;
 }
 
 /*!
@@ -180,6 +183,10 @@ void send_serial_string(char* string) {
  */
 void send_serial_binary(unsigned char* binary) {
 	serial_binary_write(binary);
+}
+
+void send_serial_binary_speed(int* binary) {
+	serial_binary_write_speed(binary);
 }
 
 unsigned char check_bluetooth(unsigned char* result) {
@@ -362,6 +369,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 	} // if there was no memory to be allocated
 	if (1 == increase_decrease(command)) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(command); // check the last bits
+		int temp=0 ;
 		switch (res_value) {
 		case INCREASING:
 			/* value was 00001000 */
@@ -372,6 +380,8 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			job_ptr->type = MOVEMENT;
 			putJobInQueue(*job_ptr);
 			debug_print_string("put Fan Forward increasing Speed in queue\n");
+			temp = get_propulsion_level();
+			debug_print3(temp);
 			return INCREASING;
 			break;
 		case DECREASING:
@@ -383,6 +393,8 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			job_ptr->type = MOVEMENT;
 			putJobInQueue(*job_ptr);
 			debug_print_string("put Fan Forward decreasing Speed in queue\n");
+			temp = get_propulsion_level();
+			debug_print3(temp);
 			return DECREASING;
 			break;
 		default:

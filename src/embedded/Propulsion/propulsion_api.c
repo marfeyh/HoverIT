@@ -10,21 +10,26 @@
                 increase or decrease and get the current level of propulsion 
                 fan, and set the specific number of propulsion fan speed. 
   @author Xinran He, Khatereh Khosravianarab
-  @version 0.6
+  @version 1.0
   @date 2012-03-25
 */
 
 #include <propulsion.h>
 #include <propulsion_api.h>
 #include <brake_propulsion.h>
+#include <pin.h>
+#include <searduino.h>
 #include <Arduino.h>
+#include <stdio.h>
+
+static int fan_level;
 
 /*!
 @brief initialise propulsion fan
  */
 int start_propulsion_fan()
 {
-	initialize_relay();
+  initialize_relay();
   initialise_propulsion();
   return 0;
 }
@@ -33,14 +38,28 @@ int start_propulsion_fan()
 @brief increase propulsion fan speed
  */
 int increase_propulsion(){
-  int speed = get_speed_level();
-  if( speed >= MAXSPEED ){
+  int motor_speed = get_speed_level();
+  fan_level++;
+  if( fan_level == 0 ){
+    set_propulsion_fan(0);
+    digitalWrite(RELAYPIN, LOW);
+    return 0;
+  }
+  else if( fan_level > 0 && motor_speed >= MAXSPEED ){
     change_pro_speed(PERSPEED * 20);
+    if( fan_level > 0 ){
+      fan_level = 20;
+    }
     return PERSPEED * 20;
   }
-  else if( speed < MAXSPEED ){
-    change_pro_speed(speed + PERSPEED);
-    return speed + PERSPEED;
+  else if( fan_level > 0 && motor_speed < MAXSPEED ){
+    digitalWrite(RELAYPIN, LOW);
+    change_pro_speed(motor_speed + PERSPEED);
+    return motor_speed + PERSPEED;
+  }
+  else if( fan_level < 0){
+    change_pro_speed(motor_speed - PERSPEED);
+    return motor_speed - PERSPEED;
   }
   return -1;
 }
@@ -49,14 +68,26 @@ int increase_propulsion(){
 @brief decrease propulsion fan speed
  */
 int decrease_propulsion(){
-  int speed = get_speed_level();
-  if( speed <= PERSPEED ){
-    change_pro_speed(PERSPEED);
-    return speed;
+  int motor_speed = get_speed_level();
+  fan_level--;
+  if( fan_level == 0 ){
+    set_propulsion_fan(0);
+    digitalWrite(RELAYPIN, HIGH);
+    return 0;
   }
-  else if( speed > PERSPEED ){
-    change_pro_speed(speed - PERSPEED);
-    return speed - PERSPEED;
+  else if( fan_level > 0 && motor_speed >= PERSPEED ){
+    digitalWrite(RELAYPIN, HIGH);
+    change_pro_speed(motor_speed - PERSPEED);
+    return motor_speed - PERSPEED;
+  }
+  else if( fan_level < 0 && motor_speed >= MAXSPEED ){
+    change_pro_speed(PERSPEED * 20);
+    fan_level = -20;
+    return PERSPEED * 20;
+  }
+  else if( fan_level < 0 && motor_speed < MAXSPEED ){
+    change_pro_speed(motor_speed + PERSPEED);
+    return motor_speed + PERSPEED;
   }
   return -1;
 }
@@ -80,6 +111,8 @@ int set_propulsion_fan(int set_speed){
  */
 int stop_propulsion_fan(){
   stop_pro_fan();
+  set_propulsion_fan(0);
+  digitalWrite(RELAYPIN, LOW);
   return 0;
 }
 
@@ -87,29 +120,15 @@ int stop_propulsion_fan(){
 @brief specify the propulsion fan level
  */
 int get_propulsion_level(){
-  int speed = get_speed_level();
-  if( speed == 0 ){
-    return 0;
-  }
-  else if( speed > 0 && speed <= PERSPEED ){
-    return 1;
-  }
-  else if( speed > PERSPEED && speed < PERSPEED * 20 ){
-     return speed / PERSPEED;
-  }
-  else if( speed >= PERSPEED * 20 ){
-    return 20;
-  }
-  return -1;
+  return fan_level;
 }
 
 /*!
 @brief stop propulsion fan speed by using brake
  */
 int brake_hovercraft(){
-stop_propulsion_fan();
-delay(1500);
-reverse_prop_motor();
-  
+  stop_propulsion_fan();
+  delay(1500);
+  reverse_prop_motor();
   return 0;
 }

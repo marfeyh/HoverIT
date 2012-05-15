@@ -16,10 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  ****************************************************************************/
- 
- /*! 
- @file hover_speed_stub.h
- @brief This headerfile contains function for receieving the assumed speed value
+
+/*!
+ @file brake_propulsion.h
+ @brief This module is the headerfile for hovering_control.c
  @author Ezeh Prince Anthony Anayo
  @author Xinran He
  @date 10 May 2012
@@ -33,15 +33,23 @@
  @reference for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
  */ 
  
-#ifndef HOVER_SPEED_STUB_H
-#define HOVER_SPEED_STUB_H
+#ifndef BRAKE_PROPULSION_H
+#define BRAKE_PROPULSION_H
 
 /*!
- @brief Function to fetch the current hovering speed
+ @brief Function to reverse the hovercraft brake and automate the rotation of 
+  the propulsion fan via using digitalWrite
  @param takes no parameter
- @returns the current hovering speed
-*/ 
-int get_hover_speed();
+ @returns 0
+*/
+int reverse_prop_motor();
+
+/*!
+ @brief Function to initialize the relay pin as output
+ @param takes no parameter
+ @return 0
+*/
+int initialize_relay();
 
 #endif
 

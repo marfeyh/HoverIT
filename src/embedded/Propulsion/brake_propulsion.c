@@ -55,21 +55,19 @@ int reverse_prop_motor(){
    int hover_speed = 0;
    digitalWrite(RELAYPIN,HIGH);
    set_propulsion_fan(MAXSPEED);
-   delay(1000);
-   stop_propulsion_fan();
-   delay(1500);
+   delay(2000);
    digitalWrite(RELAYPIN,LOW);
+   stop_propulsion_fan();
 //  for(;;){
 //    hover_speed = get_hover_speed();
 //    if(hover_speed < 10){ //need test
 //      stop_propulsion_fan();
 //      break;
 //    }
-//  // delay(1000);
-//   }
+  // delay(1000);
+//  }
    return 0;
 }
-
 /*!
  *@brief Function that initializes the relaypin
  */

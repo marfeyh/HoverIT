@@ -86,6 +86,10 @@ void debug_print3(int data) {
 	Serial.print(data);
 }
 
+void serial_binary_write_speed(int* speed){
+	COMMUNICATION_PIN.print(*speed);
+}
+
 /*!
  @brief A function to send data to serial for the use monitoring IN BINARY
  @param pointer to unsigned char of first char of the string to be sent

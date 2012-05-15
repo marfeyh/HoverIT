@@ -57,7 +57,7 @@ unsigned char ruder_direction(unsigned char message);
  @param unsigned char of the value to be sent to pc
  @return unsigned char containing value and message type
  */
-unsigned char hovercraft_speed(unsigned char message);
+unsigned char hovercraft_speed(int message);
 
 /*!
  @brief The function creates hovercraft pressure (measured by sensor) message.
