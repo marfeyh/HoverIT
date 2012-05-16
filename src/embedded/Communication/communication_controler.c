@@ -227,6 +227,11 @@ unsigned char parse_input(unsigned char* result) {
 			ruder_direction_handler(result);
 			return RUDER_DIRECTION;
 			break;
+		case BACKWARD:
+			/* message type is 0010 */
+			backward_handler();
+			return BACKWARD;
+			break;
 		default:
 			/* If something is not based on protocol */
 			debug_print_string("Something not based on protocol is received\n");
@@ -352,12 +357,18 @@ unsigned char fan_hovering_speed_handler(unsigned char* command) {
 			return TURBO;
 			break;
 		default:
-			debug_print_string("Fan Hovering not implemented commands ERROR\n");
+			debug_print_string("Fan Hovering not implemented commands ERROR");
 			break;
 		}
-		debug_print_string("put exact FAN_HOVERING_SPEED \n");
+		debug_print_string("put exact FAN_HOVERING_SPEED");
 	} // The message was exact fan hovering speed value
 	return 255;
+}
+
+unsigned char backward_handler (void){
+	debug_print_string("Backward");
+	change_polarity();
+	return 0;
 }
 
 unsigned char fan_forward_speed_handler(unsigned char* command) {

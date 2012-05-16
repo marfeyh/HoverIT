@@ -45,6 +45,7 @@ extern int set_propulsion_fan(int);
 
 // Brake
 extern int brake_hovercraft();
+extern int change_polarity();
 
 // Wifi
 //extern int wifi_begin(void);

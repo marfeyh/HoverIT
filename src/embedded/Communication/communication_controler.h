@@ -15,6 +15,8 @@
  */
 void send_serial_string(char* string);
 
+unsigned char backward_handler (void);
+
 /*!
  @brief The function sends one binary to the monitoring of Arduino for the purpose of debugging
  @param pointer to unsigned character which keeps the address of unsigned character.

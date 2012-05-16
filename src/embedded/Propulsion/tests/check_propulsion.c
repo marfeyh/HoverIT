@@ -98,7 +98,7 @@ START_TEST(test_dec){
   fail_if(decrease_propulsion() != PERSPEED, "Expected 6");
   decrease_propulsion();
   decrease_propulsion();
-  fail_if(decrease_propulsion() != PERSPEED * 2, "Expected 12");
+  fail_if(decrease_propulsion() != 0, "Expected 0");
 }END_TEST
 
 /*! 
@@ -122,7 +122,7 @@ START_TEST(test_fanlevel){
   decrease_propulsion();
   decrease_propulsion();
   decrease_propulsion();
-  fail_if(get_propulsion_level() != -1 ,"Expected -1");
+  fail_if(get_propulsion_level() != 0 ,"Expected 0");
 }END_TEST
 
 /*! 
@@ -259,7 +259,7 @@ START_TEST(test_minimum_speed) {
  @par Precondition: \n
  *  1. the arduino init() function is called \n
  *  2. the propulsion is aleardy initialized \n
- *  3. a speed level of MAX_SPEED_LEVEL is declared. \n
+ *  3. a maximum speed level is declared. \n
  @par Outcome: \n
  *  1. 2 will be returned from the manage_motor() function
         showing the propulsion is now in rotating state \n
@@ -268,11 +268,11 @@ START_TEST(test_minimum_speed) {
  */
 
 START_TEST(test_maximum_speed) {
-  int level = MAX_SPEED_LEVEL;
+  int level = (MAX_DUTY_CYCLE - MIN_DUTY_CYCLE);
   initialise_propulsion();
   change_pro_speed(level);
   fail_unless((manage_motor() == 2),NULL);
-  fail_unless((get_speed_level() == MAX_SPEED_LEVEL),NULL);  
+  fail_unless((get_speed_level() == (MAX_DUTY_CYCLE - MIN_DUTY_CYCLE)),NULL);  
 }END_TEST
 
 /* END OF PROPULSION UNIT TESTS*/

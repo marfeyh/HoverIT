@@ -20,6 +20,7 @@
 #define HOVERCRAFT_PRESSURE 4 // based on protocl 0100
 #define BATTERY_LEVEL 5 // based on protocl 0101
 #define CONNECTION 6 // // based on protocl 0110
+#define BACKWARD 8 // // based on protocl 0110
 /*
  For the values
  */

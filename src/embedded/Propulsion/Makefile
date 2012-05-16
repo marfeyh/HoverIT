@@ -8,6 +8,7 @@ SRC_CXX=
 MAIN_SRC = main.c
 #ARDUINO = stub
 ARDUINO = mega2560
+#ARDUINO = uno
 SHLIB = propulsion.so
 
 LIB = libpropulsion.a

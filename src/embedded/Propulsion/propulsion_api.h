@@ -9,8 +9,8 @@ by the Free Software Foundation, either version 3 of the License, or
 @author: Xinran He & Khatereh Khosravianarab
 @version 0.1
 */
-#define MAXSPEED 120
-#define PERSPEED 6
+#define MAXSPEED 140
+#define PERSPEED 7
 
 /*!
 @brief Funtion to initialise propulsion fan
@@ -55,9 +55,15 @@ int stop_propulsion_fan();
 int set_propulsion_fan(int set_speed);
 
 /*!
-
 @brief Function to brake hovercraft by reverse motor
 @param takes no parameters
 @returns 0
 */
 int brake_hovercraft();
+
+/*!
+@brief Function to change motor's polarity
+@param takes no parameters
+@returns -1
+*/
+int change_polarity();

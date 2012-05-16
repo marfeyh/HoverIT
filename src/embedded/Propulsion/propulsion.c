@@ -106,7 +106,7 @@ int get_speed_level() {
 */
 void change_pro_speed(int level) {
   /*  logs if there is an unexpected Input error */
-  if (level > MAX_SPEED_LEVEL || level < 0)
+  if (level > (MAX_DUTY_CYCLE - MIN_DUTY_CYCLE) || level < 0)
     {
       //log error here
       motor_status = 1;
@@ -142,3 +142,6 @@ unsigned char get_motor_status() {
   return motor_status;
 }
 
+int get_total_level(){
+  return MAX_DUTY_CYCLE - MIN_DUTY_CYCLE;
+}

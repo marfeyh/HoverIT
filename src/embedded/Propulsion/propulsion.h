@@ -19,13 +19,13 @@ information.
 /* maximum duty cycle for Pulse width modulation **/
 #define MAX_DUTY_CYCLE 254
 /* Minimum duty cycle for Pulse width modulation **/
-#define MIN_DUTY_CYCLE 132
+#define MIN_DUTY_CYCLE 107
 /* 
    The maximum level of the speed. it is dependent on the type 
    of Microcontroller used and the range of duty cycles for PWM 	
    which can rotate the Motor 
 */
-#define MAX_SPEED_LEVEL 122
+//#define MAX_SPEED_LEVEL 122
 /* Delay time **/
 #define TIME_ELAPSE 100
 
@@ -35,3 +35,4 @@ int get_speed_level();
 void change_pro_speed(int level);
 void stop_pro_fan();
 unsigned char get_motor_status();
+int get_total_level();

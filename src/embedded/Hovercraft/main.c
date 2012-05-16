@@ -21,7 +21,7 @@ int main(void) {
 	pinMode(0, INPUT);
 	pinMode(1, INPUT);
 	g_speed_p = create_speed();
-	init_battery_meter();
+//	init_battery_meter();
 
 	for (;;) {
 		control();

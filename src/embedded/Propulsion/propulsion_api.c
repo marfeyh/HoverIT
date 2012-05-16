@@ -40,28 +40,16 @@ int start_propulsion_fan()
 int increase_propulsion(){
   int motor_speed = get_speed_level();
   fan_level++;
-  if( fan_level == 0 ){
-    set_propulsion_fan(0);
-    digitalWrite(RELAYPIN, LOW);
-    return 0;
-  }
-  else if( fan_level > 0 && motor_speed >= MAXSPEED ){
+  if( motor_speed >= MAXSPEED ){
     change_pro_speed(PERSPEED * 20);
-    if( fan_level > 0 ){
-      fan_level = 20;
-    }
+    fan_level = 20;
     return PERSPEED * 20;
-  }
-  else if( fan_level > 0 && motor_speed < MAXSPEED ){
-    digitalWrite(RELAYPIN, LOW);
+  } 
+  else if( motor_speed < MAXSPEED ){
     change_pro_speed(motor_speed + PERSPEED);
     return motor_speed + PERSPEED;
-  }
-  else if( fan_level < 0){
-    change_pro_speed(motor_speed - PERSPEED);
-    return motor_speed - PERSPEED;
-  }
-  return -1;
+  } 
+  return 0;
 }
 
 /*!
@@ -70,26 +58,16 @@ int increase_propulsion(){
 int decrease_propulsion(){
   int motor_speed = get_speed_level();
   fan_level--;
-  if( fan_level == 0 ){
-    set_propulsion_fan(0);
-    digitalWrite(RELAYPIN, HIGH);
-    return 0;
-  }
-  else if( fan_level > 0 && motor_speed >= PERSPEED ){
-    digitalWrite(RELAYPIN, HIGH);
+  if( motor_speed > PERSPEED ){
     change_pro_speed(motor_speed - PERSPEED);
     return motor_speed - PERSPEED;
   }
-  else if( fan_level < 0 && motor_speed >= MAXSPEED ){
-    change_pro_speed(PERSPEED * 20);
-    fan_level = -20;
-    return PERSPEED * 20;
+  else if( motor_speed <= PERSPEED ){
+    change_pro_speed(0);
+    fan_level = 0;
+    return 0;
   }
-  else if( fan_level < 0 && motor_speed < MAXSPEED ){
-    change_pro_speed(motor_speed + PERSPEED);
-    return motor_speed + PERSPEED;
-  }
-  return -1;
+  return 0;
 }
 
 /*!
@@ -131,4 +109,21 @@ int brake_hovercraft(){
   delay(1500);
   reverse_prop_motor();
   return 0;
+}
+
+/*!
+@brief change motor's polarity to control forward or backward
+ */
+int change_polarity(){
+  int motor_speed = get_speed_level();
+  if(motor_speed == 0){
+    if( digitalRead(RELAYPIN) == HIGH ){
+      digitalWrite(RELAYPIN, LOW);
+    }
+    else{
+      digitalWrite(RELAYPIN, HIGH);
+    }
+    return 0;
+  }
+  return -1;
 }

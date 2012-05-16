@@ -98,7 +98,7 @@ void control() {
 	  int speed = get_speed(g_speed_p);
 	  hovercraft_speed(speed);
 
-	  battery_level(get_battery_level(FIRST_BATTERY));
+//	  battery_level(get_battery_level(FIRST_BATTERY));
 
 		//comment in here
 //		hovercraft_pressure(get_pressure());

@@ -12,13 +12,13 @@
 int main(void){
   init();
   initialise_propulsion();
-  increase_propulsion();
-  decrease_propulsion();
-  increase_propulsion();
-  increase_propulsion();
-  decrease_propulsion();
-  decrease_propulsion();
-  decrease_propulsion();
-  decrease_propulsion();
+  /* increase_propulsion(); */
+  /* decrease_propulsion(); */
+  /* increase_propulsion(); */
+  /* increase_propulsion(); */
+  /* decrease_propulsion(); */
+  /* decrease_propulsion(); */
+  /* decrease_propulsion(); */
+  /* decrease_propulsion(); */
   return 0;
 }

@@ -83,6 +83,11 @@ unsigned char find_message(unsigned char* message) {
 	case BATTERY_LEVEL:
 		return BATTERY_LEVEL;
 		break;
+	case BACKWARD:
+		return BACKWARD;
+		break;
+	default:
+		return 255;
 	}
 	return 255;
 }
