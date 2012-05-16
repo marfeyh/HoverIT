@@ -5,9 +5,9 @@ PROG = Wifi
 # Add your source files here
 SRC_C=
 SRC_CXX= wifi_wrapper.cpp
-USER_C_FLAGS=-I/opt/searduino/3pp/include
-USER_CXX_FLAGS=-I/opt/searduino/3pp/include
-USER_LD_FLAGS=-L/opt/searduino/3pp/lib/$(BOARD) -lwifly
+USER_C_FLAGS=-I../../../3pp/bin/include
+USER_CXX_FLAGS=-I../../../3pp/bin/include
+USER_LD_FLAGS=-L../../../3pp/bin/lib/$(BOARD) -lwifly
 simulate:
 	$(SEARDUINO_PATH)/bin/searduino-stream-sim --arduino-code ./$(SHLIB)
 MAIN_SRC = main.c

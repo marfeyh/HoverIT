@@ -24,7 +24,7 @@
 #define buff_size 120
 char buff[buff_size];
 void connect(void);
-bool connect = false;
+//bool connect = false;
 
 WiFlySerial wifi = WiFlySerial(ArduinoBoard_RX,ArduinoBoard_TX);
  

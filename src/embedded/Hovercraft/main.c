@@ -18,6 +18,7 @@ int main(void) {
 	start_propulsion_fan();
 	start_hover();
 	control_rudder(0);
+	// should be removed
 	pinMode(0, INPUT);
 	pinMode(1, INPUT);
 	g_speed_p = create_speed();
