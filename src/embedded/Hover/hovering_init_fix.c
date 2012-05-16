@@ -22,87 +22,216 @@
  @file hovering_init_fix.c
  @headerfile hovering_init_fix.h
  @brief This module contains the functions that initialize the hovering 
-	motor and fix any wrong value which is being sent to hovering motor.
+ motor and fix any wrong value which is being sent to hovering motor.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
+ @version 0.9
  @date 20 March 2012
- @version 1.0
- @refrence Arduino.cc
- @refrence sandklef.com
- @refrence hoveritu.com
- @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
- @refrence Turnigy_Plush_and_Sentry_ESC user manual
- @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
- @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
  */
 
-/* Includes */
-#include <Arduino.h> /* Header for Arduino */ 
-#include <searduino.h> /* Header for Searduino */
-#include <hovering_motor.h>
-#include <hovering_control.h>
+/*
+  For using Arduino
+*/
+#include <Arduino.h>
+/*
+  For using Serduino
+*/
+#include <searduino.h>
+/*
+  Header of this file
+*/
 #include <hovering_init_fix.h>
+/*
+  For using functions
+  normal
+  turbo
+  set_fixed_level
+*/
+#include <hovering_control.h>
+/*
+  For audible or print testing
+*/
 #include <print_audible_test.h>
 
-/* Functions */
-
-/* 	Setting using_pin and test pin and start the motor */
+/*!
+@brief Set the output pin in Arduino and make the motor ready before roatating
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int initialize (int using_pin, int test_pin){
+	/*
+	  Set pin for audible testing
+	*/
 	pinMode (test_pin, OUTPUT);
+	/*
+	  Set pin for driving motor
+	*/	
 	pinMode (using_pin, OUTPUT);
+	/*
+	  make the motor ready before roatating
+	*/	
 	hover_func (start, using_pin, test_pin);
-//	delay (1000);
 	return 0;
 }
 
-/* Set the Arduino active pin for using */
+/*!
+@brief Set the PWM value on the activated output pin of Arduino 
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int pin_program (int using_pin, int test_pin, int level) {
 	analogWrite (using_pin, level);
-	/* Test code */
-	test_analogwrite (test_pin);
+	/*
+	  Test code
+	*/
+	#if defined AUDIBLE_TEST
+		test_analogwrite (test_pin);
+	#endif	
 	return 0;
 }
 
-
-/* This function prevents the motor from stop (Check boundary values) */
-int check_and_fix_level (int using_pin,int test_pin, \
-int throttle_stick_level){
-	if (throttle_stick_level < LOWEST_LEVEL){
-		test_Too_low (test_pin);
+/*!
+@brief Prevent the motor from unexpected stop due to violate boundary values
+in PWM signal.  
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on correct value
+@return 1 on too high value
+@return 2 on too low value
+*/
+int check_and_fix_level (int using_pin,int test_pin){
+	/*
+	  If the setting value is less than the lowest level for rotating
+	  (155) then sets the level to 155
+	*/
+	if (g_throttle_stick_level < LOWEST_LEVEL){
 		normal (using_pin, test_pin);
-	}
-	if (throttle_stick_level > HIGHEST_LEVEL){
-		test_Too_high (test_pin);		
+		/*
+		  Test code
+		*/
+		#if defined AUDIBLE_TEST
+			test_Too_low (test_pin);
+		#endif
+		return 2;
+	/*
+	  If the setting value is higher than the highest level for rotating
+	  (254) then sets the level to 254
+	*/
+	}else if (g_throttle_stick_level > HIGHEST_LEVEL){		
 		turbo (using_pin, test_pin);
-	}
-	return 0;
-}
-
-/* This function prevents the motor from stop (Check boundary values)
-and also prevent increase to function when the motor is stopped */
-int check_and_fix_level_increase (int using_pin, int test_pin, \
-int throttle_stick_level, int level){
-	//if (throttle_stick_level < LOWEST_LEVEL){
-	//	test_Too_low (test_pin);
-	//	return throttle_stick_level;
-//	}else 
-	if (throttle_stick_level > HIGHEST_LEVEL){
-			test_Too_high (test_pin);		
-			turbo (using_pin, test_pin);
-			return throttle_stick_level;	
+		/*
+		  Test code
+		*/
+		#if defined AUDIBLE_TEST
+			test_Too_high (test_pin);
+		#endif
+		return 1;
+	/*
+	  If the setting value is between 155 and 254 then this function
+	  does nothing.
+	*/	
 	}else {
-		return throttle_stick_level + level;}
+		return 0;
+	}
 }
 
+/*!
+@brief Prevent the motor from unexpected stop due to violate boundary values
+in PWM signal when using increase function.  
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return added level on correct value
+@return 254 on too high value
+@return pervious level plus added level on correct value
+*/
 
-/* This function prevents the motor from stop (Check boundary values)
-and also prevent decrease to function when the motor is stopped */
-int check_and_fix_level_decrease (int using_pin,int test_pin, \
-int throttle_stick_level,int level){
-	/* If the motor is stopped then nothing should be done */
-	if (throttle_stick_level < LOWEST_LEVEL){		
-		test_Too_low (test_pin);
-		return throttle_stick_level;
+int check_and_fix_level_increase (int using_pin, int test_pin, \
+int level){
+	/*
+	  If the value after increasing is higher than the highest level for 
+	  rotating (254) then sets the level to 254
+	*/
+	if (g_throttle_stick_level + level > HIGHEST_LEVEL){
+		turbo (using_pin, test_pin);	
+		/*
+		  Test code
+		*/
+		#if defined AUDIBLE_TEST
+		test_Too_high (test_pin);	
+		#endif
+		return 1;	
+	/*
+	  If the value after increasing is between 155 and 254 then this 
+	  function adds the increasing value to the previous level.
+	*/
+	}else if (g_throttle_stick_level + level < LOWEST_LEVEL){
+		normal (using_pin, test_pin);	
+		/*
+		  Test code
+		*/
+		#if defined AUDIBLE_TEST
+\		test_Too_low (test_pin);
+		#endif
+		return 2;
+	}else 	{
+		g_throttle_stick_level =g_throttle_stick_level + level;		
+		set_fixed_level (using_pin, test_pin);
+		return 0;
 	}
-	return throttle_stick_level - level;
+}
+
+/*!
+@brief Prevent the motor from unexpected stop due to violate boundary values
+in PWM signal when using decrease function. And also prevent decrease to 
+work when the motor is stopped.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return previous level when decrease is used before starting motor
+@return decreased level when decrease is used correctly
+*/
+int check_and_fix_level_decrease (int using_pin,int test_pin, \
+int level){
+	/*
+	  If the motor is stopped or value after decreasing is less than 155
+	  then nothing should be done
+	*/
+	if (g_throttle_stick_level < LOWEST_LEVEL || \
+	   g_throttle_stick_level-level < LOWEST_LEVEL){		
+		/*
+		  Test code
+		*/
+		#if defined AUDIBLE_TEST
+		test_Too_low (test_pin);
+		#endif
+		return 1;
+	/*
+	  If the value after decreasing is between 155 and 254 then this 
+	  function reduces the decreasing value from the previous level.
+	*/
+	} else {
+		g_throttle_stick_level = g_throttle_stick_level-level;
+		set_fixed_level (using_pin, test_pin);
+		return 0;
+	}
 }

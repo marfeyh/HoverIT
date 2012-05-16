@@ -28,10 +28,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#if STUB_TEST
-   #define #include <time.h>
+#ifdef STUB_TEST
+	#include <time.h>
 #endif
 #include <pressure_stub.h>
+#include <pin.h>
+
+#define HOVER_LEVEL_AUTO 10
+#define HOVER_LEVEL_MANUAL 40
 
 /*!
 @brief Generates a fake random air pressure inside the hovercraft skirt
@@ -63,5 +67,9 @@ int get_negative() {
 int get_equal() {
   return 50;
 }
+
+
+
+
   
   

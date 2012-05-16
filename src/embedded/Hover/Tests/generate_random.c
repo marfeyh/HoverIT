@@ -1,10 +1,8 @@
 
 /***************************************************************************
- * Copyright (C) 2012  Eva-Lisa Kedborn                     
- * 		       Jing Liu
- *		       Seyed Ehsan Mohajerani
- *		       Navid Amiriarshad	
- *
+ * Copyright (C) 2012  Seyed Ehsan Mohajerani
+ *                     Navid Amiriarshad
+ * 
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 3 of the License, or
@@ -21,14 +19,14 @@
  ****************************************************************************/
 
 /*!
- @file test_main.c
- @author Eva-Lisa Kedborn
- @author Jing Liu
+ @file generate_random.c
+ @headerfile generate_random.h
+ @brief This module contain the functions for generating random numbers for 
+ checking.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
- @brief Contains the functions that check the hovering control files.
- @version 0.4
- @date 2012-04-09
+ @version 0.2
+ @date 14 May 2012
  @see Arduino.cc
  @see sandklef.com
  @see hoveritu.com
@@ -40,25 +38,22 @@
  .html#cmdparam
  */
 
+/*
+  For using srandom
+*/
 #include <stdlib.h>
-#include <check.h>
-#include "hovering_check.h"
-#include "hovering_control_check.h"
-#include "hovering_init_fix_check.h"
 
 /*!
-@brief Main function to run hover unit tests
-@param none
-@returns 
+@brief The function for generating random number between 2 intgers.
+@Param [in] lower This parameter is higher integer of the interval
+@Param [in] higher This parameter is lower integer of the interval
+@return the generated random number on succes
 */
-int main(void) {
-	int number_failed;
-	Suite *s = hovering_suite();
-	Suite *s_hovering_control = hovering_control_suite();
-	SRunner *sr = srunner_create(s);
-	srunner_add_suite(sr, s_hovering_control);	
-	srunner_run_all(sr, CK_NORMAL);
-	number_failed = srunner_ntests_failed(sr);
-	srunner_free(sr);
-	return (number_failed == 0) ? EXIT_SUCCESS: EXIT_FAILURE;
+int generate_random_number(int lower, int higher){
+	/*
+	This function changes the random number everytime the function runs
+	*/	
+	srandom((unsigned)time(NULL));
+	int generated_random_number=random() %(higher-lower) +lower;
+	return generated_random_number;
 }

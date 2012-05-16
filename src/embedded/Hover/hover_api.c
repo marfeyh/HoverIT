@@ -34,6 +34,13 @@
 #include <pressure_check.h>
 #include <pin.h>
 
+/* #if STUB_TEST */
+/* #include <pressure_stubs.h> */
+/* #else */
+/* #include <hovering_motor.h>   */
+/* #include <hovering_control.h> */
+/* #endif */
+
 #define HOVER_LEVEL_AUTO 10
 #define HOVER_LEVEL_MANUAL 40
 
@@ -42,15 +49,15 @@
  */
 int start_hover() {
   initialize(USING_PIN, TEST_PIN);
-  return 0;
+  return 1;
 }
 
 /*!
 @brief stop the hovering fan
  */
-int stop_hover() {          
+int stop_hover() {
   hover_func(stop, USING_PIN, TEST_PIN);
-  return 0;
+  return 2;
 }
 
 /*!
@@ -58,7 +65,7 @@ int stop_hover() {
  */
 int hover_min() {
   hover_func(normal, USING_PIN, TEST_PIN);
-  return 0;
+  return 3;
 }
 
 /*!
@@ -66,7 +73,7 @@ int hover_min() {
  */
 int hover_max() {
   hover_func(turbo, USING_PIN, TEST_PIN);
-  return 0;
+  return 4;
 }
 
 /*!
@@ -74,24 +81,24 @@ int hover_max() {
  */
 int increase_hover_manual() {
   hover_change(increase, USING_PIN, TEST_PIN, HOVER_LEVEL_MANUAL);
-  return 0;
+  return 5;
 }
 
 /*!
 @brief decrease the speed through manual control, in total 3 levels
  */
-int decrease_hover_manual() {       
+int decrease_hover_manual() {
   hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL_MANUAL);
-  return 0;
+  return 6;
 }
 
 
 /*!
 @brief decrease the fan speed automatically
  */
-int decrease_hover_auto() {       
+int decrease_hover_auto() {
   hover_change(decrease, USING_PIN, TEST_PIN, HOVER_LEVEL_AUTO);
-  return 0;
+  return 7;
 }
 
 /*!
@@ -99,13 +106,13 @@ int decrease_hover_auto() {
  */
 int increase_hover_auto() {
   hover_change(increase, USING_PIN, TEST_PIN, HOVER_LEVEL_AUTO);
-  return 0;
+  return 8;
 }
 
 /*!
 @brief fan speed cotrolled by pressure sensor automatically
  */
-int autocontrol() {       
+int autocontrol() {
   start_sensor_reading();
-  return 0;
+  return 9;
 }

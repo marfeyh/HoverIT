@@ -22,129 +22,264 @@
  @file hovering_control.c
  @headerfile hovering_control.h
  @brief This module contains the functions that control the hovering fan
-	 speed.
+ speed.
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
+ @version 0.9
  @date 20 March 2012
- @version 1.0
- @refrence Arduino.cc
- @refrence sandklef.com
- @refrence hoveritu.com
- @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
- @refrence Turnigy_Plush_and_Sentry_ESC user manual
- @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
- @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
  */
 
+
+/*
+  For using Arduino
+*/
 #include <Arduino.h>
-#include <hovering_motor.h>
+/*
+  Header of this file
+*/
 #include <hovering_control.h>
+/*
+  For using functions
+  pin_program
+  check_and_fix_level_increase
+  check_and_fix_level_decrease
+  check_and_fix_level
+*/
 #include <hovering_init_fix.h>
+/*
+  For audible or print testing
+*/
 #include <print_audible_test.h>
 
-/* The minimum PWM value that is possible to send to ESC from Arduino pin
- and it is for initiating the motor */
-#define THROTTLE_STICK_BOTTOM_LEVEL 100
+/*
+  The Arduino PWM output value which is sent to ESC and represents the motor
+  rotating level. It can be between 155 (for lowest rotating speed) and 254
+  (for the highest rotating speed)- It is a Global variable.
+*/
+int g_throttle_stick_level=0;
 
-/* The PWM value which is sent to ESC from Arduino and represents the motor
- rotating power it can be between 143 (for lowest rotating speed) and 254
-(for the highest rotating speed */
-int throttle_stick_level = 0;
-
-/* Start the motor */
+/*!
+@brief Start motor and make the motor ready before roatating
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+@return 0 if the motor is started before
+*/
 int start(int using_pin, int test_pin) {
-	/* Set the level to 100 or Start the hovering motor*/
-	if (throttle_stick_level < THROTTLE_STICK_BOTTOM_LEVEL){
+	/*
+	  If the Arduino PWM output value is less than 100 , this function
+	  Set the value to 100 or Starts the hovering motor.
+	*/
+	if (g_throttle_stick_level < THROTTLE_STICK_BOTTOM_LEVEL){
 		throttle_stick_bottom(using_pin, test_pin);
+		/*
+		  Test code
+		*/
+		#if defined AUDIBLE_TEST
+			test_start (test_pin);
+		#endif
+		return 0;
+	} else {
+		/*
+		  Test code
+		*/
+		#if defined AUDIBLE_TEST
+			test_motor_already_started (test_pin);
+		#endif
+		return 1;
 	}
-	/* Test code */
-	test_start (test_pin);
-	return 0;
 }
 
-/* Set the level to 100 or start the motor \
-if the motor has not been started (The minimum acceptable value for ESC) */
-int throttle_stick_bottom(int using_pin, int test_pin) {
-	throttle_stick_level = THROTTLE_STICK_BOTTOM_LEVEL;
-	set_level(using_pin, test_pin, throttle_stick_level);
-	delay(1000);
-	/* Test code */
+/*!
+@brief set the Set Arduino PWM output value to 100 or start the motor before
+rotating (The minimum acceptable value for ESC).
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
+int throttle_stick_bottom (int using_pin, int test_pin) {
+	set_level (using_pin, test_pin, THROTTLE_STICK_BOTTOM_LEVEL);
+	/*
+	  Test code this function has not valid audible test so it is used
+	  just in stub mode.
+ 	*/
 	#if defined STUB_TEST
 		test_throttle_Stick_is_bottom (test_pin);
 	#endif
 	return 0;
 }
 
-/* Set the level to 143 or set the motor to lowest rotating speed */
+/*!
+@brief Set the Arduino PWM output value to 155 or set the motor to lowest
+rotating speed.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int normal (int using_pin,int test_pin){
-	throttle_stick_level = LOWEST_LEVEL;
-	set_level(using_pin, test_pin, throttle_stick_level);
-	/* Test code */
-	test_normal (test_pin);
+	set_level (using_pin, test_pin, LOWEST_LEVEL);
+	/*
+	  Test code
+	*/
+	#if defined AUDIBLE_TEST
+		test_normal (test_pin);
+	#endif
 	return 0;
 }
 
-/* Set the level to 254 or set the motor to highest rotating speed */
+/*!
+@brief Set the Arduino PWM output value to 254 or set the motor to highest
+rotating speed.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int turbo (int using_pin,int test_pin){
-	throttle_stick_level = HIGHEST_LEVEL;
-	set_level(using_pin, test_pin, throttle_stick_level);
-	/* Test code */
-	test_turbo (test_pin);
+	set_level (using_pin, test_pin, HIGHEST_LEVEL);
+	/*
+	  Test code
+	*/
+	#if defined AUDIBLE_TEST
+		test_turbo (test_pin);
+	#endif
 	return 0;
 }
 
-/* Set the level to 120 or stop the motor */
+/*!
+@brief Set the Arduino PWM output value to 120 or set the motor to stop.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int stop (int using_pin, int test_pin){
-	throttle_stick_level = STOP_LEVEL;
-	set_level(using_pin, test_pin, throttle_stick_level);
-	/* Test code */
-	test_stop (test_pin);
+	set_level (using_pin, test_pin, STOP_LEVEL);
+	/*
+	  Test code
+	*/
+	#if defined AUDIBLE_TEST
+		test_stop (test_pin);
+	#endif	
 	return 0;
 }
 
-/* Increase the motor rotating speed level times */
+/*!
+@brief Increase the Arduino PWM output value or start motor rotating or
+increase the motor rotating speed when to the motor is rotating.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+@param[in] level This parameter is the desired value to be increased.
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int increase (int using_pin, int test_pin, int level){
-	throttle_stick_level = check_and_fix_level_increase(using_pin, \
-	test_pin, throttle_stick_level, level);
-	set_fixed_level (using_pin, test_pin, throttle_stick_level);
-	/* Test code */
+	/*
+	  Function check_and_fix_level_increase prevents the PWM value to
+	  violate highest value (254).
+	*/
+	check_and_fix_level_increase(using_pin, test_pin, level);
+	/*
+	  Test code this function has not valid audible test so it is used
+	  just in stub mode.
+ 	*/
 	#if defined STUB_TEST
-		test_increase (throttle_stick_level);
+		test_increase (0);
 	#endif
 	return 0;
 }
 
-/* decrease the motor rotating speed level times */
+/*!
+@brief Decrease the Arduino PWM output value or decrease the motor rotating
+speed.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+@param[in] level This parameter is the desired value to be decreased.
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int decrease (int using_pin, int test_pin, int level){
-	throttle_stick_level = check_and_fix_level_decrease (using_pin, \
-	test_pin, throttle_stick_level, level);
-	set_fixed_level (using_pin, test_pin, throttle_stick_level);
-	/* Test code */
+	/*
+	  Function check_and_fix_level_decrease prevents the PWM value to
+	  violate lowest value (155) and also prevent the decrease function
+	  to start rotating the motor.
+	*/
+	check_and_fix_level_decrease (using_pin, \
+	test_pin, level);
+	/*
+	  Test code this function has not valid audible test so it is used
+	  just in stub mode.
+ 	*/
 	#if defined STUB_TEST
-		test_decrease (throttle_stick_level);
+		test_decrease (0);
 	#endif
 	return 0;
 }
 
-/* set the motor rotating speed to specified level */
+/*!
+@brief Set the Arduino PWM output value to a desired value or set the motor
+rotating speed to a desired level.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+@param[in] g_throttle_stick_level This parameter is the desired value
+to be set.
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
 int set_level(int using_pin, int test_pin, int level){
-	pin_program (using_pin, test_pin, throttle_stick_level);
-	/* Test code */
+	g_throttle_stick_level = level;
+	pin_program (using_pin, test_pin, g_throttle_stick_level);
+	/*
+	  Test code this function has not valid audible test so it is used
+	  just in stub mode.
+ 	*/
 	#if defined STUB_TEST
-		test_set_level (throttle_stick_level);
+		test_set_level (0);
 	#endif
 	return 0;
 }
 
-/* set the motor rotating speed to specified to the level which
-	fixed to be no higher than 254 and no lower than 143*/
-int set_fixed_level (int using_pin, int test_pin, int level){
-	throttle_stick_level = level;
-	check_and_fix_level (using_pin, test_pin, throttle_stick_level);
-	set_level (using_pin, test_pin, throttle_stick_level);
-	/* Test code */
+/*!
+@brief Set the Arduino PWM output value to a desired value or set the motor
+rotating speed to a desired level. This value is fixed to be no higher than
+254 and no lower than 155.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+@param[in] g_throttle_stick_level This parameter is the desired value
+to be set.
+for audible testing. This parameter is set but not used when using stub.
+@return 0 on succes
+*/
+int set_fixed_level (int using_pin, int test_pin){
+	pin_program (using_pin, test_pin, g_throttle_stick_level);
+//	check_and_fix_level (using_pin, test_pin);
+	/*
+	  Test code this function has not valid audible test so it is used
+	  just in stub mode.
+ 	*/
 	#if defined STUB_TEST
-		test_set_level (throttle_stick_level);
+		test_set_level (0);
 	#endif
 	return 0;
 }

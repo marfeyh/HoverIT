@@ -20,7 +20,7 @@
 
 /*!
  @file hovering_init_fix.h
- @brief This module is the headerfile for hovering_init_fix.h
+ @brief This module is the headerfile for hovering_init_fix.c
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
  @date 20 March 2012
@@ -34,33 +34,28 @@
  @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
  */
 
-/* Make sure this header file is included one time */
 #if !defined HOVERING_INIT_FIX_H
 	#define HOVERING_INIT_FIX_H
-	
-	/* Defines */
+	/*!
+	  @def TEST_PIN
+	  define the highest value on Arduino PWM output for rotating motor 
+	*/
 	#define HIGHEST_LEVEL 254
+	/*!
+	  @def TEST_PIN
+	  define the lowest value on Arduino PWM output for rotating motor
+	*/
 	#define LOWEST_LEVEL 155
+	/*!
+	  @def TEST_PIN
+	  define the value on Arduino PWM output for stopping motor 
+	*/
 	#define STOP_LEVEL 120
-
-	/* Function prototype */
-
-	/* Arduino and motor initiation */
 	int initialize(int using_pin, int test_pin);
-	/* Set the Arduino active pin for using */	
 	int pin_program(int using_pin, int test_pin, int level);
-	/* This function prevents the motor from stop
-	 (Check boundary values)*/
-	int check_and_fix_level(int using_pin,int test_pin, \
-	 int throttle_stick_level);
-	/* This function prevent increase to function when the motor \
-	 is stopped */
+	int check_and_fix_level(int using_pin,int test_pin);
 	int check_and_fix_level_increase (int using_pin, int test_pin, \
-	int throttle_stick_level, int level);	
-	/* This function prevents decrease to function when the motor \
-	is stopped */
+	int level);	
 	int check_and_fix_level_decrease (int using_pin, int test_pin, \
-	int throttle_stick_level, int level);
-
-	
+	int level);
 	#endif

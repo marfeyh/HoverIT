@@ -21,50 +21,61 @@
 /*!
  @file hovering_motor.c
  @headerfile hovering_motor.h
- @brief This module contains function pointers for calling hovering_control.c. 
+ @brief This module contains function pointers for calling hovering_control.c
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
+ @version 0.9
  @date 20 March 2012
- @version 1.0
- @refrence Arduino.cc
- @refrence sandklef.com
- @refrence hoveritu.com
- @refrence dreamincode.net/forums/topic/34861-functions-stored-in-structure
- @refrence Turnigy_Plush_and_Sentry_ESC user manual
- @refrence for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard.html
- @refrence for commenting stack.nl/~dimitri/doxygen/commands.html#cmdparam
+ @see Arduino.cc
+ @see sandklef.com
+ @see hoveritu.com
+ @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+ @see Turnigy_Plush_and_Sentry_ESC user manual
+ @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+ .html
+ @see reference for commenting stack.nl/~dimitri/doxygen/commands
+ .html#cmdparam
  */
 
-/* Includes */
-#include <Arduino.h> /* Header for Arduino */
-#include <searduino.h> /* Header for Searduino */
+/*
+  For using Arduino
+*/
+#include <Arduino.h>
+/*
+  Header of this file
+*/
 #include <hovering_motor.h>
-#include <hovering_control.h>
-#include <print_audible_test.h>
 
-unsigned char loop_need;
-
-
-/* Functions */
-
-/* Function that gets arguments for start or stop the motor */
+/*!
+@brief Function pointer for calling functions for start, normal, turbo and 
+stop the hovering motor.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@param[out] *func This parameter is a pointer to function that should be
+called
+@return 0 on succes
+*/
 int hover_func (int (*func)(int,int), int using_pin, int test_pin){
 	func (using_pin, test_pin);
 	return 0;
 	}
 
-/* Fucntion that gets arguments for change the speed of motor */
+/*!
+@brief Function pointer for calling functions for changing the speed of
+hovering motor.
+@param[in] using_pin This parameter is the Arduino pin number which is used
+for sending PWM signal for driving the motor.
+@param[in] test_pin This parameter is the Arduino pin number which is used
+for audible testing. This parameter is set but not used when using stub.
+@param[in] level This paratmer is the level of changing speed
+@param[out] *climb_decesnd This parameter is a pointer to function
+that should be called.
+@return 0 on succes
+*/
 int hover_change (int (*climb_decesnd)(int, int, int), int using_pin, \
 int test_pin, int level){
-	climb_decesnd(using_pin, test_pin, level);
-	return 0;
-}
-
-/* Loop for motor */
-int hover_loop(FUNCS funcs_in, int using_pin){
-	while(loop_need){
-		funcs_in.func1(funcs_in.level);
-		funcs_in.func2(funcs_in.delay_time);
-	}
+	climb_decesnd (using_pin, test_pin, level);
 	return 0;
 }

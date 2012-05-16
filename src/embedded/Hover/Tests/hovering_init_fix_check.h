@@ -1,8 +1,6 @@
 
 /***************************************************************************
- * Copyright (C) 2012  Eva-Lisa Kedborn                     
- * 		       Jing Liu
- *		       Seyed Ehsan Mohajerani
+ * Copyright (C) 2012  Seyed Ehsan Mohajerani
  *		       Navid Amiriarshad	
  *
  * This program is free software: you can redistribute it and/or
@@ -21,14 +19,12 @@
  ****************************************************************************/
 
 /*!
- @file test_main.c
- @author Eva-Lisa Kedborn
- @author Jing Liu
+ @file hovering_init_fix_check.h
  @author Seyed Ehsan Mohajerani
  @author Navid Amiriarshad
- @brief Contains the functions that check the hovering control files.
- @version 0.4
- @date 2012-04-09
+ @brief Header file for testing hovering_init_fix.c functions.
+ @version 0.
+ @date 2012-05-15
  @see Arduino.cc
  @see sandklef.com
  @see hoveritu.com
@@ -40,25 +36,11 @@
  .html#cmdparam
  */
 
-#include <stdlib.h>
-#include <check.h>
-#include "hovering_check.h"
-#include "hovering_control_check.h"
-#include "hovering_init_fix_check.h"
+#if !defined HOVERING_CHECK_H
+	#define HOVERING_CHECK_H
 
-/*!
-@brief Main function to run hover unit tests
-@param none
-@returns 
-*/
-int main(void) {
-	int number_failed;
-	Suite *s = hovering_suite();
-	Suite *s_hovering_control = hovering_control_suite();
-	SRunner *sr = srunner_create(s);
-	srunner_add_suite(sr, s_hovering_control);	
-	srunner_run_all(sr, CK_NORMAL);
-	number_failed = srunner_ntests_failed(sr);
-	srunner_free(sr);
-	return (number_failed == 0) ? EXIT_SUCCESS: EXIT_FAILURE;
-}
+	void setup2(void);
+	void teardown2(void);
+	Suite *hovering_control_suite(void);
+
+	#endif

@@ -32,7 +32,7 @@ start to rotate.
 @param takes no parameters
 @returns integer 0 if successful
 */
-int initialize();
+//int initialize();
 
 /*!
 @brief Function to start rotating the fan at lowest speed

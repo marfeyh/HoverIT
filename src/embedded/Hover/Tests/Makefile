@@ -1,15 +1,48 @@
-#
-#* @ Module name:  Test make file
-#* @ Description:  Compiles the files for testing control hovering fan
+
+#***************************************************************************
+#* Copyright (C) 2012  Eva-Lisa Kedborn                     
+#* 		       Jing Liu
+#*		       Seyed Ehsan Mohajerani
+#*		       Navid Amiriarshad	
 #*
-#* @ Author names : Eva-Lisa Kedborn, Jing Liu
-#* 		    Seyed Ehsan Mohajerani, Navid Amiriarshad#* @ Release      : 9 April 2012
-#* @ Version      : 1
-#* @ Refrences    : Arduino.cc, sandklef.com, Check manual
+#* This program is free software: you can redistribute it and/or
+#* modify it under the terms of the GNU General Public License as published
+#* by the Free Software Foundation, either version 3 of the License, or
+#* (at your option) any later version.
+#* 
+#* This program is distributed in the hope that it will be useful,
+#* but WITHOUT ANY WARRANTY; without even the implied warranty of
+#* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#* GNU General Public License for more details.
+#* 
+
+#* You should have received a copy of the GNU General Public License
+#* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#*
+#****************************************************************************
+
 #
+# @file Test make file
+# @brief Compiles the files for testing control hovering fan
+# @author Eva-Lisa Kedborn 
+# @author Jing Liu 
+# @author Seyed Ehsan Mohajerani
+# @author Navid Amiriarshad
+# @date 9 April 2012
+# @version 0.9
+# @see Arduino.cc
+# @see sandklef.com
+# @see hoveritu.com
+# @see dreamincode.net/forums/topic/34861-functions-stored-in-structure
+# @see Turnigy_Plush_and_Sentry_ESC user manual
+# @see reference for Coding standard ece.cmu.edu/~eno/coding/CCodingStandard
+# .html
+# @see reference for commenting stack.nl/~dimitri/doxygen/commands
+# .html#cmdparam
 
 SRC_DIR =../
-SRC_C = hovering_check.c
+SRC_C = hovering_check.c generate_random.c \
+hovering_init_fix_check.c ../pressure_stub.c
 MAIN_SRC = test_main.c
 
 SEARDUINO_PATH = /opt/searduino
@@ -52,14 +85,16 @@ debug: check
 
 gcovcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
+	gcov *.gcno
 
 gcovbcheck: gcov
 	rm -f objs/*.gcda objs/*.gcno
+	gcov -b *.gcno 
 
 memcheck: debug
 	valgrind --leak-check=full --xml-file=leakcheck.xml Testsuite
 
 clean-tests: clean
-	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno
+	rm -f objs/*.gcda objs/*.gcno *.gcda *.gcno *.gcov
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
