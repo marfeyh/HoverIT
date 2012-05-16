@@ -53,12 +53,13 @@ int get_percentage(int battery_no)
 */
 int get_first_battery_level()
 {
-	if(analogRead(BATTERY_PIN1) < 843)
+	if(analogRead(BATTERY_PIN1) < 765)
 	{
 		return 0;
 	} else
 	{
-		int percentage = 100 - (((1023 - analogRead(BATTERY_PIN1)) / 180.00 * 100));
+		int percentage = (analogRead(BATTERY_PIN1) - 765) / 258.00 * 100;
+
 		return percentage;
 	}
 }
@@ -69,12 +70,13 @@ int get_first_battery_level()
 */
 int get_second_battery_level()
 {
-	if(analogRead(BATTERY_PIN2) < 843)
+	if(analogRead(BATTERY_PIN2) < 765)
 	{
 		return 0;
 	} else
 	{
-		int percentage = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180.00 * 100));
+//		int percentage = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180.00 * 100));
+        int percentage = (analogRead(BATTERY_PIN1) - 765) / 258.00 * 100;
 		return percentage;
 	}
 }
@@ -85,12 +87,13 @@ int get_second_battery_level()
 */
 int get_third_battery_level()
 {
-	if(analogRead(BATTERY_PIN3) < 843)
+	if(analogRead(BATTERY_PIN3) < 765)
 	{
 		return 0;
 	} else
 	{
-		int percentage = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180.00 * 100));
+//		int percentage = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180.00 * 100));
+        int percentage = (analogRead(BATTERY_PIN1) - 765) / 258.00 * 100;
 		return percentage;
 	}
 }

@@ -24,13 +24,13 @@
  @Copyright (c) 2012__MyCompanyName__. All rights reserved.
  */
 
-#define BATTERY_PIN1 1  //Analog pin 1
-#define BATTERY_PIN2 2  //Analog pin 2
-#define BATTERY_PIN3 3  //Analog pin 3
-#define ledPin1  2     //Digital pin 2
-#define ledPin2  4     //Digital pin 4 
-#define ledPin3  7     //Digital pin 7
-#define ledPin4  8     //Digital pin 8
+#define BATTERY_PIN1 A13  //Analog pin 1 A15
+#define BATTERY_PIN2 A14  //Analog pin 2 A14
+#define BATTERY_PIN3 A15  //Analog pin 3 A13
+#define ledPin1  53     //Digital pin 2 53
+#define ledPin2  52     //Digital pin 4 52
+#define ledPin3  51     //Digital pin 7 51
+#define ledPin4  50     //Digital pin 8 50
 
 /* This ugly hack is made to get around Henrik's stupid code
    keep it as a reminder so I see it when reviewing :(
@@ -38,6 +38,7 @@
 #ifdef SEADRDUINO_STUB
 #define SPEAKER_PIN A0 //Analog 0
 #else
-#define SPEAKER_PIN 11 //Digital pin 11
+#define SPEAKER_PIN 49 //Digital pin 11 49
+
 #endif
 

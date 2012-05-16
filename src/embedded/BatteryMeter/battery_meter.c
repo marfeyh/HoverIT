@@ -36,6 +36,7 @@
  * @return 0
  */
 int init_battery_meter() {    
+    
     /* init the leds */
     init_leds();
     /* init the alarm*/
@@ -103,7 +104,7 @@ unsigned char make_msg(int battery_number, int percentage) {
             break;
         default:
             break;
-    }
+    }    
     return msg;
 }
 
@@ -115,7 +116,7 @@ unsigned char make_msg(int battery_number, int percentage) {
 unsigned char get_battery_level(int battery_number) {
     /* get the percentage from the battery*/
     uint16_t percentage = get_percentage(battery_number);
-    
+        
     if (battery_number == FIRST_BATTERY) {
         /* send the percentage to the alarm */
         setup_alarm(percentage);

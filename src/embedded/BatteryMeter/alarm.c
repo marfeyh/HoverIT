@@ -68,7 +68,6 @@ void setup_alarm(uint8_t percentage) {
 */
 
 int loop_battery_level(uint8_t Battery){
-	printf("Battery beep duration: %d\n", battery_beep_duration);
   if(Battery==LOW_BATTERY && battery_beep_duration<LOW_BATTERY_DURATION){
     beep(LOW_BATTERY);
     battery_beep_duration++;

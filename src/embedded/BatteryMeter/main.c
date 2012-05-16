@@ -53,11 +53,18 @@
  @return  
  */
 
+int analogamount = 0; // stores incoming value
+float percentage = 0; // used to store our percentage value
+float voltage =0; // used to store voltage value
 
 int main(void)
 {
 
 	init();
+    
+//    serial_setup();    
+//    analogReference(EXTERNAL); // use AREF for reference voltage
+    
     init_battery_meter();
     
     uint8_t bin_msg_one = 0;
@@ -69,6 +76,14 @@ int main(void)
         bin_msg_one = get_battery_level(FIRST_BATTERY);
         bin_msg_two = get_battery_level(SECOND_BATTERY);
         bin_msg_three = get_battery_level(THIRD_BATTERY);
+        
+//        delay(200);
+//        analogamount=analogRead(A1);
+////        debug_print3("Percentage of AREF: ");
+////        debug_print3(percentage);
+////        debug_print3("voltage on analog input (mV): ");
+////        debug_print3(voltage);
+//        debug_print3(analogamount);
     }
 	return 0;
 }

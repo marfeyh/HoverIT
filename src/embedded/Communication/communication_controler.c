@@ -112,8 +112,8 @@ unsigned char ruder_direction(unsigned char message) {
  */
 unsigned char hovercraft_speed(int message) {
 	send_serial_binary_speed(&message);
-	debug_print3(message);
-	debug_print_string("hovercraft_speed called\n");
+//	debug_print3(message);
+//	debug_print_string("hovercraft_speed called\n");
 
 	// instead of return send_serial_binary should be called
 //	return create_hovercraft_speed(&message);
