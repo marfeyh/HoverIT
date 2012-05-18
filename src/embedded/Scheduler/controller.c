@@ -98,13 +98,15 @@ void control() {
 	  int speed = get_speed(g_speed_p);
 	  hovercraft_speed(speed);
 
-	  battery_level(get_battery_level(FIRST_BATTERY));
+	  // battery levels
+	  battery_level(1,get_battery_level(FIRST_BATTERY));
+	  battery_level(2,get_battery_level(SECOND_BATTERY));
+	  battery_level(3,get_battery_level(THIRD_BATTERY));
 
 		//comment in here
 //		hovercraft_pressure(get_pressure());
 		// Get gps data
 		
-		// Get Battery level
 		// Get Sonar data
 		// Get Pressure
 

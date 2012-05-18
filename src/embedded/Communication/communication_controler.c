@@ -6,7 +6,7 @@
  @author Amir Almasi
  @author Retta Shiferaw
  @version 0.7
- @note All the aruguments and returns of the functionsdebug_print_string("fan_forward_speed called\n"); are unsigned char
+ @note All the aruguments and returns of the functionsdebug_print_string("fan_forward_speed called"); are unsigned char
  @bug pointer to function should be free somewhere
  @todo pointer to job struct should be get free
  @warning <b> Do not try this code at home! </b>
@@ -19,6 +19,7 @@
 #include <stdio.h> // because of using NULL
 #include "external.h"
 
+struct authentication* login = NULL;
 /*
  * ======================================================================
  * API functions
@@ -38,25 +39,75 @@ void communication_serial_setup() {
 	serial_switch();
 }
 
+//===============================================================================
+unsigned char init_login() {
+	login = (struct authentication*) malloc(sizeof(struct authentication) * 1);
+	if (login == NULL) {
+		return 255;
+	}
+	login->user_login = 0; // 0 stands for not login
+	login->pass = (char*) malloc(sizeof(char) * (PASSSIZE + 1));
+	if (login->pass == NULL) {
+		return 254;
+	}
+	login->pass_size =0;
+	return 1;
+}
+
+unsigned char add_pass(char* pass_ch) {
+	if (login == NULL) {
+		return 255;
+	}
+	if ((login->pass) == NULL) {
+		return 254;
+	}
+	*(login->pass) = *pass_ch;
+	login->pass++;
+	login->pass = '\0';
+	login->pass_size++;
+
+	check_password();
+	return 1;
+}
+unsigned char check_password(){
+	if (login->pass_size == (PASSSIZE-1)){
+	//		check the password if it is correct
+	//		debug_print_string(login->pass);
+	//		if pass is correct then
+	//		login->user_login=1;
+		}
+	return 255;
+
+}
+
+unsigned char distroy_pointer (){
+	if (login == NULL){
+		return 255;
+	}
+	free (login);
+	return 1;
+}
+//===============================================================================
+
 /*!
  @brief When this function is called, by Scheduler, the bluetooth gets the resources of
  the board and it should check if there is anything available on serial input or not
  If there is any data available then the data would be parsed.
  */
 void check_serial_input() {
-//	unsigned char temp = connection_status();
-//	debug_print(&temp);
+	unsigned char temp = connection_status();
+	debug_print(&temp);
 //	stream_information("Amir");
 //	debug_write(&temp);
 	unsigned char result = 255;
 	do {
 		check_bluetooth(&result);
 //		debug_print(result);
-//		debug_print_string("e\n");
-//		if (254 == result) { // If there is any data available on serial input
-////			check_wifi(&result);
-//			debug_print_string("fun1\n");
-//		}
+//		debug_print_string("e");
+		if (254 == result) { // If there is any data available on serial input
+			check_wifi(&result);
+			debug_print_string("fun1");
+		}
 	} while (255 != result);
 	return;
 }
@@ -69,7 +120,7 @@ void check_serial_input() {
  @return unsigned char containing value and message type
  */
 unsigned char fan_forward_speed(unsigned char message) {
-	debug_print_string("fan_forward_speed called\n");
+	debug_print_string("fan_forward_speed called");
 
 	// instead of return send_serial_binary should be called
 	return create_fan_forward_speed(&message);
@@ -83,7 +134,7 @@ unsigned char fan_forward_speed(unsigned char message) {
  @return unsigned char containing value and message type
  */
 unsigned char fan_hovering_speed(unsigned char message) {
-	debug_print_string("fan_hovering_speed called\n");
+	debug_print_string("fan_hovering_speed called");
 
 	// instead of return send_serial_binary should be called
 	return create_fan_hovering_speed(&message);
@@ -97,7 +148,7 @@ unsigned char fan_hovering_speed(unsigned char message) {
  @return unsigned char containing value and message type
  */
 unsigned char ruder_direction(unsigned char message) {
-	debug_print_string("ruder_direction called\n");
+	debug_print_string("ruder_direction called");
 
 	// instead of return send_serial_binary should be called
 	return create_ruder_direction(&message);
@@ -113,7 +164,7 @@ unsigned char ruder_direction(unsigned char message) {
 unsigned char hovercraft_speed(int message) {
 	send_serial_binary_speed(&message);
 //	debug_print3(message);
-//	debug_print_string("hovercraft_speed called\n");
+//	debug_print_string("hovercraft_speed called");
 
 	// instead of return send_serial_binary should be called
 //	return create_hovercraft_speed(&message);
@@ -128,8 +179,8 @@ unsigned char hovercraft_speed(int message) {
  @return unsigned char containing value and message type
  */
 unsigned char hovercraft_pressure(unsigned int message) {
-	  debug_print2(&message);
-	  debug_print_string("R\n");
+	debug_print2(&message);
+	debug_print_string("R");
 //	debug_write(message);
 
 // instead of return send_serial_binary should be called
@@ -143,12 +194,14 @@ unsigned char hovercraft_pressure(unsigned int message) {
  @param unsigned char of the value to be sent to pc
  @return unsigned char containing value and message type
  */
-unsigned char battery_level(unsigned char message) {
+unsigned char battery_level(unsigned char battery_num, unsigned char message) {
 	debug_print(&message);
-	debug_print_string("battery_level called\n");
+	debug_print_string("battery_level1 called");
+	unsigned char binary_message = create_battery_level(&battery_num, &message);
+	send_serial_binary(&binary_message);
 
 	// instead of return send_serial_binary should be called
-	return create_battery_level(&message);
+	return create_battery_level(&battery_num, &message);
 }
 
 /*!
@@ -232,14 +285,37 @@ unsigned char parse_input(unsigned char* result) {
 			backward_handler();
 			return BACKWARD;
 			break;
+		case HOVERCRAFTOFF:
+			/* message type is 0010 */
+			off_handler(result);
+			return HOVERCRAFTOFF;
+			break;
 		default:
 			/* If something is not based on protocol */
-			debug_print_string("Something not based on protocol is received\n");
+			debug_print_string("Something not based on protocol is received");
 			break;
-
 		} //  end of the switch case of message type
 		return 255;
 	} // end of if message received is based on protocol
+	return 255;
+}
+unsigned char off_handler(unsigned char* command) {
+	unsigned char hovercraft_off = get_value_off(command);
+	switch (hovercraft_off) {
+	case HOVERINGOFF:
+		stop_hover();
+		return HOVERINGOFF;
+		break;
+	case TOTALLOFF:
+		stop_hover();
+		set_propulsion_fan(0);
+		control_rudder(BRAKE);
+		return TOTALLOFF;
+		break;
+	default:
+		debug_print_string("Off handler error");
+		break;
+	} // end of switch case of rudder direction value
 	return 255;
 }
 
@@ -247,7 +323,7 @@ unsigned char ruder_direction_handler(unsigned char* command) {
 	int (*func_ptr)(); // declaration of pointer to function
 	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
 	if (job_ptr == NULL) {
-		debug_print_string("Unable to get memory\n");
+		debug_print_string("Unable to get memory");
 		// we should call log_error in here
 		return 255;
 	} // if there was no memory to be allocated
@@ -263,41 +339,41 @@ unsigned char ruder_direction_handler(unsigned char* command) {
 //		job_ptr->type = MOVEMENT;
 //		putJobInQueue(*job_ptr);
 		control_rudder(STRAIGHT);
-		debug_print_string("STRAIGHT\n");
+		debug_print_string("STRAIGHT");
 		return STRAIGHT;
 		break;
 	case HARD_LEFT:
 		/* value is 0001 */
 		control_rudder(HARD_LEFT);
-		debug_print_string("HARD_LEFT\n");
+		debug_print_string("HARD_LEFT");
 		return HARD_LEFT;
 		break;
 	case HARD_RIGHT:
 		/* value is 0010 */
 		control_rudder(HARD_RIGHT);
-		debug_print_string("HARD_RIGHT\n");
+		debug_print_string("HARD_RIGHT");
 		return HARD_RIGHT;
 		break;
 	case SOFT_RIGHT:
 		/* value is 0011 */
 		control_rudder(SOFT_RIGHT);
-		debug_print_string("SOFT_RIGHT\n");
+		debug_print_string("SOFT_RIGHT");
 		return SOFT_RIGHT;
 		break;
 	case SOFT_LEFT:
 		/* value is 0100 */
 		control_rudder(SOFT_LEFT);
-		debug_print_string("SOFT_LEFT\n");
+		debug_print_string("SOFT_LEFT");
 		return SOFT_LEFT;
 		break;
 	case BRAKE:
 		/* value is 0101 */
 		control_rudder(BRAKE);
-		debug_print_string("BRAKE\n");
+		debug_print_string("BRAKE");
 		return BRAKE;
 		break;
 	default:
-		debug_print_string("direction ERROR\n");
+		debug_print_string("direction ERROR");
 		break;
 	} // end of switch case of rudder direction value
 	return 255;
@@ -305,9 +381,10 @@ unsigned char ruder_direction_handler(unsigned char* command) {
 
 unsigned char fan_hovering_speed_handler(unsigned char* command) {
 	int (*func_ptr)(); // declaration of pointer to function
+	// in here I should remove the star and malloc and just use it normally
 	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
 	if (job_ptr == NULL) {
-		debug_print_string("Unable to get memory\n");
+		debug_print_string("Unable to get memory");
 		// we should call log_error in here
 		return 255;
 	} // if there was no memory to be allocated
@@ -322,7 +399,7 @@ unsigned char fan_hovering_speed_handler(unsigned char* command) {
 			job_ptr->prio = PRIO_HIGH;
 			job_ptr->type = MOVEMENT;
 			putJobInQueue(*job_ptr);
-			debug_print_string("put Fan Hovering increasing \n");
+			debug_print_string("put Fan Hovering increasing");
 			return INCREASING;
 			break;
 		case DECREASING:
@@ -333,11 +410,11 @@ unsigned char fan_hovering_speed_handler(unsigned char* command) {
 			job_ptr->prio = PRIO_HIGH;
 			job_ptr->type = MOVEMENT;
 			putJobInQueue(*job_ptr);
-			debug_print_string("put Fan Hovering decreasing\n");
+			debug_print_string("put Fan Hovering decreasing");
 			return DECREASING;
 			break;
 		default:
-			debug_print_string("put Fan Hovering Speed ERROR\n");
+			debug_print_string("put Fan Hovering Speed ERROR");
 			break;
 		} // first bit is 1 then either increasing or decreasing
 		return 255;
@@ -347,13 +424,13 @@ unsigned char fan_hovering_speed_handler(unsigned char* command) {
 		case STOP:
 			/* value was 00010000 */
 			// Call the stop api function of hovering
-			debug_print_string("put Fan Hovering STOP in queue\n");
+			debug_print_string("put Fan Hovering STOP in queue");
 			return STOP;
 			break;
 		case TURBO:
 			/* value was 00010111 */
 			// Call the turbo api function of hovering
-			debug_print_string("put Fan Hovering TURBO in queue\n");
+			debug_print_string("put Fan Hovering TURBO in queue");
 			return TURBO;
 			break;
 		default:
@@ -365,7 +442,7 @@ unsigned char fan_hovering_speed_handler(unsigned char* command) {
 	return 255;
 }
 
-unsigned char backward_handler (void){
+unsigned char backward_handler(void) {
 	debug_print_string("Backward");
 	change_polarity();
 	return 0;
@@ -375,13 +452,13 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 	int (*func_ptr)(); // declaration of pointer to function
 	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
 	if (job_ptr == NULL) {
-		debug_print_string("Unable to get memory\n");
+		debug_print_string("Unable to get memory");
 		// we should call log_error in here
 		return 255;
 	} // if there was no memory to be allocated
 	if (1 == increase_decrease(command)) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(command); // check the last bits
-		int temp=0 ;
+		int temp = 0;
 		switch (res_value) {
 		case INCREASING:
 			/* value was 00001000 */
@@ -391,7 +468,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			job_ptr->prio = PRIO_HIGH;
 			job_ptr->type = MOVEMENT;
 			putJobInQueue(*job_ptr);
-			debug_print_string("put Fan Forward increasing Speed in queue\n");
+			debug_print_string("put Fan Forward increasing Speed in queue");
 			temp = get_propulsion_level();
 			debug_print3(temp);
 			return INCREASING;
@@ -404,13 +481,13 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			job_ptr->prio = PRIO_HIGH;
 			job_ptr->type = MOVEMENT;
 			putJobInQueue(*job_ptr);
-			debug_print_string("put Fan Forward decreasing Speed in queue\n");
+			debug_print_string("put Fan Forward decreasing Speed in queue");
 			temp = get_propulsion_level();
 			debug_print3(temp);
 			return DECREASING;
 			break;
 		default:
-			debug_print_string("put Fan Forward Speed ERROR\n");
+			debug_print_string("put Fan Forward Speed ERROR");
 			break;
 		}
 		return 255;
@@ -426,7 +503,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			decrease_hover_auto();
 //			brake_hovercraft();
 			control_rudder(STRAIGHT);
-			debug_print_string("put Fan Forward STOP in queue\n");
+			debug_print_string("put Fan Forward STOP in queue");
 			return STOP;
 			break;
 		case TURBO:
@@ -434,14 +511,14 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			// Call the turbo api function of fan forward
 			set_propulsion_fan(120);
 			hover_max();
-			debug_print_string("put Fan Forward TURBO in queue\n");
+			debug_print_string("put Fan Forward TURBO in queue");
 			return TURBO;
 			break;
 		default:
-			debug_print_string("Fan Forward not implemented commands ERROR\n");
+			debug_print_string("Fan Forward not implemented commands ERROR");
 			break;
 		}
-		debug_print_string("put exact Forward speed value\n");
+		debug_print_string("put exact Forward speed value");
 	} // The message was exact fan forwarding speed value
 	return 255;
 }

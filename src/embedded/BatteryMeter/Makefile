@@ -10,7 +10,7 @@ ARDUINO = mega2560
 SHLIB = leds.so
 
 LIB = libleds.a
-LIB_H =
+LIB_H = alarm.h battery_meter.h four_leds.h percentage.h toneWrapper.h
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)

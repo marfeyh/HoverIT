@@ -16,6 +16,10 @@
 void send_serial_string(char* string);
 
 unsigned char backward_handler (void);
+unsigned char init_login(void);
+unsigned char add_pass(char*);
+unsigned char check_password(void);
+unsigned char distroy_pointer (void);
 
 /*!
  @brief The function sends one binary to the monitoring of Arduino for the purpose of debugging
@@ -29,5 +33,6 @@ unsigned char parse_input(unsigned char* result);
 unsigned char ruder_direction_handler(unsigned char*);
 unsigned char fan_hovering_speed_handler(unsigned char*);
 unsigned char fan_forward_speed_handler(unsigned char*);
+unsigned char off_handler(unsigned char*);
 
 #endif /* BLUETOOTH_CONTROLER_H_ */

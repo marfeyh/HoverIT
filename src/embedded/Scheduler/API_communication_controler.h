@@ -75,7 +75,7 @@ unsigned char hovercraft_pressure(unsigned int message);
  @param unsigned char of the value to be sent to pc
  @return unsigned char containing value and message type
  */
-unsigned char battery_level(unsigned char message);
+unsigned char battery_level(unsigned char, unsigned char);
 
 
 unsigned char stream_information (char* information);

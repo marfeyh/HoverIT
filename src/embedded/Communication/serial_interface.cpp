@@ -29,13 +29,13 @@ unsigned char serial_read() {
 //	unsigned char temp = check_connection();
 //	debug_print(&temp);
 //	if (1 == check_connection()) {
-	// Check serial input if there is anything available
-	if (COMMUNICATION_PIN.available() > 0) {
-		unsigned char input = COMMUNICATION_PIN.read();
-		debug_print(&input);
-		return input;
-	} // if there is anything available on serial input
-	return 255;
+		// Check serial input if there is anything available
+		if (COMMUNICATION_PIN.available() > 0) {
+			unsigned char input = COMMUNICATION_PIN.read();
+			debug_print(&input);
+			return input;
+		} // if there is anything available on serial input
+		return 255;
 //	}
 //	return 254;
 }
@@ -47,7 +47,6 @@ unsigned char serial_read() {
 void serial_binary_write(unsigned char* binary) {
 	//	printf("Module serial_interface.cpp: function serial_binary_write is working...\n");
 	COMMUNICATION_PIN.write(*binary);
-	Serial.write(*binary);
 }
 
 /*!
@@ -83,10 +82,10 @@ void debug_print2(unsigned int* data) {
 	MONITORING_PIN.print(*data);
 }
 void debug_print3(int data) {
-	Serial.print(data);
+	MONITORING_PIN.print(data);
 }
 
-void serial_binary_write_speed(int* speed){
+void serial_binary_write_speed(int* speed) {
 	COMMUNICATION_PIN.print(*speed);
 }
 

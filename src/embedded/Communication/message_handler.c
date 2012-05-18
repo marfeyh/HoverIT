@@ -53,6 +53,9 @@ unsigned char get_value_fans(unsigned char* value) {
 	return (0b00000111 & (*value));
 }
 
+unsigned char get_value_off(unsigned char* value) {
+	return (0b00000001 & (*value));
+}
 
 /*!
  @brief A function to find the type of the message of the received binary
@@ -85,6 +88,9 @@ unsigned char find_message(unsigned char* message) {
 		break;
 	case BACKWARD:
 		return BACKWARD;
+		break;
+	case HOVERCRAFTOFF:
+		return HOVERCRAFTOFF;
 		break;
 	default:
 		return 255;
@@ -169,11 +175,12 @@ unsigned char create_hovercraft_pressure(unsigned char* message) {
  @return number based on the message type
  return 255 if the value is bigger the limit
  */
-unsigned char create_battery_level(unsigned char* message) {
+unsigned char create_battery_level(unsigned char* battery_num,
+		unsigned char* message) {
 	if (check_number_limit(message) == 255) {
 		return 255;
 	}
-	return (5 << 4) | *message;
+	return ((5 + (*battery_num - 1)) << 4) | *message;
 }
 
 /*!

@@ -20,7 +20,9 @@
 #define HOVERCRAFT_PRESSURE 4 // based on protocl 0100
 #define BATTERY_LEVEL 5 // based on protocl 0101
 #define CONNECTION 6 // // based on protocl 0110
-#define BACKWARD 8 // // based on protocl 0110
+#define BACKWARD 8 // // based on protocl 1000
+#define HOVERCRAFTOFF 9 // // based on protocl 1001
+
 /*
  For the values
  */
@@ -40,6 +42,17 @@
  */
 #define TURBO 7
 #define STOP 0
+
+#define HOVERINGOFF 0
+#define TOTALLOFF 1
+
+#define PASSSIZE 4
+struct authentication {
+	unsigned char user_login; // 0 stands for not login
+	char* pass;
+	unsigned char pass_size;
+};
+
 #endif /* CONVENTIONS_H_ */
 
 /*

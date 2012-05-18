@@ -48,7 +48,6 @@ extern int brake_hovercraft();
 extern int change_polarity();
 
 // Wifi
-extern int wifi_begin(void);
 extern unsigned char wifi_read(void);
 
 #endif

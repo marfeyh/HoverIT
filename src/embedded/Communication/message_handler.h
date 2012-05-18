@@ -108,7 +108,7 @@ unsigned char create_hovercraft_pressure(unsigned char*);
  @return number based on the message type
  return 255 if the value is bigger the limit
  */
-unsigned char create_battery_level(unsigned char*);
+unsigned char create_battery_level(unsigned char*, unsigned char*);
 /*!
  @brief A function to check the limit of the value of the message
  @note The limit of the message is from 0 to 15 ( 4 bits )
@@ -118,4 +118,7 @@ unsigned char create_battery_level(unsigned char*);
  return 255 if the value is bigger the limit
  */
 unsigned char check_number_limit(unsigned char*);
+
+unsigned char get_value_off(unsigned char*);
+
 #endif /* MESSAGEHANDLER_H_ */

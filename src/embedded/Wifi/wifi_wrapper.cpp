@@ -15,10 +15,10 @@
 #include <wifi_wrapper.h>
 
 //Rx & Tx pin 
-#define ArduinoBoard_RX 2
-#define ArduinoBoard_TX 3
+#define ArduinoBoard_RX 22
+#define ArduinoBoard_TX 23
 //
-#define SSID "massih"
+#define SSID "XT910"
 #define passphrase "12345678"
 
 #define buff_size 120
@@ -29,16 +29,20 @@ void connect(void);
 WiFlySerial wifi = WiFlySerial(ArduinoBoard_RX,ArduinoBoard_TX);
  
 int wifi_begin(){
-	Serial.begin(9600);
-	Serial.println("STARTED");
+//	Serial.begin(9600);
+	Serial.println("e");
 	wifi.begin();
-	wifi.setAuthMode( WIFLY_AUTH_WPA2_PSK);
+	Serial.println("1");
+	wifi.setAuthMode( WIFLY_AUTH_ADHOC);
 	wifi.setJoinMode( WIFLY_JOIN_AUTO );
-	wifi.setDHCPMode( WIFLY_DHCP_ON );
+	wifi.setIP("192.168.42.42");
+	Serial.println("2");
+//	wifi.setDHCPMode( WIFLY_DHCP_ON );
 
 	wifi.getDeviceStatus();
 	//check if the device is connected ! if not, trying to reconnect
 	if(!wifi.isifUp()){
+		Serial.println("Wifi Started");
 		connect();
 	}
 	else{
@@ -61,7 +65,11 @@ int wifi_begin(){
 }
 	
 unsigned char wifi_read(){
-	return wifi.read();
+	if (wifi_available() > 0) {
+			unsigned char input = wifi.read();
+			return input;
+		} // if there is anything available on serial input
+		return 255;
 }
 int wifi_write(unsigned char out){
 	return wifi.write(out);
@@ -75,9 +83,9 @@ void connect(){
   if( wifi.setSSID(SSID) ){
     Serial.println("SSID set succesfully!");
   }
-  if( wifi.setPassphrase(passphrase) ){
-    Serial.println("Passphrase set successfully");
-  }
+//  if( wifi.setPassphrase(passphrase) ){
+//    Serial.println("Passphrase set successfully");
+//  }
   Serial.println("Trying to connect to network ...");
 
   if( wifi.join() ){
