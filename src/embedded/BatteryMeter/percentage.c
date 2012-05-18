@@ -76,7 +76,7 @@ int get_second_battery_level()
 	} else
 	{
 //		int percentage = 100 - (((1023 - analogRead(BATTERY_PIN2)) / 180.00 * 100));
-        int percentage = (analogRead(BATTERY_PIN1) - 765) / 258.00 * 100;
+        int percentage = (analogRead(BATTERY_PIN2) - 765) / 258.00 * 100;
 		return percentage;
 	}
 }
@@ -93,7 +93,7 @@ int get_third_battery_level()
 	} else
 	{
 //		int percentage = 100 - (((1023 - analogRead(BATTERY_PIN3)) / 180.00 * 100));
-        int percentage = (analogRead(BATTERY_PIN1) - 765) / 258.00 * 100;
+        int percentage = (analogRead(BATTERY_PIN3) - 765) / 258.00 * 100;
 		return percentage;
 	}
 }

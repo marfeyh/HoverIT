@@ -50,7 +50,7 @@ unsigned char init_login() {
 	if (login->pass == NULL) {
 		return 254;
 	}
-	login->pass_size =0;
+	login->pass_size = 0;
 	return 1;
 }
 
@@ -69,22 +69,22 @@ unsigned char add_pass(char* pass_ch) {
 	check_password();
 	return 1;
 }
-unsigned char check_password(){
-	if (login->pass_size == (PASSSIZE-1)){
-	//		check the password if it is correct
-	//		debug_print_string(login->pass);
-	//		if pass is correct then
-	//		login->user_login=1;
-		}
+unsigned char check_password() {
+	if (login->pass_size == (PASSSIZE - 1)) {
+		//		check the password if it is correct
+		//		debug_print_string(login->pass);
+		//		if pass is correct then
+		//		login->user_login=1;
+	}
 	return 255;
 
 }
 
-unsigned char distroy_pointer (){
-	if (login == NULL){
+unsigned char distroy_pointer() {
+	if (login == NULL) {
 		return 255;
 	}
-	free (login);
+	free(login);
 	return 1;
 }
 //===============================================================================
@@ -95,8 +95,6 @@ unsigned char distroy_pointer (){
  If there is any data available then the data would be parsed.
  */
 void check_serial_input() {
-	unsigned char temp = connection_status();
-	debug_print(&temp);
 //	stream_information("Amir");
 //	debug_write(&temp);
 	unsigned char result = 255;
@@ -104,10 +102,10 @@ void check_serial_input() {
 		check_bluetooth(&result);
 //		debug_print(result);
 //		debug_print_string("e");
-		if (254 == result) { // If there is any data available on serial input
-			check_wifi(&result);
-			debug_print_string("fun1");
-		}
+//		if (254 == result) { // If there is any data available on serial input
+//			check_wifi(&result);
+//			debug_print_string("fun1");
+//		}
 	} while (255 != result);
 	return;
 }
@@ -162,7 +160,13 @@ unsigned char ruder_direction(unsigned char message) {
  @return unsigned char containing value and message type
  */
 unsigned char hovercraft_speed(int message) {
-	send_serial_binary_speed(&message);
+	if (1 == connection_status()) {
+		unsigned char tag = 0b00111110;
+		send_serial_binary(&tag); // start streaming and send the starting tag
+		send_serial_binary_speed(&message);
+		tag = 0b00111111;
+		send_serial_binary(&tag);
+	}
 //	debug_print3(message);
 //	debug_print_string("hovercraft_speed called");
 
@@ -195,10 +199,14 @@ unsigned char hovercraft_pressure(unsigned int message) {
  @return unsigned char containing value and message type
  */
 unsigned char battery_level(unsigned char battery_num, unsigned char message) {
-	debug_print(&message);
-	debug_print_string("battery_level1 called");
-	unsigned char binary_message = create_battery_level(&battery_num, &message);
-	send_serial_binary(&binary_message);
+	if (1 == connection_status()) {
+//	debug_print(&message);
+//	debug_print_string("battery_level1 called");
+//	unsigned char binary_message = create_battery_level(&battery_num, &message);
+//	send_serial_binary(&binary_message);
+	}
+//	debug_print(&message);
+	//	debug_print_string("battery_level1 called");
 
 	// instead of return send_serial_binary should be called
 	return create_battery_level(&battery_num, &message);
