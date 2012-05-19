@@ -10,8 +10,8 @@ MAIN_SRC = gsm_main.c
 ARDUINO = mega2560
 SHLIB = gsm.so
 
-LIB = libgsm.a
-LIB_H = blink.h call_processor.h eeprom_api.h gsm_setup.h pin.h sms_com.h
+LIB = libgsm.a 
+LIB_H = blink.h call_processor.h eeprom_api.h gsm_setup.h pin.h sms_com.h 
 USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)

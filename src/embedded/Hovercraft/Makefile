@@ -3,7 +3,7 @@ SEARDUINO_PATH = /opt/searduino
 PROG = Hovercraft
 
 # Add your source files here
-SRC_C= 
+SRC_C= ../Communication/communication_controler.c
 SRC_CXX= 
 MAIN_SRC = main.c
 ARDUINO = mega2560

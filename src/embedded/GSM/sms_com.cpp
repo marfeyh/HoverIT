@@ -29,7 +29,7 @@
 #include "pin.h"
 #define BUFFSIZE 90
 
-char masterNumber[] = "+46738786569"; //safety number, for restoring the pincode
+char masterNumber[] = "+46739292462"; //safety number, for restoring the pincode
 char mobilenumber[16];
 
 /*!
