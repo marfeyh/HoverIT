@@ -66,10 +66,10 @@ unsigned char add_pass(char* pass_ch) {
 	login->pass = '\0';
 	login->pass_size++;
 
-	check_password();
+	check_global_password();
 	return 1;
 }
-unsigned char check_password() {
+unsigned char check_global_password() {
 	if (login->pass_size == (PASSSIZE - 1)) {
 		//		check the password if it is correct
 		//		debug_print_string(login->pass);
@@ -99,6 +99,7 @@ void check_serial_input() {
 //	debug_write(&temp);
 	unsigned char result = 255;
 	do {
+		loop_GSM();
 		check_bluetooth(&result);
 //		debug_print(result);
 //		debug_print_string("e");
@@ -167,8 +168,8 @@ unsigned char hovercraft_speed(int message) {
 		tag = 0b00111111;
 		send_serial_binary(&tag);
 	}
-//	debug_print3(message);
-//	debug_print_string("hovercraft_speed called");
+	debug_print3(message);
+	debug_print_string("hovercraft_speed called");
 
 	// instead of return send_serial_binary should be called
 //	return create_hovercraft_speed(&message);

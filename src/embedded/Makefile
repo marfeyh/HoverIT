@@ -22,6 +22,7 @@ all:
 	$(MAKE) lib-install -C 3pp
 	$(MAKE) lib-install -C BatteryMeter
 	$(MAKE) lib-install -C Wifi
+	$(MAKE) lib-install -C GSM
 	$(MAKE) prog -C Hovercraft
 
 check:
@@ -33,6 +34,7 @@ check:
 	$(MAKE) check -C determine-speed
 	$(MAKE) check -C BatteryMeter
 	$(MAKE) check -C Wifi
+	$(MAKE) check -C GSM
 #	$(MAKE) check -C Pressure
 
 gcovcheck:
@@ -44,6 +46,7 @@ gcovcheck:
 	$(MAKE) gcovcheck -C determine-speed
 	$(MAKE) gcovcheck -C BatteryMeter
 	$(MAKE) gcovcheck -C Wifi
+	$(MAKE) gcovcheck -C GSM
 #	$(MAKE) gcovcheck -C Pressure
 	gcovr -x --xml > coverage.xml
 
@@ -56,6 +59,7 @@ memcheck:
 	$(MAKE) memcheck -C determine-speed
 	$(MAKE) memcheck -C BatteryMeter
 	$(MAKE) memcheck -C Wifi
+#	$(MAKE) memcheck -C GSM
 #	$(MAKE) memcheck -C Pressure
 
 clean-tests:
@@ -68,6 +72,7 @@ clean-tests:
 	$(MAKE) clean-tests -C Pressure
 	$(MAKE) clean-tests -C BatteryMeter
 	$(MAKE) clean-tests -C Wifi
+	$(MAKE) clean-tests -C GSM
 
 clean: clean-tests
 	$(MAKE) clean -C Scheduler
@@ -81,3 +86,4 @@ clean: clean-tests
 	$(MAKE) clean -C 3pp
 	$(MAKE) clean -C BatteryMeter
 	$(MAKE) clean -C Wifi
+	$(MAKE) clean -C GSM

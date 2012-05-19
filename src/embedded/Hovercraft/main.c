@@ -9,6 +9,7 @@
 #include <calculateSpeed.h>
 #include <battery_meter.h>
 #include <wifi_wrapper.h>
+#include <gsm_setup.h>
 
 
 Speed *g_speed_p;
@@ -31,6 +32,8 @@ int main(void) {
 	g_speed_p = create_speed();
 	// battery levels
 	init_battery_meter();
+	// GSM
+	gsm_setup();
 	// wifi
 //	wifi_begin();
 	for (;;) {

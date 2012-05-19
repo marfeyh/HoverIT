@@ -1,22 +1,23 @@
-TEST_DIR=test/
+
+TEST_DIR=tests/
 SEARDUINO_PATH = /opt/searduino
-PROG = Hovercraft
+PROG = gsm
 
 # Add your source files here
-SRC_C= 
-SRC_CXX= 
-MAIN_SRC = main.c
+SRC_C= blink.c
+SRC_CXX= sms_com.cpp eeprom_api.cpp call_processor.cpp gsm_setup.cpp
+MAIN_SRC = gsm_main.c
 ARDUINO = mega2560
-SHLIB = hovercraft.so
+SHLIB = gsm.so
 
-USER_C_FLAGS = -I ../../../bin/include
-USER_LD_FLAGS = -L ../../../bin/lib/$(BOARD) -L ../../../3pp/bin/lib/$(BOARD) -L . -lscheduler -lbluetooth -lpropulsion -lhovering -lrudder -lpressure -lwifi -lwifly -lspeed -lleds -lgsm
+LIB = libgsm.a
+LIB_H = blink.h call_processor.h eeprom_api.h gsm_setup.h pin.h sms_com.h
+USER_LIB_INSTALL_PATH = ../../../bin
 
 export SRC_FILES= $(SRC_C) $(SRC_CXX)
 
 include $(SEARDUINO_PATH)/share/searduino/mk/searduino.mk
 
-# Needs to be modified as well
 check:
 	$(MAKE) check -C $(TEST_DIR)
 

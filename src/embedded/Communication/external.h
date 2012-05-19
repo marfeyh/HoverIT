@@ -50,4 +50,7 @@ extern int change_polarity();
 // Wifi
 extern unsigned char wifi_read(void);
 
+// GSM
+int loop_GSM();
+
 #endif

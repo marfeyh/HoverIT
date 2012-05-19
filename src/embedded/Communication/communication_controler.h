@@ -18,7 +18,7 @@ void send_serial_string(char* string);
 unsigned char backward_handler (void);
 unsigned char init_login(void);
 unsigned char add_pass(char*);
-unsigned char check_password(void);
+unsigned char check_global_password(void);
 unsigned char distroy_pointer (void);
 
 /*!
