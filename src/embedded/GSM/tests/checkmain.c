@@ -17,7 +17,7 @@ License along with this program. If not, see
 
 /*!
  @file checkmain.c
- @uthors Bishare and Stepan
+ @uthors Bishare Sufi, Stepan Stepasyuk
  @date 20120504
 */
 

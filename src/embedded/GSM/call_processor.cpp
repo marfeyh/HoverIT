@@ -29,15 +29,17 @@ License along with this program.  If not, see
 /*
  Header File
 */
+
+extern "C" {
+
+#include "API_communication_controler.h"
+
+}
 #include "call_processor.h"
 #include "pincode.h"
 #include "sms_com.h"
 #include "blink.h"
 #include "pin.h"
-
-extern "C"{
-#include "API_communication_controler.h"
-}
 /*
  String manipulation
 */
@@ -122,7 +124,7 @@ int readDTMF(){
     Serial.print("DTMF :");
     Serial.println((int)tone);
     
-    delay(1000);
+//    delay(1000);
     return tone;
   }
   return -1;
@@ -134,14 +136,14 @@ int readDTMF(){
   @authors Yavor Paunov, Anita Blazheva.
  */
 int loop_GSM() {
-  char buffer[90];
-
-  int index = readString(buffer);
-if (index > 0) {
-	Serial.println(buffer);	
-	}
+  char buffer[100];
+  int event = 0;
  
-  int event = checkGSMInput(buffer);
+  int index = readString(buffer);
+  if (index > 3) {
+	Serial.println(buffer);	
+ 	event = checkGSMInput(buffer);
+  }
   if(event == RINGING){
 	if(0 == digitalRead(COMMUNICATION_STATUS_PIN)){
 
@@ -164,8 +166,6 @@ if (index > 0) {
 
     }  
     
-  
-
   delay(50);
   return 0;
 }
@@ -269,7 +269,10 @@ int processTone(int tone){
 	in_hash_mode = !in_hash_mode;
 		Serial.print("in hash tone is: ");
 		Serial.println(in_hash_mode);
-        }
+        }else{
+ 		command = 0b00000111;
+		parse_input(&command);
+	}
     break;
 
     default:

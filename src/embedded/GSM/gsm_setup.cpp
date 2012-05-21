@@ -7,7 +7,7 @@ void gsm_setup(){
 
   //Initialize serial ports for communication.
 
-    Serial.begin(9600);
+    //Serial.begin(9600);
     Serial2.begin(9600);
 
     // Set sms format as text

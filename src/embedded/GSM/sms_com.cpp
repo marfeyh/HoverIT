@@ -27,7 +27,7 @@
 #include "sms_com.h"
 #include "eeprom_api.h"
 #include "pin.h"
-#define BUFFSIZE 90
+#define BUFFSIZE 100
 
 char masterNumber[] = "+46739292462"; //safety number, for restoring the pincode
 char mobilenumber[16];
@@ -59,7 +59,7 @@ int send_sms_back(char *number, char *text) {
  @param[out] buffer The message to be parsed
  */
 void parse_gsm_input(char *buffer) {
-	char text[50];
+	char text[90];
 	char wordString[10];
 	//get first word from the string
 	readWord(wordString, 0, buffer);
@@ -71,7 +71,7 @@ void parse_gsm_input(char *buffer) {
 		Serial.println(mobilenumber);
 	} else if (strcmp("inst", wordString) == 0) {
 		// check if it is inst
-		strcpy(text, "Use 2,4,6,8 to navigate the hovercraft");
+		strcpy(text, "Pincode format #dddd#; 2,4,6,1,3 to navigate; 7,*,8,0 to control fans; # for turbo.");
 		//send the instructions back to the user
 		send_sms_back(mobilenumber, text);
 	} else if ((strcmp("getpin", wordString) == 0)

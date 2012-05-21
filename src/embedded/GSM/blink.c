@@ -62,7 +62,7 @@ uint8_t set_led_On(uint8_t pin){
  @brief Function turn off the pin
  @return 0 on success
 */
-uint8_t isOff(uint8_t pin){
+uint8_t set_led_Off(uint8_t pin){
        
      digitalWrite(pin, LOW);
                        

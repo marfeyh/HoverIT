@@ -17,7 +17,7 @@ License along with this program. If not, see
 
 /*!
  @file check_blink.c
- @autors Bishare Stepan
+ @autors Bishare Sufi, Stepan Stepasyuk
  @date 20120504
  */
 
@@ -31,26 +31,15 @@ License along with this program. If not, see
 
 /*!
  @brief Check unit test for blinker function 
- @this test function checks if the GSM is connecting or calling
- @it takes pin 13 as parameter
+ *this test function checks if the GSM is connecting or calling
+ *it takes pin 13 as parameter
  @return 0 on success
- @par Test id: \n 
- * myawesomeid \n
- @par Testname: \n
- * my awesome test name \n
- @par Preconditions: \n 
- * my awesome precondition 1 \n
- * my awesome precondition 2 \n
- @par Postconditions: \n 
- * my awesome postcondition 1 \n
- * my awesome postcondition 2 \n
- @par Procedure: \n
- * my awesome step 1 \n
- * my awesome step 2 \n
- @par Outcome: \n
- * my awesome outcome \n
- @par Note: \n
- * my awesome note
+ @par Test id: blk 01 \n 
+ @par Testname: testing blinker function \n
+ @par Preconditions: none \n 
+ @par Postconditions: the LED is blinking \n 
+ @par Procedure: assign value 0 for passing otherwise fail the test \n
+ @par Outcome: test is passed \n
 */
 
 START_TEST(test_blinker){
@@ -65,67 +54,47 @@ END_TEST
 
 /*!
  @brief Check unit test for isOn function 
- @this test function checks if the GSM is already connected
- @it takes pin 13 as parameter
+ *this test function checks if the GSM is already connected
+ *it takes pin 13 as parameter
  @return 0 on success
- @par Test id: \n 
- * myawesomeid \n
- @par Testname: \n
- * my awesome test name \n
- @par Preconditions: \n 
- * my awesome precondition 1 \n
- * my awesome precondition 2 \n
- @par Postconditions: \n 
- * my awesome postcondition 1 \n
- * my awesome postcondition 2 \n
- @par Procedure: \n
- * my awesome step 1 \n
- * my awesome step 2 \n
- @par Outcome: \n
- * my awesome outcome \n
- @par Note: \n
- * my awesome note
+ @par Test id: blk 02 \n 
+ @par Testname: testing isOn function \n
+ @par Preconditions: the Hover-craft is turned on \n 
+ @par Postconditions: the LED is On \n 
+ @par Procedure: assign value 0 for passing otherwise fail the test \n
+ @par Outcome: test is passed \n
 */
 
-START_TEST(test_isOn){
+
+START_TEST(test_set_led_On){
 
     setup();
 	
-    fail_unless(isOn(13) == 0, NULL);
-    fail_if(isOn(13) != 0, NULL);
+    fail_unless(set_led_On(13) == 0, NULL);
+    fail_if(set_led_On(13) != 0, NULL);
     
 }
 END_TEST  
 
 /*!
  @brief Check unit test for isOff function 
- @this test function checks if the GSM is not connected
- @it takes pin 13 as parameter
+ *this test function checks if the GSM is not connected
+ *it takes pin 13 as argument
  @return 0 on success
- @par Test id: \n 
- * myawesomeid \n
- @par Testname: \n
- * my awesome test name \n
- @par Preconditions: \n 
- * my awesome precondition 1 \n
- * my awesome precondition 2 \n
- @par Postconditions: \n 
- * my awesome postcondition 1 \n
- * my awesome postcondition 2 \n
- @par Procedure: \n
- * my awesome step 1 \n
- * my awesome step 2 \n
- @par Outcome: \n
- * my awesome outcome \n
- @par Note: \n
- * my awesome note
+ @par Test id: blk 03 \n 
+ @par Testname: testing isOff function \n
+ @par Preconditions: the Hover-craft is turned off \n 
+ @par Postconditions: the LED is Off \n 
+ @par Procedure: assign value 0 for passing otherwise fail the test \n
+ @par Outcome: test is passed \n
 */
-START_TEST(test_isOff){
+
+START_TEST(test_set_led_Off){
 
     setup();
     
-    fail_unless(isOff(13) == 0, NULL);
-    fail_if(isOff(13) != 0, NULL);
+    fail_unless(set_led_Off(13) == 0, NULL);
+    fail_if(set_led_Off(13) != 0, NULL);
     
 }
 END_TEST
@@ -141,8 +110,8 @@ Suite * new_suite(void){
     TCase *tc_core = tcase_create("New Test Cases");
     
     tcase_add_test(tc_core, test_blinker);
-    tcase_add_test(tc_core, test_isOn);
-    tcase_add_test(tc_core, test_isOff);
+    tcase_add_test(tc_core, test_set_led_On);
+    tcase_add_test(tc_core, test_set_led_Off);
     
     tcase_set_timeout(tc_core, 0);
     

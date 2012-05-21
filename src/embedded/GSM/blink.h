@@ -17,7 +17,7 @@ License along with this program. If not, see
 
 /*!
  @file blink.h
- @authors Bishare Stepan
+ @authors Bishare Sufi, Stepan Stepasyuk
  @date 20120502
 */
 

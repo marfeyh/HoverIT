@@ -203,8 +203,8 @@ unsigned char battery_level(unsigned char battery_num, unsigned char message) {
 	if (1 == connection_status()) {
 //	debug_print(&message);
 //	debug_print_string("battery_level1 called");
-//	unsigned char binary_message = create_battery_level(&battery_num, &message);
-//	send_serial_binary(&binary_message);
+	unsigned char binary_message = create_battery_level(&battery_num, &message);
+	send_serial_binary(&binary_message);
 	}
 //	debug_print(&message);
 	//	debug_print_string("battery_level1 called");
