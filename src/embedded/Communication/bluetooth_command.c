@@ -14,20 +14,21 @@
    You should have received a copy of the GNU General Public License
    along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 /*!
  @file bluetooth_command.c
- @headerfile bluetooth_controler.h
- @details This module is only for the eBT500 commands based on the manual
+ @headerfile bluetooth_command.h
+ @details This file is only for the eBT500 commands based on the manual.
+ This c file contains all the setting of eb500 embedded bluetooth.
  @see http://www.parallax.com/dl/docs/prod/comm/eb500.pdf
  @author Amir Almasi
  @author Retta Shiferaw
  @version 0.2
- @todo only one command, set connetable to true, is implemented. Also commenting
- the functions is left.
- @todo the header file of this module is missing now! missing!
- @warning malloc is used to get required memory. There can be some failure
+ @note None of these settings are in used. There was no need to change any setting of bluetooth at runtime
+ based on architecture and requirement. The current setting of bluetooth is factory setting which contains of
+ set discoverable mode to true, set connectable mode to true and etc.
  */
-// test the functions. write free function
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

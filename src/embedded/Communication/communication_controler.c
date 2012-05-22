@@ -1,31 +1,28 @@
 /*
-   This file is part of Hoverit.
+ This file is part of Hoverit.
 
-   Hoverit is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+ Hoverit is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-   Hoverit is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+ Hoverit is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ You should have received a copy of the GNU General Public License
+ along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*!
  @file communication_controler.c
  @headerfile API_communication_controler.h
  @headerfile communication_controler.h
- @details This module is the brain of the bluetooth which controls it's functionalities
+ @details This module is the controller of the bluetooth.
  @author Amir Almasi
  @author Retta Shiferaw
- @version 0.7
- @note All the aruguments and returns of the functionsdebug_print_string("fan_forward_speed called"); are unsigned char
- @bug pointer to function should be free somewhere
- @todo pointer to job struct should be get free
+ @version 0.9
  @warning <b> Do not try this code at home! </b>
  */
 
@@ -39,13 +36,17 @@
 #include "jobpriority.h"
 #include "jobtype.h"
 
-struct authentication* login = NULL;
+//struct authentication* login = NULL;
 /*
  * ======================================================================
  * API functions
  * ======================================================================
  */
 
+/*!
+ @brief The function checks the bluetooth connection.
+ @return unsigned char 1 if there is connection on bluetooth, 0 if there is no connection
+ */
 unsigned char connection_status() {
 	// For checking the connection status
 	return check_connection();
@@ -56,58 +57,8 @@ unsigned char connection_status() {
  */
 void communication_serial_setup() {
 	serial_setup();
-	serial_switch();
+	serial_switch(); // This setting was in earlier architecture.
 }
-
-//===============================================================================
-unsigned char init_login() {
-	login = (struct authentication*) malloc(sizeof(struct authentication) * 1);
-	if (login == NULL) {
-		return 255;
-	}
-	login->user_login = 0; // 0 stands for not login
-	login->pass = (char*) malloc(sizeof(char) * (PASSSIZE + 1));
-	if (login->pass == NULL) {
-		return 254;
-	}
-	login->pass_size = 0;
-	return 1;
-}
-
-unsigned char add_pass(char* pass_ch) {
-	if (login == NULL) {
-		return 255;
-	}
-	if ((login->pass) == NULL) {
-		return 254;
-	}
-	*(login->pass) = *pass_ch;
-	login->pass++;
-	login->pass = '\0';
-	login->pass_size++;
-
-	check_global_password();
-	return 1;
-}
-unsigned char check_global_password() {
-	if (login->pass_size == (PASSSIZE - 1)) {
-		//		check the password if it is correct
-		//		debug_print_string(login->pass);
-		//		if pass is correct then
-		//		login->user_login=1;
-	}
-	return 255;
-
-}
-
-unsigned char distroy_pointer() {
-	if (login == NULL) {
-		return 255;
-	}
-	free(login);
-	return 1;
-}
-//===============================================================================
 
 /*!
  @brief When this function is called, by Scheduler, the bluetooth gets the resources of
@@ -119,10 +70,8 @@ void check_serial_input() {
 //	debug_write(&temp);
 	unsigned char result = 255;
 	do {
-		loop_GSM();
+		loop_GSM(); // checking GSM
 		check_bluetooth(&result);
-//		debug_print(result);
-//		debug_print_string("e");
 //		if (254 == result) { // If there is any data available on serial input
 //			check_wifi(&result);
 //			debug_print_string("fun1");
@@ -216,6 +165,7 @@ unsigned char hovercraft_pressure(unsigned int message) {
  @brief The function creates hovercraft battery level message.
  message argument is followed by hovercraft protocol available on wiki
  @see http://hoveritu.com/projects/semb2012/wiki
+ @param unsigned char of the battery number
  @param unsigned char of the value to be sent to pc
  @return unsigned char containing value and message type
  */
@@ -229,7 +179,6 @@ unsigned char battery_level(unsigned char battery_num, unsigned char message) {
 	}
 //	debug_print(&message);
 	//	debug_print_string("battery_level1 called");
-
 	// instead of return send_serial_binary should be called
 	return create_battery_level(&battery_num, &message);
 }
@@ -237,6 +186,7 @@ unsigned char battery_level(unsigned char battery_num, unsigned char message) {
 /*!
  @brief A function to send stream of information to serial pin by sending character by character.
  @param pointer to first char of the stream string to be sent
+ @return unsigned char 1 if the function was called
  */
 unsigned char stream_information(char* information) {
 	unsigned char tag = 0b01111110;
@@ -247,49 +197,12 @@ unsigned char stream_information(char* information) {
 	return 1;
 }
 
-/*
- * ===========================================================
- * Internal  functions
- * ===========================================================
- */
 
 /*!
- @brief The function sends string to the serial to show on monitoring on arduino
- @param pointer to char of the string
+ @brief A function to parse the data received
+ @param pointer to unsigned char of serial read data
+ @return unsigned char of result of  serial read
  */
-void send_serial_string(char* string) {
-	serial_string_write(string);
-}
-
-/*!
- @brief The function sends unsigned char which is binary to the serial to show on monitoring on arduino
- @param pointer to char of the string
- */
-void send_serial_binary(unsigned char* binary) {
-	serial_binary_write(binary);
-}
-
-void send_serial_binary_speed(int* binary) {
-	serial_binary_write_speed(binary);
-}
-
-unsigned char check_bluetooth(unsigned char* result) {
-	*result = serial_read();
-	if (254 > (*result)) {
-		parse_input(result);
-	}
-	return *result;
-}
-
-unsigned char check_wifi(unsigned char* result) {
-	*result = wifi_read();
-	if (255 != *result) {
-		parse_input(result);
-	}
-	return *result;
-}
-
-// this function should return
 unsigned char parse_input(unsigned char* result) {
 	// variable message_type shows the message received
 	unsigned char message_type = parse_binary(result);
@@ -329,11 +242,78 @@ unsigned char parse_input(unsigned char* result) {
 	} // end of if message received is based on protocol
 	return 255;
 }
+
+/*
+ * ===========================================================
+ * Internal  functions
+ * ===========================================================
+ */
+
+/*!
+ @brief The function sends string to the serial to show on monitoring on arduino
+ @param pointer to char of the string
+ */
+void send_serial_string(char* string) {
+	serial_string_write(string);
+}
+
+/*!
+ @brief The function sends unsigned char
+ @param pointer to char of the string
+ */
+void send_serial_binary(unsigned char* binary) {
+	serial_binary_write(binary);
+}
+
+/*!
+ @brief The function sends int which is hovercraft speed
+ @param pointer to int hovercraft speed
+ */
+void send_serial_binary_speed(int* binary) {
+	serial_binary_write_speed(binary);
+}
+
+/*!
+ @brief A function to check bluetooth input if there is any or not
+ @param unsigned char of serial read data
+ @return unsigned char of result of  serial read
+ 255 there was no data available for bluetooth, 254 there is no connection for bluetooth
+ */
+unsigned char check_bluetooth(unsigned char* result) {
+	*result = serial_read();
+	if (254 > (*result)) {
+		parse_input(result);
+	}
+	return *result;
+}
+
+/*!
+ @brief A function to check wifi input if there is any or not
+ @param unsigned char of serial read data
+ @return unsigned char of result of  serial read
+ 255 there was no data available for wifi, 254 there is no connection for wifi
+ */
+unsigned char check_wifi(unsigned char* result) {
+	*result = wifi_read();
+	if (255 != *result) {
+		parse_input(result);
+	}
+	return *result;
+}
+
+/*!
+ @brief A function to be called when the message tag is off
+ @param pointer to unsigned char of serial read data
+ @return unsigned char of value of serial read result
+ 255 if something was wrong with massage value
+ */
 unsigned char off_handler(unsigned char* command) {
 	struct Job job;
 	unsigned char hovercraft_off = get_value_off(command);
 	switch (hovercraft_off) {
 	case HOVERINGOFF:
+		/* value is 0000 */
+		// hovering off
 		job.task_p2 = stop_hover;
 		job.job_num = 1;
 		job.prio = PRIO_HIGH;
@@ -342,26 +322,27 @@ unsigned char off_handler(unsigned char* command) {
 		return HOVERINGOFF;
 		break;
 	case TOTALLOFF:
+		/* value is 0001 */
+		// hovering off
 		job.task_p2 = stop_hover;
 		job.job_num = 1;
 		job.prio = PRIO_HIGH;
 		job.type = MOVEMENT;
 		putJobInQueue(job);
-
+		// set fan forwarding to zero
 		job.task_p1 = set_propulsion_fan;
 		job.job_num = 0;
 		job.arg1 = 0;
 		job.prio = PRIO_HIGH;
 		job.type = MOVEMENT;
 		putJobInQueue(job);
-
+		// set rudder to close for parking style :D
 		job.task_p3 = control_rudder;
 		job.job_num = 2;
 		job.arg1 = BRAKE;
 		job.prio = PRIO_HIGH;
 		job.type = MOVEMENT;
 		putJobInQueue(job);
-
 		return TOTALLOFF;
 		break;
 	default:
@@ -371,12 +352,19 @@ unsigned char off_handler(unsigned char* command) {
 	return 255;
 }
 
+/*!
+ @brief A function to be called when the message tag is changing rudder direction
+ @param pointer to unsigned char of serial read data
+ @return unsigned char of value of serial read result
+ 255 if something was wrong with massage value
+ */
 unsigned char ruder_direction_handler(unsigned char* command) {
 	struct Job job;
 	unsigned char res_direction = get_direction(command); // To get the direction
 	switch (res_direction) {
 	case STRAIGHT:
 		/* value is 0000 */
+		// set the ruder to STRAIGHT
 		job.task_p3 = control_rudder;
 		job.job_num = 2;
 		job.arg1 = STRAIGHT;
@@ -389,6 +377,7 @@ unsigned char ruder_direction_handler(unsigned char* command) {
 		break;
 	case HARD_LEFT:
 		/* value is 0001 */
+		// set the rudder to hard left
 		job.task_p3 = control_rudder;
 		job.job_num = 2;
 		job.arg1 = HARD_LEFT;
@@ -454,14 +443,14 @@ unsigned char ruder_direction_handler(unsigned char* command) {
 	return 255;
 }
 
+/*!
+ @brief A function to be called when the message tag is about hovering fan
+ @param pointer to unsigned char of serial read data
+ @return unsigned char of value of serial read result
+ 255 if something was wrong with massage value
+ */
 unsigned char fan_hovering_speed_handler(unsigned char* command) {
-	// in here I should remove the star and malloc and just use it normally
 	struct Job job;
-//	if (job_ptr == NULL) {
-//		debug_print_string("Unable to get memory");
-	// we should call log_error in here
-//		return 255;
-//	} // if there was no memory to be allocated
 	if (increase_decrease(command) == 1) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(command); // check the last bits
 		switch (res_value) {
@@ -514,7 +503,11 @@ unsigned char fan_hovering_speed_handler(unsigned char* command) {
 	return 255;
 }
 
-unsigned char backward_handler(void) {
+/*!
+ @brief A function to be called for going backward and changing relay
+ @return unsigned char of 1 if the function was called
+ */
+unsigned char backward_handler() {
 	struct Job job;
 	job.task_p2 = change_polarity;
 	job.job_num = 1;
@@ -523,16 +516,18 @@ unsigned char backward_handler(void) {
 	putJobInQueue(job);
 	debug_print_string("Backward");
 //	change_polarity();
-	return 0;
+	return 1;
 }
 
+
+/*!
+ @brief A function to be called when the message tag is about forwarding fan
+ @param pointer to unsigned char of serial read data
+ @return unsigned char of value of serial read result
+ 255 if something was wrong with massage value
+ */
 unsigned char fan_forward_speed_handler(unsigned char* command) {
 	struct Job job;
-//	if (job_ptr == NULL) {
-//		debug_print_string("Unable to get memory");
-	// we should call log_error in here
-//		return 255;
-//	} // if there was no memory to be allocated
 	if (1 == increase_decrease(command)) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(command); // check the last bits
 		int temp = 0;
@@ -545,8 +540,6 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			job.type = MOVEMENT;
 			putJobInQueue(job);
 			debug_print_string("put Fan Forward increasing Speed in queue");
-//			temp = get_propulsion_level();
-//			debug_print3(temp);
 			return INCREASING;
 			break;
 		case DECREASING:
@@ -557,8 +550,6 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			job.type = MOVEMENT;
 			putJobInQueue(job);
 			debug_print_string("put Fan Forward decreasing Speed in queue");
-//			temp = get_propulsion_level();
-//			debug_print3(temp);
 			return DECREASING;
 			break;
 		default:
@@ -572,7 +563,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 		switch (res_value) {
 		case STOP:
 			/* value was 00000000 */
-			// Call the stop api function of fan forward
+			// set fan forward to zero
 			job.task_p1 = set_propulsion_fan;
 			job.arg1 = 0;
 			job.job_num = 0;
@@ -581,6 +572,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			putJobInQueue(job);
 //			set_propulsion_fan(0);
 
+			// decrease the hovering for smooth stop
 			job.task_p2 = decrease_hover_auto;
 			job.job_num = 1;
 			job.prio = PRIO_HIGH;
@@ -588,6 +580,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			putJobInQueue(job);
 //			decrease_hover_auto();
 
+			// decrease the hovering for smooth stop ;D
 			job.task_p2 = decrease_hover_auto;
 			job.job_num = 1;
 			job.prio = PRIO_HIGH;
@@ -595,6 +588,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			putJobInQueue(job);
 //			decrease_hover_auto();
 
+			// Set the control to straght
 			job.task_p3 = control_rudder;
 			job.job_num = 2;
 			job.arg1 = STRAIGHT;
@@ -607,7 +601,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			break;
 		case TURBO:
 			/* value was 00000111 */
-			// Call the turbo api function of fan forward
+			// set forwarding fan to 7, maximum
 			job.task_p1 = set_propulsion_fan;
 			job.arg1 = 120;
 			job.job_num = 0;
@@ -616,6 +610,7 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			putJobInQueue(job);
 //			set_propulsion_fan(120);
 
+			// set hovering fan to 7, maximum
 			job.task_p2 = hover_max;
 			job.job_num = 1;
 			job.prio = PRIO_HIGH;
@@ -632,3 +627,55 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 	} // The message was exact fan forwarding speed value
 	return 255;
 }
+
+/*
+ * Implementation of setting and checking password on the hovercraft
+ * Not used in the final code.
+ */
+//unsigned char init_login() {
+//	login = (struct authentication*) malloc(sizeof(struct authentication) * 1);
+//	if (login == NULL) {
+//		return 255;
+//	}
+//	login->user_login = 0; // 0 stands for not login
+//	login->pass = (char*) malloc(sizeof(char) * (PASSSIZE + 1));
+//	if (login->pass == NULL) {
+//		return 254;
+//	}
+//	login->pass_size = 0;
+//	return 1;
+//}
+//
+//unsigned char add_pass(char* pass_ch) {
+//	if (login == NULL) {
+//		return 255;
+//	}
+//	if ((login->pass) == NULL) {
+//		return 254;
+//	}
+//	*(login->pass) = *pass_ch;
+//	login->pass++;
+//	login->pass = '\0';
+//	login->pass_size++;
+//
+//	check_global_password();
+//	return 1;
+//}
+//unsigned char check_global_password() {
+//	if (login->pass_size == (PASSSIZE - 1)) {
+//		//		check the password if it is correct
+//		//		debug_print_string(login->pass);
+//		//		if pass is correct then
+//		//		login->user_login=1;
+//	}
+//	return 255;
+//
+//}
+//
+//unsigned char distroy_pointer() {
+//	if (login == NULL) {
+//		return 255;
+//	}
+//	free(login);
+//	return 1;
+//}

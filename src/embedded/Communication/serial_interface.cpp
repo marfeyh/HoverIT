@@ -1,19 +1,19 @@
 /*
-   This file is part of Hoverit.
+ This file is part of Hoverit.
 
-   Hoverit is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+ Hoverit is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-   Hoverit is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+ Hoverit is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ You should have received a copy of the GNU General Public License
+ along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*!
  @file serial_interface.cpp
@@ -22,11 +22,14 @@
  @headerfile HardwareSerial.h
  @headerfile serial_interface.h
  @headerfile pin.h
+ @author Viktor Green
+ @author Peter Mylikoski
  @details Following code is saved as c++ extension because it has to be compiled by c++ compiler
  since it is using serial libraries of searduino
  @author Amir Almasi
  @author Retta Shiferaw
- @version 0.2
+ @author Bligh Pratanporn Borjesson
+ @version 0.3
  */
 #include <serial_interface.h>
 #include <Arduino.h>
@@ -40,19 +43,18 @@
  and it should check if there is anything available or not
  @return unsigned char containing the binary message
  return 255 if there was nothing availble
- return 254 if the bluetooth connection is established and nothing available on serial
  */
 unsigned char serial_read() {
 //	unsigned char temp = check_connection();
 //	debug_print(&temp);
 //	if (1 == check_connection()) {
-		// Check serial input if there is anything available
-		if (COMMUNICATION_PIN.available() > 0) {
-			unsigned char input = COMMUNICATION_PIN.read();
-			debug_print(&input);
-			return input;
-		} // if there is anything available on serial input
-		return 255;
+	// Check serial input if there is anything available
+	if (COMMUNICATION_PIN.available() > 0) {
+		unsigned char input = COMMUNICATION_PIN.read();
+//			debug_print(&input);
+		return input;
+	} // if there is anything available on serial input
+	return 255;
 //	}
 //	return 254;
 }
@@ -71,8 +73,8 @@ void serial_binary_write(unsigned char* binary) {
  @param pointer to first char of the string to be sent
  */
 void serial_string_write(char* string) {
-	uint8_t length = strlen(string);
-	uint8_t counter = 0;
+	unsigned char length = strlen(string);
+	unsigned char counter = 0;
 	for (; counter < length; counter++) {
 		Serial.println(*(counter + string));
 		COMMUNICATION_PIN.print(*(counter + string));
@@ -89,19 +91,33 @@ void serial_setup(void) {
 }
 
 /*!
- @brief A function to send data to serial for the use monitoring IN HEX
+ @brief A function to send data to serial for the use monitoring
  @param pointer to unsigned char of first char of the string to be sent
  */
 void debug_print(unsigned char* data) {
 	MONITORING_PIN.print(*data);
 }
+
+/*!
+ @brief A function to send data to serial for the use monitoring
+ @param pointer to unsigned int of first char of the string to be sent
+ */
 void debug_print2(unsigned int* data) {
 	MONITORING_PIN.print(*data);
 }
+
+/*!
+ @brief A function to send data to serial for the use monitoring
+ @param int value to be sent to monitoring
+ */
 void debug_print3(int data) {
 	MONITORING_PIN.print(data);
 }
 
+/*!
+ @brief A function to send speed data
+ @param pointer to int value to be sent via Bluetooth
+ */
 void serial_binary_write_speed(int* speed) {
 	COMMUNICATION_PIN.print(*speed);
 }
@@ -125,6 +141,12 @@ void debug_print_string(char* character) {
 	MONITORING_PIN.print("\n");
 }
 
+/*!
+ @brief A function to change the communication connection.
+ This function was implemented when changing request should have been made before
+ compiling which was in earlier architecture. In the latest architecture and implementation
+ this is not effecting and in used anymore.
+ */
 void serial_switch() {
 #ifdef BLUETOOTH
 	debug_print_string("Bluetooth is activated");
@@ -137,6 +159,9 @@ void serial_switch() {
 #endif
 }
 
+/*!
+ @brief A function to check if the connection is established or not
+ */
 unsigned char check_connection() {
 	return digitalRead(COMMUNICATION_STATUS_PIN);
 }

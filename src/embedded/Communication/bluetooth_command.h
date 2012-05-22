@@ -14,11 +14,14 @@
    You should have received a copy of the GNU General Public License
    along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*
- * bluetooth_command.h
- *
- *  Created on: May 15, 2012
- *      Author: amir
+
+/*!
+ @file bluetooth_command.h
+ @details This is the header file of internal settings functions for bluetooth
+ @author Amir Almasi
+ @author Retta Shiferaw
+ @version 0.2
+ @note All the aruguments and returns of the functions are unsigned char
  */
 
 #ifndef BLUETOOTH_COMMAND_H_
