@@ -1,3 +1,20 @@
+/*
+   This file is part of Hoverit.
+
+   Hoverit is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Hoverit is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /*!
  @file communication_controler.c
  @headerfile API_communication_controler.h
@@ -313,16 +330,38 @@ unsigned char parse_input(unsigned char* result) {
 	return 255;
 }
 unsigned char off_handler(unsigned char* command) {
+	struct Job job;
 	unsigned char hovercraft_off = get_value_off(command);
 	switch (hovercraft_off) {
 	case HOVERINGOFF:
-		stop_hover();
+		job.task_p2 = stop_hover;
+		job.job_num = 1;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
 		return HOVERINGOFF;
 		break;
 	case TOTALLOFF:
-		stop_hover();
-		set_propulsion_fan(0);
-		control_rudder(BRAKE);
+		job.task_p2 = stop_hover;
+		job.job_num = 1;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+
+		job.task_p1 = set_propulsion_fan;
+		job.job_num = 0;
+		job.arg1 = 0;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+
+		job.task_p3 = control_rudder;
+		job.job_num = 2;
+		job.arg1 = BRAKE;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+
 		return TOTALLOFF;
 		break;
 	default:
@@ -333,50 +372,78 @@ unsigned char off_handler(unsigned char* command) {
 }
 
 unsigned char ruder_direction_handler(unsigned char* command) {
-	int (*func_ptr)(); // declaration of pointer to function
 	struct Job job;
 	unsigned char res_direction = get_direction(command); // To get the direction
 	switch (res_direction) {
 	case STRAIGHT:
 		/* value is 0000 */
-//		func_ptr = control_rudder;
-//		job_ptr->task_p3 = func_ptr;
-//		job_ptr->arg1 = STRAIGHT;
-//		job_ptr->job_num = 2;
-//		job_ptr->prio = PRIO_HIGH;
-//		job_ptr->type = MOVEMENT;
-//		putJobInQueue(*job_ptr);
-		control_rudder(STRAIGHT);
+		job.task_p3 = control_rudder;
+		job.job_num = 2;
+		job.arg1 = STRAIGHT;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+//		control_rudder(STRAIGHT);
 		debug_print_string("STRAIGHT");
 		return STRAIGHT;
 		break;
 	case HARD_LEFT:
 		/* value is 0001 */
-		control_rudder(HARD_LEFT);
+		job.task_p3 = control_rudder;
+		job.job_num = 2;
+		job.arg1 = HARD_LEFT;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+//		control_rudder(HARD_LEFT);
 		debug_print_string("HARD_LEFT");
 		return HARD_LEFT;
 		break;
 	case HARD_RIGHT:
 		/* value is 0010 */
-		control_rudder(HARD_RIGHT);
+		job.task_p3 = control_rudder;
+		job.job_num = 2;
+		job.arg1 = HARD_RIGHT;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+//		control_rudder(HARD_RIGHT);
 		debug_print_string("HARD_RIGHT");
 		return HARD_RIGHT;
 		break;
 	case SOFT_RIGHT:
 		/* value is 0011 */
-		control_rudder(SOFT_RIGHT);
+		job.task_p3 = control_rudder;
+		job.job_num = 2;
+		job.arg1 = SOFT_RIGHT;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+//		control_rudder(SOFT_RIGHT);
 		debug_print_string("SOFT_RIGHT");
 		return SOFT_RIGHT;
 		break;
 	case SOFT_LEFT:
 		/* value is 0100 */
-		control_rudder(SOFT_LEFT);
+		job.task_p3 = control_rudder;
+		job.job_num = 2;
+		job.arg1 = SOFT_LEFT;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+//		control_rudder(SOFT_LEFT);
 		debug_print_string("SOFT_LEFT");
 		return SOFT_LEFT;
 		break;
 	case BRAKE:
 		/* value is 0101 */
-		control_rudder(BRAKE);
+		job.task_p3 = control_rudder;
+		job.job_num = 2;
+		job.arg1 = BRAKE;
+		job.prio = PRIO_HIGH;
+		job.type = MOVEMENT;
+		putJobInQueue(job);
+//		control_rudder(BRAKE);
 		debug_print_string("BRAKE");
 		return BRAKE;
 		break;
@@ -388,36 +455,33 @@ unsigned char ruder_direction_handler(unsigned char* command) {
 }
 
 unsigned char fan_hovering_speed_handler(unsigned char* command) {
-	int (*func_ptr)(); // declaration of pointer to function
 	// in here I should remove the star and malloc and just use it normally
-	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
-	if (job_ptr == NULL) {
-		debug_print_string("Unable to get memory");
-		// we should call log_error in here
-		return 255;
-	} // if there was no memory to be allocated
+	struct Job job;
+//	if (job_ptr == NULL) {
+//		debug_print_string("Unable to get memory");
+	// we should call log_error in here
+//		return 255;
+//	} // if there was no memory to be allocated
 	if (increase_decrease(command) == 1) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(command); // check the last bits
 		switch (res_value) {
 		case INCREASING:
 			/* value was 00011000 */
-			func_ptr = increase_hover_auto;
-			job_ptr->task_p2 = func_ptr;
-			job_ptr->job_num = 1;
-			job_ptr->prio = PRIO_HIGH;
-			job_ptr->type = MOVEMENT;
-			putJobInQueue(*job_ptr);
+			job.task_p2 = increase_hover_auto;
+			job.job_num = 1;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
 			debug_print_string("put Fan Hovering increasing");
 			return INCREASING;
 			break;
 		case DECREASING:
 			/* value was 00011001 */
-			func_ptr = decrease_hover_auto;
-			job_ptr->task_p2 = func_ptr;
-			job_ptr->job_num = 1;
-			job_ptr->prio = PRIO_HIGH;
-			job_ptr->type = MOVEMENT;
-			putJobInQueue(*job_ptr);
+			job.task_p2 = decrease_hover_auto;
+			job.job_num = 1;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
 			debug_print_string("put Fan Hovering decreasing");
 			return DECREASING;
 			break;
@@ -451,8 +515,14 @@ unsigned char fan_hovering_speed_handler(unsigned char* command) {
 }
 
 unsigned char backward_handler(void) {
+	struct Job job;
+	job.task_p2 = change_polarity;
+	job.job_num = 1;
+	job.prio = PRIO_HIGH;
+	job.type = MOVEMENT;
+	putJobInQueue(job);
 	debug_print_string("Backward");
-	change_polarity();
+//	change_polarity();
 	return 0;
 }
 
@@ -475,8 +545,8 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			job.type = MOVEMENT;
 			putJobInQueue(job);
 			debug_print_string("put Fan Forward increasing Speed in queue");
-			temp = get_propulsion_level();
-			debug_print3(temp);
+//			temp = get_propulsion_level();
+//			debug_print3(temp);
 			return INCREASING;
 			break;
 		case DECREASING:

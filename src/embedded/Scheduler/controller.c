@@ -108,7 +108,7 @@ void control() {
       //hovercraft_pressure(get_pressure()); old
 	  	
 	  // Get speed value
-	  extern Speed *g_speed_p;  //////////////////////why big Speed?
+	  extern Speed *g_speed_p;  
 	  calculate_speed(g_speed_p);
 	  int speed = get_speed(g_speed_p);
 	  // Prepare and put the speed job in the queue
