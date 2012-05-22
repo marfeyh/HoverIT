@@ -22,12 +22,12 @@ It provides a control function which coordinates the other
 work packages included in the project through an infinite while loop. 
 @date 14-05-2012 
 @version 0.4
-@authors Sebastian Hansson, Mozhan Soltani
+@authors Amir Almasi, Sebastian Hansson, Mozhan Soltani
 @attention 
 - Since the air pressure sensor was not found to be sensitive enough,
 no pressure value will be retrieved and shown to the user. Therefore,
 the associated code has been commented out. 
-@copyright 2012 Sebastian Hansson, and Mozhan Soltani. 
+@copyright 2012 Amir Almasi, Sebastian Hansson, and Mozhan Soltani. 
  */
 
 #include <list.h>
@@ -41,6 +41,7 @@ the associated code has been commented out.
 #include "calculateSpeed.h"
 #include "pressure.h"
 #include "battery_meter.h"
+#include "API_communication_controler.h"
  
 static struct List *g_taskList;
 
@@ -64,7 +65,7 @@ void execute_jobs() {
        if(currentJob.job_num == 0){
          int(*task)(int);
          task = currentJob.task_p1;
-         (*task)(); //execute the job
+         (*task)(currentJob.arg1); //execute the job
         } /* If job_num == 0 */
 		
 	   else if (currentJob.job_num == 1) {
@@ -79,9 +80,9 @@ void execute_jobs() {
          (*task)(currentJob.arg1); //execute the job
        } /* If job_num == 2 */
 	   else if (currentJob.job_num == 3){
-         void(*task)(unsigned char,int);
+         void(*task)(unsigned char,unsigned char);
          task = currentJob.task_p4;
-         (*task)(currentJob.arg,currentJob.arg1); //execute the job
+         (*task)(currentJob.arg,currentJob.arg2); //execute the job
        } /* If job_num == 3 */
 	}
 } /* execute_jobs function */
@@ -124,7 +125,7 @@ void control() {
 	  battery1_job.job_num = 3;
       battery1_job.prio = PRIO_HIGH;
 	  battery1_job.arg = 1;
-	  battery1_job.arg1 = get_battery_level(FIRST_BATTERY);
+	  battery1_job.arg2 = get_battery_level(FIRST_BATTERY);
 	  battery1_job.task_p4 = battery_level;
 	  putJobInQueue(battery1_job);
 	  
@@ -133,7 +134,7 @@ void control() {
 	  battery2_job.job_num = 3;
       battery2_job.prio = PRIO_HIGH;
 	  battery2_job.arg = 2;
-	  battery2_job.arg1 = get_battery_level(SECOND_BATTERY);
+	  battery2_job.arg2 = get_battery_level(SECOND_BATTERY);
 	  battery2_job.task_p4 = battery_level;
 	  putJobInQueue(battery2_job);
 	  
@@ -142,7 +143,7 @@ void control() {
 	  battery3_job.job_num = 3;
       battery3_job.prio = PRIO_HIGH;
 	  battery3_job.arg = 3;
-	  battery3_job.arg1 = get_battery_level(THIRD_BATTERY);
+	  battery3_job.arg2 = get_battery_level(THIRD_BATTERY);
 	  battery3_job.task_p4 = battery_level;
 	  putJobInQueue(battery3_job);
 	

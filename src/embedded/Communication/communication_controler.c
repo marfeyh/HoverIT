@@ -18,6 +18,9 @@
 #include "conventions.h"
 #include <stdio.h> // because of using NULL
 #include "external.h"
+#include "job.h"
+#include "jobpriority.h"
+#include "jobtype.h"
 
 struct authentication* login = NULL;
 /*
@@ -203,8 +206,9 @@ unsigned char battery_level(unsigned char battery_num, unsigned char message) {
 	if (1 == connection_status()) {
 //	debug_print(&message);
 //	debug_print_string("battery_level1 called");
-	unsigned char binary_message = create_battery_level(&battery_num, &message);
-	send_serial_binary(&binary_message);
+		unsigned char binary_message = create_battery_level(&battery_num,
+				&message);
+		send_serial_binary(&binary_message);
 	}
 //	debug_print(&message);
 	//	debug_print_string("battery_level1 called");
@@ -330,12 +334,7 @@ unsigned char off_handler(unsigned char* command) {
 
 unsigned char ruder_direction_handler(unsigned char* command) {
 	int (*func_ptr)(); // declaration of pointer to function
-	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
-	if (job_ptr == NULL) {
-		debug_print_string("Unable to get memory");
-		// we should call log_error in here
-		return 255;
-	} // if there was no memory to be allocated
+	struct Job job;
 	unsigned char res_direction = get_direction(command); // To get the direction
 	switch (res_direction) {
 	case STRAIGHT:
@@ -458,25 +457,23 @@ unsigned char backward_handler(void) {
 }
 
 unsigned char fan_forward_speed_handler(unsigned char* command) {
-	int (*func_ptr)(); // declaration of pointer to function
-	struct Job* job_ptr = (struct Job*) malloc(sizeof(struct Job) * 1); // declaration of pointer to job struct
-	if (job_ptr == NULL) {
-		debug_print_string("Unable to get memory");
-		// we should call log_error in here
-		return 255;
-	} // if there was no memory to be allocated
+	struct Job job;
+//	if (job_ptr == NULL) {
+//		debug_print_string("Unable to get memory");
+	// we should call log_error in here
+//		return 255;
+//	} // if there was no memory to be allocated
 	if (1 == increase_decrease(command)) { // first bit is 1 then either increasing or decreasing
 		unsigned char res_value = get_value_fans(command); // check the last bits
 		int temp = 0;
 		switch (res_value) {
 		case INCREASING:
 			/* value was 00001000 */
-			func_ptr = increase_propulsion;
-			job_ptr->task_p2 = func_ptr;
-			job_ptr->job_num = 1;
-			job_ptr->prio = PRIO_HIGH;
-			job_ptr->type = MOVEMENT;
-			putJobInQueue(*job_ptr);
+			job.task_p2 = increase_propulsion;
+			job.job_num = 1;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
 			debug_print_string("put Fan Forward increasing Speed in queue");
 			temp = get_propulsion_level();
 			debug_print3(temp);
@@ -484,15 +481,14 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 			break;
 		case DECREASING:
 			/* value was 00001001 */
-			func_ptr = decrease_propulsion;
-			job_ptr->task_p2 = func_ptr;
-			job_ptr->job_num = 1;
-			job_ptr->prio = PRIO_HIGH;
-			job_ptr->type = MOVEMENT;
-			putJobInQueue(*job_ptr);
+			job.task_p2 = decrease_propulsion;
+			job.job_num = 1;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
 			debug_print_string("put Fan Forward decreasing Speed in queue");
-			temp = get_propulsion_level();
-			debug_print3(temp);
+//			temp = get_propulsion_level();
+//			debug_print3(temp);
 			return DECREASING;
 			break;
 		default:
@@ -507,19 +503,54 @@ unsigned char fan_forward_speed_handler(unsigned char* command) {
 		case STOP:
 			/* value was 00000000 */
 			// Call the stop api function of fan forward
-			set_propulsion_fan(0);
-			decrease_hover_auto();
-			decrease_hover_auto();
-//			brake_hovercraft();
-			control_rudder(STRAIGHT);
+			job.task_p1 = set_propulsion_fan;
+			job.arg1 = 0;
+			job.job_num = 0;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
+//			set_propulsion_fan(0);
+
+			job.task_p2 = decrease_hover_auto;
+			job.job_num = 1;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
+//			decrease_hover_auto();
+
+			job.task_p2 = decrease_hover_auto;
+			job.job_num = 1;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
+//			decrease_hover_auto();
+
+			job.task_p3 = control_rudder;
+			job.job_num = 2;
+			job.arg1 = STRAIGHT;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
+//			control_rudder(STRAIGHT);
 			debug_print_string("put Fan Forward STOP in queue");
 			return STOP;
 			break;
 		case TURBO:
 			/* value was 00000111 */
 			// Call the turbo api function of fan forward
-			set_propulsion_fan(120);
-			hover_max();
+			job.task_p1 = set_propulsion_fan;
+			job.arg1 = 120;
+			job.job_num = 0;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
+//			set_propulsion_fan(120);
+
+			job.task_p2 = hover_max;
+			job.job_num = 1;
+			job.prio = PRIO_HIGH;
+			job.type = MOVEMENT;
+			putJobInQueue(job);
 			debug_print_string("put Fan Forward TURBO in queue");
 			return TURBO;
 			break;
