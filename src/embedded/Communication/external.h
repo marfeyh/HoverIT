@@ -1,23 +1,23 @@
+/*
+   This file is part of Hoverit.
+
+   Hoverit is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Hoverit is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Hoverit.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef EXTERNAL_H
 #define EXTERNAL_H
 extern void check_serial_input(void);
-extern enum PRIORITY {
-	PRIO_LOW = 10, PRIO_MEDIUM = 20, PRIO_HIGH = 30, PRIO_RIGHT_NOW = 40
-};
-
-extern enum JOB_TYPE {
-	MOVEMENT, SENSORS, DEMO
-};
-extern struct Job {
-	unsigned char job_num; /* indicates which task pointer is used */
-	unsigned char arg1; /* is passed to the task pointers that take integer arguments */
-//	void (*task_p1)();
-	int (*task_p2)();
-	void (*task_p3)(unsigned char);
-//	int (*task_p4)(int);
-	enum PRIORITY prio;
-	enum JOB_TYPE type;
-};
 
 // Propulsion package propulsion_api.h
 extern int start_propulsion_fan();
